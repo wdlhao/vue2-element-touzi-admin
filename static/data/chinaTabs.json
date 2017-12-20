@@ -1,0 +1,55 @@
+{
+  "china":{
+    "title":"中国各区域投资情况",
+    "eastChina":[
+      {"provinces":"山东省","orderMoney":5690,"incomeMoney":3490 ,"payType":"贵金属" ,"orderPeriod":"18个月","orderPersonConunt":4792,"orderYearRate":"5%","remarks":"倾向于投资白银"},
+      {"provinces":"江苏省","orderMoney":7832,"incomeMoney":3820 ,"payType":"保险" ,"orderPeriod":"30个月","orderPersonConunt":7923,"orderYearRate":"12%","remarks":"倾向于投资信誉度较高的保险"},
+      {"provinces":"安徽省","orderMoney":7840,"incomeMoney":3290 ,"payType":"房产" ,"orderPeriod":"12个月","orderPersonConunt":3489,"orderYearRate":"8%","remarks":"多投资于品牌开发商"},
+      {"provinces":"浙江省","orderMoney":7830,"incomeMoney":3590 ,"payType":"信托" ,"orderPeriod":"30个月","orderPersonConunt":6820,"orderYearRate":"12%","remarks":"喜欢投资科技型信托"},
+      {"provinces":"福建省","orderMoney":7839,"incomeMoney":3289 ,"payType":"储蓄" ,"orderPeriod":"24个月","orderPersonConunt":6486,"orderYearRate":"15%","remarks":"倾向于中国银行"},
+      {"provinces":"上海市","orderMoney":23809,"incomeMoney":10892 ,"payType":"基金" ,"orderPeriod":"36个月","orderPersonConunt":9830,"orderYearRate":"5%","remarks":"投资集中为保守型基金"}
+    ],
+    "southChina":[
+      {"provinces":"广东省","orderMoney":9820,"incomeMoney":800 ,"payType":"债券" ,"orderPeriod":"30个月","orderPersonConunt":8720,"orderYearRate":"20%","remarks":"投资集中为金融债券" },
+      {"provinces":"广西壮族自治区","orderMoney":5903,"incomeMoney":2020 ,"payType":"储蓄" ,"orderPeriod":"60个月","orderPersonConunt":6729,"orderYearRate":"5%","remarks":"多投资于银行存款，保守投资" },
+      {"provinces":"海南省","orderMoney":8379,"incomeMoney":3630 ,"payType":"信托" ,"orderPeriod":"6个月","orderPersonConunt":7302,"orderYearRate":"12%","remarks":"喜欢稳定性信托"}
+    ],
+    "centralChina":[
+        {"provinces":"湖北省","orderMoney":6792,"incomeMoney":1390 ,"payType":"基金" ,"orderPeriod":"24个月","orderPersonConunt":5400,"orderYearRate":"10%","remarks":"投资集中为科技型基金" },
+        {"provinces":"湖南省","orderMoney":7930,"incomeMoney":2190 ,"payType":"股票" ,"orderPeriod":"36个月","orderPersonConunt":3480,"orderYearRate":"8%","remarks":"投资集中为科技型股票" },
+        {"provinces":"河南省","orderMoney":8920,"incomeMoney":3200 ,"payType":"期货" ,"orderPeriod":"24个月","orderPersonConunt":7820,"orderYearRate":"8%","remarks":"多投资于保守型期货" },
+        {"provinces":"江西省","orderMoney":6803,"incomeMoney":2839 ,"payType":"信托" ,"orderPeriod":"36个月","orderPersonConunt":3480,"orderYearRate":"8%","remarks":"喜欢品牌信托项目"}
+    ],
+    "northChina":[
+        {"provinces":"北京市","orderMoney":26803,"incomeMoney":10282 ,"payType":"古董收藏" ,"orderPeriod":"24个月","orderPersonConunt":5839,"orderYearRate":"14%","remarks":"倾向于明代皇家古董"},
+        {"provinces":"天津市","orderMoney":17839,"incomeMoney":9830 ,"payType":"外汇" ,"orderPeriod":"20个月","orderPersonConunt":9830,"orderYearRate":"5%","remarks":"倾向于英镑"},
+        {"provinces":"河北省","orderMoney":3890,"incomeMoney":1390 ,"payType":"房产" ,"orderPeriod":"30个月","orderPersonConunt":2379,"orderYearRate":"12%","remarks":"倾向于投资公寓型房产" },
+        {"provinces":"山西省","orderMoney":8390,"incomeMoney":4290 ,"payType":"外汇" ,"orderPeriod":"12个月","orderPersonConunt":4792,"orderYearRate":"10%","remarks":"多投资于美元"},
+        {"provinces":"内蒙古自治区","orderMoney":3893,"incomeMoney":2091 ,"payType":"基金" ,"orderPeriod":"12个月","orderPersonConunt":3279,"orderYearRate":"8%","remarks":"多投资于财富基金"}
+    ],
+    "northwestChina":[
+        {"provinces":"宁夏回族自治区","orderMoney":7338,"incomeMoney":3730 ,"payType":"保险" ,"orderPeriod":"12个月","orderPersonConunt":7392,"orderYearRate":"8%","remarks":"喜欢健康类保险"},
+        {"provinces":"新疆维吾尔族自治区","orderMoney":2349,"incomeMoney":1093 ,"payType":"保险" ,"orderPeriod":"24个月","orderPersonConunt":2397,"orderYearRate":"8%","remarks":"喜欢投资人身意外险"},
+        {"provinces":"青海省","orderMoney":4538,"incomeMoney":1893 ,"payType":"房产" ,"orderPeriod":"60个月","orderPersonConunt":6389,"orderYearRate":"20%","remarks":"倾向于国内一线城市"},
+        {"provinces":"陕西省","orderMoney":5639,"incomeMoney":2892 ,"payType":"股票" ,"orderPeriod":"6个月","orderPersonConunt":5830,"orderYearRate":"18%","remarks":"倾向于能源类股票"},
+        {"provinces":"甘肃省","orderMoney":5639,"incomeMoney":2389 ,"payType":"古董收藏" ,"orderPeriod":"60个月","orderPersonConunt":9839,"orderYearRate":"15%","remarks":"多投资于清代字画"}
+    ],
+    "southwestChina":[
+        {"provinces":"四川省","orderMoney":7639,"incomeMoney":2490 ,"payType":"贵金属" ,"orderPeriod":"24个月","orderPersonConunt":2454,"orderYearRate":"10%","remarks":"倾向于投资白银"},
+        {"provinces":"云南省","orderMoney":2390,"incomeMoney":1098 ,"payType":"债券" ,"orderPeriod":"20个月","orderPersonConunt":2389,"orderYearRate":"15%","remarks":"投资集中为银行债券"},
+        {"provinces":"贵州省","orderMoney":2590,"incomeMoney":1038 ,"payType":"期货" ,"orderPeriod":"30个月","orderPersonConunt":5857,"orderYearRate":"12%","remarks":"多投资于金融期货"},
+        {"provinces":"西藏自治区","orderMoney":8303,"incomeMoney":3409 ,"payType":"贵金属" ,"orderPeriod":"36个月","orderPersonConunt":3408,"orderYearRate":"15%","remarks":"喜欢投资黄金等贵金属" },
+        {"provinces":"重庆市","orderMoney":12839,"incomeMoney":8739 ,"payType":"股票" ,"orderPeriod":"12个月","orderPersonConunt":4839,"orderYearRate":"12%","remarks":"投资集中为电商型股票"}
+    ],
+    "northeastChina":[
+        {"provinces":"黑龙江省","orderMoney":4529,"incomeMoney":2390 ,"payType":"期货" ,"orderPeriod":"24个月","orderPersonConunt":8927,"orderYearRate":"20%","remarks":"多投资于品牌期货"},
+        {"provinces":"吉林省","orderMoney":7830,"incomeMoney":3729 ,"payType":"债券" ,"orderPeriod":"18个月","orderPersonConunt":3492,"orderYearRate":"5%","remarks":"多投资于美国债券"},
+        {"provinces":"辽宁省","orderMoney":3490,"incomeMoney":1980 ,"payType":"储蓄" ,"orderPeriod":"24个月","orderPersonConunt":4589,"orderYearRate":"10%","remarks":"多投资于农业银行"}
+    ],
+    "specialareaChina":[
+        {"provinces":"台湾省","orderMoney":6739,"incomeMoney":3029 ,"payType":"古董收藏" ,"orderPeriod":"18个月","orderPersonConunt":3820,"orderYearRate":"10%","remarks":"对汉代字画颇为赏识"},
+        {"provinces":"香港特别行政区","orderMoney":7390,"incomeMoney":3820 ,"payType":"外汇" ,"orderPeriod":"24个月","orderPersonConunt":6380,"orderYearRate":"8%","remarks":"倾向于美元储蓄"},
+        {"provinces":"澳门特别行政区","orderMoney":6490,"incomeMoney":3280 ,"payType":"基金" ,"orderPeriod":"30个月","orderPersonConunt":9090,"orderYearRate":"12%","remarks":"倾向于科技类基金"}
+    ]
+  }
+}

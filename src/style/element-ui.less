@@ -1,0 +1,153 @@
+ //覆盖一些element-ui样式
+.block-checkbox {
+    display: block;
+}
+.phoneGroup{
+    .el-checkbox{
+        margin-left:0 !important;
+        width:100%;
+    }
+}
+.loginForm{
+    .el-input__inner{
+      padding-left:30px !important;
+    }
+}
+ .dropItem{
+    .el-submenu__icon-arrow{
+        display:none !important;
+      }
+    .el-menu{
+        border:1px solid rgb(50, 64, 87) !important;
+    } 
+}
+
+.el-menu {
+    .el-submenu__title{
+          padding-left: 10px !important;
+      }
+}
+.fillcontain{
+   .el-input__inner{
+     height:36px !important;
+   }
+}
+
+.condition-container{
+    .datetime {
+        .el-input__inner{
+            width:180px;
+        }
+    }
+    .el-input__inner{
+        width:141px;
+    }
+}
+.irate{
+    .el-icon-star-on{
+      color:#67c23a !important;
+    }
+} 
+.operation-container {
+  .cell {
+    padding: 10px !important;
+  }
+  .el-button {
+    &:nth-child(3) {
+      margin-top: 10px;
+      margin-left: 0px;
+    }
+    &:nth-child(4) {
+      margin-top: 10px;
+    }
+  }
+}
+
+.el-upload {
+  input[type="file"] {
+    display: none !important;
+  }
+}
+
+.el-upload__input {
+  display: none;
+}
+
+.cell {
+  .el-tag {
+    margin-right: 8px;
+  }
+}
+
+.small-padding {
+  .cell {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+.status-col {
+  .cell {
+    padding: 0 10px;
+    text-align: center;
+    .el-tag {
+      margin-right: 0px;
+    }
+  }
+}
+
+//暂时性解决diolag 问题 https://github.com/ElemeFE/element/issues/2461
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+
+//textarea修改样式
+.article-textarea {
+  textarea {
+    padding-right: 40px;
+    resize: none;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #bfcbd9;
+  }
+}
+
+//element ui upload
+.upload-container {
+  .el-upload {
+    width: 100%;
+    .el-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+
+.top-menu{
+  .el-badge__content{
+    top: 12px !important;
+  }
+}
+.li-badge{
+    .one{
+        .el-badge__content{
+            background-color: #a9d86e;
+        }
+    }
+    .three{
+       .el-badge__content{
+            background-color: #FCB322;
+        }
+    }
+}
+
+
+
+
+/**--------------------------------------**/
+
+
