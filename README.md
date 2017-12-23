@@ -2,9 +2,9 @@
 
 **A magical vue element touzi admin.**
 
-- [效果演示地址](http://111.231.78.145:8086)
+- [效果演示地址](http://118.126.117.130:8089)
 
-- [使用文档](http://111.231.78.145:8086)
+- [使用文档](http://www.cnblogs.com/wdlhao/p/8075646.html)
 
 ## About
 
@@ -121,7 +121,7 @@ npm install
 
 ```
 
-## [查看更多demo](http://111.231.78.145:8086)
+## [查看更多demo](http://118.126.117.130:8089)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/1.jpg)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/2.jpg)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/3.jpg)

@@ -167,6 +167,7 @@
 						let userinfo = this.loginForm;
 						let data = {
 							ip:this.ip,
+							url:'http://ip.taobao.com/service/getIpInfo.php?ip='
 						}
 						let userData = Object.assign(userinfo, data);
                         axios({
@@ -179,10 +180,6 @@
 									this.saveUserInfo() // 存入缓存，用于显示用户名
 									this.generateMenuPushIndex() //模拟动态生成菜单并定位到index
 									this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
-									// this.$store.state.menu.sidebar = {
-									// 	  opened: true,  
-       								// 	  width: '180px'
-									// }
 
 								}else{
 									this.$message.error('登录失败请重试')
@@ -207,10 +204,13 @@
                     data:'',
                     fn:data=>{
                         const ip = data.origin;
-						this.ip = ip;
+						this.ip = ip; 
                     }
                 });
             },
+			
+
+
 		},
 		watch: {
 			adminInfo: function (newValue){

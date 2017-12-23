@@ -41,13 +41,6 @@ export default function ({
 
 	//检测接口权限
 	var api_flag = true;
-	// if (options.url && options.url.indexOf(gbs.host) && this.$store.state.user.userinfo.access_status === 1) {
-	// 	var url         = options.url.replace(gbs.host, '');
-	// 	var api_routers = this.$store.state.user.userinfo.api_routers;
-	// 	if (!api_routers || !api_routers.constructor === Object || !api_routers[url]) {
-	// 		api_flag = false;
-	// 	}
-	// }
 
 	if (api_flag === true) {
 		options[type === 'get' ? 'params' : 'data'] = data;
@@ -73,28 +66,15 @@ export default function ({
 		Vue.axios(options).then((res) => {
 			//console.log(res);
 			fn(res.data);
-
-			// this.$store.dispatch('hide_loading');
-			// if(res.data[gbs.api_status_key_field]===gbs.api_status_value_field){
-			// 	if(gbs.api_data_field){
-			// 		fn(res.data[gbs.api_data_field]);
-			// 	}else{
-			// 		fn(res.data);
-			// 	}
-			// }else{
-			// 	if(gbs.api_custom[res.data[gbs.api_status_key_field]]){
-			// 		gbs.api_custom[res.data[gbs.api_status_key_field]].call(this,res.data);
-			// 	}else{
-			// 		if(errFn){
-			// 			errFn.call(this.res.data);
-			// 		}else{
-			// 			cbs.statusError.call(this, res.data);
-			// 		}
-			// 	}
-			// }
+			
 		}).catch((err) => {
 			//this.$store.dispatch('hide_loading');
-			cbs.requestError.call(this, err);
+			this.$message({
+				showClose: true,
+				message: '请求错误：Internal Server Error',
+				type: 'error'
+			});
+			//cbs.requestError.call(this, err);
 		});
 	} else {
 		this.$alert('您没用权限请求该接口！', '请求错误', {

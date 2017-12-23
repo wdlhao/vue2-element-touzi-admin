@@ -69,17 +69,25 @@ const updateUserInfo = function(p,reqData,res){
  * @params:password
  */  
 router.get('/api/user/login',(req,res) => {
+	let address,area,region,region_id,city_id,isp,createTime,updateTime;
 	const username = req.query.username;
 	const password = req.query.password;
-
-    const headers = req.headers;
-	const host = headers.host; // 主机地址
-	const ptype = mutils.getOSdata(); // 操作系统
-	const useragent = headers['user-agent']; // 用户代理
+	//const createTime = mutils.formatDate(new Date(),2); // 首次登录时间
+	createTime = updateTime = mutils.formatDate(new Date(),2); // 最新一次登录时间
 	const ip = req.query.ip; // ip地址[外网地址]
+	const url = req.query.url;  
 
-	mutils.getIpInfo(ip, function(err, msg) {
-		const address =  msg.country+' '+msg.province+' '+msg.city;
+	mutils.getIpInfo(url,ip,function(err, msg) {
+		 console.log(msg);
+		 if(msg.data != ''){
+			 const data = msg.data;
+			 address =  data.country+' '+data.region+' '+data.city;
+			 area = data.area;
+			 region = data.region;
+			 region_id = data.region_id;
+			 city_id =	data.city_id;
+			 isp =	data.isp;
+		}
 		const p = models.Users;
 		// 保存数据之前，先要判断该用户是否已经存在。如果是，则更新数据；不是，则保存数据。
         const where = {'username':username} 
@@ -93,9 +101,12 @@ router.get('/api/user/login',(req,res) => {
 					const reqData = [{'_id':dataArr._id},{
 						'ip':ip,
 						'address':address,
-						'host':host,
-						'ptype':ptype,
-						'useragent':useragent
+						'area':area,
+						'region':region,
+						'region_id':region_id,
+						'city_id':city_id,
+						'isp':isp,
+						'updateTime':updateTime,
 					}];
 				   updateUserInfo(p,reqData,res);
 	   
@@ -108,9 +119,13 @@ router.get('/api/user/login',(req,res) => {
 						'password':password,
 						'ip':ip,
 						'address':address,
-						'host':host,
-						'ptype':ptype,
-						'useragent':useragent
+						'area':area,
+					    'region':region,
+						'region_id':region_id,
+						'city_id':city_id,
+						'isp':isp,
+						'createTime':createTime,
+						'updateTime':updateTime,
 					}
 					saveUserInfo(p,reqData,res);
 				}

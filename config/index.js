@@ -39,6 +39,8 @@ module.exports = {
 		},
     context: [ //代理路径e
         '/api',
+        '/sohu',
+        '/chinaz',
     ],
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

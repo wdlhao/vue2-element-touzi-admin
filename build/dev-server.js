@@ -65,6 +65,14 @@ switch(process.env.NODE_ENV){
                     proxypath = 'http://127.0.0.1:8089/api/'  // 通过这个代理，来访问服务器端api数据
                     options = {target: proxypath,changeOrigin: true,pathRewrite:{'^/api': ''}}
                     app.use(proxyMiddleware(context[i], options))
+                }else if(context[i] === '/sohu'){
+                    proxypath = 'http://pv.sohu.com/sohu/'  // 代理到搜狐网站
+                    options = {target: proxypath,changeOrigin: true,pathRewrite:{'^/sohu': ''}}
+                    app.use(proxyMiddleware(context[i], options))
+                }else if(context[i] === '/chinaz'){
+                    proxypath = 'http://ip.chinaz.com/'  // 代理到搜狐网站
+                    options = {target: proxypath,changeOrigin: true,pathRewrite:{'^/chinaz': ''}}
+                    app.use(proxyMiddleware(context[i], options))
                 }
             }
         }

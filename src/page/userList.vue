@@ -21,38 +21,50 @@
                 <el-table-column
                    property="address"
                    label="注册地址"
-                   width="150"
+                   width="160"
                    align='center'>
                 </el-table-column>
-                 <el-table-column
-                   property="ip"
-                   label="IP地址"
-                    width="160"
+                <el-table-column
+                   property="area"
+                   label="注册区域"
+                   width="120"
                    align='center'>
                 </el-table-column>
                   <el-table-column
-                   property="host"
-                   label="主机地址"
+                   property="isp"
+                   label="网络"
+                   width="80"
+                   align='center'>
+                </el-table-column> 
+                 <el-table-column
+                   property="ip"
+                   label="IP地址"
                    width="180"
                    align='center'>
                 </el-table-column>
-                 <el-table-column
+                <el-table-column
                    property="createTime"
+                   label="注册时间"
+                   width="180"
+                   align='center'>
+                </el-table-column>
+                <el-table-column
+                   property="updateTime"
                    label="登录时间"
                    width="180"
                    align='center'>
                 </el-table-column>
-                  <el-table-column
-                   property="ptype"
-                   label="操作系统"
+                 <el-table-column
+                   property="region_id"
+                   label="地区编号"
+                   width="120"
+                   align='center'>
+                </el-table-column> 
+                 <el-table-column
+                   property="city_id"
+                   label="城市编号"
                    align='center'>
                 </el-table-column>
-               <!--   <el-table-column
-                   property="useragent"
-                   label="用户代理"
-                   width="200"
-                   align='center'>
-                </el-table-column> -->
             </el-table>
 
            <el-row>
@@ -77,7 +89,6 @@
 </template>
 
 <script>
-    import dtime from 'time-formater'
     import * as mutils from 'utils/mUtils'
     import {axios} from 'utils/'
 
@@ -140,11 +151,13 @@
                                 sortnum:this.sortnum+(index+1),
                                 username:item.username,
                                 address:item.address,
-                                createTime:dtime(item.createTime).format('YYYY-MM-DD HH:mm:ss'),
+                                createTime: mutils.parseToDate(JSON.stringify(item.createTime)),
+                                updateTime: mutils.parseToDate(JSON.stringify(item.updateTime)),
                                 ip:item.ip,
-                                host:item.host,
-                                ptype:item.ptype,
-                                useragent:item.useragent
+                                area:item.area,
+                                region_id:item.region_id,  //地区编号
+                                city_id:item.city_id, //城市编号
+                                isp:item.isp, // 网络
                     		}
                     		this.tableData.push(tableItem);
                         })

@@ -25,15 +25,15 @@ const UserSchema = new Schema({
 	_id:Schema.Types.ObjectId ,
 	username: String,
 	password: String,
-	createTime: { type: Date, default: Date.now },
+	createTime: Number,
+	updateTime: Number,
 	ip:String,
 	address:String,
-	host:String,
-	ptype:String,
-	useragent:String
-}, {
-    versionKey: false,
-    timestamps: { createdAt: 'createTime'}
+	area:String,
+	region:String,
+	region_id:String,
+	city_id:String,
+	isp:String,
 })
 /**
  * 修改信息表
