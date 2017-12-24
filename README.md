@@ -127,7 +127,6 @@ npm install
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/3.jpg)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/4.gif)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/5.gif)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/6.gif)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/7.gif)
 
 ## License
