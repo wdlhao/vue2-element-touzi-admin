@@ -12,7 +12,7 @@ mongoose.connect('mongodb://localhost:27017/tougu',{useMongoClient: true});
 // 为这次连接绑定事件
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, '连接错误'));
-db.once('open', function() {console.log(new Date+'  http:localhost:8089 连接成功')});
+db.once('open', function() {console.log(new Date+'  http:localhost:80连接成功')});
 db.on("disconnected", function () { console.log("MongoDB connected disconnected.")});
 console.log(12);
 

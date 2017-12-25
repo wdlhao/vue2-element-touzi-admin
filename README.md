@@ -24,7 +24,7 @@
 
 **前端技术栈：** vue2 + vuex + vue-router + webpack2.0 + ES6/7 + less + element-ui
 
-**服务端技术栈：**nodejs + express  + mongodb
+**服务端技术栈：** nodejs + express  + mongodb
 
 
 ## 前序准备

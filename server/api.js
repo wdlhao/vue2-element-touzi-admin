@@ -227,6 +227,13 @@ router.get('/api/user/getInfoList',(req,res) => {
 })
 
 /**
+ * 修改用户信息 上传个人图像
+ */  
+router.get('/api/userInfo/uploadimg',(req,res) => {
+	console.log('into uploadimg------')
+	
+})
+/**
  * 获取信息列表by用户名[查找整个表格]
  * @params:username
  */  

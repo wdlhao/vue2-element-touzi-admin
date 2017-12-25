@@ -7,7 +7,7 @@ const path = require('path');   // 引入处理路径的模块
 const fs = require('fs'); // 引入文件模块
 const app = express();
 
-app.set('port',process.env.PORT || 8089);
+app.set('port',process.env.PORT || 80);
 app.use(api);  						// express use router       
 
 // 引入处理post数据的模块
@@ -34,7 +34,7 @@ app.get('*', function(req, res) {
 	//  next();
 //});
 
-// 监听8089端口
+// 监听80端口
 http.createServer(app).listen(app.get('port'),'0.0.0.0',function(){
 	console.log('Express server listening on port '+app.get('port'));
 })

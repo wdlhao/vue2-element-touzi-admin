@@ -6,7 +6,20 @@
                 <div class="area">
                     <div class="imgarea">
                         <img src="../assets/img/avatar-2.jpg">
-                        <p><el-button type="success" size="small">上传<i class="el-icon-upload el-icon--right"></i></el-button></p>
+                       <!-- <el-upload
+                            class="upload-demo"
+                            :action="uploadaction"
+                            multipl='false'
+                            accept="image/*"
+                            :limit="1"
+                            :on-exceed="handleExceed"
+                            :on-success="handSuccess"
+                            :on-error="handError"
+                            :before-upload="beforeAvatarUpload"
+                            :file-list="fileList">
+                            <el-button type="success" size="small">上传<i class="el-icon-upload el-icon--right"></i></el-button>
+                        </el-upload> -->
+                         <el-button type="success" size="small">上传<i class="el-icon-upload el-icon--right"></i></el-button>
                     </div>
                 </div>
                 </el-col>
@@ -124,13 +137,37 @@
                    {url:'http://www.360.com',data:100},
                    {url:'http://www.weibo.com',data:0},
                    {url:'http://www.hao123.com',data:100},
-               ]
+               ],
+               uploadaction:'/api/userInfo/uploadimg',
+               fileList:[], // name,url
             }
         },
       	mounted() {
          
 	    },
         methods: {
+            // 超过文件上传个数提示
+            handleExceed(files, fileList) {
+               this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg';
+                const isLt2M = file.size / 1024 / 1024 < 2;
+
+                if (!isJPG) {
+                     this.$message.error('上传头像图片只能是 JPG 格式!');
+                }
+                if (!isLt2M) {
+                     this.$message.error('上传头像图片大小不能超过 2MB!');
+                }
+                return isJPG && isLt2M;
+           },
+           handSuccess(file){
+
+           },
+           handError(file){
+
+           },
 
         },
     }
@@ -319,10 +356,10 @@
                 width: 200px;
                 margin-right: 10px;
                 a{
-                        background: url(../assets/img/pro_map.gif?v=1.0) no-repeat;
-                        width: 200px;
-                        height: 50px;
-                        display: block;
+                    background: url(../assets/img/pro_map.gif?v=1.0) no-repeat;
+                    width: 200px;
+                    height: 50px;
+                    display: block;
                 }
             }
           }
