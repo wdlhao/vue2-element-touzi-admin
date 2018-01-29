@@ -2,7 +2,7 @@
 
 **A magical vue element touzi admin.**
 
-- [效果演示地址](http://118.126.117.130:8089)
+- [效果演示地址](http://www.jiouai.com)
 
 - [使用文档](http://www.cnblogs.com/wdlhao/p/8075646.html)
 
@@ -24,7 +24,7 @@
 
 **前端技术栈：** vue2 + vuex + vue-router + webpack2.0 + ES6/7 + less + element-ui
 
-**服务端技术栈：** nodejs + express  + mongodb
+**服务端技术栈：**nodejs + express  + mongodb
 
 
 ## 前序准备
@@ -32,7 +32,7 @@
 **运行前准备：**
 
 1、不需要在本地调试及开发：
-   [请访问本项目的服务器地址。](http://118.126.117.130:8089)
+   [请访问本项目的服务器地址。](http://www.jiouai.com)
    
 2、需要在本地调试及开发：
 
@@ -72,12 +72,12 @@ npm install
    -  资金流水 -- 完成
    -  支付单据 -- 完成
  - 投资管理
-   -  省份投资 -- 完成
-   -  区域投资 -- 完成
+   -   省份投资 -- 完成
+   -   区域投资 -- 完成
  - 金融文章
    -  文章发布 -- 完成
    -  文章编辑 -- 完成
-   -  查看文章 -- 完成
+   - 查看文章 -- 完成
  - 资金数据
    -  投资分布 -- 完成
    -  项目分布 -- 完成
@@ -121,12 +121,13 @@ npm install
 
 ```
 
-## [查看更多demo](http://118.126.117.130:8089)
+## [查看更多demo](http://www.jiouai.com)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/1.jpg)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/2.jpg)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/3.jpg)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/4.gif)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/5.gif)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/6.gif)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/7.gif)
 
 ## License
