@@ -42,26 +42,20 @@ compiler.plugin('compilation', function (compilation) {
 })
 
 var context = config.dev.context
-var proxypath,options,proxystr;
+var proxypath;
 switch(process.env.NODE_ENV){
-    case 'local':  //local-->local
-          var proxypath = 'http://localhost:9092';
-          break;
-    case 'online':   //dev-->online
-        if(context.length){
-            for(var i = 0;i < context.length;i++){
-               if(context[i] === '/api'){  
-                    proxypath = 'http://127.0.0.1:80/api/'  // 通过这个代理，来访问服务器端api数据
-                    options = {target: proxypath,changeOrigin: true,pathRewrite:{'^/api': ''}}
-                    app.use(proxyMiddleware(context[i], options))
-                }
-            }
-        }
-        break;
+    case 'local': proxypath = 'http://localhost:80';break;
+    case 'online': proxypath = 'http://localhost:80/'; break;
 }
-// if (context.length) {
-//     app.use(proxyMiddleware(context, options))
-// }
+var options = {
+    target: proxypath,
+    changeOrigin: true
+}
+if (context.length) {
+    app.use(proxyMiddleware(context, options))
+}
+
+
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 

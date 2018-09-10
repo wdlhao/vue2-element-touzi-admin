@@ -24,12 +24,12 @@
                    width="160"
                    align='center'>
                 </el-table-column>
-                <el-table-column
+               <!-- <el-table-column
                    property="area"
                    label="注册区域"
                    width="120"
                    align='center'>
-                </el-table-column>
+                </el-table-column> -->
                   <el-table-column
                    property="isp"
                    label="网络"

@@ -23,13 +23,13 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report //npm run build --report`
   },
   dev: {
-    env: require('./dev.env'),
+    env: require('./dev.env'), // 'development'
     port: 8012,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
   	proxyTable        : {
-		
+     
 		},
     context: [ //代理路径e
         '/api'

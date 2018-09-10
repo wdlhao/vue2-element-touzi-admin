@@ -79,7 +79,7 @@ router.get('/api/user/login',(req,res) => {
 
 	mutils.getIpInfo(url,ip,function(err, msg) {
 		 console.log(msg);
-		 if(msg.data != ''){
+		 if(msg.data && msg.data != ''){
 			 const data = msg.data;
 			 address =  data.country+' '+data.region+' '+data.city;
 			 area = data.area;
