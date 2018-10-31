@@ -5,11 +5,9 @@ import store from './store/'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import * as mUtils from 'utils/mUtils'
+Vue.use(ElementUI, { size: 'mini'});
 
 Vue.config.productionTip = false;
-
-Vue.use(ElementUI);
-
 import 'register/';
 /**
  * 如果用户刷新页面,导致存入vuex中的菜单数据清空,需要从缓存获取;
@@ -54,7 +52,7 @@ router.beforeEach((route, redirect, next) => {
 new Vue({
 	el: '#app',
 	router,
-	store,
+  store,
 	template: '<App/>',
 	components: { App }
 })

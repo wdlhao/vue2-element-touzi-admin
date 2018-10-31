@@ -17,9 +17,9 @@
                             :on-error="handError"
                             :before-upload="beforeAvatarUpload"
                             :file-list="fileList">
-                            <el-button type="success" size="small">上传<i class="el-icon-upload el-icon--right"></i></el-button>
+                            <el-button type="success" size="mini">上传<i class="el-icon-upload el-icon--right"></i></el-button>
                         </el-upload> -->
-                         <el-button type="success" size="small">上传<i class="el-icon-upload el-icon--right"></i></el-button>
+                         <el-button type="success" size="mini">上传<i class="el-icon-upload el-icon--right"></i></el-button>
                     </div>
                 </div>
                 </el-col>

@@ -30,9 +30,8 @@
 </template>
 
 <script>
-    import {axios} from 'utils/'
+    import axios from 'utils/axios'
 	import * as mUtils from 'utils/mUtils'
-	import { baseUrl } from 'utils/'
 	import {mapActions, mapState,mapGetters} from 'vuex'
 
 	export default {
@@ -127,11 +126,10 @@
 							{path:'/incomePayPosition',name:'收支统计',component:'incomePayPosition'}
 						]
 			        },
-				
 				]
-
+				
 				mUtils.setStore('menuData',menuData)     // 将菜单放入缓存。
-				this.addMenu(menuData)     			  // 生成菜单,将菜单放入store 。
+				this.addMenu(menuData);     			  // 生成菜单,将菜单放入store 。
 				console.log(!this.isLoadRoutes)
 				if (!this.isLoadRoutes) {  // 首次进来为false,改变其状态为true
 					const routes = mUtils.generateRoutesFromMenu(menuData) //根据菜单生成的路由信息,需要将数据库返回的对象key值转成小写
@@ -175,16 +173,16 @@
                             path:'/api/user/login',
                             data:userData,
                             fn:data=>{
-								console.log(data);
 								if(data.status == 1){
 									this.saveUserInfo() // 存入缓存，用于显示用户名
 									this.generateMenuPushIndex() //模拟动态生成菜单并定位到index
 									this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
-
 								}else{
 									this.$message.error('登录失败请重试')
 								}
-
+							},
+							errFn:res => {
+								this.$message.error('请求出错11：'+res)
 							}
 						})
 					} else {
@@ -205,7 +203,10 @@
                     fn:data=>{
                         const ip = data.origin;
 						this.ip = ip; 
-                    }
+					},
+					errFn:res => {
+						this.$message.error('请求出错：'+res)
+					}
                 });
             },
 			

@@ -103,11 +103,11 @@
                 label="操作"
                 width="">
                 <template slot-scope='scope'>
-                    <el-button v-if="scope.row.status!='1'" size="small" type="success" @click="handleModifyStatus(scope.row,'1')">发布
+                    <el-button v-if="scope.row.status!='1'" size="mini" type="success" @click="handleModifyStatus(scope.row,'1')">发布
                     </el-button>
-                    <el-button v-if="scope.row.status!='2'" size="small" @click="handleModifyStatus(scope.row,'2')">草稿
+                    <el-button v-if="scope.row.status!='2'" size="mini" @click="handleModifyStatus(scope.row,'2')">草稿
                     </el-button>
-                    <el-button v-if="scope.row.status!='3'" size="small" type="danger" @click="handleModifyStatus(scope.row,'3')">删除
+                    <el-button v-if="scope.row.status!='3'" size="mini" type="danger" @click="handleModifyStatus(scope.row,'3')">删除
                     </el-button>
                 </template>
             </el-table-column>

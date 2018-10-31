@@ -4,7 +4,7 @@ const types = {
     HANDLE_LEFT_MENU:'HANDLE_LEFT_MENU',  // 收缩左侧菜单
     INIT_LEFT_MENU:'INIT_LEFT_MENU',     // 初始化左侧菜单
     SET_LEFT_COLLAPSE:"SET_LEFT_COLLAPSE", // 改变左边菜单的收缩宽度
-    DROP_NAME:'DROP_NAME',   // 收缩时，用于隐藏菜单名称
+    DROP_NAME:'DROP_NAME',  
 }
 
 
@@ -16,8 +16,8 @@ const state = {
         width: '180px'
     },
     isCollapse:false,  
-    isDropname:false,
-}
+    isDropname:false, // 用于显示和隐藏二级菜单
+} 
 
 const getters = {
     menuitems:state => state.items, 

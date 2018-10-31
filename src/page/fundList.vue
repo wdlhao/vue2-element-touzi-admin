@@ -20,11 +20,11 @@
                 </el-form-item>
 
                 <el-form-item>
-                    <el-button type="primary" size ="small" icon="search" @click='onScreeoutMoney("search_data")'>筛选</el-button>
+                    <el-button type="primary" size ="mini" icon="search" @click='onScreeoutMoney("search_data")'>筛选</el-button>
                 </el-form-item>
 
                 <el-form-item class="btnRight">
-                    <el-button type="primary" size ="small" icon="view" @click='onAddMoney()'>添加</el-button>
+                    <el-button type="primary" size ="mini" icon="view" @click='onAddMoney()'>添加</el-button>
                 </el-form-item>
 
             </el-form>
@@ -120,13 +120,13 @@
                     <el-button 
                         type="warning" 
                         icon='edit' 
-                        size="small"
+                        size="mini"
                         @click='onEditMoney(scope.row)'
                     >编辑</el-button>
                     <el-button 
                         type="danger" 
                         icon='delete' 
-                        size="small"
+                        size="mini"
                         @click='onDeleteMoney(scope.row,scope.$index)'
                     >删除</el-button>
                 </template>

@@ -3,7 +3,7 @@
         <el-row style="margin:0 10px;">
             <el-col :span="6" class='logo-container'>
                 <img src="../assets/img/logo.png" class='logo' alt="">
-                <span class='title'>xxx金融后台管理系统</span>
+                <span class='title'>小爱金融后台管理系统</span>
             </el-col>
             <div class="userinfo">
                 <img src="../assets/img/avatar.png" class='avatar' alt="">
@@ -20,7 +20,7 @@
                         </span>
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item command='info'>修改信息</el-dropdown-item>
-                            <el-dropdown-item command='pass' v-if=''>修改密码</el-dropdown-item>
+                            <el-dropdown-item command='pass'>修改密码</el-dropdown-item>
                             <el-dropdown-item  command='logout'>退出</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
@@ -132,13 +132,12 @@
         height: 60px;
         min-width:600px;
         padding: 5px;
-        background: #324057;
+        background: url('../assets/img/zhi001.png');
         position: fixed;
         top: 0px;
         left: 0px;
         z-index: 100;
         color: #FFF;
-        border-bottom: 1px solid #1F2D3D;
         .logout {
             vertical-align: middle;
             cursor: pointer;

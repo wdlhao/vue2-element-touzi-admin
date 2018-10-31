@@ -6,13 +6,13 @@
              <p class="title"><i class="fa fa-edit"></i>修改信息</p>
              <el-form class="form"  :model="infoForm" :rules="infoRules" ref="infoForm" label-width="80px">
                 <el-form-item label="姓名">
-                    <el-input v-model="infoForm.username"  size="small" disabled placeholder="请输入姓名"></el-input>
+                    <el-input v-model="infoForm.username"  size="mini" disabled placeholder="请输入姓名"></el-input>
                 </el-form-item>
                 <el-form-item label="昵称" prop="nickname">
-                    <el-input v-model="infoForm.nickname" size="small" placeholder="请输入昵称"></el-input>
+                    <el-input v-model="infoForm.nickname" size="mini" placeholder="请输入昵称"></el-input>
                 </el-form-item>
                  <el-form-item label="投资年限" prop="touziyear">
-                    <el-select v-model="infoForm.touziyear" size="small" placeholder="请选择投资年限" >
+                    <el-select v-model="infoForm.touziyear" size="mini" placeholder="请选择投资年限" >
                         <el-option label="1年" value="1"></el-option>
                         <el-option label="2年" value="2"></el-option>
                         <el-option label="3年" value="3"></el-option>
@@ -26,10 +26,10 @@
                     </el-select>
                 </el-form-item>
                  <el-form-item label="绑定邮箱" prop="email">
-                    <el-input v-model="infoForm.email" size="small" placeholder="请输入绑定邮箱"></el-input>
+                    <el-input v-model="infoForm.email" size="mini" placeholder="请输入绑定邮箱"></el-input>
                 </el-form-item>
                 <el-form-item label="绑定手机" prop="telphone">
-                    <el-input v-model="infoForm.telphone" size="small" placeholder="请输入绑定手机"></el-input>
+                    <el-input v-model="infoForm.telphone" size="mini" placeholder="请输入绑定手机"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="submitForm('infoForm')">提交</el-button>
@@ -45,13 +45,13 @@
                     <p class="title"><i class="fa fa-edit"></i>修改密码</p>
                         <el-form class="form"  :model="pwdForm" :rules="pwdRules" ref="pwdForm" label-width="100px">
                         <el-form-item label="原密码" prop="password">
-                            <el-input type="password" v-model="pwdForm.password" auto-complete="off" size="small" placeholder="请输入原密码"></el-input>
+                            <el-input type="password" v-model="pwdForm.password" auto-complete="off" size="mini" placeholder="请输入原密码"></el-input>
                         </el-form-item>
                         <el-form-item label="新密码" prop="newpassword">
-                            <el-input type="password" v-model="pwdForm.newpassword" auto-complete="off" size="small" placeholder="请输入新密码"></el-input>
+                            <el-input type="password" v-model="pwdForm.newpassword" auto-complete="off" size="mini" placeholder="请输入新密码"></el-input>
                         </el-form-item>
                         <el-form-item label="确认新密码" prop="surepassword">
-                            <el-input type="password" v-model="pwdForm.surepassword" auto-complete="off" size="small" placeholder="请输入确认新密码"></el-input>
+                            <el-input type="password" v-model="pwdForm.surepassword" auto-complete="off" size="mini" placeholder="请输入确认新密码"></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="submitForm('pwdForm')">提交</el-button>
@@ -68,7 +68,7 @@
                         <p class="title"><i class="fa fa-edit"></i>手机服务</p>
                         <el-form class="form"  :model="phoneForm" :rules="phoneRules" ref="phoneForm" label-width="110px">
                             <el-form-item label="当前绑定手机" prop="phone">
-                                <el-input v-model="phoneForm.phone" size="small" placeholder=""></el-input>
+                                <el-input v-model="phoneForm.phone" size="mini" placeholder=""></el-input>
                             </el-form-item>
                             <el-form-item label="基础短信服务" prop="baseType">
                                 <el-checkbox-group v-model="phoneForm.baseType" class="phoneGroup">

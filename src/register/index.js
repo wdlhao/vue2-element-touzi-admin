@@ -1,6 +1,3 @@
-/**
- * Created by sailengsi on 2017/5/11.
- */
 import Vue from 'vue';
 import _ from 'underscore';
 import libs from './lib.js';
