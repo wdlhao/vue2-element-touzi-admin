@@ -3,7 +3,7 @@
 	  	<transition name="form-fade" mode="in-out">
 	  		<section class="form_contianer" v-show="showLogin">
 		  		<div class="manage_tip">
-		  			<span class="title">xxx金融后台管理系统</span>
+		  			<span class="title">小爱金融后台管理系统</span>
 		  		</div>
 		    	<el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginForm">
 					<el-form-item prop="username">
@@ -173,6 +173,7 @@
                             path:'/api/user/login',
                             data:userData,
                             fn:data=>{
+								console.log(data);
 								if(data.status == 1){
 									this.saveUserInfo() // 存入缓存，用于显示用户名
 									this.generateMenuPushIndex() //模拟动态生成菜单并定位到index
@@ -182,6 +183,7 @@
 								}
 							},
 							errFn:res => {
+								console.log(res);
 								this.$message.error('请求出错11：'+res)
 							}
 						})
@@ -191,7 +193,6 @@
 							message: '请输入正确的用户名密码',
 							offset: 100
 						});
-						return false;
 					}
 				});
 			},

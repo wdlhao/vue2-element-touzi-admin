@@ -5,12 +5,11 @@ Vue.use(VueAxios, axios);
 
 // 导入封装的回调函数
 import {
-	cbs,
-	gbs
-} from 'config/';
+	cbs
+} from './env';
 
 // 动态设置本地和线上接口域名
-Vue.axios.defaults.baseURL = gbs.host; 
+// Vue.axios.defaults.baseURL = gbs.host; 
 
 /**
  * 封装axios的通用请求
@@ -42,7 +41,6 @@ export default function ({
 				options[f] = opts[f];
 			}
 		}
-
 		//发送请求  一般请求，还是表格类型的请求.因为其返回的数据结构是根据api中设定的，这里只需返回就行；
 		Vue.axios(options).then((res) => {
 			fn(res.data);

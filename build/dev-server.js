@@ -44,8 +44,7 @@ compiler.plugin('compilation', function (compilation) {
 var context = config.dev.context
 var proxypath;
 switch(process.env.NODE_ENV){
-    case 'local': proxypath = 'http://localhost:80';break;
-    case 'online': proxypath = 'http://localhost:80/'; break;
+    case 'online': proxypath = 'http://www.jiouai.com'; break;
 }
 var options = {
     target: proxypath,
