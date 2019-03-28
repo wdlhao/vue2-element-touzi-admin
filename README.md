@@ -139,4 +139,4 @@ npm install
 ## License
 
 项目讨论qq群：<b>602515030</b>,   <b>684775824</b>，欢迎大家加群，一起来学习和交流。
-MIT
+![image](https://files-cdn.cnblogs.com/files/wdlhao/qun2.bmp)
