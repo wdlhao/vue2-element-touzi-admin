@@ -6,13 +6,13 @@
 		  			<span class="title">小爱xx管理系统</span>
 		  		</div>
 		    	<el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginForm">
-					<el-form-item prop="username">
+					<el-form-item prop="username" class="login-item">
 					    <span class="fa-tips"><i class="fa fa-user"></i></span>
-						<el-input class="area" type="text" placeholder="用户名" v-model="loginForm.username" ></el-input>
+						<el-input @keyup.enter.native ="submitForm('loginForm')"  class="area" type="text" placeholder="用户名" v-model="loginForm.username" ></el-input>
 					</el-form-item>
-					<el-form-item prop="password">
+					<el-form-item prop="password" class="login-item">
 					    <span class="fa-tips"><i class="fa fa-lock"></i></span>
-						<el-input class="area" type="password" placeholder="密码" v-model="loginForm.password"></el-input>
+						<el-input @keyup.enter.native ="submitForm('loginForm')" class="area" type="password" placeholder="密码" v-model="loginForm.password"></el-input>
 					</el-form-item>
 					<el-form-item>
 				    	<el-button type="primary"  @click="submitForm('loginForm')" class="submit_btn">登陆</el-button>
@@ -242,11 +242,12 @@
 		 box-shadow: 5px 5px 10px #01144c;
 		.fa-tips{
 			position: absolute;
-			top: 0px;
 			left: 10px;
 			z-index: 20;
-			color:#FF7C1A;
+			color: #FF7C1A;
 			font-size: 18px;
+			top: 50%;
+			transform: translateY(-50%);
 		}
 		
 	}
