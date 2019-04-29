@@ -54,6 +54,7 @@
                     <div class="pagination">
                         <el-pagination
                             v-if='paginations.total > 0'
+                            small
                             :page-sizes="paginations.page_sizes"
                             :page-size="paginations.page_size"
                             :layout="paginations.layout"
@@ -185,5 +186,9 @@
     }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+ .pagination{
+       padding: 10px 20px;
+       text-align: right;
+   }
 </style>

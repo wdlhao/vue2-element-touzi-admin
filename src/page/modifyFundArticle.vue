@@ -324,8 +324,8 @@
         min-width:750px;
     }
     .pagination{
-        text-align: left;
-        margin-top: 10px;
+        text-align: right;
+        padding: 10px 20px;
     }
     .modifyFundArticlesTable .title{
         color:#3399cc;

@@ -66,7 +66,6 @@
                    align='center'>
                 </el-table-column>
             </el-table>
-
            <el-row>
                 <el-col :span="24">
                     <div class="pagination">
@@ -83,7 +82,6 @@
                     </div>
                 </el-col>
             </el-row>
-
         </div>
     </div>
 </template>
@@ -208,5 +206,13 @@
         },
     }
 </script>
+
+<style lang="less" scoped>
+   .pagination{
+       padding: 10px 20px;
+       text-align: right;
+   }
+</style>
+
 
 

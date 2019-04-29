@@ -3,11 +3,13 @@ import headNav from './headNav.vue'
 import leftMenu from './leftMenu.vue'
 import home from './home.vue'
 import content from './content.vue'
+import footerNav from './footer.vue'
 
 export {
     bread,
     headNav,
     leftMenu,
     home,
-    content
+    content,
+    footerNav
 }

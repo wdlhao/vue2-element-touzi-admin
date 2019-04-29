@@ -5,20 +5,21 @@
             <left-menu></left-menu>
             <div class="content_page" 
                 :style="{'margin-left':$store.state.menu.sidebar.width,
-                         'width':$store.state.page.win_content.width+'px',
-                         'height':$store.state.page.win_content.height+'px'}">
+                         'width':$store.state.page.win_content.width+'px'}">
                 <div class="content">
                     <bread></bread>
                     <router-view></router-view><!--页面渲染入口-->
                 </div>
             </div>
         </div>
+        <footerNav></footerNav>
     </div>
 </template>
 <script>
     import HeadNav from './headNav.vue';
 	import LeftMenu from './leftMenu.vue';
 	import Bread from './bread.vue';
+	import FooterNav from './footer.vue';
 
     export default {
         name: 'home',
@@ -32,7 +33,7 @@
             }
         },
         components:{
-            HeadNav,LeftMenu,Bread
+            HeadNav,LeftMenu,Bread,FooterNav
         },
         methods: {
             //用于自适配窗口页面大小
@@ -60,6 +61,7 @@
     .content_page{
         position: fixed;
         top:71px;
+        bottom: 40px;
         background: #FFF;
         overflow:auto;
     }

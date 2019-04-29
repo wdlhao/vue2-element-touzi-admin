@@ -3,7 +3,7 @@
 	  	<transition name="form-fade" mode="in-out">
 	  		<section class="form_contianer" v-show="showLogin">
 		  		<div class="manage_tip">
-		  			<span class="title">小爱金融后台管理系统</span>
+		  			<span class="title">小爱xx管理系统</span>
 		  		</div>
 		    	<el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginForm">
 					<el-form-item prop="username">
@@ -163,11 +163,10 @@
 					if (valid) {
 						//用户登录的接口
 						let userinfo = this.loginForm;
-						let data = {
-							ip:this.ip,
-							url:'http://ip.taobao.com/service/getIpInfo.php?ip='
-						}
-						let userData = Object.assign(userinfo, data);
+						userinfo.ip = this.ip;
+						userinfo.url = 'http://ip.taobao.com/service/getIpInfo.php?ip=';
+						let userData = userinfo
+						console.log(userData);
                         axios({
                             type:'get',
                             path:'/api/user/login',
