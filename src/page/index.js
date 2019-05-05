@@ -2,10 +2,8 @@ import login from './login.vue'
 import index from './index.vue'
 import userList from './userList.vue'
 import infoList from './infoList.vue'
-
 import infoShow from './infoShow.vue'
 import infoModify from './infoModify.vue'
-
 import fundList from './fundList.vue'
 import payList from './payList.vue'
 import chinaTouziList from './chinaTouziList.vue'
@@ -43,6 +41,4 @@ export {
 	createFundArticle,
 	modifyFundArticle,
 	showFundArticle,
-
-
 }

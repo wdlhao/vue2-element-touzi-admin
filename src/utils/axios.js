@@ -1,50 +1,67 @@
-import Vue from 'vue';
-import axios from 'axios';
-import VueAxios from 'vue-axios';
-Vue.use(VueAxios, axios);
+import axios from 'axios'
+import { Message, MessageBox } from 'element-ui'
+import store from '../store'
+import { getToken } from '@/utils/auth'
 
-// 导入封装的回调函数
-import {
-	cbs
-} from './env';
+// 创建axios实例
+const service = axios.create({
+  baseURL: process.env.BASE_API, // api的base_url
+  timeout: 5000 // 请求超时时间
+})
 
-// 动态设置本地和线上接口域名
-// Vue.axios.defaults.baseURL = gbs.host; 
+// request拦截器
+service.interceptors.request.use(config => {
+  if (store.getters.token) {
+	// config.headers.Authorization = `token ${store.state.user.token}`;
+    config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+  }
+  return config
+}, error => {
+  Promise.reject(error)
+})
 
-/**
- * 封装axios的通用请求
- * @param  {string}   type      get或post
- * @param  {string}   url       请求的接口URL
- * @param  {object}   data      传的参数，没有则传空对象
- * @param  {Function} fn        回调函数
- * @param  {boolean}   tokenFlag 是否需要携带token参数，为true，不需要；false，需要。一般除了登录，都需要
- */
-export default function ({
-		type,
-		path,
-		data,
-		fn,
-		errFn,
-		headers,
-		opts
-	} = {}) {
-		var options = {
-			method : type,
-			url    : path,
-			headers: headers && typeof headers === 'object' ? headers : {}
-		};
-		options[type === 'get' ? 'params' : 'data'] = data;
+// respone拦截器
+service.interceptors.response.use(
+  response => {
+  /**
+  * status为非1是抛错 可结合自己业务进行修改
+  */
+	const res = response.data
+	console.log(res)
+    if (res.status !== 1) {
+      Message({
+        message: res.message,
+        type: 'error',
+        duration: 5 * 1000
+      })
+      // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
+      if (res.status === 50008 || res.status === 50012 || res.status === 50014) {
+        MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
+          confirmButtonText: '重新登录',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          store.dispatch('FedLogOut').then(() => {
+            location.reload()// 为了重新实例化vue-router对象 避免bug
+          })
+        })
+      }
+      return Promise.reject('error')
+    } else {
+      console.log('response---------------------01---')
+      console.log(response.data)
+      return response.data
+    }
+  },
+  error => {
+    console.log('err' + error)// for debug
+    Message({
+      message: error.message,
+      type: 'error',
+      duration: 5 * 1000
+    })
+    return Promise.reject(error)
+  }
+)
 
-		//axios内置属性均可写在这里
-		if (opts && typeof opts === 'object') {
-			for (var f in opts) {
-				options[f] = opts[f];
-			}
-		}
-		//发送请求  一般请求，还是表格类型的请求.因为其返回的数据结构是根据api中设定的，这里只需返回就行；
-		Vue.axios(options).then((res) => {
-			fn(res.data);
-		}).catch((error) => {
-			errFn(error);
-		});
-} 
+export default service

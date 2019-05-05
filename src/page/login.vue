@@ -56,7 +56,7 @@
 		},
 		mounted(){
 			this.showLogin = true;
-			this.getip();  // 在页面初始化时，就去获取公网ip
+			// this.getip();  // 在页面初始化时，就去获取公网ip
 		},
 		computed: {
 			...mapGetters(['menuitems','isLoadRoutes'])  
@@ -167,31 +167,29 @@
 						userinfo.url = 'http://ip.taobao.com/service/getIpInfo.php?ip=';
 						let userData = userinfo
 						console.log(userData);
-                        axios({
-                            type:'get',
-                            path:'/api/user/login',
-                            data:userData,
-                            fn:data=>{
-								console.log(data);
-								if(data.status == 1){
-									this.saveUserInfo() // 存入缓存，用于显示用户名
-									this.generateMenuPushIndex() //模拟动态生成菜单并定位到index
-									this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
-								}else{
-									this.$message.error('登录失败请重试')
-								}
-							},
-							errFn:res => {
-								console.log(res);
-								this.$message.error('请求出错11：'+res)
-							}
+						this.$store.dispatch('Login', userData).then(res => {
+							console.log(res);
+							this.$router.push({ path: '/index' })
 						})
-					} else {
-						this.$notify.error({
-							title: '错误',
-							message: '请输入正确的用户名密码',
-							offset: 100
-						});
+                        // axios({
+                        //     type:'get',
+                        //     path:'/api/user/login',
+                        //     data:userData,
+                        //     fn:data=>{
+						// 		console.log(data);
+						// 		if(data.status == 1){
+						// 			this.saveUserInfo() // 存入缓存，用于显示用户名
+						// 			this.generateMenuPushIndex() //模拟动态生成菜单并定位到index
+						// 			this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
+						// 		}else{
+						// 			this.$message.error('登录失败请重试')
+						// 		}
+						// 	},
+						// 	errFn:res => {
+						// 		console.log(res);
+						// 		this.$message.error('请求出错11：'+res)
+						// 	}
+						// })
 					}
 				});
 			},
