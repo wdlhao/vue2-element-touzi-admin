@@ -8,7 +8,6 @@ import * as mUtils from 'utils/mUtils'
 Vue.use(ElementUI, { size: 'mini'});
 
 Vue.config.productionTip = false;
-import 'register/';
 import '@/permission' // permission control
 
 

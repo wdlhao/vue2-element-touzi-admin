@@ -44,7 +44,9 @@ compiler.plugin('compilation', function (compilation) {
 var context = config.dev.context
 var proxypath;
 switch(process.env.NODE_ENV){
-    case 'online': proxypath = 'http://www.jiouai.com'; break;
+    case 'online':
+      proxypath = 'https://easy-mock.com/mock/5cd03667adb0973be6a3d8d1'; 
+      break;
 }
 var options = {
     target: proxypath,

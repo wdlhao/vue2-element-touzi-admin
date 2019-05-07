@@ -163,11 +163,11 @@
 					if (valid) {
 						//用户登录的接口
 						let userinfo = this.loginForm;
-						userinfo.ip = this.ip;
-						userinfo.url = 'http://ip.taobao.com/service/getIpInfo.php?ip=';
-						let userData = userinfo
-						console.log(userData);
-						this.$store.dispatch('Login', userData).then(res => {
+						// userinfo.ip = this.ip;
+						// userinfo.url = 'http://ip.taobao.com/service/getIpInfo.php?ip=';
+						// let userData = userinfo
+						console.log(userinfo);
+						this.$store.dispatch('Login', userinfo).then(res => {
 							console.log(res);
            					this.$router.push({ path: '/dashboard/dashboard' })
 						})

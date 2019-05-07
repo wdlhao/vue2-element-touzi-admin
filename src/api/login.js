@@ -1,13 +1,15 @@
 import request from '@/utils/axios'
+import qs from "qs"
 
 export function login(username, password) {
+  console.log(username,password);
   return request({
-    url: '/api/user/login',
-    method: 'get',
-    data: {
+    url: '/user/login',
+    method: 'post',
+    data: qs.stringify({
       username,
       password
-    }
+    })
   })
 }
 

@@ -5,6 +5,8 @@ import { getToken } from '@/utils/auth'
 
 // 创建axios实例
 //可以使用自定义配置新建一个 axios 实例
+// 设置post请求type,因为easy-mock后台需要Form形式的数据才能正常解析;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
 const service = axios.create({
   baseURL: process.env.BASE_API, // api的base_url
   timeout: 5000 // 请求超时时间
@@ -13,10 +15,8 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(config => {
   if (store.getters.token) {
-    // config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     config.headers = {
       'Authorization' : "Token " + getToken(), //携带权限参数
-      'Content-Type':'application/json' //设置跨域头部,虽然很多浏览器默认都是使用json传数据，但咱要考虑IE浏览器。
      };
   }
   return config

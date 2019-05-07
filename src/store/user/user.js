@@ -40,7 +40,10 @@ const actions = {
         const username = userInfo.username.trim()
         return new Promise((resolve, reject) => {
           login(username, userInfo.password).then(response => {
+            alert(1);
             const data = response
+            // 登录成功之后主要目的获取token;
+            // token保存方式为：setToken,'SET_TOKEN';
             setToken(data.token)
             commit('SET_TOKEN', data.token)
             resolve()
