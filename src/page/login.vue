@@ -169,7 +169,7 @@
 						console.log(userData);
 						this.$store.dispatch('Login', userData).then(res => {
 							console.log(res);
-							this.$router.push({ path: '/index' })
+           					this.$router.push({ path: '/dashboard/dashboard' })
 						})
                         // axios({
                         //     type:'get',
