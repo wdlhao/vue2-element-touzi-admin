@@ -72,7 +72,10 @@
           },
           methods:{
               logout(){
-                  this.$router.push('/');
+                  this.$store.dispatch('LogOut').then(() => {
+                      location.reload();
+                  })
+           		//   this.$router.push({ path: '/login' })
               },
               showInfoList(){
                   this.$router.push('/infoModify');
@@ -87,6 +90,7 @@
                     this.$message('菜单选项缺少command属性');
                     return;
                 }
+                console.log(1234);
                 switch (cmditem) {
                     case 'info':
                     case 'pass':

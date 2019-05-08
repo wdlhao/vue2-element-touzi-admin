@@ -15,10 +15,18 @@ const whiteList = [
   
 //默认不需要权限的页面
 export const constantRouterMap = [
+	//  {
+  //   path: '/',
+  //   component: layout,
+  //   // redirect: '/login',
+  //   name: 'login',
+	// 	hidden: true,
+	//   component: (resolve) => require(['@/page/login'], resolve)
+  // },
 	{
     path: '',  // ??
     component: layout,
-		redirect: '/dashboard/dashboard',
+		redirect: '/index',
   },
 	{
 	  path: '/login',
@@ -27,21 +35,21 @@ export const constantRouterMap = [
 	  component: (resolve) => require(['@/page/login'], resolve)
 	},
 	{
-		path: '/dashboard',
-		name: 'dashboard',
+		path: '/index',
+		name: 'index',
 		component:layout,
 		meta:{
-			title:'dashboard',
+			title:'首页',
 		  icon: 'fa-dashboard',
 		},
 		children:[
 			{
-				path:'dashboard', // 这个path没有'/'
+				path:'/index', 
 				meta:{
-					title:'dashboard',
-					icon:'fa-dashboard',
+					title:'', 
+					icon:'fa-index',
 				},
-        component: () => import('@/page/dashboard'), // 这里没有参数'resolve'
+        component: () => import('@/page/index'), // 这里没有参数'resolve'
 			}
 		]
 	}
@@ -89,8 +97,8 @@ export const asyncRouterMap = [
 		   name:'infoShow',
 		   meta: {
 			    title:'个人信息',
-				icon: 'fa-asterisk',
-				roles: []
+					icon: 'fa-asterisk',
+					roles: []
 		   },
 		   component:resolve => require(['@/page/infoShow'], resolve),
 		},
@@ -221,7 +229,7 @@ export const asyncRouterMap = [
 		meta: {
 		  title:'资金数据',
 		  icon: 'fa-bar-chart-o',
-		  roles: []
+		  roles: ['admin']
 		},
 		component:layout,
 		redirect: '/fundData/fundPosition',
@@ -232,7 +240,7 @@ export const asyncRouterMap = [
 			 meta: {
 				  title:'投资分布',
 				  icon: '',
-				  roles: []
+				  roles: ['admin','editor']
 			 },
 			 component:resolve => require(['@/page/fundPosition'], resolve),
 		  },
@@ -242,7 +250,7 @@ export const asyncRouterMap = [
 			  meta: {
 				   title:'项目分布',
 				   icon: '',
-				   roles: []
+				   roles: ['editor']
 			  },
 			  component:resolve => require(['@/page/typePosition'], resolve),
 		   },
@@ -252,7 +260,7 @@ export const asyncRouterMap = [
 				meta: {
 					title:'收支统计',
 					icon: '',
-					roles: []
+					roles: ['editor']
 				},
 				component:resolve => require(['@/page/incomePayPosition'], resolve),
 		    }

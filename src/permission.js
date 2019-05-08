@@ -31,8 +31,8 @@ router.beforeEach((to, from, next) => {
       })
       NProgress.done()
     } else if (to.path === '/login') {
-      console.log("login222");
       next({ path: '/' })
+      console.log('定位到login页面--');
       NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
     } else {
       if (store.getters.roles.length === 0) {

@@ -4,12 +4,11 @@
 		    <i class="fa fa-bars"  :class="{isactive:changeBarDirection}"></i>
 		</span>
         <el-breadcrumb class="breadcrumb" separator="/">
-            <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item 
-                v-for='(item,index) in levelList'
+                v-for='(item,index) in $route.matched'
                 :key='index'
-				v-if='item.name'>
-				{{item.name}}
+				v-if='item.meta.title'>
+				{{item.meta.title}}
 			</el-breadcrumb-item>
         </el-breadcrumb>
     </div>
@@ -22,11 +21,10 @@ export default {
 	data(){
 		return {
 			changeBarDirection:false,
-			levelList: null
 		}
 	},
 	created() {
-        this.getBreadcrumb()
+		
     },
 	methods:{
 		setSize() {
@@ -43,23 +41,10 @@ export default {
 			this.$store.dispatch('dropName');   // 隐藏单一菜单名称
 			this.setSize()
 			this.changeBarDirection = !this.changeBarDirection;
-		},
-		getBreadcrumb() {
-			// 前三个，只拿数组[0]的值；
-			let matched = this.$route.matched.filter(item => item.name);
-			const first = matched[0];
-			if(first && first.path == '/index'){
-				matched = {};
-			}else if(first && (first.path == '/userList' || first.path == '/infoList')){
-				matched = [matched[0]];
-			}
-			this.levelList = matched;
-      }
+		}
 	},
 	watch: {
-      $route() {
-           this.getBreadcrumb();
-      }
+     
     }
 }
 
