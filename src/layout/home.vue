@@ -33,7 +33,10 @@
             }
         },
         components:{
-            HeadNav,LeftMenu,Bread,FooterNav
+            HeadNav,
+            LeftMenu,
+            Bread,
+            FooterNav
         },
         methods: {
             //用于自适配窗口页面大小

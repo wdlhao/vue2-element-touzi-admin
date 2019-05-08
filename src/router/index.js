@@ -16,15 +16,16 @@ const whiteList = [
 //默认不需要权限的页面
 export const constantRouterMap = [
 	{
+    path: '',  // ??
+    component: layout,
+		redirect: '/dashboard/dashboard',
+  },
+	{
 	  path: '/login',
-	  name: 'login',
+		name: 'login',
+    hidden: true,
 	  component: (resolve) => require(['@/page/login'], resolve)
 	},
-	// {
-	//   path: '',
-	// 	component:layout,
-  //   redirect: '/index'
-	// },
 	{
 		path: '/dashboard',
 		name: 'dashboard',
@@ -33,7 +34,6 @@ export const constantRouterMap = [
 			title:'dashboard',
 		  icon: 'fa-dashboard',
 		},
-		// redirect: '/index/indexs',
 		children:[
 			{
 				path:'dashboard', // 这个path没有'/'
@@ -61,7 +61,7 @@ export const asyncRouterMap = [
 		meta: {
 			title:'用户管理',
 			icon: 'fa-user',
-			roles: ['admin', 'editor']
+			roles: ['admin', 'editor'],
 		}
 	},
 	{

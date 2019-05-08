@@ -2,21 +2,19 @@ import request from '@/utils/axios'
 import qs from "qs"
 
 export function login(username, password) {
-  console.log(username,password);
   return request({
     url: '/user/login',
     method: 'post',
-    data: qs.stringify({
+    data: {
       username,
       password
-    })
+    }
   })
 }
 
 export function getInfo(token) {
   return request({
-    // url: '/user/info',
-    url: '/api/datas/userInfo.json',
+    url: '/user/info',
     method: 'get',
     params: { token }
   })

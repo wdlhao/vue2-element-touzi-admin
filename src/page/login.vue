@@ -169,6 +169,7 @@
 						console.log(userinfo);
 						this.$store.dispatch('Login', userinfo).then(res => {
 							console.log(res);
+							alert(11);
            					this.$router.push({ path: '/dashboard/dashboard' })
 						})
                         // axios({

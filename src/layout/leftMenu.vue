@@ -10,17 +10,17 @@
             background-color="#324057"
             text-color="#fff"
             active-text-color="#ff6428">
-                <template v-for="(item,index) in lefeMenuList">
+                <template v-for="(item,index) in permission_routers">
                     <!--表示 有二级菜单 -->
-                    <el-submenu v-if="item.children  && item.children.length > 0 && !item.noDropdown"  :index="item.path" :key="index">
+                    <el-submenu v-if="item.children  && item.children.length > 0 && !item.hidden"  :index="item.path" :key="index">
                         <template slot="title">
-                            <i :class="'fa fa-margin '+item.icon"></i>
-                            <span slot="title">{{item.name}}</span>
+                            <i :class="'fa fa-margin '+item.meta.icon"></i>
+                            <span slot="title">{{item.meta.title}}</span>
                         </template>
                         <router-link v-for="(citem,cindex) in item.children" :to="citem.path"  :key="cindex">
                             <el-menu-item 
                                 :index='citem.path'>
-                                <span slot="title">{{citem.name}}</span>
+                                <span slot="title">{{citem.meta.title}}</span>
                             </el-menu-item> 
                         </router-link>
                     </el-submenu>
@@ -28,23 +28,16 @@
                      <!--表示 有一级菜单 noDropdown:true-->
                     <router-link :to="item.path" :key="index">
                         <el-submenu class="dropItem" 
-                            v-if="item.children && item.children.length > 0 && item.noDropdown"  
+                            v-if="item.children && item.children.length > 0"  
                             :index="item.path"
                             >
                             <template slot="title" >
-                                <i :class="'fa fa-margin '+item.icon"></i>
-                                <span class="23">{{item.name}}</span> 
+                                <i :class="'fa fa-margin '+item.meta.icon"></i>
+                                <span class="23">{{item.meta.title}}</span> 
                             </template>
-
-                            <!-- <router-link :to="item.path">
-                                <el-menu-item 
-                                    :index='item.children[0].path'
-                                    :class="{'hiddenDropdown':!isDropname}" >
-                                    <span slot="title">{{item.children[0].name}}</span>
-                                </el-menu-item> 
-                            </router-link> -->
                         </el-submenu>
                     </router-link>
+
                 </template>
         </el-menu>
       </el-col>
@@ -53,6 +46,7 @@
 
 <script>
 import * as mUtils from "@/utils/mUtils";
+import { mapGetters } from 'vuex'
 
 export default {
   name: "left-Menu",
@@ -62,6 +56,10 @@ export default {
     };
   },
   computed:{
+      ...mapGetters([
+        'permission_routers'
+      ]),
+
       lefeMenuList(){
          return this.$store.state.menu.items;
       },

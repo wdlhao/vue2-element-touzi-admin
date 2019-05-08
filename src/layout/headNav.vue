@@ -3,13 +3,13 @@
         <el-row style="margin:0 10px;">
             <el-col :span="6" class='logo-container'>
                 <img src="../assets/img/logo.png" class='logo' alt="">
-                <span class='title'>小爱xx管理系统</span>
+                <span class='title'>小爱管理系统</span>
             </el-col>
             <div class="userinfo">
                 <img src="../assets/img/avatar.png" class='avatar' alt="">
                 <div class='welcome'>
                     <p class='name comename'>欢迎</p>
-                    <p class='name avatarname'>{{userinfo.username}}</p>
+                    <p class='name avatarname'>{{username}}</p>
                 </div>
                 <span class='username'>
                     <el-dropdown
@@ -58,15 +58,17 @@
 
 <script>
     import * as mUtils from '@/utils/mUtils'
+    import store from "@/store";
+
     export default {
           name: 'head-nav',
           data(){
             return{
-                userinfo:''
+                username:''
             }
           },
           created(){
-             this.userinfo =  mUtils.getStore('userinfo');
+              this.username = store.getters.name;
           },
           methods:{
               logout(){
