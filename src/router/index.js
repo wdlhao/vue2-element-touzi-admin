@@ -12,17 +12,14 @@ Vue.use(Router)
 const whiteList = [
 	'/'
 ];
-  
+/**
+ * path:''与path:'*'的区别：
+ * 1、path:'*', 会匹配所有路径
+ * 2、path:''，也是会匹配到路由
+ * 
+ */
 //默认不需要权限的页面
 export const constantRouterMap = [
-	//  {
-  //   path: '/',
-  //   component: layout,
-  //   // redirect: '/login',
-  //   name: 'login',
-	// 	hidden: true,
-	//   component: (resolve) => require(['@/page/login'], resolve)
-  // },
 	{
     path: '',  // ??
     component: layout,
@@ -69,7 +66,6 @@ export const asyncRouterMap = [
 		meta: {
 			title:'用户管理',
 			icon: 'fa-user',
-			roles: ['admin', 'editor'],
 		}
 	},
 	{
@@ -78,7 +74,6 @@ export const asyncRouterMap = [
 		meta: {
 			title:'信息列表',
 			icon: 'fa-envelope',
-			roles: ['editor']
 		}
 	},
 	{
@@ -87,7 +82,6 @@ export const asyncRouterMap = [
 	  meta: {
 			title:'信息管理',
 			icon: 'fa-asterisk',
-			roles: []
 	  },
 	  component:layout,
 	  redirect: '/infoManage/infoShow',
@@ -98,7 +92,6 @@ export const asyncRouterMap = [
 		   meta: {
 			    title:'个人信息',
 					icon: 'fa-asterisk',
-					roles: []
 		   },
 		   component:resolve => require(['@/page/infoShow'], resolve),
 		},
@@ -108,7 +101,6 @@ export const asyncRouterMap = [
 			meta: {
 				 title:'修改信息',
 				 icon: 'fa-asterisk',
-				 roles: []
 			},
 			component:resolve => require(['@/page/infoModify'], resolve),
 		 },
@@ -120,7 +112,6 @@ export const asyncRouterMap = [
 		meta: {
 		  title:'资金管理',
 		  icon: 'fa-money',
-		  roles: []
 		},
 		component:layout,
 		redirect: '/fundManage/fundList',
@@ -131,7 +122,6 @@ export const asyncRouterMap = [
 			 meta: {
 				  title:'资金流水',
 				  icon: 'fa-asterisk',
-				  roles: []
 			 },
 			 component:resolve => require(['@/page/fundList'], resolve),
 		  },
@@ -141,7 +131,6 @@ export const asyncRouterMap = [
 			  meta: {
 				   title:'支付单据',
 				   icon: 'fa-asterisk',
-				   roles: []
 			  },
 			  component:resolve => require(['@/page/payList'], resolve),
 		   },
@@ -153,7 +142,6 @@ export const asyncRouterMap = [
 		meta: {
 		  title:'投资管理',
 		  icon: 'fa-inbox',
-		  roles: []
 		},
 		component:layout,
 		redirect: '/touziManage/chinaTouziList',
@@ -164,7 +152,6 @@ export const asyncRouterMap = [
 			 meta: {
 				  title:'省份投资',
 				  icon: '',
-				  roles: []
 			 },
 			 component:resolve => require(['@/page/chinaTouziList'], resolve),
 		  },
@@ -174,7 +161,6 @@ export const asyncRouterMap = [
 			  meta: {
 				   title:'区域投资',
 				   icon: '',
-				   roles: []
 			  },
 			  component:resolve => require(['@/page/chinaTabsList'], resolve),
 		   },
@@ -186,7 +172,6 @@ export const asyncRouterMap = [
 		meta: {
 		  title:'金融文章',
 			icon: 'fa-file-text-o',
-			roles: ['admin', 'editor']
 		},
 		component:layout,
 		redirect: '/fundArticle/createFundArticle',
@@ -197,7 +182,6 @@ export const asyncRouterMap = [
 			 meta: {
 				  title:'发布文章',
 				  icon: '',
-			    roles: ['admin']
 			 },
 			 component:resolve => require(['@/page/createFundArticle'], resolve),
 		  },
@@ -207,7 +191,6 @@ export const asyncRouterMap = [
 			  meta: {
 				   title:'编辑文章',
 				   icon: '',
-				   roles: []
 			  },
 			  component:resolve => require(['@/page/modifyFundArticle'], resolve),
 		   },
@@ -217,7 +200,6 @@ export const asyncRouterMap = [
 				meta: {
 					title:'查看文章',
 					icon: '',
-					roles: []
 				},
 				component:resolve => require(['@/page/showFundArticle'], resolve),
 		    }
@@ -229,7 +211,7 @@ export const asyncRouterMap = [
 		meta: {
 		  title:'资金数据',
 		  icon: 'fa-bar-chart-o',
-		  roles: ['admin']
+		  roles: ['admin','editor']
 		},
 		component:layout,
 		redirect: '/fundData/fundPosition',
@@ -240,7 +222,7 @@ export const asyncRouterMap = [
 			 meta: {
 				  title:'投资分布',
 				  icon: '',
-				  roles: ['admin','editor']
+				  roles: ['editor'] // editor看不到
 			 },
 			 component:resolve => require(['@/page/fundPosition'], resolve),
 		  },
@@ -249,8 +231,8 @@ export const asyncRouterMap = [
 			  name:'typePosition',
 			  meta: {
 				   title:'项目分布',
-				   icon: '',
-				   roles: ['editor']
+					 icon: '',
+					 roles: ['editor'] // editor看不到
 			  },
 			  component:resolve => require(['@/page/typePosition'], resolve),
 		   },
@@ -260,12 +242,18 @@ export const asyncRouterMap = [
 				meta: {
 					title:'收支统计',
 					icon: '',
-					roles: ['editor']
+					roles: ['admin'] // editor看不到
 				},
 				component:resolve => require(['@/page/incomePayPosition'], resolve),
 		    }
 		]
 	},
 	{ path: '*', redirect: '/404', hidden: true }
-  ];
+	];
+	
+	/**
+	 * 什么情况下，路由会定位到404页面?
+	 * 
+	 * 
+	 */
 

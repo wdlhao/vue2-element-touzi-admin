@@ -6,14 +6,13 @@ import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user  = {
   state : {
-    userinfo: mUtils.getStore('userinfo') || {},
     name:'',
     avatar:'',
     token: getToken(),
     roles: [],
     browserHeaderTitle: mUtils.getStore({
         name: 'browserHeaderTitle'
-    }) || 'NxAdmin'
+    }) || '小爱管理系统'
   },
   getters : {
     token: state => state.token,
