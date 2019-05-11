@@ -75,6 +75,8 @@ router.afterEach(() => {
   NProgress.done() // 结束Progress
   setTimeout(() => {
     const browserHeaderTitle = store.getters.browserHeaderTitle
+    console.log('browserHeaderTitle----');
+    console.log(browserHeaderTitle);
     setTitle(browserHeaderTitle)
   }, 0)
 })
