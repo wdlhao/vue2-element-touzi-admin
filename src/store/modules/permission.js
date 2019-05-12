@@ -8,7 +8,6 @@ import { asyncRouterMap, constantRouterMap } from '@/router'
 function hasPermission(roles, route) {
   // roles为权限身份数组
   if (route.meta && route.meta.roles) {
-    console.log(route);
     return roles.some(role => route.meta.roles.indexOf(role) >= 0)
   } else {
     return true
@@ -25,10 +24,17 @@ function filterAsyncRouter(asyncRouterMap, roles) {
   const accessedRouters = asyncRouterMap.filter(route => {
     if (hasPermission(roles, route)) {
       if (route.children && route.children.length) {
+        if(route.name == 'permission'){
+          console.log('1次吧-----permission-----');
+        }else if(route.name == 'pagePermission'){
+          console.log('1次吧-----pagePermission-----');
+        }
+        // route.children重新过滤赋值;
         route.children = filterAsyncRouter(route.children, roles)
       }
-      return true // 返回该路由对象;
+      return true // 返回该权限路由对象;
     }
+    console.log('55-----------');
     return false
   })
   return accessedRouters

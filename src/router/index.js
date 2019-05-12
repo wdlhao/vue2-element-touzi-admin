@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import layout  from "../layout/home"; // 页面整体布局
+import Layout  from "../layout/home"; // 页面整体布局
 
 Vue.use(Router)
 
@@ -22,8 +22,9 @@ const whiteList = [
 export const constantRouterMap = [
 	{
     path: '',  // ??
-    component: layout,
-		redirect: '/index',
+    component: Layout,
+		redirect: '/index/index',
+		hidden:true
   },
 	{
 	  path: '/login',
@@ -34,16 +35,17 @@ export const constantRouterMap = [
 	{
 		path: '/index',
 		name: 'index',
-		component:layout,
+		component:Layout,
 		meta:{
 			title:'首页',
 		  icon: 'fa-dashboard',
 		},
-		children:[
+		children:[ // 
 			{
 				path:'/index', 
+				hidden:true,
 				meta:{
-					title:'', 
+					title:'123', 
 					icon:'fa-index',
 				},
         component: () => import('@/page/index'), // 这里没有参数'resolve'
@@ -83,7 +85,7 @@ export const asyncRouterMap = [
 			title:'信息管理',
 			icon: 'fa-asterisk',
 	  },
-	  component:layout,
+	  component:Layout,
 	  redirect: '/infoManage/infoShow',
 	  children:[
 		{
@@ -113,7 +115,7 @@ export const asyncRouterMap = [
 		  title:'资金管理',
 		  icon: 'fa-money',
 		},
-		component:layout,
+		component:Layout,
 		redirect: '/fundManage/fundList',
 		children:[
 		  {
@@ -143,7 +145,7 @@ export const asyncRouterMap = [
 		  title:'投资管理',
 		  icon: 'fa-inbox',
 		},
-		component:layout,
+		component:Layout,
 		redirect: '/touziManage/chinaTouziList',
 		children:[
 		  {
@@ -173,7 +175,7 @@ export const asyncRouterMap = [
 		  title:'金融文章',
 			icon: 'fa-file-text-o',
 		},
-		component:layout,
+		component:Layout,
 		redirect: '/fundArticle/createFundArticle',
 		children:[
 		  {
@@ -211,9 +213,8 @@ export const asyncRouterMap = [
 		meta: {
 		  title:'资金数据',
 		  icon: 'fa-bar-chart-o',
-		  roles: ['admin','editor']
 		},
-		component:layout,
+		component:Layout,
 		redirect: '/fundData/fundPosition',
 		children:[
 		  {
@@ -222,7 +223,6 @@ export const asyncRouterMap = [
 			 meta: {
 				  title:'投资分布',
 				  icon: '',
-				  roles: ['editor'] // editor看不到
 			 },
 			 component:resolve => require(['@/page/fundPosition'], resolve),
 		  },
@@ -232,7 +232,6 @@ export const asyncRouterMap = [
 			  meta: {
 				   title:'项目分布',
 					 icon: '',
-					 roles: ['editor'] // editor看不到
 			  },
 			  component:resolve => require(['@/page/typePosition'], resolve),
 		   },
@@ -242,16 +241,63 @@ export const asyncRouterMap = [
 				meta: {
 					title:'收支统计',
 					icon: '',
-					roles: ['admin'] // editor看不到
 				},
 				component:resolve => require(['@/page/incomePayPosition'], resolve),
 		    }
 		]
 	},
+	{
+    path: '/permission',
+		name: 'permission',
+		meta: {
+      title: '权限设置',
+      icon: 'fa-lock',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    component: Layout,
+    redirect: '/permission/page',
+    alwaysShow: true, // will always show the root menu
+    children: [{
+			path: '/page',
+			name: 'pagePermission',
+      meta: {
+        title: '页面权限',
+        roles: ['admin'] // or you can only set roles in sub nav
+      },
+      component: () => import('@/page/permission/page'),
+    }, {
+			path: '/directive',
+			name: 'directivePermission',
+      meta: {
+				title: '按钮权限',
+				roles:['editor']
+      },
+      component: () => import('@/page/permission/directive'),
+    }]
+  },
+  {
+    path: '/error',
+    component: Layout,
+		// redirect: 'noredirect',
+		hidden:true,
+    name: 'errorPages',
+    meta: {
+      title: 'errorPages', 
+      icon: '404'
+    },
+    children: [
+      { path: '401', component: () => import('@/page/errorPage/401'), name: 'page401', meta: { title: 'page401', noCache: true }},
+      { path: '404', component: () => import('@/page/errorPage/404'), name: 'page404', meta: { title: 'page404', noCache: true }}
+    ]
+  },
 	{ path: '*', redirect: '/404', hidden: true }
 	];
 	
 	/**
+	 *  路由设置要求：
+	 * 1、该路由有子菜单,可以设置多层嵌套路由children;如果没有子菜单,不需要设置children;通过item.children.length来判断路由的级数;
+	 * 2、登录成功后,定位到系统首页时,需要加载页面整体布局组件Layout并进行子路由定向加载;
+	 * 
 	 * 什么情况下，路由会定位到404页面?
 	 * 
 	 * 

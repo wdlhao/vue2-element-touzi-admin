@@ -11,28 +11,29 @@
             text-color="#fff"
             active-text-color="#ff6428">
                 <template v-for="(item,index) in permission_routers">
-                    <!--表示 有二级菜单 -->
-                    <el-submenu v-if="item.children  && item.children.length > 1 && !item.hidden"  :index="item.path" :key="index">
+                    <!--表示 有二级或者多级菜单 -->
+                    <el-submenu v-if="item.children  && item.children.length >= 1 && !item.hidden"  :index="item.path" :key="index">
                         <template slot="title">
                             <i :class="'fa fa-margin '+item.meta.icon"></i>
                             <span slot="title">{{item.meta.title}}</span>
                         </template>
                         <router-link v-for="(citem,cindex) in item.children" :to="citem.path"  :key="cindex">
                             <el-menu-item 
+                                v-if="!citem.hidden"
                                 :index="citem.path">
                                 <span slot="title">{{citem.meta.title}}</span>
                             </el-menu-item> 
                         </router-link>
                     </el-submenu>
 
-                     <!--表示 有一级菜单 noDropdown:true-->
-                    <router-link v-if="item.children && item.children.length === 1 && !item.hidden" :to="item.path" :key="index">
+                     <!--表示 有一级菜单-->
+                    <router-link v-if="!item.children && !item.hidden" :to="item.path" :key="index">
                         <el-submenu class="dropItem" 
                             :index="item.path"
                             >
                             <template slot="title" >
                                 <i :class="'fa fa-margin '+item.meta.icon"></i>
-                                <span class="23">{{item.meta.title}}</span> 
+                                <span slot="title">{{item.meta.title}}</span> 
                             </template>
                         </el-submenu>
                     </router-link>
@@ -69,7 +70,8 @@ export default {
       }
   },
   created(){
-      console.log(this.$store.state.menu.items);
+    console.log('1111----1111');
+      console.log(this.permission_routers);
   },
   methods: {
     showDropdown() {

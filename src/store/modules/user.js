@@ -105,13 +105,17 @@ const user  = {
         })
       },
 
-      // 动态修改权限
+      // 动态修改权限;本实例中,role和token是相同的;
       ChangeRoles({ commit }, role) {
         return new Promise(resolve => {
-          commit('SET_TOKEN', role)
-          setToken(role)
-          getInfo(role).then(response => {
-            const data = response
+          const token = role;
+          commit('SET_TOKEN', token)
+          setToken(token)
+          getInfo(token).then(response => {
+            const data = response.data
+            // 根据token,获取到新的roles信息并保存到vuex;
+            console.log("222------------------");
+            console.log(data);
             commit('SET_ROLES', data.roles)
             commit('SET_NAME', data.name)
             commit('SET_AVATAR', data.avatar)
