@@ -23,15 +23,12 @@ export const constantRouterMap = [
 	{
     path: '',  // ??
     component: Layout,
-		redirect: '/index/index',
+		redirect: '/index',
 		hidden:true
   },
-	{
-	  path: '/login',
-		name: 'login',
-    hidden: true,
-	  component: (resolve) => require(['@/page/login'], resolve)
-	},
+	{ path: '/login',name: 'login',component:() => import('@/page/login'),hidden: true},
+	// { path: '/404', component: () => import('@/page/errorPage/404'), hidden: true },
+  // { path: '/401', component: () => import('@/page/errorPage/401'), hidden: true },
 	{
 		path: '/index',
 		name: 'index',
@@ -45,13 +42,18 @@ export const constantRouterMap = [
 				path:'/index', 
 				hidden:true,
 				meta:{
-					title:'123', 
+					title:'首页', 
 					icon:'fa-index',
 				},
-        component: () => import('@/page/index'), // 这里没有参数'resolve'
+        component: () => import('@/page/index'),
 			}
 		]
-	}
+	},
+	{
+    path: '/userList/page',  
+		component: () => import('@/page/userList'),
+		hidden:true
+  },
 ]
 
 	//注册路由
@@ -65,10 +67,23 @@ export const asyncRouterMap = [
 	{
 		path:'/userList',
 		name: 'userList',
+		component:Layout,
 		meta: {
 			title:'用户管理',
 			icon: 'fa-user',
-		}
+		},
+		redirect:'/userList/page'
+		// children:[
+		// 	{
+		// 		path:'/userList/page', 
+		// 		hidden:true,
+		// 		meta:{
+		// 			title:'用户管理', 
+		// 			icon:'fa-user',
+		// 		},
+		// 		component: () => import('@/page/userList'),
+		// 	}
+		// ]
 	},
 	{
 		path:'/infoList',
@@ -86,7 +101,6 @@ export const asyncRouterMap = [
 			icon: 'fa-asterisk',
 	  },
 	  component:Layout,
-	  redirect: '/infoManage/infoShow',
 	  children:[
 		{
 		   path:'/infoShow',
@@ -94,8 +108,8 @@ export const asyncRouterMap = [
 		   meta: {
 			    title:'个人信息',
 					icon: 'fa-asterisk',
-		   },
-		   component:resolve => require(['@/page/infoShow'], resolve),
+			 },
+			 component: () => import('@/page/infoShow')
 		},
 		{
 			path:'/infoModify',
@@ -104,7 +118,7 @@ export const asyncRouterMap = [
 				 title:'修改信息',
 				 icon: 'fa-asterisk',
 			},
-			component:resolve => require(['@/page/infoModify'], resolve),
+			component: () => import('@/page/infoModify')
 		 },
 	  ]
 	},
@@ -119,13 +133,13 @@ export const asyncRouterMap = [
 		redirect: '/fundManage/fundList',
 		children:[
 		  {
-			 path:'/fundList',
-			 name:'fundList',
-			 meta: {
-				  title:'资金流水',
-				  icon: 'fa-asterisk',
-			 },
-			 component:resolve => require(['@/page/fundList'], resolve),
+				path:'/fundList',
+				name:'fundList',
+				meta: {
+						title:'资金流水',
+						icon: 'fa-asterisk',
+				},
+				component: () => import('@/page/fundList')
 		  },
 		  {
 			  path:'/payList',
@@ -133,8 +147,8 @@ export const asyncRouterMap = [
 			  meta: {
 				   title:'支付单据',
 				   icon: 'fa-asterisk',
-			  },
-			  component:resolve => require(['@/page/payList'], resolve),
+				},
+		    component: () => import('@/page/payList')
 		   },
 		]
 	},
@@ -146,7 +160,7 @@ export const asyncRouterMap = [
 		  icon: 'fa-inbox',
 		},
 		component:Layout,
-		redirect: '/touziManage/chinaTouziList',
+		// redirect: '/touziManage/chinaTouziList',
 		children:[
 		  {
 			 path:'/chinaTouziList',
@@ -155,7 +169,7 @@ export const asyncRouterMap = [
 				  title:'省份投资',
 				  icon: '',
 			 },
-			 component:resolve => require(['@/page/chinaTouziList'], resolve),
+			 component: () => import('@/page/chinaTouziList')
 		  },
 		  {
 			  path:'/chinaTabsList',
@@ -163,8 +177,8 @@ export const asyncRouterMap = [
 			  meta: {
 				   title:'区域投资',
 				   icon: '',
-			  },
-			  component:resolve => require(['@/page/chinaTabsList'], resolve),
+				},
+				component: () => import('@/page/chinaTabsList')
 		   },
 		]
 	},
@@ -176,34 +190,33 @@ export const asyncRouterMap = [
 			icon: 'fa-file-text-o',
 		},
 		component:Layout,
-		redirect: '/fundArticle/createFundArticle',
 		children:[
 		  {
-			 path:'/createFundArticle',
-			 name:'createFundArticle',
-			 meta: {
-				  title:'发布文章',
-				  icon: '',
-			 },
-			 component:resolve => require(['@/page/createFundArticle'], resolve),
+				path:'/createFundArticle',
+				name:'createFundArticle',
+				meta: {
+						title:'发布文章',
+						icon: '',
+				},
+				component: () => import('@/page/createFundArticle')
 		  },
 		  {
-			  path:'/modifyFundArticle',
-			  name:'modifyFundArticle',
-			  meta: {
-				   title:'编辑文章',
-				   icon: '',
-			  },
-			  component:resolve => require(['@/page/modifyFundArticle'], resolve),
+					path:'/modifyFundArticle',
+					name:'modifyFundArticle',
+					meta: {
+						title:'编辑文章',
+						icon: '',
+					},
+					component: () => import('@/page/modifyFundArticle')
 		   },
 		   {
-				path:'/showFundArticle',
-				name:'showFundArticle',
-				meta: {
-					title:'查看文章',
-					icon: '',
-				},
-				component:resolve => require(['@/page/showFundArticle'], resolve),
+					path:'/showFundArticle',
+					name:'showFundArticle',
+					meta: {
+						title:'查看文章',
+						icon: '',
+					},
+					component: () => import('@/page/showFundArticle')
 		    }
 		]
 	},
@@ -224,7 +237,7 @@ export const asyncRouterMap = [
 				  title:'投资分布',
 				  icon: '',
 			 },
-			 component:resolve => require(['@/page/fundPosition'], resolve),
+			 component: () => import('@/page/fundPosition')
 		  },
 		  {
 			  path:'/typePosition',
@@ -232,8 +245,8 @@ export const asyncRouterMap = [
 			  meta: {
 				   title:'项目分布',
 					 icon: '',
-			  },
-			  component:resolve => require(['@/page/typePosition'], resolve),
+				},
+				component: () => import('@/page/typePosition')
 		   },
 		   {
 				path:'/incomePayPosition',
@@ -242,7 +255,7 @@ export const asyncRouterMap = [
 					title:'收支统计',
 					icon: '',
 				},
-				component:resolve => require(['@/page/incomePayPosition'], resolve),
+				component: () => import('@/page/incomePayPosition')
 		    }
 		]
 	},
@@ -286,8 +299,24 @@ export const asyncRouterMap = [
       icon: '404'
     },
     children: [
-      { path: '401', component: () => import('@/page/errorPage/401'), name: 'page401', meta: { title: 'page401', noCache: true }},
-      { path: '404', component: () => import('@/page/errorPage/404'), name: 'page404', meta: { title: 'page404', noCache: true }}
+			{  
+				path: '/401', 
+				name: 'page401', 
+				component: () => import('@/page/errorPage/401'), 
+				meta: { 
+					title: 'page401', 
+					noCache: true 
+			  }
+			},
+			{
+				path: '/404', 
+				name: 'page404', 
+				component: () => import('@/page/errorPage/404'), 
+				meta: { 
+					title: 'page404', 
+					noCache: true
+				}
+			}
     ]
   },
 	{ path: '*', redirect: '/404', hidden: true }
@@ -298,7 +327,14 @@ export const asyncRouterMap = [
 	 * 1、该路由有子菜单,可以设置多层嵌套路由children;如果没有子菜单,不需要设置children;通过item.children.length来判断路由的级数;
 	 * 2、登录成功后,定位到系统首页时,需要加载页面整体布局组件Layout并进行子路由定向加载;
 	 * 
+	 * 按需加载路由组件的2种方法：
+	 * 1、component: () => import('@/page/login')
+	 * 2、component:resolve => require(['@/page/fundPosition'], resolve)
+	 * 
+	 * 
+	 * 
 	 * 什么情况下，路由会定位到404页面?
+	 * 路由中redirect:'',不起作用？
 	 * 
 	 * 
 	 */

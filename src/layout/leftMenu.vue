@@ -17,6 +17,7 @@
                             <i :class="'fa fa-margin '+item.meta.icon"></i>
                             <span slot="title">{{item.meta.title}}</span>
                         </template>
+                        <!--直接定位到子路由上，子路由也可以实现导航功能-->
                         <router-link v-for="(citem,cindex) in item.children" :to="citem.path"  :key="cindex">
                             <el-menu-item 
                                 v-if="!citem.hidden"

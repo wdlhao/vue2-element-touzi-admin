@@ -5,9 +5,16 @@ const install = function(Vue) {
 }
 
 if (window.Vue) {
-  window['permission'] = permission
+  window['permission'] = permission // ??
   Vue.use(install); // eslint-disable-line
 }
 
-permission.install = install
+permission.install = install // ??
 export default permission
+
+
+/***
+ * 1、
+ * 
+ * 
+ */

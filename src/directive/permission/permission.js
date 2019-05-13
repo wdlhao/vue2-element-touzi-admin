@@ -2,8 +2,9 @@
 import store from '@/store'
 
 export default{
+  // inserted函数：当被绑定的元素插入到 DOM 中时……
   inserted(el, binding, vnode) {
-    const { value } = binding
+    const { value } = binding  // 获取指令绑定的值;
     const roles = store.getters && store.getters.roles
 
     if (value && value instanceof Array && value.length > 0) {
@@ -12,7 +13,7 @@ export default{
       const hasPermission = roles.some(role => {
         return permissionRoles.includes(role)
       })
-
+      // 没有该指令,直接删除掉该指令元素;即页面不显示没有指令权限的按钮;
       if (!hasPermission) {
         el.parentNode && el.parentNode.removeChild(el)
       }
@@ -21,3 +22,4 @@ export default{
     }
   }
 }
+

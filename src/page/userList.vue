@@ -112,9 +112,9 @@
             
         },
         mounted(){
-            this.getList({
-                fun: () => {}
-            });
+            // this.getList({
+            //     fun: () => {}
+            // });
         },
         methods: {
             getList({
