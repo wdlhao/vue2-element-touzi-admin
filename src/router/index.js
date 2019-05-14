@@ -23,12 +23,12 @@ export const constantRouterMap = [
 	{
     path: '',  // ??
     component: Layout,
-		redirect: '/index',
+		redirect: '/index/index',
 		hidden:true
   },
 	{ path: '/login',name: 'login',component:() => import('@/page/login'),hidden: true},
-	// { path: '/404', component: () => import('@/page/errorPage/404'), hidden: true },
-  // { path: '/401', component: () => import('@/page/errorPage/401'), hidden: true },
+	{ path: '/404', component: () => import('@/page/errorPage/404'), hidden: true },
+  { path: '/401', component: () => import('@/page/errorPage/401'), hidden: true },
 	{
 		path: '/index',
 		name: 'index',
@@ -37,10 +37,10 @@ export const constantRouterMap = [
 			title:'首页',
 		  icon: 'fa-dashboard',
 		},
+		noDropdown:true,
 		children:[ // 
 			{
-				path:'/index', 
-				hidden:true,
+				path:'index', 
 				meta:{
 					title:'首页', 
 					icon:'fa-index',
@@ -48,12 +48,7 @@ export const constantRouterMap = [
         component: () => import('@/page/index'),
 			}
 		]
-	},
-	{
-    path: '/userList/page',  
-		component: () => import('@/page/userList'),
-		hidden:true
-  },
+	}
 ]
 
 	//注册路由
@@ -65,33 +60,45 @@ export default new Router({
   //异步路由（需要权限的页面）
 export const asyncRouterMap = [
 	{
-		path:'/userList',
+		path:'/userManager',
 		name: 'userList',
 		component:Layout,
 		meta: {
 			title:'用户管理',
 			icon: 'fa-user',
 		},
-		redirect:'/userList/page'
-		// children:[
-		// 	{
-		// 		path:'/userList/page', 
-		// 		hidden:true,
-		// 		meta:{
-		// 			title:'用户管理', 
-		// 			icon:'fa-user',
-		// 		},
-		// 		component: () => import('@/page/userList'),
-		// 	}
-		// ]
+		noDropdown:true,
+		children:[
+			{
+				path:'userList', 
+				meta:{
+					title:'用户管理', 
+					icon:'fa-user',
+				},
+				component: () => import('@/page/userList'),
+			}
+		]
 	},
 	{
-		path:'/infoList',
+		path:'/infoManager',
 		name:'infoList',
+		component:Layout,
 		meta: {
 			title:'信息列表',
 			icon: 'fa-envelope',
-		}
+		},
+		noDropdown:true,
+		children:[
+			{
+				path:'infoList',
+				name:'infoList',
+				meta: {
+					title:'信息列表',
+					icon: 'fa-envelope',
+				},
+				component: () => import('@/page/infoList'),
+			}
+		]
 	},
 	{
 	  path:'/infoManage',
@@ -103,7 +110,7 @@ export const asyncRouterMap = [
 	  component:Layout,
 	  children:[
 		{
-		   path:'/infoShow',
+		   path:'infoShow',
 		   name:'infoShow',
 		   meta: {
 			    title:'个人信息',
@@ -112,7 +119,7 @@ export const asyncRouterMap = [
 			 component: () => import('@/page/infoShow')
 		},
 		{
-			path:'/infoModify',
+			path:'infoModify',
 			name:'infoModify',
 			meta: {
 				 title:'修改信息',
@@ -133,7 +140,7 @@ export const asyncRouterMap = [
 		redirect: '/fundManage/fundList',
 		children:[
 		  {
-				path:'/fundList',
+				path:'fundList',
 				name:'fundList',
 				meta: {
 						title:'资金流水',
@@ -142,7 +149,7 @@ export const asyncRouterMap = [
 				component: () => import('@/page/fundList')
 		  },
 		  {
-			  path:'/payList',
+			  path:'payList',
 			  name:'payList',
 			  meta: {
 				   title:'支付单据',
@@ -163,7 +170,7 @@ export const asyncRouterMap = [
 		// redirect: '/touziManage/chinaTouziList',
 		children:[
 		  {
-			 path:'/chinaTouziList',
+			 path:'chinaTouziList',
 			 name:'chinaTouziList',
 			 meta: {
 				  title:'省份投资',
@@ -172,7 +179,7 @@ export const asyncRouterMap = [
 			 component: () => import('@/page/chinaTouziList')
 		  },
 		  {
-			  path:'/chinaTabsList',
+			  path:'chinaTabsList',
 			  name:'chinaTabsList',
 			  meta: {
 				   title:'区域投资',
@@ -192,7 +199,7 @@ export const asyncRouterMap = [
 		component:Layout,
 		children:[
 		  {
-				path:'/createFundArticle',
+				path:'createFundArticle',
 				name:'createFundArticle',
 				meta: {
 						title:'发布文章',
@@ -201,7 +208,7 @@ export const asyncRouterMap = [
 				component: () => import('@/page/createFundArticle')
 		  },
 		  {
-					path:'/modifyFundArticle',
+					path:'modifyFundArticle',
 					name:'modifyFundArticle',
 					meta: {
 						title:'编辑文章',
@@ -210,7 +217,7 @@ export const asyncRouterMap = [
 					component: () => import('@/page/modifyFundArticle')
 		   },
 		   {
-					path:'/showFundArticle',
+					path:'showFundArticle',
 					name:'showFundArticle',
 					meta: {
 						title:'查看文章',
@@ -231,7 +238,7 @@ export const asyncRouterMap = [
 		redirect: '/fundData/fundPosition',
 		children:[
 		  {
-			 path:'/fundPosition',
+			 path:'fundPosition',
 			 name:'fundPosition',
 			 meta: {
 				  title:'投资分布',
@@ -240,7 +247,7 @@ export const asyncRouterMap = [
 			 component: () => import('@/page/fundPosition')
 		  },
 		  {
-			  path:'/typePosition',
+			  path:'typePosition',
 			  name:'typePosition',
 			  meta: {
 				   title:'项目分布',
@@ -249,7 +256,7 @@ export const asyncRouterMap = [
 				component: () => import('@/page/typePosition')
 		   },
 		   {
-				path:'/incomePayPosition',
+				path:'incomePayPosition',
 				name:'incomePayPosition',
 				meta: {
 					title:'收支统计',
@@ -271,7 +278,7 @@ export const asyncRouterMap = [
     redirect: '/permission/page',
     alwaysShow: true, // will always show the root menu
     children: [{
-			path: '/page',
+			path: 'page',
 			name: 'pagePermission',
       meta: {
         title: '页面权限',
@@ -279,7 +286,7 @@ export const asyncRouterMap = [
       },
       component: () => import('@/page/permission/page'),
     }, {
-			path: '/directive',
+			path: 'directive',
 			name: 'directivePermission',
       meta: {
 				title: '按钮权限',
@@ -292,28 +299,28 @@ export const asyncRouterMap = [
     path: '/error',
     component: Layout,
 		// redirect: 'noredirect',
-		hidden:true,
+		// hidden:true,
     name: 'errorPages',
     meta: {
-      title: 'errorPages', 
-      icon: '404'
+      title: '错误页面', 
+      icon: 'fa-lock'
     },
     children: [
 			{  
-				path: '/401', 
+				path: '401', 
 				name: 'page401', 
 				component: () => import('@/page/errorPage/401'), 
 				meta: { 
-					title: 'page401', 
+					title: '401', 
 					noCache: true 
 			  }
 			},
 			{
-				path: '/404', 
+				path: '404', 
 				name: 'page404', 
 				component: () => import('@/page/errorPage/404'), 
 				meta: { 
-					title: 'page404', 
+					title: '404', 
 					noCache: true
 				}
 			}

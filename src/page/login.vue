@@ -168,7 +168,7 @@
 						// let userData = userinfo
 						console.log(userinfo);
 						this.$store.dispatch('Login', userinfo).then(res => {
-           					this.$router.push({ path: '/index' })
+           					this.$router.push({ path: '/' })
 						})
                         // axios({
                         //     type:'get',

@@ -23,6 +23,9 @@ router.beforeEach((to, from, next) => {
    store.commit('SET_BROWSERHEADERTITLE', {
      browserHeaderTitle: browserHeaderTitle
    })
+   console.log("to-----------------89----------");
+   console.log(to);
+  // 点击登录时，拿到了token并存入了vuex;
   if (getToken()) {
     /* has token*/
     if (store.getters.isLock && to.path !== '/lock') {
@@ -65,6 +68,7 @@ router.beforeEach((to, from, next) => {
     if (whiteList.indexOf(to.path) !== -1) {
       next()
     } else {
+      // 点击退出时,会定位到这里
       next('/login')
       NProgress.done()
     }
@@ -75,8 +79,6 @@ router.afterEach(() => {
   NProgress.done() // 结束Progress
   setTimeout(() => {
     const browserHeaderTitle = store.getters.browserHeaderTitle
-    console.log('browserHeaderTitle----');
-    console.log(browserHeaderTitle);
     setTitle(browserHeaderTitle)
   }, 0)
 })

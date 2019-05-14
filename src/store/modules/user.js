@@ -78,9 +78,10 @@ const user  = {
       // 登出
       LogOut({ commit, state }) {
         return new Promise((resolve, reject) => {
+          console.log('LogOut-----111----');
           commit('SET_TOKEN', '')
           commit('SET_ROLES', [])
-          commit('CLEAR_LOCK')
+          // commit('CLEAR_LOCK')
           removeToken()
           resolve()
 
@@ -99,6 +100,7 @@ const user  = {
       // 前端 登出
       FedLogOut({ commit }) {
         return new Promise(resolve => {
+          console.log('LogOut---2222------');
           commit('SET_TOKEN', '')
           removeToken()
           resolve()
@@ -114,8 +116,6 @@ const user  = {
           getInfo(token).then(response => {
             const data = response.data
             // 根据token,获取到新的roles信息并保存到vuex;
-            console.log("222------------------");
-            console.log(data);
             commit('SET_ROLES', data.roles)
             commit('SET_NAME', data.name)
             commit('SET_AVATAR', data.avatar)

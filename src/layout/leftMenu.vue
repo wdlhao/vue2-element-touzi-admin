@@ -11,33 +11,33 @@
             text-color="#fff"
             active-text-color="#ff6428">
                 <template v-for="(item,index) in permission_routers">
+                    <!--表示 有一级菜单-->
+                    <router-link v-if="!item.hidden && item.noDropdown" :to="item.path+'/'+item.children[0].path" :key="index">
+                        <el-submenu class="dropItem" 
+                            :index="item.path+'/'+item.children[0].path"
+                            >
+                            <template slot="title" >
+                                <i v-if="item.meta.icon" :class="'fa fa-margin '+item.meta.icon"></i>
+                                <span v-if="item.meta.title" slot="title">{{item.meta.title}}</span> 
+                            </template>
+                        </el-submenu>
+                    </router-link>
+
                     <!--表示 有二级或者多级菜单 -->
-                    <el-submenu v-if="item.children  && item.children.length >= 1 && !item.hidden"  :index="item.path" :key="index">
+                    <el-submenu v-if="item.children  && item.children.length >= 1 && !item.hidden && !item.noDropdown"  :index="item.path" :key="index">
                         <template slot="title">
-                            <i :class="'fa fa-margin '+item.meta.icon"></i>
-                            <span slot="title">{{item.meta.title}}</span>
+                            <i v-if="item.meta.icon" :class="'fa fa-margin '+item.meta.icon"></i>
+                            <span v-if="item.meta.title" slot="title">{{item.meta.title}}</span>
                         </template>
                         <!--直接定位到子路由上，子路由也可以实现导航功能-->
-                        <router-link v-for="(citem,cindex) in item.children" :to="citem.path"  :key="cindex">
+                        <router-link v-for="(citem,cindex) in item.children" :to="item.path+'/'+citem.path"  :key="cindex">
                             <el-menu-item 
-                                v-if="!citem.hidden"
-                                :index="citem.path">
-                                <span slot="title">{{citem.meta.title}}</span>
+                                :index="item.path+'/'+citem.path">
+                                <span v-if="citem.meta.title" slot="title">{{citem.meta.title}}</span>
                             </el-menu-item> 
                         </router-link>
                     </el-submenu>
 
-                     <!--表示 有一级菜单-->
-                    <router-link v-if="!item.children && !item.hidden" :to="item.path" :key="index">
-                        <el-submenu class="dropItem" 
-                            :index="item.path"
-                            >
-                            <template slot="title" >
-                                <i :class="'fa fa-margin '+item.meta.icon"></i>
-                                <span slot="title">{{item.meta.title}}</span> 
-                            </template>
-                        </el-submenu>
-                    </router-link>
                 </template>
         </el-menu>
       </el-col>
@@ -71,7 +71,7 @@ export default {
       }
   },
   created(){
-    console.log('1111----1111');
+       console.log('1111----1111');
       console.log(this.permission_routers);
   },
   methods: {

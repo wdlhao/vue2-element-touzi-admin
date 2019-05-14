@@ -16,6 +16,7 @@ export default{
       // 没有该指令,直接删除掉该指令元素;即页面不显示没有指令权限的按钮;
       if (!hasPermission) {
         el.parentNode && el.parentNode.removeChild(el)
+        // 因项目需要，本指令remove其父元素;一般情况下，只隐藏其本身;
       }
     } else {
       throw new Error(`need roles! Like v-permission="['admin','editor']"`)

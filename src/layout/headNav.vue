@@ -73,6 +73,7 @@
           methods:{
               logout(){
                   this.$store.dispatch('LogOut').then(() => {
+                      console.log('logout ----3----reoad-');
                       location.reload();
                   })
            		//   this.$router.push({ path: '/login' })
