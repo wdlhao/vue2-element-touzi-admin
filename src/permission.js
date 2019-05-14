@@ -23,8 +23,6 @@ router.beforeEach((to, from, next) => {
    store.commit('SET_BROWSERHEADERTITLE', {
      browserHeaderTitle: browserHeaderTitle
    })
-   console.log("to-----------------89----------");
-   console.log(to);
   // 点击登录时，拿到了token并存入了vuex;
   if (getToken()) {
     /* has token*/

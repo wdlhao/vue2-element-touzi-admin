@@ -1,6 +1,7 @@
 
 import * as mUtils from '@/utils/mUtils'
 import { login, logout, getInfo } from '@/api/login'  // 导入登录相关接口
+import { getUserList } from '@/api/user'  // 导入用户信息相关接口
 import { getToken, setToken, removeToken } from '@/utils/auth'
 
 
@@ -84,7 +85,6 @@ const user  = {
           // commit('CLEAR_LOCK')
           removeToken()
           resolve()
-
           // logout(state.token).then(() => {
           //   commit('SET_TOKEN', '')
           //   commit('SET_ROLES', [])
@@ -100,7 +100,6 @@ const user  = {
       // 前端 登出
       FedLogOut({ commit }) {
         return new Promise(resolve => {
-          console.log('LogOut---2222------');
           commit('SET_TOKEN', '')
           removeToken()
           resolve()
@@ -122,8 +121,26 @@ const user  = {
             resolve()
           })
         })
+      },
+      
+      // 获取用户列表
+      GetUserList({ commit }, reqData) {
+        return new Promise(resolve => {
+          getUserList(reqData).then(response => {
+            const data = response.data
+            resolve(data)
+          })
+        })
       } 
+
+
   }
 }
 
 export default user;
+
+/**
+ * 1、用户退出,需要调取后台接口吗？后台具体的业务逻辑是什么？
+ * 
+ * 
+ */
