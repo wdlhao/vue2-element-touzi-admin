@@ -50,7 +50,6 @@
                    width="180"
                    align='center'>
                 </el-table-column>
-                
                 <el-table-column
                    property="createTime"
                    label="注册时间"
@@ -85,13 +84,9 @@
 </template>
 
 <script>
-    import * as mutils from 'utils/mUtils'
-    import {axios} from 'utils/'
-
     export default {
         data(){
             return {
-                // sortnum:0,
                 tableData: [],
               //需要给分页组件传的信息
                 paginations: {
@@ -108,32 +103,10 @@
         },
         methods: {
             getUserList(){
-                this.setPath('pageIndex', this.paginations.pageIndex);
-                    this.setPath('pageSize', this.paginations.pageSize);
                 this.$store.dispatch('GetUserList', this.paginations).then(res => {
-                    console.log(res);
                     this.paginations.total = res.count;
                     this.tableData = res.data;
-                    
                 })
-           },
-            /**
-            * 改变页码和当前页时需要拼装的路径方法
-            * @param {string} field 参数字段名
-            * @param {string} value 参数字段值
-            */
-            setPath(field, value) {
-                var path  = this.$route.path,
-                    query = Object.assign({}, this.$route.query);
-                if (typeof field === 'object') {
-                    query = field;
-                } else {
-                    query[field] = value;
-                }
-                this.$router.push({
-                    path,
-                    query
-                });
             },
             // 每页多少条切换
             handleSizeChange(pageSize) {
@@ -144,7 +117,7 @@
             handleCurrentChange(page) {
                this.paginations.pageIndex = page;
                this.getUserList();
-            },
+            }
         },
     }
 </script>

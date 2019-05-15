@@ -34,19 +34,24 @@
                 :data="tableData"
                 style="width: 100%"
                 align='center'
-                :max-height="tableHeight">
-            <el-table-column
-                prop="sortnum"
-                label="序号"
-                align='center'
-                width="80">
-            </el-table-column>
+                >
               <el-table-column
                 v-if="idFlag"
                 prop="id"
                 label="id"
                 align='center'
                 width="220">
+            </el-table-column>
+            <el-table-column
+                type="selection"
+                align='center'
+                width="40">
+            </el-table-column>
+              <el-table-column
+                prop="username"
+                label="用户姓名"
+                align='center'
+                width="200">
             </el-table-column>
             <el-table-column
                 prop="createTime"
@@ -63,16 +68,10 @@
                 prop="incomePayType"
                 label="收支类型"
                 align='center'
-                width="180"
+                width="160"
                 :formatter="formatterType"
                 :filters="fields.incomePayType.filter.list"
                 :filter-method="filterType">
-            </el-table-column>
-            <el-table-column
-                prop="incomePayDes"
-                label="收支描述"
-                align='center'
-                width="240">
             </el-table-column>
             <el-table-column
                 prop="income"
@@ -91,7 +90,7 @@
                 width="170"
                 sortable>
                 <template slot-scope="scope">  
-                    <span style="color:#f56767">- {{ scope.row.pay }}</span>
+                    <span style="color:#f56767">{{ scope.row.pay }}</span>
                 </template>
             </el-table-column>
             <el-table-column
@@ -103,12 +102,6 @@
                 <template slot-scope="scope">  
                     <span style="color:#4db3ff">{{ scope.row.accoutCash }}</span>
                 </template>
-            </el-table-column>
-                <el-table-column
-                prop="remarks"
-                label="备注"
-                align='center'
-                width="250">
             </el-table-column>
             <el-table-column
                 prop="operation"
@@ -137,11 +130,11 @@
                     <div class="pagination">
                             <el-pagination
                             v-if='paginations.total > 0'
-                            :page-sizes="paginations.page_sizes"
-                            :page-size="paginations.page_size"
+                            :page-sizes="paginations.pageSizes"
+                            :page-size="paginations.pageSize"
                             :layout="paginations.layout"
                             :total="paginations.total"
-                            :current-page='paginations.page_index'
+                            :current-page='paginations.pageIndex'
                             @current-change='handleCurrentChange'
                             @size-change='handleSizeChange'>
                         </el-pagination>
@@ -259,10 +252,10 @@
                 },
                 //需要给分页组件传的信息
                 paginations: {
-                    page_index: 1,  // 当前位于哪页
+                    pageIndex: 1,  // 当前位于哪页
                     total: 0,        // 总数
-                    page_size: 20,   // 1页显示多少条
-                    page_sizes: [5, 10, 15, 20],  //每页显示多少条
+                    pageSize: 20,   // 1页显示多少条
+                    pageSizes: [5, 10, 15, 20],  //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper"   // 翻页属性
                 },
                 fields: {
@@ -347,12 +340,19 @@
             }
         },
       	mounted() {
-            //加载数据之前，先加载theme颜色
-            this.getList({
-                fun: () => {}
-            });
+           this.getMoneyIncomePay();
 	   },
         methods: {
+             getMoneyIncomePay(){
+                this.$store.dispatch('GetMoneyIncomePay', this.paginations).then(res => {
+                    console.log(res);
+                    this.paginations.total = res.count;
+                    this.tableData = res.data;
+                })
+            },
+
+
+
             /**
             * 格式化状态
             */
@@ -384,16 +384,16 @@
             },
             getList({
                 page,
-                page_size,
+                pageSize,
                 where,
                 fun
             } = {}){
                 var query = this.$route.query;
-                this.paginations.page_index = page || parseInt(query.page) || 1;
-                this.paginations.page_size  = page_size || parseInt(query.page_size) || this.paginations.page_size;
+                this.paginations.pageIndex = page || parseInt(query.page) || 1;
+                this.paginations.pageSize  = pageSize || parseInt(query.pageSize) || this.paginations.pageSize;
                 var data = {
-                    pageIndex: this.paginations.page_index,
-                    pageSize: this.paginations.page_size
+                    pageIndex: this.paginations.pageIndex,
+                    pageSize: this.paginations.pageSize
                 };
                 if (where) {
 				   data = Object.assign(data, where || {});
@@ -472,17 +472,17 @@
                 this.dialog.show  = true;
             },
             // 每页多少条切换
-            handleSizeChange(page_size) {
+            handleSizeChange(pageSize) {
                this.getList({
-                    page_size,
+                    pageSize,
                     fun: () => {
-                        this.setPath('page_size', page_size);
+                        this.setPath('pageSize', pageSize);
                     }
 			   });
             },
             // 上下分页
             handleCurrentChange(page) {
-               this.sortnum = this.paginations.page_size*(page-1);
+               this.sortnum = this.paginations.pageSize*(page-1);
                this.getList({
                     page,
                     fun: () => {
