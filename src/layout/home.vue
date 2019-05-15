@@ -65,8 +65,7 @@
         position: fixed;
         top:71px;
         bottom: 40px;
-        background: #FFF;
-        overflow:auto;
+        background:#F6F7FC;
     }
      .content{
        width:100%;

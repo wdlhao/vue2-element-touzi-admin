@@ -1,42 +1,12 @@
 <template>
     <div class="fillcontain">
-        <div class="search_container">
-            <el-form 
-                :inline="true" 
-                :model='search_data' 
-                ref="search_data" 
-                class="demo-form-inline search-form">
-                <el-form-item label="投资时间:">
-                    <el-date-picker
-                        v-model="search_data.startTime"
-                        type="datetime"
-                        placeholder="选择开始时间">
-                    </el-date-picker> --
-                    <el-date-picker
-                        v-model="search_data.endTime"
-                        type="datetime"
-                        placeholder="选择结束时间">
-                    </el-date-picker>
-                </el-form-item>
-                <el-form-item label="">
-                   <el-input v-model="search_data.username" placeholder="用户名"></el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" size ="mini" icon="search" @click='onScreeoutMoney("search_data")'>筛选</el-button>
-                </el-form-item>
-
-                <el-form-item class="btnRight">
-                    <el-button type="success" size ="mini" icon="view">导出Elcel</el-button>
-                    <el-button type="primary" size ="mini" icon="view" @click='onAddMoney()'>添加</el-button>
-                </el-form-item>
-
-            </el-form>
-        </div>
+        <search-item></search-item>
         <div class="table_container">
             <el-table
                 :data="tableData"
                 style="width: 100%"
                 align='center'
+                :height="tableHeight"
                 >
               <el-table-column
                 v-if="idFlag"
@@ -128,79 +98,10 @@
                 </template>
             </el-table-column>
             </el-table>
-            <el-row>
-                <el-col :span="24">
-                    <div class="pagination">
-                            <el-pagination
-                            v-if='paginations.total > 0'
-                            :page-sizes="paginations.pageSizes"
-                            :page-size="paginations.pageSize"
-                            :layout="paginations.layout"
-                            :total="paginations.total"
-                            :current-page='paginations.pageIndex'
-                            @current-change='handleCurrentChange'
-                            @size-change='handleSizeChange'>
-                        </el-pagination>
-                    </div>
-                </el-col>
-            </el-row>
+            <pagination :paginaTotal="paginaTotal"></pagination>
+            <addFundDialog v-if="addFundDialog.show"></addFundDialog>
+             
         </div>
-        <el-dialog 
-            :title="dialog.title" 
-            :visible.sync="dialog.show"
-            :close-on-click-modal='false'
-            :close-on-press-escape='false'
-            :modal-append-to-body="false">
-            <div class="form">
-                <el-form 
-                    ref="form" 
-                    :model="form"
-                    :rules="form_rules"
-                    :label-width="dialog.formLabelWidth" 
-                    style="margin:10px;width:auto;">
-
-                    <el-form-item label="收支类型:" >
-                        <el-select v-model="form.incomePayType" placeholder="收支类型">
-                            <el-option label="提现" value="0"></el-option>
-                            <el-option label="提现手续费" value="1"></el-option>
-                            <el-option label="提现锁定" value="2"></el-option>
-                            <el-option label="理财服务退出" value="3"></el-option>
-                            <el-option label="购买宜定盈" value="4"></el-option>
-                            <el-option label="充值" value="5"></el-option>
-                            <el-option label="优惠券" value="6"></el-option>
-                            <el-option label="充值礼券" value="7"></el-option>
-                            <el-option label="转账" value="8"></el-option>
-                        </el-select>
-                    </el-form-item>
-
-                    <el-form-item prop='incomePayDes' label="收支描述:">
-                        <el-input type="textarea" v-model="form.incomePayDes"></el-input>
-                    </el-form-item>
-
-                    <el-form-item prop='income'  label="收入:">
-                        <el-input type="income" v-model.number="form.income"></el-input>
-                    </el-form-item>
-
-                    <el-form-item prop='pay' label="支出:">
-                        <el-input type="pay" v-model.number="form.pay"></el-input>
-                    </el-form-item>
-
-                    <el-form-item prop='accoutCash' label="账户现金:">
-                        <el-input type="accoutCash" v-model.number="form.accoutCash"></el-input>
-                    </el-form-item>
-
-                     <el-form-item label="备注:">
-                        <el-input type="textarea" v-model="form.remarks"></el-input>
-                    </el-form-item>
-
-                    <el-form-item  class="text_right">
-                        <el-button @click="dialog.show = false">取 消</el-button>
-                        <el-button type="primary" @click='onSubmit("form")'>提  交</el-button>
-                    </el-form-item>
-
-                </el-form>
-            </div>
-        </el-dialog>
       
     </div>
 </template>
@@ -209,6 +110,9 @@
     import dtime from 'time-formater'
     import * as mutils from 'utils/mUtils'
     import {axios} from 'utils/'
+    import SearchItem from "./components/searchItem";
+    import AddFundDialog from "./components/addFundDialog";
+    import Pagination from "@/components/pagination";
 
     export default {
         data(){
@@ -234,14 +138,10 @@
             };
             return {
                 tableData: [],
-                tableHeight:'',
+                tableHeight:0,
                 idFlag:false,
                 editid:'',
                 sortnum:0,
-                search_data:{
-                    startTime:'',
-                    endTime:''
-                },
                 format_type_list: {
                     0: '提现',
                     1: '提现手续费',
@@ -253,14 +153,15 @@
                     7: '充值礼券',
                     8: '转账'
                 },
-                //需要给分页组件传的信息
-                paginations: {
-                    pageIndex: 1,  // 当前位于哪页
-                    total: 0,        // 总数
-                    pageSize: 20,   // 1页显示多少条
-                    pageSizes: [5, 10, 15, 20],  //每页显示多少条
-                    layout: "total, sizes, prev, pager, next, jumper"   // 翻页属性
+                addFundDialog:{
+                    show:false
                 },
+                incomePayData:{
+                    pageIndex:1,
+                    pageSize:20
+                },
+                paginaTotal:1000,
+                //需要给分页组件传的信息
                 fields: {
                     incomePayType:{
                         filter: {
@@ -304,55 +205,39 @@
                         filter: {
 
                         },
-                        style: {
-                            width: '260',
-                            align: 'center'
-                        }
+                        // style: {
+                        //     width: '260',
+                        //     align: 'center'
+                        // }
                     },
                 },
-                //详情弹框信息
-                dialog: {
-                    width:'400px',
-                    show : false,
-                    title: '修改资金信息',
-                    formLabelWidth:'120px'
-                },
-                form:{
-                    incomePayType:'',
-                    incomePayDes: '',
-                    income: '',
-                    pay:'',
-                    accoutCash:'',
-                    remarks: ''
-                },
-                form_rules: {
-                     incomePayDes   : [
-                        {required: true, message : '收支描述不能为空！',trigger : 'blur'}
-                     ],
-                     income   : [
-                        { required: true, validator:validateData,trigger: 'blur'},
-                     ],
-                     pay   : [
-                        { required: true, validator:validateData,trigger: 'blur'},
-                     ],
-                     accoutCash   : [
-                          { required: true, validator:validateData,trigger: 'blur'},
-                    ],
-			   }
-
+               
             }
         },
+        components:{
+            SearchItem,
+            AddFundDialog,
+            Pagination
+        },
       	mounted() {
-           this.getMoneyIncomePay();
+            this.getMoneyIncomePay();
+            this.$nextTick(() => {
+               this.tableHeight =  document.body.clientHeight - 300
+            })
 	   },
         methods: {
              getMoneyIncomePay(){
-                this.$store.dispatch('GetMoneyIncomePay', this.paginations).then(res => {
+                this.$store.dispatch('GetMoneyIncomePay', this.incomePayData).then(res => {
                     console.log(res);
-                    this.paginations.total = res.count;
+                    this.paginaTotal = res.count;
                     this.tableData = res.data;
                 })
             },
+
+
+
+
+
 
 
 
@@ -474,25 +359,6 @@
                 this.dialog.title = '新增资金信息';
                 this.dialog.show  = true;
             },
-            // 每页多少条切换
-            handleSizeChange(pageSize) {
-               this.getList({
-                    pageSize,
-                    fun: () => {
-                        this.setPath('pageSize', pageSize);
-                    }
-			   });
-            },
-            // 上下分页
-            handleCurrentChange(page) {
-               this.sortnum = this.paginations.pageSize*(page-1);
-               this.getList({
-                    page,
-                    fun: () => {
-                        this.setPath('page', page);
-                    }
-                });
-            },
             editMoneyIncomePay(data){
                 axios({
                     type:'get',
@@ -525,94 +391,67 @@
                     }
                 })
             },
-            //表单提交
-            onSubmit(form){
-                this.$refs[form].validate((valid) => {
-                    if (valid) {//表单数据验证完成之后，提交数据;
-                        let formData = this[form];
-                        let data = {};
-                    
-                        for(var i in formData){
-                            data.id = this.editid;
-                            data.accoutCash = Number(formData['accoutCash'])
-                            data.income = Number(formData['income'])
-                            data.pay = Number(formData['pay'])
-                            data.incomePayType = parseInt(formData['incomePayType'])
-                            data.incomePayDes = formData['incomePayDes']
-                            data.remarks = formData['remarks']
-                        }
-                        console.log(data);
-                        if(this.editid != ""){
-                            this.editMoneyIncomePay(data)
-                        }else{
-                            this.addMoneyIncomePay(data)
-                        }
-                       
-                    }
-                })
-            },
             //筛选
-            onScreeoutMoney(search_data){
-                this.$refs[search_data].validate((valid) => {
-                    if (valid) {//表单数据验证完成之后，提交数据;
-                        let formData = this[search_data];
-                        let data = {};
-                        const startTime = formData['startTime'];
-                        const endTime = formData['endTime'];
+            // onScreeoutMoney(search_data){
+            //     this.$refs[search_data].validate((valid) => {
+            //         if (valid) {//表单数据验证完成之后，提交数据;
+            //             let formData = this[search_data];
+            //             let data = {};
+            //             const startTime = formData['startTime'];
+            //             const endTime = formData['endTime'];
                           
-                        if(mutils.isEmpty(startTime)){
-                            data.startTime = "";
-                        }else{
-                            data.startTime =  parseInt(mutils.formatDate(new Date(startTime),2)); // 毫秒数，时间戳
-                        }
-                        if(mutils.isEmpty(endTime)){
-                            data.endTime = "";
-                        }else{
-                            data.endTime =  parseInt(mutils.formatDate(new Date(endTime),2));
-                        }
-                        console.log(data);
-                        axios({
-                            type:'get',
-                            path:'/api/money/screeoutMoneyIncomePay',
-                            data:data,
-                            fn:data=>{
-                                //得到筛选之后的值，进行重新加载表格数据;
-                                this.$message('筛选成功'),
-                                this.paginations.total = data.count;  // ??
-                                this.tableData = [];
-                                data.data.forEach( (item,index) => {
-                                    const tableItem = {
-                                        id:  item._id,
-                                        sortnum:this.sortnum+(index+1),
-                                        createTime: mutils.parseToDate(JSON.stringify(item.createTime)),
-                                        incomePayType: item.incomePayType,
-                                        incomePayDes: item.incomePayDes,
-                                        income: item.income,
-                                        pay:  item.pay,
-                                        accoutCash:  item.accoutCash,
-                                        remarks: item.remarks
-                                    }
-                                    this.tableData.push(tableItem);
-                                })
-                            },
-                            errFn:()=>{
-                                this.$message.error('编辑失败请重试')
-                            }
-                        })
-                    }
-                })
+            //             if(mutils.isEmpty(startTime)){
+            //                 data.startTime = "";
+            //             }else{
+            //                 data.startTime =  parseInt(mutils.formatDate(new Date(startTime),2)); // 毫秒数，时间戳
+            //             }
+            //             if(mutils.isEmpty(endTime)){
+            //                 data.endTime = "";
+            //             }else{
+            //                 data.endTime =  parseInt(mutils.formatDate(new Date(endTime),2));
+            //             }
+            //             console.log(data);
+            //             axios({
+            //                 type:'get',
+            //                 path:'/api/money/screeoutMoneyIncomePay',
+            //                 data:data,
+            //                 fn:data=>{
+            //                     //得到筛选之后的值，进行重新加载表格数据;
+            //                     this.$message('筛选成功'),
+            //                     this.paginations.total = data.count;  // ??
+            //                     this.tableData = [];
+            //                     data.data.forEach( (item,index) => {
+            //                         const tableItem = {
+            //                             id:  item._id,
+            //                             sortnum:this.sortnum+(index+1),
+            //                             createTime: mutils.parseToDate(JSON.stringify(item.createTime)),
+            //                             incomePayType: item.incomePayType,
+            //                             incomePayDes: item.incomePayDes,
+            //                             income: item.income,
+            //                             pay:  item.pay,
+            //                             accoutCash:  item.accoutCash,
+            //                             remarks: item.remarks
+            //                         }
+            //                         this.tableData.push(tableItem);
+            //                     })
+            //                 },
+            //                 errFn:()=>{
+            //                     this.$message.error('编辑失败请重试')
+            //                 }
+            //             })
+            //         }
+            //     })
               
               
-            }
+            // }
 
         },
     }
 </script>
 
 <style lang="less" scoped>
-    .btnRight{
-        float: right;
-        margin-right: 0px !important;
+    .table_container{
+        // border:1px solid;
     }
     .el-dialog--small{
        width: 600px !important;

@@ -1,7 +1,7 @@
 <template>
 	 <div class='footer'>
 	      <div class="recordArea">
-              备案号：鄂ICP备18001612号
+              鄂ICP备18001612号
           </div>
     </div>
 </template>
@@ -29,11 +29,11 @@ export default {
        right: 0;
        .recordArea{
             width:100%;
-            padding: 10px;
+            padding: 5px 0;
             box-sizing: border-box;
             color:#fff;
             background: #324057;
-            font-size:14px;
+            font-size:12px;
             text-align: center;
        }
     }

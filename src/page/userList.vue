@@ -4,7 +4,10 @@
             <el-table
                  :data="tableData"
                  border
+                 stripe
                  highlight-current-row
+                 :height="tableHeight"
+                 header-cell-class-name="table-header-class"
                  style="width:100%">
                 <el-table-column
                    label="序号"
@@ -23,7 +26,7 @@
                 <el-table-column
                    property="email"
                    label="邮箱地址"
-                   width="180"
+                   width=""
                    align='center'>
                 </el-table-column>
                 <el-table-column
@@ -88,6 +91,7 @@
         data(){
             return {
                 tableData: [],
+                tableHeight:0,
               //需要给分页组件传的信息
                 paginations: {
                     total: 0,        // 总数
@@ -100,6 +104,9 @@
         },
         mounted(){
             this.getUserList();
+            this.$nextTick(() => {
+               this.tableHeight =  document.body.clientHeight - 200
+            })
         },
         methods: {
             getUserList(){

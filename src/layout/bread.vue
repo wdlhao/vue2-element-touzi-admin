@@ -55,7 +55,6 @@ export default {
 <style lang="less">
 	.bread_container{
 		background-color: #EFF2F7;
-		margin-bottom: 5px;
 		width: 100%;
 		.bars{
 			float: left;

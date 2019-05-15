@@ -137,7 +137,6 @@ export const asyncRouterMap = [
 		  icon: 'fa-money',
 		},
 		component:Layout,
-		redirect: '/fundManage/fundList',
 		children:[
 		  {
 				path:'fundList',
@@ -146,7 +145,7 @@ export const asyncRouterMap = [
 						title:'资金流水',
 						icon: 'fa-asterisk',
 				},
-				component: () => import('@/page/fundList')
+				component: () => import('@/page/fundList/fundList')
 		  },
 		  {
 			  path:'payList',
@@ -167,7 +166,6 @@ export const asyncRouterMap = [
 		  icon: 'fa-inbox',
 		},
 		component:Layout,
-		// redirect: '/touziManage/chinaTouziList',
 		children:[
 		  {
 			 path:'chinaTouziList',
