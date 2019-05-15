@@ -79,27 +79,27 @@ export const asyncRouterMap = [
 			}
 		]
 	},
-	{
-		path:'/infoManager',
-		name:'infoList',
-		component:Layout,
-		meta: {
-			title:'信息列表',
-			icon: 'fa-envelope',
-		},
-		noDropdown:true,
-		children:[
-			{
-				path:'infoList',
-				name:'infoList',
-				meta: {
-					title:'信息列表',
-					icon: 'fa-envelope',
-				},
-				component: () => import('@/page/infoList'),
-			}
-		]
-	},
+	// {
+	// 	path:'/infoManager',
+	// 	name:'infoList',
+	// 	component:Layout,
+	// 	meta: {
+	// 		title:'信息列表',
+	// 		icon: 'fa-envelope',
+	// 	},
+	// 	noDropdown:true,
+	// 	children:[
+	// 		{
+	// 			path:'infoList',
+	// 			name:'infoList',
+	// 			meta: {
+	// 				title:'信息列表',
+	// 				icon: 'fa-envelope',
+	// 			},
+	// 			component: () => import('@/page/infoList'),
+	// 		}
+	// 	]
+	// },
 	{
 	  path:'/infoManage',
 	  name: 'infoManage',
@@ -151,42 +151,42 @@ export const asyncRouterMap = [
 			  path:'payList',
 			  name:'payList',
 			  meta: {
-				   title:'支付单据',
+				   title:'区域投资',
 				   icon: 'fa-asterisk',
 				},
-		    component: () => import('@/page/payList')
+		    component: () => import('@/page/chinaTabsList')
 		   },
 		]
 	},
-	{
-		path:'/touziManage',
-		name: 'touziManage',
-		meta: {
-		  title:'投资管理',
-		  icon: 'fa-inbox',
-		},
-		component:Layout,
-		children:[
-		  {
-			 path:'chinaTouziList',
-			 name:'chinaTouziList',
-			 meta: {
-				  title:'省份投资',
-				  icon: '',
-			 },
-			 component: () => import('@/page/chinaTouziList')
-		  },
-		  {
-			  path:'chinaTabsList',
-			  name:'chinaTabsList',
-			  meta: {
-				   title:'区域投资',
-				   icon: '',
-				},
-				component: () => import('@/page/chinaTabsList')
-		   },
-		]
-	},
+	// {
+	// 	path:'/touziManage',
+	// 	name: 'touziManage',
+	// 	meta: {
+	// 	  title:'投资管理',
+	// 	  icon: 'fa-inbox',
+	// 	},
+	// 	component:Layout,
+	// 	children:[
+	// 	  {
+	// 		 path:'chinaTouziList',
+	// 		 name:'chinaTouziList',
+	// 		 meta: {
+	// 			  title:'省份投资',
+	// 			  icon: '',
+	// 		 },
+	// 		 component: () => import('@/page/chinaTouziList')
+	// 	  },
+	// 	  {
+	// 		  path:'chinaTabsList',
+	// 		  name:'chinaTabsList',
+	// 		  meta: {
+	// 			   title:'区域投资',
+	// 			   icon: '',
+	// 			},
+	// 			component: () => import('@/page/chinaTabsList')
+	// 	   },
+	// 	]
+	// },
 	{
 		path:'/fundArticle',
 		name: 'fundArticle',

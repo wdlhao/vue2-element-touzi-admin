@@ -44,7 +44,7 @@
                 //lib_$-->$,window的宽,高的获取是没有问题的。
                 this.win_size = {
                     height:document.body.clientHeight-73,
-                    width:document.body.clientWidth-183
+                    width:document.body.clientWidth-180
                 }
                 //将content部分的宽高，存入store中，
                 this.$store.dispatch('set_win_content',this.win_size); //触发动作，content部分的宽高也随即改变。
@@ -63,8 +63,7 @@
 <style scoped lang='less'>
     .content_page{
         position: fixed;
-        top:71px;
-        bottom: 40px;
+        top:70px;
         background:#F6F7FC;
     }
      .content{

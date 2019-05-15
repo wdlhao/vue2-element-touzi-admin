@@ -2,6 +2,7 @@
     <div class="pagination">
         <el-pagination
             v-if='paginations.total > 0'
+            background
             :page-sizes="paginations.pageSizes"
             :page-size="paginations.pageSize"
             :layout="paginations.layout"

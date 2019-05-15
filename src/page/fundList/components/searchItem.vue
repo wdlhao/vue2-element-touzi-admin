@@ -59,7 +59,7 @@
 
           },
           onAddMoney(){
-
+              this.$emit("showDialog");
           },
         //表单提交
         onSubmit(form){

@@ -1,6 +1,6 @@
 <template>
     <div class="fillcontain">
-        <search-item></search-item>
+        <search-item @showDialog="showAddFundDialog"></search-item>
         <div class="table_container">
             <el-table
                 :data="tableData"
@@ -24,13 +24,12 @@
                 prop="username"
                 label="用户姓名"
                 align='center'
-                width="200">
+                width="160">
             </el-table-column>
             <el-table-column
                 prop="createTime"
                 label="创建时间"
                 align='center'
-                width="220"
                 sortable>
                 <template slot-scope="scope">
                     <el-icon name="time"></el-icon>
@@ -41,7 +40,7 @@
                 prop="incomePayType"
                 label="收支类型"
                 align='center'
-                width="160"
+                width="130"
                 :formatter="formatterType"
                 :filters="fields.incomePayType.filter.list"
                 :filter-method="filterType">
@@ -50,7 +49,7 @@
                 prop="income"
                 label="收入"
                 align='center'
-                width="170"
+                width="130"
                 sortable> 
                 <template slot-scope="scope">  
                     <span style="color:#00d053">+ {{ scope.row.income }}</span>
@@ -60,7 +59,7 @@
                 prop="pay"
                 label="支出"
                 align='center'
-                width="170"
+                width="130"
                 sortable>
                 <template slot-scope="scope">  
                     <span style="color:#f56767">{{ scope.row.pay }}</span>
@@ -70,7 +69,7 @@
                 prop="accoutCash"
                 label="账户现金"
                 align='center'
-                width="170"
+                width="130"
                 sortable>
                 <template slot-scope="scope">  
                     <span style="color:#4db3ff">{{ scope.row.accoutCash }}</span>
@@ -80,7 +79,6 @@
                 prop="operation"
                 align='center'
                 label="操作"
-                fixed="right"
                 width="180">
                 <template slot-scope='scope'>
                     <el-button 
@@ -99,10 +97,8 @@
             </el-table-column>
             </el-table>
             <pagination :paginaTotal="paginaTotal"></pagination>
-            <addFundDialog v-if="addFundDialog.show"></addFundDialog>
-             
+            <addFundDialog  v-if="addFundDialog.show" :isShow="addFundDialog.show" @closeDialog="hideAddFundDialog"></addFundDialog>
         </div>
-      
     </div>
 </template>
 
@@ -116,30 +112,11 @@
 
     export default {
         data(){
-             let validateData = (rule, value, callback) => {
-                if(value === ''){
-                    let text;
-                    if(rule.field == "income"){
-                        text='收入';
-                    }else if(rule.field == "pay"){
-                        text='支出';
-                    }else{
-                        text='账户现金';
-                    }
-                    callback(new Error(text+'不能为空~'));
-                }else{
-                   let numReg = /^[0-9]+.?[0-9]*$/;
-                   if(!numReg.test(value)){
-                      callback(new Error('请输入数字值'));
-                   }else{
-                      callback();
-                   }
-                }
-            };
             return {
                 tableData: [],
                 tableHeight:0,
                 idFlag:false,
+                isShow:false, // 是否显示资金modal,默认为false
                 editid:'',
                 sortnum:0,
                 format_type_list: {
@@ -232,6 +209,12 @@
                     this.paginaTotal = res.count;
                     this.tableData = res.data;
                 })
+            },
+            showAddFundDialog(){
+                this.addFundDialog.show = true;
+            },
+            hideAddFundDialog(){
+                this.addFundDialog.show = false;
             },
 
 
