@@ -168,7 +168,8 @@
 						// let userData = userinfo
 						console.log(userinfo);
 						this.$store.dispatch('Login', userinfo).then(res => {
-           					this.$router.push({ path: '/' })
+							this.$router.push({ path: '/' })
+							this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
 						})
                         // axios({
                         //     type:'get',
@@ -179,7 +180,6 @@
 						// 		if(data.status == 1){
 						// 			this.saveUserInfo() // 存入缓存，用于显示用户名
 						// 			this.generateMenuPushIndex() //模拟动态生成菜单并定位到index
-						// 			this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
 						// 		}else{
 						// 			this.$message.error('登录失败请重试')
 						// 		}

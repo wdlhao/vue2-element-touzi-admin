@@ -1,6 +1,6 @@
 <template>
-    <div>
-		<section class="data_section"> 
+    <!-- <div> -->
+		<section class="data_section" ref="data_section"> 
 			<el-row :gutter="10" class="row_list">
 				<el-col :span="3"><div class="pay data_list"><p class="list_number">+208.65</p><p>盈亏(千万)</p></div></el-col>
 				<el-col :span="3"><div class="income data_list"><p class="list_number">+12.37</p><p>收益率(%)</p></div></el-col>
@@ -31,7 +31,7 @@
 				</el-col>
 			</el-row>
 		</section>
-    </div>
+    <!-- </div> -->
 </template>
 
 
@@ -58,6 +58,9 @@
     	   barTypeData,lineTypeData,ordertype,ordersource
 		},	
     	mounted(){
+			 this.$nextTick(() => {
+               this.$refs.data_section.style.height =  (document.body.clientHeight - 200)+'px';
+            })
 		},
 		beforeDestroy() {
 			if (!this.bar_chart || !this.line_chart) {
@@ -76,7 +79,11 @@
 
 <style lang="less" scoped>
 	.data_section{
-        padding:10px;
+		margin: 20px;
+		overflow: auto;
+		background: #ffffff;
+		border-radius: 2px;
+		padding: 20px;
 		.row_list{
 			margin-bottom: 20px;
 		}

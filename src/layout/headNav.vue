@@ -1,76 +1,114 @@
 <template>
-    <header class="head-nav" id='header_container'>
-        <el-row style="margin:0 10px;">
-            <el-col :span="6" class='logo-container'>
-                <img src="../assets/img/logo.png" class='logo' alt="">
-                <span class='title'>小爱管理系统</span>
-            </el-col>
-            <div class="userinfo">
-                <img src="../assets/img/avatar.png" class='avatar' alt="">
-                <div class='welcome'>
-                    <p class='name comename'>欢迎</p>
-                    <p class='name avatarname'>{{username}}</p>
+    <header class="head-nav rflex " id='header_container'>
+        <div class='logo-container rflex'>
+            <!-- <img src="../assets/img/logo.png" class='logo' alt=""> -->
+            <span class='title'>小爱<i>Admin</i></span>
+        </div>
+        <div class="right-nav">
+            <div class="middle rflex wflex">
+            </div>
+            <div class="userinfo-right rflex">
+                <div class="notify-row">
+                    <ul class="top-menu">
+                        <li class="li-badge">
+                            <el-tooltip class="item" effect="dark" content="访问github" placement="top">
+                                <a :href='gitHubUrl' target="_blank">
+                                    <el-badge class="item one">
+                                        <i class="fa fa-github"></i>
+                                    </el-badge>
+                                </a>
+                            </el-tooltip>
+                        </li>
+                        <li class="li-badge" @mousemove="showWechat()" @mouseleave="hideWechat()">
+                            <a href='#'>
+                                <el-badge :value="6" class="item one">
+                                    <i class="fa fa-wechat"></i>
+                                </el-badge>
+                            </a>
+                            <div class="wechat-area cflex" v-show="wechat.isWechat">
+                                <p class="titles">加我微信</p>
+                                <img :src="wechat.wechatImg" alt=""  />
+                            </div>
+                        </li>
+                        <li class="li-badge" @mousemove="showQq()" @mouseleave="hideQq()">
+                            <a :href='indexRouter'>
+                                <el-badge :value="12" class="item two">
+                                    <i class="fa fa-qq"></i>
+                                </el-badge>
+                            </a>
+                            <div class="wechat-area cflex" v-show="qq.isQq">
+                                <p class="titles">加入qq群</p>
+                                <img :src="qq.qqImg" alt=""  />
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <span class='username'>
-                    <el-dropdown
-                            trigger="click"
-                            @command='setDialogInfo'>
-                        <span class="el-dropdown-link">
-                            <i class="el-icon-caret-bottom el-icon--right"></i>
-                        </span>
-                        <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item command='info'>修改信息</el-dropdown-item>
-                            <el-dropdown-item command='pass'>修改密码</el-dropdown-item>
-                            <el-dropdown-item  command='logout'>退出</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </el-dropdown>
-                </span>
-                <i class="fa fa-sign-out logout" @click='logout'></i>
+                <div class="userinfo">
+                    <img src="../assets/img/avatar.png" class='avatar' alt="">
+                    <div class='welcome'>
+                        <p class='name comename'>欢迎</p>
+                        <p class='name avatarname'>{{username}}</p>
+                    </div>
+                    <span class='username'>
+                        <el-dropdown
+                                trigger="click"
+                                @command='setDialogInfo'>
+                            <span class="el-dropdown-link">
+                                <i class="el-icon-caret-bottom el-icon--right"></i>
+                            </span>
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item command='info'>修改信息</el-dropdown-item>
+                                <el-dropdown-item command='pass'>修改密码</el-dropdown-item>
+                                <el-dropdown-item  command='logout'>退出</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </span>
+                    <i class="fa fa-sign-out logout" @click='logout'></i>
+                </div>
             </div>
-              <div class="notify-row">
-                <ul class="top-menu">
-                    <li class="li-badge">
-                        <a href='#/index'>
-                            <el-badge :value="6" class="item one">
-                                <i class="fa fa-tasks"></i>
-                            </el-badge>
-                        </a>
-                    </li>
-                    <li class="li-badge">
-                        <a href='#/index'>
-                            <el-badge :value="12" class="item two">
-                                <i class="fa fa-envelope-o"></i>
-                            </el-badge>
-                        </a>
-                    </li>
-                     <li class="li-badge">
-                        <a href='#/index'>
-                            <el-badge :value="34" class="item three">
-                                <i class="fa fa-bell-o"></i>
-                            </el-badge>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </el-row>
+        </div>
     </header>
 </template>
 
 <script>
     import * as mUtils from '@/utils/mUtils'
     import store from "@/store";
+    import wechatImg from "@/assets/img/wechat.jpg";
+    import qqImg from "@/assets/img/qq.png";
 
     export default {
           name: 'head-nav',
           data(){
             return{
-                username:''
+                username:'',
+                indexRouter:'#/index/index',
+                wechat:{
+                    wechatImg:wechatImg,
+                    isWechat:false
+                },
+                qq:{
+                    qqImg:qqImg,
+                    isQq:false,
+                },
+                gitHubUrl:'https://github.com/wdlhao/vue2-element-touzi-admin'
             }
           },
           created(){
               this.username = store.getters.name;
           },
           methods:{
+              showWechat(){
+                  this.wechat.isWechat = true;
+              },
+              hideWechat(){
+                 this.wechat.isWechat = false;
+              },
+              showQq(){
+                  this.qq.isQq = true;
+              },
+              hideQq(){
+                  this.qq.isQq = false;
+              },
               logout(){
                   this.$store.dispatch('LogOut').then(() => {
                       console.log('logout ----3----reoad-');
@@ -113,21 +151,29 @@
 
 <style scoped lang='less'>
     .logo-container {
-         line-height: 60px;
-         min-width: 400px;
+         min-width: 180px;
+         align-items: center;
+         justify-content: center;
+         text-transform: uppercase;
+         box-sizing: border-box;
+         box-shadow:0px 2px 5px 0px rgba(230,224,224,0.5);
         .logo {
             height: 50px;
             width: 50px;
-            margin-right: 5px;
             vertical-align: middle;
             display: inline-block;
         }
         .title{
-            vertical-align: middle;
             font-size: 22px;
-            font-family: cursive;
-            letter-spacing: 3px;
+            i{
+                color:#FF6C60;
+            }
         }
+    }
+    .right-nav{
+        flex: 1;
+        padding-right: 15px;
+        box-shadow:0px 2px 5px 0px rgba(237,233,233,0.5);
     }
     .fa-user {
         position: relative;
@@ -135,25 +181,30 @@
         margin-right: 4px;
     }
     .head-nav {
+        justify-content: space-between;
         width: 100%;
         height: 60px;
-        min-width:600px;
-        padding: 5px;
-        background: url('../assets/img/zhi001.png');
+        min-width: 600px;
         position: fixed;
         top: 0px;
         left: 0px;
         z-index: 100;
-        color: #FFF;
+        box-sizing: border-box;
+        z-index: 5;
         .logout {
             vertical-align: middle;
             cursor: pointer;
         }
     }
+    .middle{
+       align-items: center;
+    }
+    .userinfo-right{
+        justify-content: flex-end;
+    }
     .userinfo {
         line-height: 60px;
         text-align:right;
-        float:right;
     }
     .avatar{
         width: 40px;
@@ -184,23 +235,40 @@
     .username {
         cursor: pointer;
         margin-right: 5px;
-        .el-dropdown {
-            color: #FFF;
-        }
     }
-
     .border{
         border:1px solid;
     }
     .notify-row{
         line-height:60px;
-        float: right;
         margin-right: 20px;
         margin-top: 5px;
     }
     ul.top-menu > li {
         float: left;
         margin-right: 20px;
+        position: relative;
+        .wechat-area{
+            position: absolute;
+            z-index: 8;
+            top: 55px;
+            left: -30px;
+            border: 1px solid #a9d86e;
+            border-radius: 4px;
+            text-align: center;
+            .titles{
+                font-size: 14px;
+                background: #a9d86e;
+                color:#fff;
+                width: 100%;
+                height: 30px;
+                line-height: 30px;
+            }
+            img{
+               width: 100px;
+               height: 100px;
+            }
+        }
     }
     ul.top-menu > li > a {
         color:#3bc5ff;

@@ -4,8 +4,7 @@
         <div class="left-fixed-right-auto">
             <left-menu></left-menu>
             <div class="content_page" 
-                :style="{'margin-left':$store.state.menu.sidebar.width,
-                         'width':$store.state.page.win_content.width+'px'}">
+                :style="{'left':sidebar.width}">
                 <div class="content">
                     <bread></bread>
                     <router-view></router-view><!--页面渲染入口-->
@@ -16,6 +15,8 @@
     </div>
 </template>
 <script>
+    import { mapState, mapGetters } from 'vuex'
+
     import HeadNav from './headNav.vue';
 	import LeftMenu from './leftMenu.vue';
 	import Bread from './bread.vue';
@@ -31,6 +32,10 @@
                 },
 
             }
+        },
+        computed:{
+            ...mapGetters(['sidebar'])
+
         },
         components:{
             HeadNav,
@@ -51,11 +56,12 @@
             },
         },
        created() {
-            this.setSize();
+           console.log(this.sidebar);
+            // this.setSize();
        },
        mounted (){
             window.onresize = () => {
-                 this.setSize();
+                //  this.setSize();
             }
        }
     }
@@ -63,7 +69,9 @@
 <style scoped lang='less'>
     .content_page{
         position: fixed;
-        top:70px;
+        top:60px;
+        right:0;
+        z-index: 3;
         background:#F6F7FC;
     }
      .content{

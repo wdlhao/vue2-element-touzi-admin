@@ -1,26 +1,27 @@
 <template>
-    <el-row class="menu_page">
-      <el-col>
+    <div class="menu_page el-scrollbar" ref="menu_page" :style="{'width':sidebar.width}">
+      <!-- <el-col> -->
         <el-menu 
             mode="vertical"
             theme="dark" 
-            class="el-menu-vertical-demo"
+            :show-timeout="200"
             :default-active="$route.path" 
             :collapse="isCollapse"
-            background-color="#324057"
-            text-color="#fff"
-            active-text-color="#ff6428">
+            :background-color="menuObj.bgColor"
+            :text-color="menuObj.textColor"
+            :active-text-color="menuObj.activeTextColor"
+            :style="{'width':sidebar.width}">
                 <template v-for="(item,index) in permission_routers">
                     <!--表示 有一级菜单-->
                     <router-link v-if="!item.hidden && item.noDropdown" :to="item.path+'/'+item.children[0].path" :key="index">
-                        <el-submenu class="dropItem" 
+                        <el-menu-item class="dropItem" 
                             :index="item.path+'/'+item.children[0].path"
                             >
-                            <template slot="title" >
+                            <!-- <template slot="title" > -->
                                 <i v-if="item.meta.icon" :class="'fa fa-margin '+item.meta.icon"></i>
                                 <span v-if="item.meta.title" slot="title">{{item.meta.title}}</span> 
-                            </template>
-                        </el-submenu>
+                            <!-- </template> -->
+                        </el-menu-item>
                     </router-link>
 
                     <!--表示 有二级或者多级菜单 -->
@@ -37,46 +38,43 @@
                             </el-menu-item> 
                         </router-link>
                     </el-submenu>
-
                 </template>
         </el-menu>
-      </el-col>
-    </el-row>
+      <!-- </el-col> -->
+    </div>
 </template>
 
 <script>
-import * as mUtils from "@/utils/mUtils";
 import { mapGetters } from 'vuex'
+import * as mUtils from "@/utils/mUtils";
 
 export default {
   name: "left-Menu",
   data() {
     return {
-      isDropdown: false
+       menuObj:{
+         bgColor:'#324057',
+         textColor:'#fff',
+         activeTextColor:'#ff6428',
+       }
     };
   },
   computed:{
       ...mapGetters([
-        'permission_routers'
-      ]),
-
-      lefeMenuList(){
-         return this.$store.state.menu.items;
-      },
-      isDropname(){  // false
-         return this.$store.state.menu.isDropname; 
-      },
-      isCollapse(){
-        return this.$store.state.menu.isCollapse;
-      }
+        'permission_routers','isCollapse','sidebar'
+      ])
   },
   created(){
-       console.log('1111----1111');
-      console.log(this.permission_routers);
+
+  },
+  mounted(){
+      this.setMenuHeight();
   },
   methods: {
-    showDropdown() {
-      this.isDropdown = this.$store.state.menu.isCollapse;
+    setMenuHeight(){
+        this.$nextTick(() => {
+          this.$refs.menu_page.style.height =  (document.body.clientHeight - 60)+'px';
+      })
     }
   }
 };
@@ -84,42 +82,25 @@ export default {
 
 
 <style lang="less" scoped>
-.menu_page {
-  position: fixed;
-  top: 70px;
-  left: 0;
-  min-height: 100%;
-  background-color: #324057;
-  z-index: 99;
-}
-.fa-margin {
-  margin-right: 5px;
-}
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 180px;
-  min-height: 400px;
-}
-.el-menu-vertical-demo {
-  width: 35px;
-}
-.el-submenu .el-menu-item {
-  min-width: 180px;
-}
-.el-menu {
-  .el-menu-item {
-    padding-left: 40px !important;
-  }
-}
+  @left-bgColor:rgb(50, 64, 87);  // 左侧菜单背景颜色;
+  @icon-link:#FF6C60;
 
-.hiddenDropdown,
-.hiddenDropname {
-  display: none;
-}
-.router-link-active {
-  li {
-      .el-submenu__title{
-          color: #ff6428 !important;
-      }
+  .menu_page {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      background-color: @left-bgColor;
+      z-index: 99;
+      overflow-y: scroll;
   }
-}
+  .fa-margin {
+    margin-right: 5px;
+  }
+  .router-link-active {
+    li {
+        .el-submenu__title{
+            color: @icon-link !important;
+        }
+    }
+  }
 </style>

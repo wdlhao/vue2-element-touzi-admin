@@ -14,4 +14,5 @@
 	@import './style/element-ui';
 	@import './style/font-awesome.min.css';
 	@import './style/common';
+	@import './style/scrollBar';
 </style>

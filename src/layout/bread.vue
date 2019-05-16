@@ -5,10 +5,10 @@
 		</span>
         <el-breadcrumb class="breadcrumb" separator="/">
             <el-breadcrumb-item 
-                v-for='(item,index) in $route.matched'
-                :key='index'
-				v-if='item.meta.title'>
-				{{item.meta.title}}
+                v-for='(title,index) in matchedArr'
+				:key='index'
+				>
+				{{title}}
 			</el-breadcrumb-item>
         </el-breadcrumb>
     </div>
@@ -24,22 +24,30 @@ export default {
 		}
 	},
 	created() {
-		
-    },
+	},
+	computed:{
+		matchedArr(){
+			let temp = [],temps = [];
+			this.$route.matched.filter((item,index,self) => {
+				if(item.meta.title){
+					const title = item.meta.title;
+				    temp.push(title);
+				}
+			});
+			temp.filter((item,index,self) => {
+				if(!temps.includes(item)){
+					temps.push(item);
+				}
+			})
+			return temps;
+		}
+	},
+	mounted(){
+	},
 	methods:{
-		setSize() {
-			const win_size = {
-				width:(this.$store.state.menu.sidebar.opened)? this.$$lib_$(window).width()-180:this.$$lib_$(window).width()-35,
-				height:this.$$lib_$(window).height()-73
-			}
-			//将content部分的宽高，存入store中，
-			this.$store.dispatch('set_win_content',win_size);
-		},
 		handleLefeMenu(){
 		    this.$store.dispatch('setLeftCollapse');  // 折叠菜单
-			this.$store.dispatch('handleLeftMenu');  // 改变菜单宽度
-			this.$store.dispatch('dropName');   // 隐藏单一菜单名称
-			this.setSize()
+			this.$store.dispatch('handleLeftMenu');  // 改变菜单宽度 180->35/35-180
 			this.changeBarDirection = !this.changeBarDirection;
 		}
 	},
