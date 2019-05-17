@@ -1,8 +1,8 @@
 <template>
 	 <div class='footer'>
-	      <div class="recordArea">
-              鄂ICP备18001612号
-          </div>
+        鄂ICP备18001612号
+	      <!-- <div class="recordArea">
+          </div> -->
     </div>
 </template>
 
@@ -27,15 +27,13 @@ export default {
        position: fixed;
        bottom: 0;
        right: 0;
-       .recordArea{
-            width:100%;
-            padding: 5px 0;
-            box-sizing: border-box;
-            color:#fff;
-            background: #324057;
-            font-size:12px;
-            text-align: center;
-       }
+       height: 30px;
+       line-height: 30px;
+       color:#fff;
+        background: #324057;
+        font-size:12px;
+        text-align: center;
+        z-index: 9;
     }
 </style>
 

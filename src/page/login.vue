@@ -51,174 +51,31 @@
 					],
 				},
 				showLogin: false,
-				ip:'',
 			}
 		},
 		mounted(){
 			this.showLogin = true;
-			// this.getip();  // 在页面初始化时，就去获取公网ip
 		},
 		computed: {
-			...mapGetters(['menuitems','isLoadRoutes'])  
+			
 		},
 		methods: {
-			...mapActions(['addMenu','loadRoutes']),
 			showMessage(type,message){
                 this.$message({
                     type: type,
                     message: message
                 });
             },
-			//保存用户信息到缓存
-			saveUserInfo(){
-				const userinfo = {
-					username:this.loginForm.username
-				}
-				mUtils.setStore('userinfo',userinfo)
-			},
-			//模拟动态生成菜单并定位到index
-			generateMenuPushIndex(){
-				const menuData = [
-					{path:'/index',name:'首页',component:'index',icon:'fa-server',noDropdown:true,
-						children:[
-							{path:'/index',name:'首页',component:'index'},
-						]
-					},
-					{path:'/userList',name:'用户列表',component:'userList',icon:'fa-user',noDropdown:true,
-						children:[
-							{path:'/userList',name:'用户列表',component:'userList'},
-						]
-					},
-					{path:'/infoList',name:'信息列表',component:'infoList',icon:'fa-envelope',noDropdown:true,
-						children:[
-							{path:'/infoList',name:'信息列表',component:'infoList'},
-						]
-					},
-					{path:'/infoManage',name:'信息管理',component:'content',icon:'fa-asterisk',
-						children:[
-							{path:'/infoShow',name:'个人信息',component:'infoShow'},
-							{path:'/infoModify',name:'修改信息',component:'infoModify'}
-						]
-					},
-					{path:'/fundManage',name:'资金管理',component:'content',icon:'fa-money',
-						children:[
-							{path:'/fundList',name:'资金流水',component:'fundList'},
-							{path:'/payList',name:'支付单据',component:'payList'}
-						]
-			        },
-					{path:'/touziManage',name:'投资管理',component:'content',icon:'fa-inbox',
-						children:[
-							{path:'/chinaTouziList',name:'省份投资',component:'chinaTouziList'},
-							{path:'/chinaTabsList',name:'区域投资',component:'chinaTabsList'}
-						]
-			        },
-					{path:'/fundArticle',name:'金融文章',component:'content',icon:'fa-file-text-o',
-						children:[
-							{path:'/createFundArticle',name:'发布文章',component:'createFundArticle'},
-							{path:'/modifyFundArticle',name:'编辑文章',component:'modifyFundArticle'},
-							{path:'/showFundArticle',name:'查看文章',component:'showFundArticle'}
-						]
-			        },
-					{path:'/fundData',name:'资金数据',component:'content',icon:'fa-bar-chart-o',
-						children:[
-							{path:'/fundPosition',name:'投资分布',component:'fundPosition'},
-							{path:'/typePosition',name:'项目分布',component:'typePosition'},
-							{path:'/incomePayPosition',name:'收支统计',component:'incomePayPosition'}
-						]
-			        },
-				]
-				
-				mUtils.setStore('menuData',menuData)     // 将菜单放入缓存。
-				this.addMenu(menuData);     			  // 生成菜单,将菜单放入store 。
-				console.log(!this.isLoadRoutes)
-				if (!this.isLoadRoutes) {  // 首次进来为false,改变其状态为true
-					const routes = mUtils.generateRoutesFromMenu(menuData) //根据菜单生成的路由信息,需要将数据库返回的对象key值转成小写
-					console.log(routes)
-					const asyncRouterMap = [
-						{
-							path:'/404',
-							name:'404',
-							hidden:true,
-							component:require('page/404.vue')
-						},
-						{
-							path: '/index',
-							name:'',
-							hidden   : true,
-							component: require('layout/home.vue'),
-							redirect: '/index',
-							children:routes
-						}
-					]
-					console.log(asyncRouterMap)
-					this.$router.addRoutes(asyncRouterMap);
-					this.loadRoutes()   // true,第二次进来不用再去加载路由
-				}  
-
-				this.$router.push('/index')
-				this.showMessage('success','登录成功');
-			},
 		    submitForm(loginForm) {
 				this.$refs[loginForm].validate((valid) => {
 					if (valid) {
-						//用户登录的接口
 						let userinfo = this.loginForm;
-						// userinfo.ip = this.ip;
-						// userinfo.url = 'http://ip.taobao.com/service/getIpInfo.php?ip=';
-						// let userData = userinfo
-						console.log(userinfo);
 						this.$store.dispatch('Login', userinfo).then(res => {
 							this.$router.push({ path: '/' })
 							this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
 						})
-                        // axios({
-                        //     type:'get',
-                        //     path:'/api/user/login',
-                        //     data:userData,
-                        //     fn:data=>{
-						// 		console.log(data);
-						// 		if(data.status == 1){
-						// 			this.saveUserInfo() // 存入缓存，用于显示用户名
-						// 			this.generateMenuPushIndex() //模拟动态生成菜单并定位到index
-						// 		}else{
-						// 			this.$message.error('登录失败请重试')
-						// 		}
-						// 	},
-						// 	errFn:res => {
-						// 		console.log(res);
-						// 		this.$message.error('请求出错11：'+res)
-						// 	}
-						// })
 					}
 				});
-			},
-			getip(){
-                axios({
-                    type:'get',
-                    path:'http://httpbin.org/ip',
-                    data:'',
-                    fn:data=>{
-                        const ip = data.origin;
-						this.ip = ip; 
-					},
-					errFn:res => {
-						this.$message.error('请求出错：'+res)
-					}
-                });
-            },
-			
-
-
-		},
-		watch: {
-			adminInfo: function (newValue){
-				if (newValue.id) {
-					this.$message({
-                        type: 'success',
-                        message: '检测到您之前登录过，将自动登录'
-                    });
-					this.$router.push('index')
-				}
 			}
 		}
 	}
