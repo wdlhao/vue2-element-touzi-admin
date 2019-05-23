@@ -27,8 +27,14 @@
                 width="160">
             </el-table-column>
             <el-table-column
+                prop="address"
+                label="籍贯"
+                align='center'
+                width="160">
+            </el-table-column>
+            <el-table-column
                 prop="createTime"
-                label="创建时间"
+                label="投资时间"
                 align='center'
                 sortable>
                 <template slot-scope="scope">
@@ -96,8 +102,8 @@
                 </template>
             </el-table-column>
             </el-table>
-            <pagination :paginaTotal="paginaTotal"></pagination>
-            <addFundDialog  v-if="addFundDialog.show" :isShow="addFundDialog.show" @closeDialog="hideAddFundDialog"></addFundDialog>
+            <pagination :pageTotal="pageTotal" @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"></pagination>
+            <addFundDialog  v-if="addFundDialog.show" :isShow="addFundDialog.show" :dialogRow="addFundDialog.dialogRow"  @getFundList="getMoneyList"  @closeDialog="hideAddFundDialog"></addFundDialog>
         </div>
     </div>
 </template>
@@ -109,6 +115,7 @@
     import SearchItem from "./components/searchItem";
     import AddFundDialog from "./components/addFundDialog";
     import Pagination from "@/components/pagination";
+    import { getMoneyIncomePay , removeMoney } from "@/api/money";
 
     export default {
         data(){
@@ -130,14 +137,16 @@
                     7: '充值礼券',
                     8: '转账'
                 },
-                addFundDialog:{
-                    show:false
+                addFundDialog:{  
+                    show:false,
+                    dialogRow:{}
                 },
                 incomePayData:{
-                    pageIndex:1,
-                    pageSize:20
+                    page:1,
+                    limit:20,
+                    name:''
                 },
-                paginaTotal:1000,
+                pageTotal:0,
                 //需要给分页组件传的信息
                 fields: {
                     incomePayType:{
@@ -197,24 +206,36 @@
             Pagination
         },
       	mounted() {
-            this.getMoneyIncomePay();
+            this.getMoneyList();
             this.$nextTick(() => {
                this.tableHeight =  document.body.clientHeight - 300
             })
 	   },
         methods: {
-             getMoneyIncomePay(){
-                this.$store.dispatch('GetMoneyIncomePay', this.incomePayData).then(res => {
+            getMoneyList(){
+                getMoneyIncomePay(this.incomePayData).then(res => {
                     console.log(res);
-                    this.paginaTotal = res.count;
-                    this.tableData = res.data;
+                     this.pageTotal = res.data.total
+                     this.tableData = res.data.moneyList
                 })
             },
-            showAddFundDialog(){
+            // 显示资金弹框
+            showAddFundDialog(val){
+                this.$store.commit('SET_DIALOG_TITLE', val)
                 this.addFundDialog.show = true;
             },
             hideAddFundDialog(){
                 this.addFundDialog.show = false;
+            },
+            // 上下分页
+            handleCurrentChange(val){
+                this.incomePayData.page = val;
+                this.getMoneyList()
+            },
+            // 每页显示多少条
+            handleSizeChange(val){
+                this.incomePayData.limit = val;
+                this.getMoneyList()
             },
 
 
@@ -253,127 +274,29 @@
                     query
                 });
             },
-            getList({
-                page,
-                pageSize,
-                where,
-                fun
-            } = {}){
-                var query = this.$route.query;
-                this.paginations.pageIndex = page || parseInt(query.page) || 1;
-                this.paginations.pageSize  = pageSize || parseInt(query.pageSize) || this.paginations.pageSize;
-                var data = {
-                    pageIndex: this.paginations.pageIndex,
-                    pageSize: this.paginations.pageSize
-                };
-                if (where) {
-				   data = Object.assign(data, where || {});
-                } 
-                // 封装  get,path,params,fn,errfn
-                axios({
-                    type:'get',
-                    path:'/api/money/getMoneyIncomePay',
-                    data:data,
-                    fn:data=>{
-                        //成功之后的回调函数
-                        this.paginations.total = data.count;
-                        this.tableData = [];
-                    	data.data.forEach((item,index) => {
-                    	  	const tableItem = {
-                                sortnum:this.sortnum+(index+1),
-                                id:  item._id,
-                    			createTime: mutils.parseToDate(JSON.stringify(item.createTime)),
-						        incomePayType: item.incomePayType,
-						        incomePayDes: item.incomePayDes,
-                                income: mutils.toFixedNum(item.income),
-                                pay:  mutils.toFixedNum(item.pay),
-                                accoutCash:  mutils.toFixedNum(item.accoutCash),
-                                remarks: item.remarks
-                    		}
-                    		this.tableData.push(tableItem);
-                        })
-                        fun && fun();
-                    }
-                })
-           },
-            // 操作方法
+            // 编辑操作方法
             onEditMoney(row){
-                this.editid = row.id;
-                this.form.incomePayType = row.incomePayType;
-                this.form.incomePayDes = row.incomePayDes;
-                this.form.income = Number(row.income);
-                this.form.pay = Number(row.pay);
-                this.form.accoutCash = Number(row.accoutCash);
-                this.form.remarks = row.remarks;
-               
-                this.dialog.title = '修改资金信息';
-                this.dialog.show  = true;
+                this.addFundDialog.dialogRow = row;
+                this.showAddFundDialog();
             },
+            // 删除数据
             onDeleteMoney(row){
-                //根据id来删除数据
-                this.$message({
-                    showClose: true,
-                    message: '对不起，您暂无此操作权限~',
-                    type: 'success'
-                });
-                return;
-                let data = {
-                    id:row.id
-                }
-                axios({
-                    type:'get',
-                    path:'/api/money/deleteMoneyIncomePay',
-                    data:data,
-                    fn:data=>{
-                        this.$message('删除成功'),
-                        this.paginations.total = data.count;
-                        this.getList({fun: () => {} });     // 删除成功后，重新加载数据;
-                    },
-                    errFn:()=>{
-                        this.$message.error('删除失败请重试')
-                    }
+                this.$confirm('确认删除该记录吗?', '提示', {
+                    type: 'warning'
                 })
-            },
-            onAddMoney(){
-                const formdata = this.form;
-                for(let key in formdata){
-                    formdata[key] ='';
-                }
-                this.dialog.title = '新增资金信息';
-                this.dialog.show  = true;
-            },
-            editMoneyIncomePay(data){
-                axios({
-                    type:'get',
-                    path:'/api/money/editMoneyIncomePay',
-                    data:data,
-                    fn:data=>{
-                        this.$message('编辑成功'),
-                        this.paginations.total = data.count;
-                        this.getList({fun: () => {} }); 
-                        this.dialog.show = false;
-                    },
-                    errFn:()=>{
-                        this.$message.error('编辑失败请重试')
-                    }
+                .then(() => {
+                    const para = { id: row.id }
+                    removeMoney(para).then(res => {
+                        this.$message({
+                            message: '删除成功',
+                            type: 'success'
+                        })
+                        this.getMoneyList()
+                    })
                 })
+                .catch(() => {})
             },
-            addMoneyIncomePay(data){
-                axios({
-                    type:'get',
-                    path:'/api/money/addMoneyIncomePay',
-                    data:data,
-                    fn:data=>{
-                        this.$message('新增成功'),
-                        this.paginations.total = data.count;
-                        this.getList({fun: () => {} }); 
-                        this.dialog.show = false;
-                    },
-                    errFn:()=>{
-                        this.$message.error('新增失败请重试')
-                    }
-                })
-            },
+           
             //筛选
             // onScreeoutMoney(search_data){
             //     this.$refs[search_data].validate((valid) => {

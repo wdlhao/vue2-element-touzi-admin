@@ -182,7 +182,6 @@ export const generateRoutesFromMenu = (menuData = [], routes = [],componentNew)=
 /**
  * 动态插入css
  */
-
 export const loadStyle = url => {
     const link = document.createElement('link')
     link.type = 'text/css'
@@ -194,7 +193,15 @@ export const loadStyle = url => {
   /**
    * 设置浏览器头部标题
    */
-  export const setTitle = function(title) {
+  export const setTitle = (title) => {
     title = title ? `${title}` : '小爱管理系统'
     window.document.title = title
+  }
+
+  export const param2Obj = url => {
+    const search = url.split('?')[1]
+    if (!search) {
+      return {}
+    }
+    return JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
   }

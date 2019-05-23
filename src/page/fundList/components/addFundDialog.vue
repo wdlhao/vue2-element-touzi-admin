@@ -1,7 +1,7 @@
 <template>
     <el-dialog 
         :visible.sync="isVisible"
-        :title="dialog.title" 
+        :title="addFundDialog.title" 
         :close-on-click-modal='false'
         :close-on-press-escape='false'
         :modal-append-to-body="false"
@@ -15,15 +15,12 @@
                 style="margin:10px;width:auto;">
                 <el-form-item label="收支类型:" >
                     <el-select v-model="form.incomePayType" placeholder="收支类型">
-                        <el-option label="提现" value="0"></el-option>
-                        <el-option label="提现手续费" value="1"></el-option>
-                        <el-option label="提现锁定" value="2"></el-option>
-                        <el-option label="理财服务退出" value="3"></el-option>
-                        <el-option label="购买宜定盈" value="4"></el-option>
-                        <el-option label="充值" value="5"></el-option>
-                        <el-option label="优惠券" value="6"></el-option>
-                        <el-option label="充值礼券" value="7"></el-option>
-                        <el-option label="转账" value="8"></el-option>
+                        <el-option
+                            v-for="item in payType"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                        </el-option>
                     </el-select>
                 </el-form-item>
 
@@ -58,8 +55,11 @@
 </template>
 
 <script>
+   import { mapState, mapGetters } from 'vuex'
+   import { addMoney } from "@/api/money";
+
   export default {
-      name:'addFundDialog',
+      name:'addFundDialogs',
       data(){
           let validateData = (rule, value, callback) => {
                 if(value === ''){
@@ -82,7 +82,7 @@
                 }
             };
           return {
-            isVisible:this.isShow,
+            isVisible: this.isShow,
             form:{
                 incomePayType:'',
                 username: '',
@@ -91,6 +91,17 @@
                 accoutCash:'',
                 remarks: ''
             },
+            payType:[
+                {label:'提现',value:'0'},
+                {label:'提现手续费',value:'1'},
+                {label:'提现锁定',value:'2'},
+                {label:'理财服务退出',value:'3'},
+                {label:'购买宜定盈',value:'4'},
+                {label:'充值',value:'5'},
+                {label:'优惠券',value:'6'},
+                {label:'充值礼券',value:'7'},
+                {label:'转账',value:'8'}
+            ],
             form_rules: {
                 username   : [
                     {required: true, message : '用户名不能为空！',trigger : 'blur'}
@@ -114,10 +125,27 @@
           }
       },
       props:{
-          isShow:Boolean
+          isShow:Boolean,
+          dialogRow:Object
+      },
+      computed:{
+        ...mapGetters(['addFundDialog']),
+
       },
       created(){
-          console.log(this.isShow);
+            if(this.addFundDialog.type === 'edit'){
+                let filterPayType = this.payType.filter((item,index,self) => {
+                    if(this.dialogRow.incomePayType == item.value){
+                        return true;
+                    }
+                });
+                this.form = this.dialogRow;
+                this.form.incomePayType = filterPayType[0].label;
+                this.form.pay = -this.dialogRow.pay;
+            }else{
+                this.$refs['form'].resetFields()
+            }
+
       },
       mounted(){
 
@@ -132,32 +160,24 @@
           closeDialog(){
               this.$emit('closeDialog');
           },
-        //表单提交
-        onSubmit(form){
+          //表单提交
+          onSubmit(form){
             this.$refs[form].validate((valid) => {
                 if (valid) {//表单数据验证完成之后，提交数据;
                     let formData = this[form];
-                    let data = {};
-                
-                    for(var i in formData){
-                        data.id = this.editid;
-                        data.accoutCash = Number(formData['accoutCash'])
-                        data.income = Number(formData['income'])
-                        data.pay = Number(formData['pay'])
-                        data.incomePayType = parseInt(formData['incomePayType'])
-                        data.username = formData['username']
-                        data.remarks = formData['remarks']
-                    }
-                    console.log(data);
-                    if(this.editid != ""){
-                        this.editMoneyIncomePay(data)
-                    }else{
-                        this.addMoneyIncomePay(data)
-                    }
-                    
+                    const para = Object.assign({}, formData)
+                    addMoney(para).then(res => {
+                        this.$message({
+                            message: '提交成功',
+                            type: 'success'
+                        })
+                        this.$refs['form'].resetFields()
+                        this.isVisible = false
+                        this.$emit('getFundList');
+                    })
                 }
             })
-        },
+          },
       }
   }
 </script>

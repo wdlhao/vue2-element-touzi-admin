@@ -10,6 +10,8 @@ Vue.use(ElementUI, { size: 'mini'});
 Vue.config.productionTip = false;
 import '@/permission' // permission control
 
+import './mockjs'  //引用mock
+
 
 /**
  * 如果用户刷新页面,导致存入vuex中的菜单数据清空,需要从缓存获取;

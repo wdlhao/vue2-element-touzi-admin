@@ -7,7 +7,7 @@ import { getToken } from '@/utils/auth'
 //可以使用自定义配置新建一个 axios 实例
 // 设置post请求type,因为easy-mock后台需要Form形式的数据才能正常解析;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
-const service = axios.create({
+let service =  axios.create({
   baseURL: process.env.BASE_API, // api的base_url
   timeout: 5000 // 请求超时时间
 })
@@ -30,7 +30,7 @@ service.interceptors.response.use(
   * code为非1是抛错 可结合自己业务进行修改
   * code:200,接口正常返回;-1:返回的数据不对;
   */
-	const res = response.data
+  const res = response.data
     if (res.code !== 200) {
       Message({
         message: res.message,
@@ -55,7 +55,6 @@ service.interceptors.response.use(
     }
   },
   error => {
-    console.log('err' + error)// for debug
     Message({
       message: error.message,
       type: 'error',

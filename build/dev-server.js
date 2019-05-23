@@ -45,7 +45,8 @@ var context = config.dev.context
 var proxypath;
 switch(process.env.NODE_ENV){
     case 'online':
-      proxypath = 'https://easy-mock.com/mock/5cd03667adb0973be6a3d8d1'; 
+      // proxypath = 'https://easy-mock.com/mock/5cd03667adb0973be6a3d8d1'; 
+      proxypath = ''; 
       break;
 }
 var options = {
