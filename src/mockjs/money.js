@@ -29,8 +29,8 @@ export default {
    */
   getMoneyList: config => {
     const { name, page = 1, limit = 20 } = mUtils.param2Obj(config.url)
-    const mockList = List.filter(Money => {
-      if (name && Money.name.indexOf(name) === -1) return false
+    const mockList = List.filter(user => {
+      if (name && user.username.indexOf(name) === -1) return false
       return true
     })
     const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
@@ -48,7 +48,7 @@ export default {
    * @return {{code: number, data: {message: string}}}
    */
   createMoney: config => {
-    const { username, address, createTime, income, pay , accoutCash, incomePayType } = mUtils.param2Obj(config.url)
+    const { username, address, income, pay , accoutCash, incomePayType } = mUtils.param2Obj(config.url)
     List.push({
       id: Mock.Random.guid(),
       username: username,
@@ -93,8 +93,10 @@ export default {
    * @param config
    * @return {{code: number, data: {message: string}}}
    */
-  batchremove: config => {
+  batchremoveMoney: config => {
+    console.log(mUtils.param2Obj(config.url));
     let { ids } = mUtils.param2Obj(config.url)
+    console.log(ids);
     ids = ids.split(',')
     List = List.filter(u => !ids.includes(u.id))
     return {
@@ -110,15 +112,15 @@ export default {
    * @return {{code: number, data: {message: string}}}
    */
   updateMoney: config => {
-    const { id, name, addr, age, birth, sex } = mUtils.param2Obj(config.url)
-    const sex_num = parseInt(sex)
+    const { id,username, address, income, pay , accoutCash, incomePayType } = mUtils.param2Obj(config.url)
     List.some(u => {
       if (u.id === id) {
-        u.name = name
-        u.addr = addr
-        u.age = age
-        u.birth = birth
-        u.sex = sex_num
+        u.username = username
+        u.address = address
+        u.income = income
+        u.pay = pay
+        u.accoutCash = accoutCash
+        u.incomePayType = incomePayType
         return true
       }
     })

@@ -10,6 +10,6 @@ Mock.setup({
 // 用户相关
 Mock.mock(/\/money\/get/, 'get', tableAPI.getMoneyList)
 Mock.mock(/\/money\/remove/, 'get', tableAPI.deleteMoney)
-Mock.mock(/\/money\/batchremove/, 'get', tableAPI.batchremove)
+Mock.mock(/\/money\/batchremove/, 'get', tableAPI.batchremoveMoney)
 Mock.mock(/\/money\/add/, 'get', tableAPI.createMoney)
 Mock.mock(/\/money\/edit/, 'get', tableAPI.updateMoney)

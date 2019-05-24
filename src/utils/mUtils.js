@@ -205,3 +205,9 @@ export const loadStyle = url => {
     }
     return JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
   }
+
+  //是否为正整数
+  export const isInteger = (s) => {
+    var re = /^[0-9]+$/ ;
+    return re.test(s)
+}   

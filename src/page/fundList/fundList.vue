@@ -1,12 +1,14 @@
 <template>
     <div class="fillcontain">
-        <search-item @showDialog="showAddFundDialog"></search-item>
+        <search-item @showDialog="showAddFundDialog" @searchList="getMoneyList" @onBatchDelMoney="onBatchDelMoney"></search-item>
         <div class="table_container">
             <el-table
                 :data="tableData"
                 style="width: 100%"
                 align='center'
                 :height="tableHeight"
+                @select="selectTable"
+                @select-all="selectAll"
                 >
               <el-table-column
                 v-if="idFlag"
@@ -68,7 +70,7 @@
                 width="130"
                 sortable>
                 <template slot-scope="scope">  
-                    <span style="color:#f56767">{{ scope.row.pay }}</span>
+                    <span style="color:#f56767">{{ getPay(scope.row.pay) }}</span>
                 </template>
             </el-table-column>
             <el-table-column
@@ -109,13 +111,14 @@
 </template>
 
 <script>
+    import { mapGetters } from "vuex";
     import dtime from 'time-formater'
     import * as mutils from 'utils/mUtils'
     import {axios} from 'utils/'
     import SearchItem from "./components/searchItem";
     import AddFundDialog from "./components/addFundDialog";
     import Pagination from "@/components/pagination";
-    import { getMoneyIncomePay , removeMoney } from "@/api/money";
+    import { getMoneyIncomePay , removeMoney, batchremoveMoney } from "@/api/money";
 
     export default {
         data(){
@@ -125,6 +128,7 @@
                 idFlag:false,
                 isShow:false, // 是否显示资金modal,默认为false
                 editid:'',
+                rowIds:[],
                 sortnum:0,
                 format_type_list: {
                     0: '提现',
@@ -147,7 +151,7 @@
                     name:''
                 },
                 pageTotal:0,
-                //需要给分页组件传的信息
+                // 用于列表筛选
                 fields: {
                     incomePayType:{
                         filter: {
@@ -182,20 +186,6 @@
                             multiple: true
                         }
                     },
-                    create_time: {
-                        info: {
-                            prop: 'create_time',
-                            label: '日期',
-                            sortable: true
-                        },
-                        filter: {
-
-                        },
-                        // style: {
-                        //     width: '260',
-                        //     align: 'center'
-                        // }
-                    },
                 },
                
             }
@@ -205,16 +195,22 @@
             AddFundDialog,
             Pagination
         },
+        computed:{
+            ...mapGetters(['search'])
+        },
       	mounted() {
+              console.log(this.search);
             this.getMoneyList();
             this.$nextTick(() => {
                this.tableHeight =  document.body.clientHeight - 300
             })
 	   },
         methods: {
+            // 获取资金列表数据
             getMoneyList(){
-                getMoneyIncomePay(this.incomePayData).then(res => {
-                    console.log(res);
+                const para = Object.assign({},this.incomePayData,this.search);
+                console.log(para);
+                getMoneyIncomePay(para).then(res => {
                      this.pageTotal = res.data.total
                      this.tableData = res.data.moneyList
                 })
@@ -237,13 +233,13 @@
                 this.incomePayData.limit = val;
                 this.getMoneyList()
             },
-
-
-
-
-
-
-
+            getPay(val){
+               if(mutils.isInteger(val)){
+                   return -val;
+               }else{
+                   return val;
+               }
+            },
 
             /**
             * 格式化状态
@@ -255,24 +251,6 @@
             filterType(value, item) {
                 const type = parseInt(item.incomePayType);
                 return this.format_type_list[value] == this.format_type_list[type];
-            },
-            /**
-            * 改变页码和当前页时需要拼装的路径方法
-            * @param {string} field 参数字段名
-            * @param {string} value 参数字段值
-            */
-            setPath(field, value) {
-                var path  = this.$route.path,
-                    query = Object.assign({}, this.$route.query);
-                if (typeof field === 'object') {
-                    query = field;
-                } else {
-                    query[field] = value;
-                }
-                this.$router.push({
-                    path,
-                    query
-                });
             },
             // 编辑操作方法
             onEditMoney(row){
@@ -296,69 +274,50 @@
                 })
                 .catch(() => {})
             },
-           
-            //筛选
-            // onScreeoutMoney(search_data){
-            //     this.$refs[search_data].validate((valid) => {
-            //         if (valid) {//表单数据验证完成之后，提交数据;
-            //             let formData = this[search_data];
-            //             let data = {};
-            //             const startTime = formData['startTime'];
-            //             const endTime = formData['endTime'];
-                          
-            //             if(mutils.isEmpty(startTime)){
-            //                 data.startTime = "";
-            //             }else{
-            //                 data.startTime =  parseInt(mutils.formatDate(new Date(startTime),2)); // 毫秒数，时间戳
-            //             }
-            //             if(mutils.isEmpty(endTime)){
-            //                 data.endTime = "";
-            //             }else{
-            //                 data.endTime =  parseInt(mutils.formatDate(new Date(endTime),2));
-            //             }
-            //             console.log(data);
-            //             axios({
-            //                 type:'get',
-            //                 path:'/api/money/screeoutMoneyIncomePay',
-            //                 data:data,
-            //                 fn:data=>{
-            //                     //得到筛选之后的值，进行重新加载表格数据;
-            //                     this.$message('筛选成功'),
-            //                     this.paginations.total = data.count;  // ??
-            //                     this.tableData = [];
-            //                     data.data.forEach( (item,index) => {
-            //                         const tableItem = {
-            //                             id:  item._id,
-            //                             sortnum:this.sortnum+(index+1),
-            //                             createTime: mutils.parseToDate(JSON.stringify(item.createTime)),
-            //                             incomePayType: item.incomePayType,
-            //                             incomePayDes: item.incomePayDes,
-            //                             income: item.income,
-            //                             pay:  item.pay,
-            //                             accoutCash:  item.accoutCash,
-            //                             remarks: item.remarks
-            //                         }
-            //                         this.tableData.push(tableItem);
-            //                     })
-            //                 },
-            //                 errFn:()=>{
-            //                     this.$message.error('编辑失败请重试')
-            //                 }
-            //             })
-            //         }
-            //     })
-              
-              
-            // }
-
+            onBatchDelMoney(){
+                this.$confirm('确认批量删除记录吗?', '提示', {
+                    type: 'warning'
+                })
+                .then(() => {
+                    const para = { ids: this.rowIds }
+                    console.log(para);
+                    batchremoveMoney(para).then(res => {
+                        this.$message({
+                            message: '删除成功',
+                            type: 'success'
+                        })
+                        this.getMoneyList()
+                    })
+                })
+                .catch(() => {})
+            },
+            // 当用户手动勾选数据行的 Checkbox 时触发的事件
+            selectTable(val, row){
+                this.setSearchBtn(val);
+            },
+            // 用户全选checkbox时触发该事件
+            selectAll(val){
+                console.log(val);
+                 val.forEach((item) => {
+                     this.rowIds.push(item.id);
+                });
+                console.log(this.rowIds);
+                this.setSearchBtn(val);
+            },
+            setSearchBtn(val){
+                let isFlag = true;
+                if(val.length > 0){
+                    isFlag = false;
+                }else{
+                    isFlag = true;
+                }
+                this.$store.commit('SET_SEARCHBTN_DISABLED',isFlag);
+            }
         },
     }
 </script>
 
 <style lang="less" scoped>
-    .table_container{
-        // border:1px solid;
-    }
     .el-dialog--small{
        width: 600px !important;
     }

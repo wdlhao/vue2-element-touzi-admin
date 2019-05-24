@@ -56,7 +56,7 @@
 
 <script>
    import { mapState, mapGetters } from 'vuex'
-   import { addMoney } from "@/api/money";
+   import { addMoney,updateMoney } from "@/api/money";
 
   export default {
       name:'addFundDialogs',
@@ -119,7 +119,6 @@
             //详情弹框信息
             dialog: {
                 width:'400px',
-                title: '修改资金信息',
                 formLabelWidth:'120px'
             }
           }
@@ -134,13 +133,8 @@
       },
       created(){
             if(this.addFundDialog.type === 'edit'){
-                let filterPayType = this.payType.filter((item,index,self) => {
-                    if(this.dialogRow.incomePayType == item.value){
-                        return true;
-                    }
-                });
                 this.form = this.dialogRow;
-                this.form.incomePayType = filterPayType[0].label;
+                this.form.incomePayType = (this.dialogRow.incomePayType).toString();
                 this.form.pay = -this.dialogRow.pay;
             }else{
                 this.$refs['form'].resetFields()
@@ -166,15 +160,29 @@
                 if (valid) {//表单数据验证完成之后，提交数据;
                     let formData = this[form];
                     const para = Object.assign({}, formData)
-                    addMoney(para).then(res => {
-                        this.$message({
-                            message: '提交成功',
-                            type: 'success'
-                        })
-                        this.$refs['form'].resetFields()
-                        this.isVisible = false
-                        this.$emit('getFundList');
-                    })
+                    // edit
+                    if(this.addFundDialog.type === 'edit'){
+                        updateMoney(para).then(res => {
+                            this.$message({
+                                message: '修改成功',
+                                type: 'success'
+                            })
+                            this.$refs['form'].resetFields()
+                            this.isVisible = false
+                            this.$emit('getFundList');
+                       })
+                    }else{
+                        // add
+                        addMoney(para).then(res => {
+                            this.$message({
+                                message: '新增成功',
+                                type: 'success'
+                            })
+                            this.$refs['form'].resetFields()
+                            this.isVisible = false
+                            this.$emit('getFundList');
+                       })
+                    }
                 }
             })
           },

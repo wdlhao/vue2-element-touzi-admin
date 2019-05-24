@@ -25,6 +25,22 @@ export function removeMoney(params) {
 }
 
 
+export function batchremoveMoney(params) {
+  return request({
+    url: '/money/batchremove',
+    method: 'get',
+    params: params
+  })
+}
+
+export function updateMoney(params) {
+  return request({
+    url: '/money/edit',
+    method: 'get',
+    params: params
+  })
+}
+
 // export const addUser = params => { return axios.get(`${base}/user/add`, { params: params }) }
 
 
