@@ -1,19 +1,21 @@
 <template>
-    <div class="fillcontainer">
-       <el-row :gutter="10"> 
-          <el-col :span="12">
-               <div id="typePosition"></div> 
-          </el-col>
-           <el-col :span="12">
-               <div id="typePosition2"></div> 
-          </el-col>
-       </el-row>
+    <div class="fillcontain">
+        <div class="fillcontainer" ref="fillcontainer">
+            <el-row :gutter="10"> 
+                <el-col :span="12" style="height:100%;">
+                    <div id="typePosition"></div> 
+                </el-col>
+                <el-col :span="12" style="height:100%;">
+                    <div id="typePosition2"></div> 
+                </el-col>
+            </el-row>
+       </div>
     </div>
 </template>
 
 <script>
     import echarts from 'echarts';
-    import '../../node_modules/echarts/theme/vintage.js';
+    import '../../../node_modules/echarts/theme/vintage.js';
 
     export default {
         data(){
@@ -42,7 +44,6 @@
             } 
             this.chart = echarts.init(document.getElementById(id), 'vintage');
             this.chart.setOption({
-               // backgroundColor: '#344b58',
                 angleAxis: {},
                 radiusAxis: {
                     type: 'category',
@@ -140,18 +141,20 @@
         },
         mounted() {
             this.$nextTick(function() {
+                this.$refs.fillcontainer.style.height = (document.body.clientHeight - 160)+'px'
                 this.drawpie('typePosition');
                 this.drawbar('typePosition2');
-
-                var that = this;
-                var resizeTimer = null;
+                // var that = this;
+                // var resizeTimer = null;
                 // 保证页面在放大或缩小时，也能够动态的显示数据
-                window.onresize = function() {
-                    if (resizeTimer) clearTimeout(resizeTimer);
-                    resizeTimer = setTimeout(function() {
-                        that.drawpie('typePosition');
-                        that.drawbar('typePosition2');
-                    }, 100);
+                window.onresize = () => {
+                    console.log(9999);
+                    // if (resizeTimer) clearTimeout(resizeTimer);
+                    // resizeTimer = setTimeout(function() {
+                    this.$refs.fillcontainer.style.height = (document.body.clientHeight - 160)+'px'
+                    this.drawpie('typePosition');
+                    this.drawbar('typePosition2');
+                    // }, 100);
                 }
 
             })
@@ -162,10 +165,9 @@
 <style lang="less" scoped>
       #typePosition,#typePosition2 {
         position: relative;
-        width: 90%;
+        width: 96%;
         height: 530px;
-        margin: 10px auto;
-        box-shadow: 0 0 10px #A6E3E9;
+        padding: 10px;
         border-radius: 10px;
      }	
 </style>

@@ -94,7 +94,8 @@ export default {
    * @return {{code: number, data: {message: string}}}
    */
   batchremoveMoney: config => {
-    console.log(mUtils.param2Obj(config.url));
+    console.log(config);
+    // console.log(mUtils.param2Obj(config.url));
     let { ids } = mUtils.param2Obj(config.url)
     console.log(ids);
     ids = ids.split(',')

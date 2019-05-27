@@ -75,7 +75,7 @@ export const asyncRouterMap = [
 					title:'用户管理', 
 					icon:'fa-user',
 				},
-				component: () => import('@/page/userList'),
+				component: () => import('@/page/userList/userList'),
 			}
 		]
 	},
@@ -148,13 +148,13 @@ export const asyncRouterMap = [
 				component: () => import('@/page/fundList/fundList')
 		  },
 		  {
-			  path:'payList',
-			  name:'payList',
+			  path:'chinaTabsList',
+			  name:'chinaTabsList',
 			  meta: {
 				   title:'区域投资',
 				   icon: 'fa-asterisk',
 				},
-		    component: () => import('@/page/chinaTabsList')
+		    component: () => import('@/page/fundList/chinaTabsList')
 		   },
 		]
 	},
@@ -187,44 +187,44 @@ export const asyncRouterMap = [
 	// 	   },
 	// 	]
 	// },
-	{
-		path:'/fundArticle',
-		name: 'fundArticle',
-		meta: {
-		  title:'金融文章',
-			icon: 'fa-file-text-o',
-		},
-		component:Layout,
-		children:[
-		  {
-				path:'createFundArticle',
-				name:'createFundArticle',
-				meta: {
-						title:'发布文章',
-						icon: '',
-				},
-				component: () => import('@/page/createFundArticle')
-		  },
-		  {
-					path:'modifyFundArticle',
-					name:'modifyFundArticle',
-					meta: {
-						title:'编辑文章',
-						icon: '',
-					},
-					component: () => import('@/page/modifyFundArticle')
-		   },
-		   {
-					path:'showFundArticle',
-					name:'showFundArticle',
-					meta: {
-						title:'查看文章',
-						icon: '',
-					},
-					component: () => import('@/page/showFundArticle')
-		    }
-		]
-	},
+	// {
+	// 	path:'/fundArticle',
+	// 	name: 'fundArticle',
+	// 	meta: {
+	// 	  title:'金融文章',
+	// 		icon: 'fa-file-text-o',
+	// 	},
+	// 	component:Layout,
+	// 	children:[
+	// 	  {
+	// 			path:'createFundArticle',
+	// 			name:'createFundArticle',
+	// 			meta: {
+	// 					title:'发布文章',
+	// 					icon: '',
+	// 			},
+	// 			component: () => import('@/page/createFundArticle')
+	// 	  },
+	// 	  {
+	// 				path:'modifyFundArticle',
+	// 				name:'modifyFundArticle',
+	// 				meta: {
+	// 					title:'编辑文章',
+	// 					icon: '',
+	// 				},
+	// 				component: () => import('@/page/modifyFundArticle')
+	// 	   },
+	// 	   {
+	// 				path:'showFundArticle',
+	// 				name:'showFundArticle',
+	// 				meta: {
+	// 					title:'查看文章',
+	// 					icon: '',
+	// 				},
+	// 				component: () => import('@/page/showFundArticle')
+	// 	    }
+	// 	]
+	// },
 	{
 		path:'/fundData',
 		name: 'fundData',
@@ -242,7 +242,7 @@ export const asyncRouterMap = [
 				  title:'投资分布',
 				  icon: '',
 			 },
-			 component: () => import('@/page/fundPosition')
+			 component: () => import('@/page/fundData/fundPosition')
 		  },
 		  {
 			  path:'typePosition',
@@ -251,7 +251,7 @@ export const asyncRouterMap = [
 				   title:'项目分布',
 					 icon: '',
 				},
-				component: () => import('@/page/typePosition')
+				component: () => import('@/page/fundData/typePosition')
 		   },
 		   {
 				path:'incomePayPosition',
@@ -260,7 +260,7 @@ export const asyncRouterMap = [
 					title:'收支统计',
 					icon: '',
 				},
-				component: () => import('@/page/incomePayPosition')
+				component: () => import('@/page/fundData/incomePayPosition')
 		    }
 		]
 	},

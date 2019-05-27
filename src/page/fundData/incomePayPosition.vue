@@ -1,33 +1,26 @@
 <template>
-    <div class="fillcontainer">
-        <div :id="id" class="echartsPosition"></div> 
+    <div class="fillcontain">
+        <div class="fillcontainer" ref="fillcontainer">
+           <div id="incomePayPosition" class="echartsPosition"></div> 
+        </div>
     </div>
 </template>
-
-<!--
-<template>
-  <div :class="className" :id="id" :style="{height:height,width:width}"></div>
-</template>
--->
 
 <script>
     import echarts from 'echarts';
 
     export default {
-        props: {
-            id: {
-                type: String,
-                default: 'incomePayPosition'
-            }
-        },
         data() {
             return {
                 chart: null
             };
         },
         mounted() {
-            this.initChart();
-            this.chart = null;
+            this.setInit();
+            // 保证页面在放大或缩小时，也能够动态的显示数据
+            window.onresize = () => {
+                this.setInit();
+            }
         },
         beforeDestroy() {
             if (!this.chart) {
@@ -37,8 +30,15 @@
             this.chart = null;
         },
         methods: {
+            setInit(){
+                this.$nextTick(() => {
+                    this.$refs.fillcontainer.style.height = (document.body.clientHeight - 160)+'px'
+                    this.initChart();
+                    this.chart = null;
+                });
+            },
             initChart() {
-                this.chart = echarts.init(document.getElementById(this.id));
+                this.chart = echarts.init(document.getElementById('incomePayPosition'));
                 const data = {};
                 (function() {
                     const xAxisData = [];
@@ -61,7 +61,6 @@
                 }());
                 this.chart.setOption({
                     backgroundColor: '#CCFFCC',
-               // backgroundColor: '#344b58',
                 title: {
                     text: '收支统计',
                     subtext: '单位/万元',
@@ -75,7 +74,7 @@
                         fontSize: '12'
                     }
                 },
-                tooltip: {
+                tooltip: { 
                     trigger: 'axis',
                     axisPointer: {
                     textStyle: {

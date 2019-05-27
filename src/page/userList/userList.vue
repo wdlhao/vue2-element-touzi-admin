@@ -104,11 +104,17 @@
         },
         mounted(){
             this.getUserList();
-            this.$nextTick(() => {
-               this.tableHeight =  document.body.clientHeight - 200
-            })
+            this.setTableHeight();
+            window.onresize = () => {
+                this.setTableHeight();
+            }
         },
         methods: {
+             setTableHeight(){
+                this.$nextTick(() => {
+                   this.tableHeight =  document.body.clientHeight - 200
+                })
+             },
             getUserList(){
                 this.$store.dispatch('GetUserList', this.paginations).then(res => {
                     this.paginations.total = res.count;

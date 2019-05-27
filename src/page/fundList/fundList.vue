@@ -199,17 +199,21 @@
             ...mapGetters(['search'])
         },
       	mounted() {
-              console.log(this.search);
             this.getMoneyList();
-            this.$nextTick(() => {
-               this.tableHeight =  document.body.clientHeight - 300
-            })
+            this.setTableHeight();
+            window.onresize = () => {
+                this.setTableHeight();
+            }
 	   },
         methods: {
+             setTableHeight(){
+                this.$nextTick(() => {
+                   this.tableHeight =  document.body.clientHeight - 300
+                })
+             },
             // 获取资金列表数据
             getMoneyList(){
                 const para = Object.assign({},this.incomePayData,this.search);
-                console.log(para);
                 getMoneyIncomePay(para).then(res => {
                      this.pageTotal = res.data.total
                      this.tableData = res.data.moneyList
@@ -279,11 +283,11 @@
                     type: 'warning'
                 })
                 .then(() => {
-                    const para = { ids: this.rowIds }
-                    console.log(para);
+                    const ids = this.rowIds.map(item => item.id).toString()
+                    const para = { ids: ids }
                     batchremoveMoney(para).then(res => {
                         this.$message({
-                            message: '删除成功',
+                            message: '批量删除成功',
                             type: 'success'
                         })
                         this.getMoneyList()
@@ -297,11 +301,9 @@
             },
             // 用户全选checkbox时触发该事件
             selectAll(val){
-                console.log(val);
                  val.forEach((item) => {
                      this.rowIds.push(item.id);
                 });
-                console.log(this.rowIds);
                 this.setSearchBtn(val);
             },
             setSearchBtn(val){

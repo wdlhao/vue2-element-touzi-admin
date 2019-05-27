@@ -1,6 +1,6 @@
 <template>
     <div class="fillcontain">
-        <div class="table_container">
+        <div class="tabContainer" ref="tabContainer">
             <el-tabs type="border-card">
                 <el-tab-pane>
                     <span slot="label" @click="toggleTabs('eastChina')"><i class="fa fa-camera-retro"></i>华东区域</span>
@@ -35,27 +35,40 @@
                      <china-tabs-table :toggleData="toggleData"></china-tabs-table>
                 </el-tab-pane>
             </el-tabs>
+            <pagination :pageTotal="pageTotal"></pagination>
         </div>
     </div>
 </template>
 
 <script>
-    import chinaTabsTable from 'cps/tables/chinaTabsTable'
+    import chinaTabsTable from './components/chinaTabsTable'
     import data from 'static/data/chinaTabs.json';
+    import Pagination from "@/components/pagination";
 
     export default {
         data(){
             return {
                 toggleData:'',
+                pageTotal:60,
             }
         },
         components: {
-             chinaTabsTable
+             chinaTabsTable,
+             Pagination
         },
         mounted(){
+             this.setTabHeight();
+             window.onresize = () => {
+                this.setTabHeight();
+             }
             this.toggleTabs('eastChina');
         },
         methods: {
+            setTabHeight(){
+                this.$nextTick(() => {
+                    this.$refs.tabContainer.style.height =  (document.body.clientHeight - 160)+'px'
+                })
+            },
             toggleTabs(item){
                 this.toggleData = item;
             }
@@ -64,9 +77,13 @@
 </script>
 
 <style lang="less" scoped>
-     .fa{
+    .tabContainer{
+        overflow: hidden;
+    }
+    .fa{
         margin-right:5px;
     }
+  
 </style>
 
 

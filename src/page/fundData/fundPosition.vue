@@ -1,13 +1,15 @@
 <template>
-    <div class="fillcontainer">
-        <div id="fundPosition" class="echartsPosition"></div> 
+    <div class="fillcontain">
+        <div class="fillcontainer" ref="fillcontainer">
+           <div id="fundPosition" class="echartsPosition"></div> 
+        </div>
     </div>
 </template>
 
 <script>
     import echarts from 'echarts'
-    import '../../node_modules/echarts/map/js/china.js';
-    import '../../node_modules/echarts/theme/roma.js';
+    import '../../../node_modules/echarts/map/js/china.js';
+    import '../../../node_modules/echarts/theme/roma.js';
 
     export default {
         data(){
@@ -27,7 +29,7 @@
             this.chart = echarts.init(document.getElementById(id),'roma');
             this.chart.setOption({
                 title: {
-                    text: '2017年全国各省份投资情况',
+                    text: '2019年全国各省份投资情况',
                     subtext: '单位/万元',
                     left: 'center'
                 },
@@ -115,6 +117,7 @@
         },
         mounted(){
               this.$nextTick(function() {
+                this.$refs.fillcontainer.style.height = (document.body.clientHeight - 160)+'px'
                 this.drawMap('fundPosition');
                 var that = this;
                 var resizeTimer = null;
@@ -122,6 +125,7 @@
                 window.onresize = function() {
                   if (resizeTimer) clearTimeout(resizeTimer);
                   resizeTimer = setTimeout(function() {
+                    that.$refs.fillcontainer.style.height = (document.body.clientHeight - 160)+'px'
                     that.drawMap('fundPosition');
                   }, 100);
                 }

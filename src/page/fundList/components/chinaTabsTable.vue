@@ -1,6 +1,9 @@
 <template>
     <div class="chinaTabsTable">
-       <el-table :data="tableData" style="width: 100%" align='center'>
+       <el-table 
+          :data="tableData" 
+          :height="tableHeight" 
+          style="width: 100%" align='center'>
             <el-table-column
                 prop="ID"
                 label="序号"
@@ -88,12 +91,26 @@
          data(){
              return {
                 tableData:[],
+                tableHeight:0,
              }
          },
          props:{
             toggleData:[String]
          },
+         mounted(){
+             this.setTableHeight();
+             window.onresize = () => {
+                 console.log(567);
+                this.setTableHeight();
+             }
+           
+         },
          methods:{
+             setTableHeight(){
+                this.$nextTick(() => {
+                   this.tableHeight =  document.body.clientHeight - 280
+                })
+             },
              showTableData(item){
                 switch(item){
                     case 'eastChina':
