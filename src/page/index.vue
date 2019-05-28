@@ -1,5 +1,4 @@
 <template>
-    <!-- <div> -->
 		<section class="data_section" ref="data_section"> 
 			<el-row :gutter="10" class="row_list">
 				<el-col :span="3"><div class="pay data_list"><p class="list_number">+208.65</p><p>盈亏(千万)</p></div></el-col>
@@ -19,7 +18,7 @@
 				    <line-type-data id="line_data"></line-type-data>
 				</el-col>
 			</el-row>
-			<el-row :gutter="10" class="row_list">
+			<el-row :gutter="10">
 				<el-col :span="8">
 				    <ordertype  id="bin1_data" type="ordertype"></ordertype>
 				</el-col>
@@ -31,11 +30,7 @@
 				</el-col>
 			</el-row>
 		</section>
-    <!-- </div> -->
 </template>
-
-
-
 
 <script>
 	import echarts from 'echarts'
@@ -55,12 +50,13 @@
     		}
     	},
     	components: {
-    	   barTypeData,lineTypeData,ordertype,ordersource
+		   barTypeData,
+		   lineTypeData,
+		   ordertype,
+		   ordersource
 		},	
     	mounted(){
-			 this.$nextTick(() => {
-               this.$refs.data_section.style.height =  (document.body.clientHeight - 200)+'px';
-            })
+			this.setSectionHeight();
 		},
 		beforeDestroy() {
 			if (!this.bar_chart || !this.line_chart) {
@@ -72,7 +68,11 @@
 			this.line_chart = null;
         },
     	methods: {
-		
+		   setSectionHeight(){
+				this.$nextTick(() => {
+				   this.$refs.data_section.style.height =  (document.body.clientHeight - 200)+'px';
+				})
+		   }
     	}
     }
 </script>
@@ -111,7 +111,6 @@
 		.newadd_investors{
 			background-color:#0099CC;
 		}
-
 		.data_list{
 			text-align: center;
 			font-size: 14px;

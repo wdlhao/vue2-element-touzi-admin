@@ -26,16 +26,10 @@
         name: 'home',
         data(){
             return {
-                win_size: {
-                   height: '',
-                   width:'',
-                },
-
             }
         },
         computed:{
             ...mapGetters(['sidebar'])
-
         },
         components:{
             HeadNav,
@@ -44,26 +38,11 @@
             FooterNav
         },
         methods: {
-            //用于自适配窗口页面大小
-            setSize() {
-                //lib_$-->$,window的宽,高的获取是没有问题的。
-                this.win_size = {
-                    height:document.body.clientHeight-73,
-                    width:document.body.clientWidth-180
-                }
-                //将content部分的宽高，存入store中，
-                this.$store.dispatch('set_win_content',this.win_size); //触发动作，content部分的宽高也随即改变。
-            },
         },
-       created() {
-           console.log(this.sidebar);
-            // this.setSize();
-       },
-       mounted (){
-            window.onresize = () => {
-                //  this.setSize();
-            }
-       }
+        created() {
+        },
+        mounted (){
+        }
     }
 </script>
 <style scoped lang='less'>

@@ -116,7 +116,7 @@ export const asyncRouterMap = [
 			    title:'个人信息',
 					icon: 'fa-asterisk',
 			 },
-			 component: () => import('@/page/infoShow')
+			 component: () => import('@/page/infoManage/infoShow')
 		},
 		{
 			path:'infoModify',
@@ -125,7 +125,7 @@ export const asyncRouterMap = [
 				 title:'修改信息',
 				 icon: 'fa-asterisk',
 			},
-			component: () => import('@/page/infoModify')
+			component: () => import('@/page/infoManage/infoModify')
 		 },
 	  ]
 	},

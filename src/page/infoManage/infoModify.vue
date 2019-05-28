@@ -95,18 +95,14 @@
                 </div>
             </div>
         </el-col>
-          
         </el-row>
-       
-     
-
     </div>
 </template>
 
 <script>
    import dtime from 'time-formater'
    import * as mutils from 'utils/mUtils'
-   import {axios} from 'utils/'
+   import { axios } from 'utils/'
 
     export default {
         data(){
@@ -216,10 +212,10 @@
 
         },
         created(){
-            this.showUsername();
+           
         },
       	mounted() {
-           this.getInfoByUsername();
+           this.showUsername();
 	    },
         methods: {
             showMessage(type,message){
@@ -259,25 +255,23 @@
                         let phoneinfo = this.phoneForm;
 						let userData = Object.assign(userinfo, phoneinfo);
                         console.log(userData);
-                        axios({
-                            type:'get',
-                            path:'/api/user/infoModify',
-                            data:userData,
-                            fn:data=>{
-								console.log(data);
-								if(data.status == 1){
-									this.showMessage('success','修改密码成功~');
-                                    this.$router.push('/infoList');
-
-								}else{
-									 this.$message.error('修改失败请重试')
-								}
-
-							},
-							errFn:(res)=>{
-                                this.showMessage('error',res.message);
-                            }
-						})
+                        // axios({
+                        //     type:'get',
+                        //     path:'/api/user/infoModify',
+                        //     data:userData,
+                        //     fn:data=>{
+						// 		console.log(data);
+						// 		if(data.status == 1){
+						// 			this.showMessage('success','修改密码成功~');
+                        //             this.$router.push('/infoList');
+						// 		}else{
+						// 			 this.$message.error('修改失败请重试')
+						// 		}
+						// 	},
+						// 	errFn:(res)=>{
+                        //         this.showMessage('error',res.message);
+                        //     }
+						// })
 
                     } else {
                         console.log('error submit!!');
@@ -288,35 +282,6 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
-            getInfoByUsername(){
-                let data = {
-                    username:this.infoForm.username
-                }
-                axios({
-                    type:'get',
-                    path:'/api/user/getInfoByUsername',
-                    data:data,
-                    fn:data=>{
-                        console.log(data);
-                        let dataArr = data.data;
-                        if(dataArr.length == 1){
-                            this.infoForm.nickname = dataArr[0].nickname;
-                            this.infoForm.touziyear = dataArr[0].touziyear;
-                            this.infoForm.email = dataArr[0].email;
-                            this.infoForm.touziyear = dataArr[0].touziyear;
-                            this.infoForm.telphone = this.phoneForm.phone = '13589902389';
-                            
-                            this.phoneForm.baseType = (dataArr[0].baseType).split(',');
-                            this.phoneForm.changeType = (dataArr[0].changeType).split(',');
-                        }
-                      
-
-
-                    }
-                })
-            }
-            
-
         }
     }
 </script>

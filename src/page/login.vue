@@ -1,7 +1,7 @@
 <template>
   	<div class="login_page">
 	  	<transition name="form-fade" mode="in-out">
-	  		<section class="form_contianer" v-show="showLogin">
+	  		<section class="form_contianer">
 		  		<div class="manage_tip">
 		  			<span class="title">小爱xx管理系统</span>
 		  		</div>
@@ -19,8 +19,8 @@
 				  	</el-form-item>
 					<div class="tiparea">
 						<p class="wxtip">温馨提示：</p>
-						<p class="tip">未登录过的新用户，自动注册</p>
-						<p class="tip">注册过的用户可凭账号密码登录</p>
+						<p class="tip">用户名为：admin/editor<span class="tips">(可用于切换权限)</span></p>
+						<p class="tip">密码为：123456</p>
 					</div>
 				</el-form>
 			
@@ -30,16 +30,12 @@
 </template>
 
 <script>
-    import axios from 'utils/axios'
-	import * as mUtils from 'utils/mUtils'
-	import {mapActions, mapState,mapGetters} from 'vuex'
-
 	export default {
 	    data(){
 			return {
 				loginForm: {
-					username: '',
-					password: ''
+					username: 'admin',
+					password: '123456'
 				},
 				rules: {
 					username: [
@@ -50,14 +46,9 @@
 						{ required: true, message: '请输入密码', trigger: 'blur' }
 					],
 				},
-				showLogin: false,
 			}
 		},
 		mounted(){
-			this.showLogin = true;
-		},
-		computed: {
-			
 		},
 		methods: {
 			showMessage(type,message){
@@ -139,6 +130,9 @@
 		color: #4cbb15;
 		.tip{
 			margin-left: 54px;
+		}
+		.tips{
+			color:red;
 		}
 	}
 	

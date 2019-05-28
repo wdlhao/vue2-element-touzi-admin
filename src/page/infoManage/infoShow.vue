@@ -5,7 +5,7 @@
                 <el-col :span="4">
                 <div class="area">
                     <div class="imgarea">
-                        <img src="../assets/img/avatar-2.jpg">
+                        <img :src="avatarImg">
                        <!-- <el-upload
                             class="upload-demo"
                             :action="uploadaction"
@@ -44,7 +44,7 @@
                         <p class="title"><span class="money">0.00</span><span class="yuan">元</span></p>
                         </div>
                     <div class="chongzhiarea">
-                        <img src="../assets/img/toMPic02.png"/>
+                        <img :src="toMPicimg"/>
                         <p class="chongzhi">
                             <el-button type="success" size="">我要出借</el-button>
                             <el-button type="warning" size="">充值</el-button>
@@ -127,7 +127,6 @@
 </template>
 
 <script>
-
     export default {
         data(){
             return {
@@ -140,6 +139,8 @@
                ],
                uploadaction:'/api/userInfo/uploadimg',
                fileList:[], // name,url
+               avatarImg:require('@/assets/img/avatar-2.jpg'),
+               toMPicimg:require('@/assets/img/toMPic02.png')
             }
         },
       	mounted() {
@@ -356,7 +357,7 @@
                 width: 200px;
                 margin-right: 10px;
                 a{
-                    background: url(../assets/img/pro_map.gif?v=1.0) no-repeat;
+                    background: url(../../assets/img/pro_map.gif?v=1.0) no-repeat;
                     width: 200px;
                     height: 50px;
                     display: block;
