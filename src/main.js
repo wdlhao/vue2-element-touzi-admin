@@ -14,7 +14,7 @@ import './mockjs'  //引用mock
 new Vue({
 	el: '#app',
 	router,
-  store,
+    store,
 	template: '<App/>',
 	components: { App }
 })
