@@ -100,9 +100,7 @@
 </template>
 
 <script>
-   import dtime from 'time-formater'
    import * as mutils from 'utils/mUtils'
-   import { axios } from 'utils/'
 
     export default {
         data(){

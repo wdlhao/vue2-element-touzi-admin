@@ -1,8 +1,6 @@
 <template>
 	 <div class='footer'>
         鄂ICP备18001612号
-	      <!-- <div class="recordArea">
-          </div> -->
     </div>
 </template>
 

@@ -79,27 +79,6 @@ export const asyncRouterMap = [
 			}
 		]
 	},
-	// {
-	// 	path:'/infoManager',
-	// 	name:'infoList',
-	// 	component:Layout,
-	// 	meta: {
-	// 		title:'信息列表',
-	// 		icon: 'fa-envelope',
-	// 	},
-	// 	noDropdown:true,
-	// 	children:[
-	// 		{
-	// 			path:'infoList',
-	// 			name:'infoList',
-	// 			meta: {
-	// 				title:'信息列表',
-	// 				icon: 'fa-envelope',
-	// 			},
-	// 			component: () => import('@/page/infoList'),
-	// 		}
-	// 	]
-	// },
 	{
 	  path:'/infoManage',
 	  name: 'infoManage',
@@ -158,73 +137,6 @@ export const asyncRouterMap = [
 		   },
 		]
 	},
-	// {
-	// 	path:'/touziManage',
-	// 	name: 'touziManage',
-	// 	meta: {
-	// 	  title:'投资管理',
-	// 	  icon: 'fa-inbox',
-	// 	},
-	// 	component:Layout,
-	// 	children:[
-	// 	  {
-	// 		 path:'chinaTouziList',
-	// 		 name:'chinaTouziList',
-	// 		 meta: {
-	// 			  title:'省份投资',
-	// 			  icon: '',
-	// 		 },
-	// 		 component: () => import('@/page/chinaTouziList')
-	// 	  },
-	// 	  {
-	// 		  path:'chinaTabsList',
-	// 		  name:'chinaTabsList',
-	// 		  meta: {
-	// 			   title:'区域投资',
-	// 			   icon: '',
-	// 			},
-	// 			component: () => import('@/page/chinaTabsList')
-	// 	   },
-	// 	]
-	// },
-	// {
-	// 	path:'/fundArticle',
-	// 	name: 'fundArticle',
-	// 	meta: {
-	// 	  title:'金融文章',
-	// 		icon: 'fa-file-text-o',
-	// 	},
-	// 	component:Layout,
-	// 	children:[
-	// 	  {
-	// 			path:'createFundArticle',
-	// 			name:'createFundArticle',
-	// 			meta: {
-	// 					title:'发布文章',
-	// 					icon: '',
-	// 			},
-	// 			component: () => import('@/page/createFundArticle')
-	// 	  },
-	// 	  {
-	// 				path:'modifyFundArticle',
-	// 				name:'modifyFundArticle',
-	// 				meta: {
-	// 					title:'编辑文章',
-	// 					icon: '',
-	// 				},
-	// 				component: () => import('@/page/modifyFundArticle')
-	// 	   },
-	// 	   {
-	// 				path:'showFundArticle',
-	// 				name:'showFundArticle',
-	// 				meta: {
-	// 					title:'查看文章',
-	// 					icon: '',
-	// 				},
-	// 				component: () => import('@/page/showFundArticle')
-	// 	    }
-	// 	]
-	// },
 	{
 		path:'/fundData',
 		name: 'fundData',
@@ -296,8 +208,6 @@ export const asyncRouterMap = [
   {
     path: '/error',
     component: Layout,
-		// redirect: 'noredirect',
-		// hidden:true,
     name: 'errorPages',
     meta: {
       title: '错误页面', 

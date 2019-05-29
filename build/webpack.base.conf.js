@@ -26,18 +26,12 @@ module.exports = {
       'static'   : resolve('static'),
       'page'   : resolve('src/page'),
 			'cps'   : resolve('src/components'),
-			'vendor'   : resolve('src/vendor'),
 			'layout'   : resolve('src/layout'), 
 			'config'   : resolve('src/config'),
 			'utils'   : resolve('src/utils'),
 			'store'   : resolve('src/store'),
       'register'   : resolve('src/register'),
       'router'   : resolve('src/router'),
-			//'directives'   : resolve('src/directives'),
-			//'filters'   : resolve('src/filters'),
-			//'mixins'   : resolve('src/mixins'),
-			//'plugins'   : resolve('src/plugins'),
-			//'libs'   : resolve('src/libs'),
     }
   },
   module: {

@@ -112,9 +112,7 @@
 
 <script>
     import { mapGetters } from "vuex";
-    import dtime from 'time-formater'
     import * as mutils from 'utils/mUtils'
-    import {axios} from 'utils/'
     import SearchItem from "./components/searchItem";
     import AddFundDialog from "./components/addFundDialog";
     import Pagination from "@/components/pagination";

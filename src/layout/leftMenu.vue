@@ -1,6 +1,5 @@
 <template>
     <div class="menu_page el-scrollbar" ref="menu_page" :style="{'width':sidebar.width}">
-      <!-- <el-col> -->
         <el-menu 
             mode="vertical"
             theme="dark" 
@@ -17,10 +16,8 @@
                         <el-menu-item class="dropItem" 
                             :index="item.path+'/'+item.children[0].path"
                             >
-                            <!-- <template slot="title" > -->
                                 <i v-if="item.meta.icon" :class="'fa fa-margin '+item.meta.icon"></i>
                                 <span v-if="item.meta.title" slot="title">{{item.meta.title}}</span> 
-                            <!-- </template> -->
                         </el-menu-item>
                     </router-link>
 
@@ -40,7 +37,6 @@
                     </el-submenu>
                 </template>
         </el-menu>
-      <!-- </el-col> -->
     </div>
 </template>
 
@@ -61,7 +57,9 @@ export default {
   },
   computed:{
       ...mapGetters([
-        'permission_routers','isCollapse','sidebar'
+        'permission_routers',
+        'isCollapse',
+        'sidebar'
       ])
   },
   created(){
