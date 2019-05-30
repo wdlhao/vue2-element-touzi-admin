@@ -79,13 +79,11 @@ editor只有被赋予权限的页面和按钮才可以看到；
 
 
 ## [查看更多demo](http://www.jiouai.com/permission/#/login)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/1.jpg)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/2.jpg)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/3.jpg)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/4.gif)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/5.gif)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/6.gif)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/7.gif)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/index.png)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/quyu.png)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/userlist.png)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/zijin.png)
+
 
 ## 技术答疑，交流QQ群
 项目说明：小爱ADMIN 是完全开源免费的管理系统集成方案，可以直接应用于相关后台管理系统模板；很多重点地方都做了详细的注释和解释。如果你也一样喜欢前端开发，欢迎加入我们的讨论/学习群，群内可以提问答疑，分享学习资料；
