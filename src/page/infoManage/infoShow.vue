@@ -1,24 +1,12 @@
 <template>
-    <div class="info_container">
+    <div class="fillcontain">
         <!--个人信息栏-->
-        <el-row class="info_row row" :gutter="10">
+        <div class="info_container">
+        <el-row class="info_row" :gutter="10">
                 <el-col :span="4">
                 <div class="area">
                     <div class="imgarea">
                         <img :src="avatarImg">
-                       <!-- <el-upload
-                            class="upload-demo"
-                            :action="uploadaction"
-                            multipl='false'
-                            accept="image/*"
-                            :limit="1"
-                            :on-exceed="handleExceed"
-                            :on-success="handSuccess"
-                            :on-error="handError"
-                            :before-upload="beforeAvatarUpload"
-                            :file-list="fileList">
-                            <el-button type="success" size="mini">上传<i class="el-icon-upload el-icon--right"></i></el-button>
-                        </el-upload> -->
                          <el-button type="success" size="mini">上传<i class="el-icon-upload el-icon--right"></i></el-button>
                     </div>
                 </div>
@@ -122,7 +110,7 @@
                 </div>
             </el-col>
         </el-row>
-
+        </div>
     </div>
 </template>
 
@@ -137,48 +125,24 @@
                    {url:'http://www.weibo.com',data:0},
                    {url:'http://www.hao123.com',data:100},
                ],
-               uploadaction:'/api/userInfo/uploadimg',
-               fileList:[], // name,url
-               avatarImg:require('@/assets/img/avatar-2.jpg'),
-               toMPicimg:require('@/assets/img/toMPic02.png')
+               avatarImg: require('@/assets/img/avatar-2.jpg'),
+               toMPicimg: require('@/assets/img/toMPic02.png')
             }
         },
       	mounted() {
          
 	    },
         methods: {
-            // 超过文件上传个数提示
-            handleExceed(files, fileList) {
-               this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-            },
-            beforeAvatarUpload(file) {
-                const isJPG = file.type === 'image/jpeg';
-                const isLt2M = file.size / 1024 / 1024 < 2;
-
-                if (!isJPG) {
-                     this.$message.error('上传头像图片只能是 JPG 格式!');
-                }
-                if (!isLt2M) {
-                     this.$message.error('上传头像图片大小不能超过 2MB!');
-                }
-                return isJPG && isLt2M;
-           },
-           handSuccess(file){
-
-           },
-           handError(file){
-
-           },
-
         },
     }
 </script>
 
 <style lang="less" scoped>
     .info_container{
-        padding: 10px;
-        margin: 0 10px;
-        overflow: auto;
+       padding: 20px;
+       background: #fff;
+       box-sizing: border-box;
+       overflow: auto;
     }
     .row{
         margin:20px;

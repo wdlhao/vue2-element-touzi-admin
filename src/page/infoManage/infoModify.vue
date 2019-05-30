@@ -1,5 +1,6 @@
 <template>
-    <div class="info_container">
+    <div class="fillcontain" ref="fillcontain">
+        <div class="info_container" ref="info_container">
         <el-row class="info_row row" :gutter="10">
           <el-col :span="8">
            <div class="area">
@@ -96,6 +97,7 @@
             </div>
         </el-col>
         </el-row>
+        </div>
     </div>
 </template>
 
@@ -214,8 +216,14 @@
         },
       	mounted() {
            this.showUsername();
+           this.setContentHeight();
 	    },
         methods: {
+            setContentHeight(){
+                this.$nextTick(() => {
+                   this.$refs.fillcontain.style.height =  (document.body.clientHeight - 100)+'px';
+                })
+             },
             showMessage(type,message){
                 this.$message({
                     type: type,
@@ -286,9 +294,10 @@
 
 <style lang="less" scoped>
     .info_container{
-        padding: 10px;
-        margin: 0 10px;
-        overflow: auto;
+       padding: 20px;
+       background: #fff;
+       box-sizing: border-box;
+       overflow: auto;
     }
      .title{
         text-align:center;
