@@ -4,6 +4,7 @@ import leftMenu from './leftMenu.vue'
 import home from './home.vue'
 import content from './content.vue'
 import footerNav from './footer.vue'
+import topMenu from './topMenu.vue'
 
 export {
     bread,
@@ -11,5 +12,6 @@ export {
     leftMenu,
     home,
     content,
-    footerNav
+    footerNav,
+    topMenu
 }

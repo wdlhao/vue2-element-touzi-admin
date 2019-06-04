@@ -6,6 +6,7 @@
         </div>
         <div class="right-nav">
             <div class="middle rflex wflex">
+                <top-menu></top-menu>
             </div>
             <div class="userinfo-right rflex">
                 <div class="notify-row">
@@ -73,6 +74,7 @@
 <script>
     import * as mUtils from '@/utils/mUtils'
     import store from "@/store";
+    import topMenu from "./topMenu";
     import wechatImg from "@/assets/img/wechat.jpg";
     import qqImg from "@/assets/img/qq.png";
 
@@ -92,6 +94,9 @@
                 },
                 gitHubUrl:'https://github.com/wdlhao/vue2-element-touzi-admin'
             }
+          },
+          components:{
+            topMenu
           },
           created(){
               this.username = store.getters.name;
@@ -171,6 +176,7 @@
         }
     }
     .right-nav{
+        display: flex;
         flex: 1;
         padding-right: 15px;
         box-shadow:0px 2px 5px 0px rgba(237,233,233,0.5);
