@@ -215,7 +215,7 @@
            
         },
       	mounted() {
-           this.showUsername();
+           //this.showUsername();
            this.setContentHeight();
 	    },
         methods: {

@@ -20,7 +20,7 @@
     import HeadNav from './headNav.vue';
 	import LeftMenu from './leftMenu.vue';
 	import Bread from './bread.vue';
-	import FooterNav from './footer.vue';
+	import FooterNav from './footerNav.vue';
 
     export default {
         name: 'home',
