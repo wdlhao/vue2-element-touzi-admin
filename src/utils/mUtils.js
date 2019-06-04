@@ -161,25 +161,6 @@ export const  readFile = file => {
 }
 
 /**
- * 需要递归循环children,重新赋值component
- */
-export const generateRoutesFromMenu = (menuData = [], routes = [],componentNew)=>{
-   for(var i = 0;i < menuData.length;i++){
-        const menuobj = menuData[i]
-        const component = menuData[i].component
-        if( component && component !== 'content'){
-            componentNew = require('page/'+menuData[i].component+'.vue')
-        }else{
-            componentNew = require('layout/'+menuData[i].component+'.vue')
-        }
-        menuobj['component'] = componentNew
-        routes.push(menuobj) 
-        generateRoutesFromMenu(menuobj.children)
-  }
-  return routes
-}
-
-/**
  * 动态插入css
  */
 export const loadStyle = url => {

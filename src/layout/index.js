@@ -3,7 +3,7 @@ import headNav from './headNav.vue'
 import leftMenu from './leftMenu.vue'
 import home from './home.vue'
 import content from './content.vue'
-import footerNav from './footer.vue'
+import footerNav from './footerNav.vue'
 import topMenu from './topMenu.vue'
 
 export {

@@ -57,7 +57,9 @@ export default {
   },
   computed:{
       ...mapGetters([
-        'permission_routers','isCollapse','sidebar'
+        'permission_routers',
+        'isCollapse',
+        'sidebar'
       ])
   },
   created(){

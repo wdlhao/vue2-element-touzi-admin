@@ -213,7 +213,7 @@ export const asyncRouterMap = [
 		name: 'permission',
 		meta: {
       title: '权限设置',
-      icon: 'fa-bar-chart-o',
+      icon: 'fa-cogs',
       roles: ['admin', 'editor'] // you can set roles in root nav
     },
     component: Layout,
@@ -243,7 +243,7 @@ export const asyncRouterMap = [
     name: 'errorPages',
     meta: {
       title: '错误页面', 
-      icon: 'fa-bar-chart-o'
+      icon: 'fa-exclamation-triangle'
     },
     children: [
 			{  

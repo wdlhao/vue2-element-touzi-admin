@@ -1,20 +1,21 @@
-<b>xxx金融后台管理系统</b>
+<b>小爱xx管理系统</b>
 
 **A magical vue element touzi admin.**
 
-- [效果演示地址](http://www.jiouai.com)
-
-- [使用文档](http://www.cnblogs.com/wdlhao/p/8075646.html)
+- [效果演示地址](http://www.jiouai.com/permission/#/login)
 
 **分支说明：**
 
-master分支：前后端统一开发的版本；可以用于学习nodejs+mongodb+express相关知识；
+**master分支**：前后端统一开发的版本；可以用于学习nodejs+mongodb+express相关知识；
 
-dev分支：进行了前后端分离的版本；用户只关注于前端部分，可忽略服务端；下载下来，即可运行；
+**dev分支**：进行了前后端分离的版本；用户只关注于前端部分，可忽略服务端；下载下来，即可运行；
+
+**dev-permission分支**：增加了权限管理(包括页面权限和按钮权限)的功能；同时将项目进行了重构；
 
 ## About
 
-此项目是 vue2.0 + element-ui + node + mongodb 构建的后台管理系统，所有的数据都是从服务器实时获取的真实数据，具有真实的注册、登录、数据显示、新增数据、修改数据、删除数据等功能。
+本文主要讲解dev-permission分支内容：
+
 
 ```bash
   如果对您对此项目有兴趣，可以点 "Star" 支持一下 谢谢！ ^_^
@@ -28,115 +29,69 @@ dev分支：进行了前后端分离的版本；用户只关注于前端部分�
 
 ## 技术栈
 
-**前端技术栈：** vue2 + vuex + vue-router + webpack2.0 + ES6/7 + less + element-ui
+**前端技术栈：** vue2 + vuex + vue-router + webpack + ES6/7 + less + element-ui
 
-**服务端技术栈：**nodejs + express  + mongodb
+**服务端技术栈：** easy-mock,mockjs
 
+## 参考文档
+
+easy-mock使用，请参考[官方文档](https://easy-mock.com/docs);
+
+mockjs使用，请参考[官方文档](https://github.com/nuysoft/Mock/wiki/Getting-Started);
 
 ## 前序准备
 
 **运行前准备：**
 
-1、不需要在本地调试及开发：
-   [请访问本项目的服务器地址。](http://www.jiouai.com)
-   
-2、需要在本地调试及开发：
-
-   由于此项目是基于nodejs和mongodb的前后端结合项目，你需要进行nodejs和mongodb的相关准备工作。项目运行之前，请确保系统已经安装以下应用：
+   由于此项目是基于nodejs的前后端结合项目，你需要进行nodejs的相关准备工作。项目运行之前，请确保系统已经安装以下应用：
    
    (1)、node (6.0 及以上版本)。使用细节，请参考：[node的下载及安装。](https://nodejs.org/en/download/)
-   
-   (2)、mongodb 。使用细节，请参考：[mongodb的下载及使用。](https://pan.baidu.com/s/1jIxPJrK)【下载，db/log配置，开启服务，use touzi，导入数据】
-   
-   (3)、robomongod。使用细节，请参考：[robomongod的下载及使用。](https://pan.baidu.com/s/1hsQuc08)（注意：mongodb可视化视图工具，本项目不是必须安装，主要用于方便查看数据库数据）。
         
 
 ## 开发：
-git clone https://github.com/wdlhao/vue2-element-touzi-admin
+git clone -b dev-permission https://github.com/wdlhao/vue2-element-touzi-admin  (注意：要从dev-permission分支拉取代码)
 
 cd vue2-element-touzi-admin
 
 npm install
 
-**npm run dev** (访问本地后台系统，需开启服务端express服务)。运行之后，会默认打开本地访问路径：http://localhost:8012
+**本地运行：**
 
-  开启服务端express服务方法如下：双击server/start.bat启动文件，执行命令>node index.js即可，启动后切记不要关闭cmd窗口。
+**npm run dev** 运行之后，会默认打开本地访问路径：http://localhost:8012
 
+**发布：**
 
-## 发布
 **npm run bulid** (生成打包之后的项目文件,此文件主要用于项目部署)。
 
-## 功能
- - 登录/退出 -- 完成
- - 首页 -- 完成
- - 用户列表 -- 完成
- - 信息列表 -- 完成
- - 信息管理
-   -  个人信息 -- 完成
-   -  修改信息 -- 完成
- - 资金管理
-   -  资金流水 -- 完成
-   -  支付单据 -- 完成
- - 投资管理
-   -   省份投资 -- 完成
-   -   区域投资 -- 完成
- - 金融文章
-   -  文章发布 -- 完成
-   -  文章编辑 -- 完成
-   - 查看文章 -- 完成
- - 资金数据
-   -  投资分布 -- 完成
-   -  项目分布 -- 完成
-   -  收支统计 -- 完成
+## 演示
+测试账号:
 
-## 目录结构
-```shell
-├── build                      // 构建相关  
-├── config                     // 配置相关
-├── exampleImgs                // 项目示例图片
-├── outdb                      // 导入数据库的初始化数据
-├── server                     // node服务端
-│   ├── api.js                    // 封装的接口请求
-│   ├── db.js                     // db数据模型定义
-│   ├── index.js                  // express服务器
-│   ├── mutils.js                 // 服务端工具类
-├── src                        // 源代码
-│   ├── assets                 // 图片等静态资源
-│   ├── components             // 全局公用组件
-│   ├── config                 // 接口请求配置
-│   ├── fonts                  // fontawesome字体库文件
-│   ├── layout                 // 全局 组件
-│   ├── page                   // 项目所有的视图
-│   ├── register               // 第三方库注册
-│   ├── router                 // 登录路由
-│   ├── store                  // 项目vuex数据存储器
-│   ├── style                  // 全局样式
-│   ├── utils                  // 全局公用方法
-│   ├── vendor                 // 公用vendor
-│   ├── App.vue                // 入口页面
-│   ├── main.js                // 入口 加载组件 初始化
-├── static                     // 第三方不打包资源
-│   └── Tinymce                // 富文本
-├── .babelrc                   // babel-loader 配置
-├── .gitignore                 // git 忽略项
-├── eslintrc.js                // eslint 配置项
-├── favicon.ico                // favicon图标
-├── index.html                 // html模板
-├── package.json               // 包依赖配置
-└── README.md                  // 说明文件
+1. username: admin
+   password: 123456
+2. username: editor
+   password: 123456
 
-```
+注意：
 
-## [查看更多demo](http://www.jiouai.com)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/1.jpg)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/2.jpg)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/3.jpg)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/4.gif)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/5.gif)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/6.gif)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/7.gif)
+admin拥有最高权限，可以查看所有的页面和按钮；
 
-## License
+editor只有被赋予权限的页面和按钮才可以看到；
 
-项目讨论qq群：684775824，欢迎大家加群，一起来学习和交流。
-MIT
+
+## [查看更多demo](http://www.jiouai.com/permission/#/login)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/index.png)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/quyu.png)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/userlist.png)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/zijin.png)
+
+
+## 技术答疑，交流QQ群
+项目说明：小爱ADMIN 是完全开源免费的管理系统集成方案，可以直接应用于相关后台管理系统模板；很多重点地方都做了详细的注释和解释。如果你也一样喜欢前端开发，欢迎加入我们的讨论/学习群，群内可以提问答疑，分享学习资料；
+
+欢迎添加群主微信：
+
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/img/wechat.jpg)
+
+欢迎加入答疑qq群：
+
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/img/qq.png)
