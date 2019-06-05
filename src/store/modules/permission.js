@@ -24,17 +24,11 @@ function filterAsyncRouter(asyncRouterMap, roles) {
   const accessedRouters = asyncRouterMap.filter(route => {
     if (hasPermission(roles, route)) {
       if (route.children && route.children.length) {
-        if(route.name == 'permission'){
-          console.log('1次吧-----permission-----');
-        }else if(route.name == 'pagePermission'){
-          console.log('1次吧-----pagePermission-----');
-        }
         // route.children重新过滤赋值;
         route.children = filterAsyncRouter(route.children, roles)
       }
       return true // 返回该权限路由对象;
     }
-    console.log('55-----------');
     return false
   })
   return accessedRouters
@@ -47,7 +41,7 @@ const permission = {
   },
   getters:{
     permission_routers: state => state.routers, // 所有路由
-    addRouters: state => state.addRouters
+    addRouters: state => state.addRouters  // 权限过滤路由
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {

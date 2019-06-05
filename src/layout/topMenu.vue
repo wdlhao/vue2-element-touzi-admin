@@ -1,16 +1,16 @@
 
 <template>
-    <div class="menu_top" ref="menuTop">
+    <div class="menu_top rflex wflex" ref="menuTop">
         <el-menu 
             mode="horizontal" 
-            class="el-menu-demo" 
+            class="el-menu-demo rflex" 
             :active-text-color="menuObj.activeTextColor"
             :default-active="activeIndex" 
             @select="handleSelect">
-            <template v-for="(item,index) in permission_routers">
-                <router-link v-if="item.children  && item.children.length >= 1 && !item.hidden && !item.noDropdown" :to="item.path+'/'+item.children[0].path" :key="index">
-                    <el-menu-item :index="item.path+'/'+item.children[0].path">
-                    处理中心
+            <template v-for="(item,index) in topRouters">
+                <router-link :to="item.path" :key="index">
+                    <el-menu-item :index="item.path">
+                        {{item.meta.title}}
                     </el-menu-item>
                 </router-link>
                 <!-- <el-submenu index="2">
@@ -38,7 +38,8 @@
                     bgColor:'#324057',
                     textColor:'#fff',
                     activeTextColor:'#ff6428',
-                }
+                },
+                topRouters:[]
             }
         },
         components:{
@@ -50,24 +51,30 @@
             ])
         },
         created(){
-            // console.log(this.permission_routers);
-            let filterArr = this.filterPermissionRouters(this.permission_routers);
-            console.log(filterArr);
+           this.filterPermissionRouters(this.permission_routers);
 
         },
         mounted(){
-           
+            console.log(this.topRouters);
         },
         methods:{
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
             },
             filterPermissionRouters(arr){
-                arr.filter((item,index,self) => {
-                    if(item.children.length >= 1){
-                        this.filterPermissionRouters(item.children);
+                arr.forEach((item,index,self) => {
+                    if(!item.noDropdown && item.children && item.children.length >= 1){
+                        let childrens = arr[index].children;
+                        childrens.forEach((item,index) => {
+                            // console.log(item.name);
+                            // console.log(this.$route.name);
+                            if(item.parentName === this.$route.name && !item.noDropdown && item.meta && item.meta.routerType ===  'topmenu'){
+                                console.log(item.meta.title);
+                                this.topRouters.push(item);
+                            }
+                        })
+                        this.filterPermissionRouters(childrens);
                     }
-                    return item.children.meta.routerType === 'topMenu'
                 })
             }
         }
@@ -76,5 +83,7 @@
 </script>
 
 <style lang="less" scoped>
-
+  .el-menu.el-menu--horizontal{
+      border:none;
+  }
 </style>

@@ -129,6 +129,7 @@ export const asyncRouterMap = [
 					{
 						 path:'moneyData',
 						 name:'moneyData',
+						 parentName:'fundList',
 						 meta:{
 								title:'理财数据',
 								icon:'fa-asterisk',
@@ -139,6 +140,7 @@ export const asyncRouterMap = [
 					{
 						path:'loanData',
 						name:'loanData',
+						parentName:'fundList',
 						meta:{
 							 title:'贷款数据',
 							 icon:'fa-asterisk',
@@ -149,6 +151,7 @@ export const asyncRouterMap = [
 					{
 						path:'insuranceData',
 						name:'insuranceData',
+						parentName:'fundList',
 						meta:{
 							 title:'保险数据',
 							 icon:'fa-asterisk',
@@ -165,7 +168,20 @@ export const asyncRouterMap = [
 				   title:'区域投资',
 				   icon: 'fa-asterisk',
 				},
-		    component: () => import('@/page/fundList/chinaTabsList')
+				component: () => import('@/page/fundList/chinaTabsList'),
+				children:[
+					{
+						 path:'moneyData2',
+						 name:'moneyData2',
+						 parentName:'chinaTabsList',
+						 meta:{
+								title:'理财数据2',
+								icon:'fa-asterisk',
+								routerType:'topmenu'
+						 },
+			     	 component: () => import('@/page/fundList/fundList')
+					}
+				]
 		   },
 		]
 	},

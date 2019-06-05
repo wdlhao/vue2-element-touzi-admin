@@ -17,6 +17,7 @@ function hasPermission(roles, permissionRoles) {
 const whiteList = ['/login'] // 不重定向白名单
 
 router.beforeEach((to, from, next) => {
+  console.log(to);
   NProgress.start()
    // 设置浏览器头部标题
    const browserHeaderTitle = to.meta.title
@@ -39,12 +40,10 @@ router.beforeEach((to, from, next) => {
       if (store.getters.roles.length === 0) {
         store.dispatch('GetInfo').then(res => { // 拉取用户信息
           const roles = res.roles // note: roles must be a array! such as: ['editor','develop']
-          console.log("roles------");
-          console.log(roles);
           store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
             router.addRoutes(store.getters.addRouters) // 动态添加可访问权限路由表
             console.log("router----");
-            console.log(router);
+            console.log(this.$route);
             next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
           })
         }).catch((err) => {
