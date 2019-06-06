@@ -17,7 +17,6 @@ function hasPermission(roles, permissionRoles) {
 const whiteList = ['/login'] // 不重定向白名单
 
 router.beforeEach((to, from, next) => {
-  console.log(to);
   NProgress.start()
    // 设置浏览器头部标题
    const browserHeaderTitle = to.meta.title
@@ -42,8 +41,11 @@ router.beforeEach((to, from, next) => {
           const roles = res.roles // note: roles must be a array! such as: ['editor','develop']
           store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
             router.addRoutes(store.getters.addRouters) // 动态添加可访问权限路由表
-            console.log("router----");
-            console.log(this.$route);
+            if(((to.fullPath).split('/').slice(1)).length === 2){
+          console.log(to.fullPath);
+
+                store.dispatch('clickLeftInnerMenu');
+            }
             next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
           })
         }).catch((err) => {
@@ -58,6 +60,11 @@ router.beforeEach((to, from, next) => {
           next()//
         } else {
           next({ path: '/401', replace: true, query: { noGoBack: true }})
+        }
+
+        if(((to.fullPath).split('/').slice(1)).length === 2){
+          console.log(to.fullPath);
+          store.dispatch('clickLeftInnerMenu');
         }
       }
     }

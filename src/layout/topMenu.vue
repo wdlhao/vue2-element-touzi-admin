@@ -47,7 +47,7 @@
         },
         computed:{
             ...mapGetters([
-                'permission_routers','isCollapse','sidebar'
+                'permission_routers'
             ])
         },
         created(){
@@ -66,8 +66,6 @@
                     if(!item.noDropdown && item.children && item.children.length >= 1){
                         let childrens = arr[index].children;
                         childrens.forEach((item,index) => {
-                            // console.log(item.name);
-                            // console.log(this.$route.name);
                             if(item.parentName === this.$route.name && !item.noDropdown && item.meta && item.meta.routerType ===  'topmenu'){
                                 console.log(item.meta.title);
                                 this.topRouters.push(item);

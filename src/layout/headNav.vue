@@ -6,7 +6,7 @@
         </div>
         <div class="right-nav">
             <div class="middle rflex wflex">
-                <top-menu></top-menu>
+                <top-menu v-if="isClickLeftInnerMenu"></top-menu>
             </div>
             <div class="userinfo-right rflex">
                 <div class="notify-row">
@@ -72,6 +72,7 @@
 </template>
 
 <script>
+    import { mapGetters } from "vuex";
     import * as mUtils from '@/utils/mUtils'
     import store from "@/store";
     import topMenu from "./topMenu";
@@ -98,8 +99,16 @@
           components:{
             topMenu
           },
+          computed:{
+              ...mapGetters(['isClickLeftInnerMenu']),
+               innerMenu() {
+                    return this.isClickLeftInnerMenu;
+               }
+          },
           created(){
               this.username = store.getters.name;
+            //   console.log("isClickLeftInnerMenu--------------");
+            //   console.log(this.isClickLeftInnerMenu);
           },
           methods:{
               showWechat(){
@@ -119,7 +128,6 @@
                       console.log('logout ----3----reoad-');
                       location.reload();
                   })
-           		//   this.$router.push({ path: '/login' })
               },
               showInfoList(){
                   this.$router.push('/infoModify');
@@ -150,6 +158,11 @@
 
 
 
+          },
+          watch: {
+            innerMenu (newValue, oldValue) {
+               console.log(`We have ${newValue} fruits now, yaay!`)
+            }
           }
     }
 </script>
