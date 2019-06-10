@@ -51,16 +51,18 @@
             ])
         },
         created(){
-           this.filterPermissionRouters(this.permission_routers);
+           // this.filterPermissionRouters(this.permission_routers);
 
         },
         mounted(){
-            console.log(this.topRouters);
+            // console.log(this.topRouters);
+            // console.log(this.$route);
         },
         methods:{
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
             },
+            // 获取到当前3级子菜单
             filterPermissionRouters(arr){
                 arr.forEach((item,index,self) => {
                     if(!item.noDropdown && item.children && item.children.length >= 1){

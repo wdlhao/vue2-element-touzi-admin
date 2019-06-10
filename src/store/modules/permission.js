@@ -34,14 +34,42 @@ function filterAsyncRouter(asyncRouterMap, roles) {
   return accessedRouters
 }
 
+
+ // 获取到当前路由 3级子菜单
+ function filterTopRouters(arr){
+  const topRoters = arr.forEach((item,index) => {
+      if(!item.noDropdown && item.children && item.children.length >= 1){
+          let childrens = arr[index].children;
+          childrens = childrens.filter((item) => {
+              if(item.parentName === this.$route.name && !item.noDropdown && item.meta && item.meta.routerType ===  'topmenu'){
+                  console.log(item.meta.title);
+                  return item;
+                  this.topRouters.push(item);
+              }else{
+                  return false;
+              }
+          })
+          this.filterTopRouters(childrens);
+      }else{
+        return false;
+      }
+  })
+  return topRoters;
+}
+
+
 const permission = {
   state: {
     routers: constantRouterMap,
-    addRouters: []
+    addRouters: [],
+    topRouters:[],
+    isClickLeftInnerMenu:false
   },
   getters:{
     permission_routers: state => state.routers, // 所有路由
-    addRouters: state => state.addRouters  // 权限过滤路由
+    addRouters: state => state.addRouters,  // 权限过滤路由
+    topRouters: state => state.topRouters,  // 顶部三级路由
+    isClickLeftInnerMenu:state => state.isClickLeftInnerMenu,
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {
@@ -49,6 +77,11 @@ const permission = {
       state.routers = constantRouterMap.concat(routers) // 总路由
       console.log("routers----10---");
       console.log(state.routers);
+    },
+    CLICK_INNER_LEFT_MENU:(state) => {
+        // state.topRouters = filterTopRouters(state.routers);
+        console.log(state.topRouters);
+        // state.isClickLeftInnerMenu = true;
     }
   },
   actions: {
@@ -69,6 +102,11 @@ const permission = {
         commit('SET_ROUTERS', accessedRouters)
         resolve()
       })
+    },
+    ClickLeftInnerMenu({ commit }) {
+      commit('CLICK_INNER_LEFT_MENU')
+       // console.log(this.permission_routers);
+        // accessedRouters = filterTopRouters(asyncRouterMap)
     }
   }
 }

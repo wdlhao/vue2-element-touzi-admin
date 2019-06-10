@@ -6,7 +6,7 @@
         </div>
         <div class="right-nav">
             <div class="middle rflex wflex">
-                <top-menu v-if="isClickLeftInnerMenu"></top-menu>
+                <top-menu></top-menu>
             </div>
             <div class="userinfo-right rflex">
                 <div class="notify-row">
@@ -102,13 +102,11 @@
           computed:{
               ...mapGetters(['isClickLeftInnerMenu']),
                innerMenu() {
-                    return this.isClickLeftInnerMenu;
+                  return this.isClickLeftInnerMenu;
                }
           },
           created(){
               this.username = store.getters.name;
-            //   console.log("isClickLeftInnerMenu--------------");
-            //   console.log(this.isClickLeftInnerMenu);
           },
           methods:{
               showWechat(){
