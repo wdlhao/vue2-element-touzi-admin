@@ -41,9 +41,9 @@ router.beforeEach((to, from, next) => {
           const roles = res.roles // note: roles must be a array! such as: ['editor','develop']
           store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
             router.addRoutes(store.getters.addRouters) // 动态添加可访问权限路由表
-            if(((to.fullPath).split('/').slice(1)).length === 2){
-                store.dispatch('ClickLeftInnerMenu');
-            }
+            // if(((to.fullPath).split('/').slice(1)).length === 2){
+            //     store.dispatch('ClickLeftInnerMenu');
+            // }
             next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
           })
         }).catch((err) => {
@@ -60,10 +60,10 @@ router.beforeEach((to, from, next) => {
           next({ path: '/401', replace: true, query: { noGoBack: true }})
         }
 
-        if(((to.fullPath).split('/').slice(1)).length === 2){
-          console.log(to.fullPath);
-          store.dispatch('ClickLeftInnerMenu');
-        }
+        // if(((to.fullPath).split('/').slice(1)).length === 2){
+        //   console.log(to.fullPath);
+        //   store.dispatch('ClickLeftInnerMenu');
+        // }
       }
     }
   } else {

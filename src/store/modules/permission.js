@@ -36,25 +36,26 @@ function filterAsyncRouter(asyncRouterMap, roles) {
 
 
  // 获取到当前路由 3级子菜单
- function filterTopRouters(arr){
-  const topRoters = arr.forEach((item,index) => {
+ function filterTopRouters(arr,data){
+  let topRouters = [];
+  arr.forEach((item,index) => {
       if(!item.noDropdown && item.children && item.children.length >= 1){
-          let childrens = arr[index].children;
-          childrens = childrens.filter((item) => {
-              if(item.parentName === this.$route.name && !item.noDropdown && item.meta && item.meta.routerType ===  'topmenu'){
-                  console.log(item.meta.title);
-                  return item;
-                  this.topRouters.push(item);
-              }else{
-                  return false;
-              }
+          let childrens = item.children;
+          childrens.forEach((item) => {
+            if(!item.noDropdown && item.children && item.children.length >= 1){ // 2级
+                let childrens = item.children;
+                // console.log(childrens)
+                childrens.forEach((item) => { // 3级
+                  if(data.name === item.parentName && !item.noDropdown && item.meta && item.meta.routerType ===  'topmenu'){
+                    topRouters.push(item);
+                  }
+                })
+            }            
           })
-          this.filterTopRouters(childrens);
-      }else{
-        return false;
       }
   })
-  return topRoters;
+  console.log(topRouters);
+  return topRouters;
 }
 
 
@@ -75,11 +76,9 @@ const permission = {
     SET_ROUTERS: (state, routers) => {
       state.addRouters = routers // 权限路由
       state.routers = constantRouterMap.concat(routers) // 总路由
-      console.log("routers----10---");
-      console.log(state.routers);
     },
-    CLICK_INNER_LEFT_MENU:(state) => {
-        // state.topRouters = filterTopRouters(state.routers);
+    CLICK_INNER_LEFT_MENU:(state,data) => {
+        state.topRouters = filterTopRouters(state.routers,data);
         console.log(state.topRouters);
         // state.isClickLeftInnerMenu = true;
     }
@@ -103,8 +102,8 @@ const permission = {
         resolve()
       })
     },
-    ClickLeftInnerMenu({ commit }) {
-      commit('CLICK_INNER_LEFT_MENU')
+    ClickLeftInnerMenu({ commit },data) {
+      commit('CLICK_INNER_LEFT_MENU',data)
        // console.log(this.permission_routers);
         // accessedRouters = filterTopRouters(asyncRouterMap)
     }

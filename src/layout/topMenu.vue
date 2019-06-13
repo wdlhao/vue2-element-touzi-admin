@@ -39,7 +39,7 @@
                     textColor:'#fff',
                     activeTextColor:'#ff6428',
                 },
-                topRouters:[]
+                // topRouters:[]
             }
         },
         components:{
@@ -47,18 +47,29 @@
         },
         computed:{
             ...mapGetters([
-                'permission_routers'
+                'permission_routers','topRouters'
             ])
         },
         created(){
            // this.filterPermissionRouters(this.permission_routers);
+           this.setLeftInnerMenu();
+           
 
         },
         mounted(){
-            // console.log(this.topRouters);
-            // console.log(this.$route);
+           
         },
         methods:{
+            setLeftInnerMenu(){
+                if(((this.$route.fullPath).split('/').slice(1)).length === 2){
+                    this.$store.dispatch('ClickLeftInnerMenu',
+                        {'name':this.$route.name}
+                    );
+                }
+            },
+            getPath(){
+                this.setLeftInnerMenu();
+            },
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
             },
@@ -77,6 +88,9 @@
                     }
                 })
             }
+        },
+        watch:{
+            "$route":"getPath" 
         }
     }
 
