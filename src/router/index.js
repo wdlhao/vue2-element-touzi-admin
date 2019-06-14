@@ -94,18 +94,20 @@ export const asyncRouterMap = [
 		   meta: {
 			    title:'个人信息',
 					icon: 'fa-asterisk',
+				  routerType:'leftmenu'
 			 },
 			 component: () => import('@/page/infoManage/infoShow')
 		},
 		{
-			path:'infoModify',
-			name:'infoModify',
-			meta: {
-				 title:'修改信息',
-				 icon: 'fa-asterisk',
-			},
-			component: () => import('@/page/infoManage/infoModify')
-		 },
+				path:'infoModify',
+				name:'infoModify',
+				meta: {
+					title:'修改信息',
+					icon: 'fa-asterisk',
+				  routerType:'leftmenu'
+				},
+				component: () => import('@/page/infoManage/infoModify')
+		 }
 	  ]
 	},
 	{
@@ -123,66 +125,64 @@ export const asyncRouterMap = [
 				meta: {
 						title:'资金流水',
 						icon: 'fa-asterisk',
+						routerType:'leftmenu'
 				},
 				component: () => import('@/page/fundList/fundList'),
-				children:[
-					{
-						 path:'moneyData',
-						 name:'moneyData',
-						 parentName:'fundList',
-						 meta:{
-								title:'理财数据',
-								icon:'fa-asterisk',
-								routerType:'topmenu'
-						 },
-			     	 component: () => import('@/page/fundList/fundList')
-					},
-					{
-						path:'loanData',
-						name:'loanData',
-						parentName:'fundList',
-						meta:{
-							 title:'贷款数据',
-							 icon:'fa-asterisk',
-							 routerType:'topmenu'
-						},
-						component: () => import('@/page/fundList/fundList')
-					},
-					{
-						path:'insuranceData',
-						name:'insuranceData',
-						parentName:'fundList',
-						meta:{
-							 title:'保险数据',
-							 icon:'fa-asterisk',
-							 routerType:'topmenu'
-						},
-						component: () => import('@/page/fundList/fundList')
-				  }
-				]
 		  },
 		  {
 			  path:'chinaTabsList',
 			  name:'chinaTabsList',
 			  meta: {
 				   title:'区域投资',
-				   icon: 'fa-asterisk',
+					 icon: 'fa-asterisk',
+					 routerType:'leftmenu'
 				},
 				component: () => import('@/page/fundList/chinaTabsList'),
-				children:[
-					{
-						 path:'moneyData2',
-						 name:'moneyData2',
-						 parentName:'chinaTabsList',
-						 meta:{
-								title:'理财数据2',
-								icon:'fa-asterisk',
-								routerType:'topmenu'
-						 },
-			     	 component: () => import('@/page/fundList/fundList')
-					}
-				]
+			 },
+			 {
+					path:'moneyData2',
+					name:'moneyData2',
+					parentName:'chinaTabsList',
+					meta:{
+						title:'理财数据2',
+						icon:'fa-asterisk',
+						routerType:'topmenu'
+					},
+				  component: () => import('@/page/fundList/moneyData')
 		   },
+			 {
+				path:'moneyData',
+				name:'moneyData',
+				parentName:'fundList',
+				meta:{
+					 title:'理财数据',
+					 icon:'fa-asterisk',
+					 routerType:'topmenu'
+				},
+				 component: () => import('@/page/fundList/moneyData')
+		 },
+		 {
+			 path:'loanData',
+			 name:'loanData',
+			 parentName:'fundList',
+			 meta:{
+					title:'贷款数据',
+					icon:'fa-asterisk',
+					routerType:'topmenu'
+			 },
+			 component: () => import('@/page/fundList/moneyData')
+		 },
+		 {
+			 path:'insuranceData',
+			 name:'insuranceData',
+			 parentName:'fundList',
+			 meta:{
+					title:'保险数据',
+					icon:'fa-asterisk',
+					routerType:'topmenu'
+			 },
+			 component: () => import('@/page/fundList/moneyData')
+		 }
 		]
 	},
 	{

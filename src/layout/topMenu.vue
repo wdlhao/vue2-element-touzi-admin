@@ -1,9 +1,11 @@
 
 <template>
-    <div class="menu_top rflex wflex" ref="menuTop">
+    <div class="menu_top rflex" ref="menuTop">
         <el-menu 
             mode="horizontal" 
-            class="el-menu-demo rflex" 
+            class="el-menu-demo rflex el-scrollbar top-scrollbar" 
+            :background-color="menuObj.bgColor"
+            :text-color="menuObj.textColor"
             :active-text-color="menuObj.activeTextColor"
             :default-active="activeIndex" 
             @select="handleSelect">
@@ -35,35 +37,33 @@
             return {
                 activeIndex:'1',
                 menuObj:{
-                    bgColor:'#324057',
-                    textColor:'#fff',
+                    bgColor:'',
+                    textColor:'#303133',
                     activeTextColor:'#ff6428',
                 },
-                // topRouters:[]
             }
         },
         components:{
 
         },
         computed:{
-            ...mapGetters([
-                'permission_routers','topRouters'
-            ])
+            ...mapGetters(['topRouters'])
         },
         created(){
-           // this.filterPermissionRouters(this.permission_routers);
            this.setLeftInnerMenu();
-           
-
         },
         mounted(){
            
         },
         methods:{
             setLeftInnerMenu(){
-                if(((this.$route.fullPath).split('/').slice(1)).length === 2){
+                if((this.$route.matched).length == 2 && this.$route.meta.routerType == 'leftmenu'){ // 点击的为 左侧的2级菜单
                     this.$store.dispatch('ClickLeftInnerMenu',
                         {'name':this.$route.name}
+                    );
+                }else{ // 点击顶部的菜单
+                    this.$store.dispatch('ClickTopMenu',
+                        {'title':this.$route.meta.title}
                     );
                 }
             },
@@ -97,7 +97,12 @@
 </script>
 
 <style lang="less" scoped>
-  .el-menu.el-menu--horizontal{
-      border:none;
-  }
+    .menu_top{
+        width:1000px;
+        .el-menu-demo{
+            overflow-x: scroll;
+            overflow-y:hidden;
+            flex:1;
+        }
+    }
 </style>

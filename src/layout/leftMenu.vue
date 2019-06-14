@@ -30,8 +30,9 @@
                         <!--直接定位到子路由上，子路由也可以实现导航功能-->
                         <router-link v-for="(citem,cindex) in item.children" :to="item.path+'/'+citem.path"  :key="cindex">
                             <el-menu-item 
+                                v-if="citem.meta.routerType != 'topmenu' && citem.meta.title"
                                 :index="item.path+'/'+citem.path">
-                                <span v-if="citem.meta.title" slot="title">{{citem.meta.title}}</span>
+                                <span slot="title">{{citem.meta.title}}</span>
                             </el-menu-item> 
                         </router-link>
                     </el-submenu>

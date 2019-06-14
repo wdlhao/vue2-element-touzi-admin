@@ -1,4 +1,5 @@
 import { asyncRouterMap, constantRouterMap } from '@/router'
+import { topRouterMap } from "@/router/topRouter";
 
 /**
  * 通过meta.role判断是否与当前用户权限匹配
@@ -38,19 +39,15 @@ function filterAsyncRouter(asyncRouterMap, roles) {
  // 获取到当前路由 3级子菜单
  function filterTopRouters(arr,data){
   let topRouters = [];
-  arr.forEach((item,index) => {
+  arr.forEach((item) => { // 1级
       if(!item.noDropdown && item.children && item.children.length >= 1){
           let childrens = item.children;
-          childrens.forEach((item) => {
-            if(!item.noDropdown && item.children && item.children.length >= 1){ // 2级
-                let childrens = item.children;
-                // console.log(childrens)
-                childrens.forEach((item) => { // 3级
-                  if(data.name === item.parentName && !item.noDropdown && item.meta && item.meta.routerType ===  'topmenu'){
-                    topRouters.push(item);
-                  }
-                })
-            }            
+          childrens.forEach((item) => {// 2级
+            topRouterMap.forEach((citem) => {
+              if(!item.noDropdown && data.name === citem.parentName){ 
+                  topRouters = citem.topmenulist;
+              }       
+            })
           })
       }
   })
@@ -64,13 +61,13 @@ const permission = {
     routers: constantRouterMap,
     addRouters: [],
     topRouters:[],
-    isClickLeftInnerMenu:false
+    topTitle:''
   },
   getters:{
     permission_routers: state => state.routers, // 所有路由
     addRouters: state => state.addRouters,  // 权限过滤路由
     topRouters: state => state.topRouters,  // 顶部三级路由
-    isClickLeftInnerMenu:state => state.isClickLeftInnerMenu,
+    topTitle:state => state.topTitle // 顶部的title
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {
@@ -79,9 +76,10 @@ const permission = {
     },
     CLICK_INNER_LEFT_MENU:(state,data) => {
         state.topRouters = filterTopRouters(state.routers,data);
-        console.log(state.topRouters);
-        // state.isClickLeftInnerMenu = true;
-    }
+    },
+    CLICK_TOP_MENU:(state,data) => {
+      state.topTitle = data.title
+    },
   },
   actions: {
     // 根据角色，重新设置权限路由;并保存到vuex中,SET_ROUTERS;
@@ -104,8 +102,9 @@ const permission = {
     },
     ClickLeftInnerMenu({ commit },data) {
       commit('CLICK_INNER_LEFT_MENU',data)
-       // console.log(this.permission_routers);
-        // accessedRouters = filterTopRouters(asyncRouterMap)
+    },
+    ClickTopMenu({ commit },data) {
+      commit('CLICK_TOP_MENU',data)
     }
   }
 }

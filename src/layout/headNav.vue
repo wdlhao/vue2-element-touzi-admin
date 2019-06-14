@@ -5,9 +5,9 @@
             <span class='title'>小爱<i>Admin</i></span>
         </div>
         <div class="right-nav">
-            <div class="middle rflex wflex">
+            <!-- <div class="middle rflex wflex"> -->
                 <top-menu></top-menu>
-            </div>
+            <!-- </div> -->
             <div class="userinfo-right rflex">
                 <div class="notify-row">
                     <ul class="top-menu">
@@ -100,10 +100,6 @@
             topMenu
           },
           computed:{
-              ...mapGetters(['isClickLeftInnerMenu']),
-               innerMenu() {
-                  return this.isClickLeftInnerMenu;
-               }
           },
           created(){
               this.username = store.getters.name;
@@ -123,7 +119,6 @@
               },
               logout(){
                   this.$store.dispatch('LogOut').then(() => {
-                      console.log('logout ----3----reoad-');
                       location.reload();
                   })
               },
@@ -151,16 +146,6 @@
                         break;
                 }
             },
-
-
-
-
-
-          },
-          watch: {
-            innerMenu (newValue, oldValue) {
-               console.log(`We have ${newValue} fruits now, yaay!`)
-            }
           }
     }
 </script>
@@ -190,6 +175,7 @@
         display: flex;
         flex: 1;
         padding-right: 15px;
+        justify-content: space-between;
         box-shadow:0px 2px 5px 0px rgba(237,233,233,0.5);
     }
     .fa-user {
@@ -215,9 +201,11 @@
     }
     .middle{
        align-items: center;
+       border:1px solid;
     }
     .userinfo-right{
         justify-content: flex-end;
+        min-width: 330px;
     }
     .userinfo {
         line-height: 60px;
