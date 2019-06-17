@@ -1,9 +1,3 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Layout  from "../layout/home"; // 页面整体布局
-
-Vue.use(Router)
-
 
 export const topRouterMap = [
     {
@@ -125,46 +119,108 @@ export const topRouterMap = [
         'parentName':'infoModify',
         'topmenulist':[
             {
-				path:'infoModify1',
-				name:'infoModify1',
-				parentName:'infoModify',
-				meta:{
-					title:'修改信息子菜单1',
-					icon:'fa-asterisk',
-					routerType:'topmenu'
-				},
-				component: () => import('@/page/fundList/moneyData')
-			},
-			{
-				path:'infoModify2',
-				name:'infoModify2',
-				parentName:'infoModify',
-				meta:{
-					title:'修改信息子菜单2',
-					icon:'fa-asterisk',
-					routerType:'topmenu'
-				},
-				component: () => import('@/page/fundList/moneyData')
-			},
-			{
-				path:'infoModify3',
-				name:'infoModify3',
-				parentName:'infoModify',
-				meta:{
-					title:'修改信息子菜单3',
-					icon:'fa-asterisk',
-					routerType:'topmenu'
-				},
-				component: () => import('@/page/fundList/moneyData')
-	        }
+                path:'infoModify1',
+                name:'infoModify1',
+                parentName:'infoModify',
+                meta:{
+                    title:'修改信息子菜单1',
+                    icon:'fa-asterisk',
+                    routerType:'topmenu'
+                },
+                component: () => import('@/page/fundList/moneyData')
+            },
+            {
+                path:'infoModify2',
+                name:'infoModify2',
+                parentName:'infoModify',
+                meta:{
+                    title:'修改信息子菜单2',
+                    icon:'fa-asterisk',
+                    routerType:'topmenu'
+                },
+                component: () => import('@/page/fundList/moneyData')
+            },
+            {
+                path:'infoModify3',
+                name:'infoModify3',
+                parentName:'infoModify',
+                meta:{
+                    title:'修改信息子菜单3',
+                    icon:'fa-asterisk',
+                    routerType:'topmenu'
+                },
+                component: () => import('@/page/fundList/moneyData')
+            }
         ]
     },
+    {
+        'parentName':'fundList',
+        'topmenulist':[
+            {
+                path:'fundList1',
+                name:'fundList1',
+                meta:{
+                    title:'资金流水子菜单1',
+                    icon:'fa-asterisk',
+                    routerType:'topmenu'
+                },
+                component: () => import('@/page/fundList/moneyData')
+            },
+            {
+                path:'fundList2',
+                name:'fundList2',
+                meta:{
+                    title:'资金流水子菜单2',
+                    icon:'fa-asterisk',
+                    routerType:'topmenu'
+                },
+                component: () => import('@/page/fundList/moneyData')
+            },
+            {
+                path:'fundList3',
+                name:'fundList3',
+                meta:{
+                    title:'资金流水子菜单3',
+                    icon:'fa-asterisk',
+                    routerType:'topmenu'
+                },
+                component: () => import('@/page/fundList/moneyData')
+            }
+        ]
+    },
+    {
+        'parentName':'chinaTabsList',
+        'topmenulist':[
+            {
+                path:'chinaTabsList1',
+                name:'chinaTabsList1',
+                meta:{
+                    title:'区域投资子菜单1',
+                    icon:'fa-asterisk',
+                    routerType:'topmenu'
+                },
+                component: () => import('@/page/fundList/moneyData')
+            },
+            {
+                path:'chinaTabsList2',
+                name:'chinaTabsList2',
+                meta:{
+                    title:'区域投资子菜单2',
+                    icon:'fa-asterisk',
+                    routerType:'topmenu'
+                },
+                component: () => import('@/page/fundList/moneyData')
+            },
+            {
+                path:'chinaTabsList3',
+                name:'chinaTabsList3',
+                meta:{
+                    title:'区域投资子菜单3',
+                    icon:'fa-asterisk',
+                    routerType:'topmenu'
+                },
+                component: () => import('@/page/fundList/moneyData')
+            }
+        ]
+    }
 ]
-
-Router.addRoutes(topRouterMap);
-
-//注册路由
-// export default new Router({
-//     // mode: 'history', //后端支持可开
-//     routes: topRouterMap
-// })

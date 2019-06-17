@@ -57,7 +57,7 @@
         },
         methods:{
             setLeftInnerMenu(){
-                if((this.$route.matched).length == 2 && this.$route.meta.routerType == 'leftmenu'){ // 点击的为 左侧的2级菜单
+                if(this.$route.meta.routerType == 'leftmenu'){ // 点击的为 左侧的2级菜单
                     this.$store.dispatch('ClickLeftInnerMenu',
                         {'name':this.$route.name}
                     );

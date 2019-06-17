@@ -1,6 +1,43 @@
 import { asyncRouterMap, constantRouterMap } from '@/router'
 import { topRouterMap } from "@/router/topRouter";
 
+
+
+function addTopRouter(){
+  asyncRouterMap.forEach( (item) => {
+    if(item.children && item.children.length >= 1){
+      item.children.forEach((sitem) => {
+       topRouterMap.forEach((citem) => {
+          if(sitem.name === citem.parentName){
+              let newChildren = item.children.concat(citem.topmenulist); // arr
+              item.children = newChildren;
+          }
+       })
+      })
+    }
+  })
+  return asyncRouterMap;
+}
+
+ // 获取到当前路由 3级子菜单
+ function filterTopRouters(arr,data){
+  let topRouters = [];
+  arr.forEach((item) => { // 1级
+      if(!item.noDropdown && item.children && item.children.length >= 1){
+          let childrens = item.children;
+          childrens.forEach((item) => {// 2级
+            topRouterMap.forEach((citem) => {
+              if(!item.noDropdown && data.name === citem.parentName){ 
+                  topRouters = citem.topmenulist;
+              }       
+            })
+          })
+      }
+  })
+  console.log(topRouters);
+  return topRouters;
+}
+
 /**
  * 通过meta.role判断是否与当前用户权限匹配
  * @param roles
@@ -36,26 +73,6 @@ function filterAsyncRouter(asyncRouterMap, roles) {
 }
 
 
- // 获取到当前路由 3级子菜单
- function filterTopRouters(arr,data){
-  let topRouters = [];
-  arr.forEach((item) => { // 1级
-      if(!item.noDropdown && item.children && item.children.length >= 1){
-          let childrens = item.children;
-          childrens.forEach((item) => {// 2级
-            topRouterMap.forEach((citem) => {
-              if(!item.noDropdown && data.name === citem.parentName){ 
-                  topRouters = citem.topmenulist;
-              }       
-            })
-          })
-      }
-  })
-  console.log(topRouters);
-  return topRouters;
-}
-
-
 const permission = {
   state: {
     routers: constantRouterMap,
@@ -86,15 +103,16 @@ const permission = {
     GenerateRoutes({ commit }, data) {
       return new Promise(resolve => {
         const { roles } = data
+        let asyncRouterMaps = addTopRouter(); // 将头部菜单添加到对应的二级菜单下面;
         let accessedRouters
         if (roles.indexOf('admin') >= 0) {
           console.log('admin>=0')
           // 如果是管理员，直接将权限路由赋值给新路由;
-          accessedRouters = asyncRouterMap
+          accessedRouters = asyncRouterMaps
         } else {
           console.log('admin<0')
           // 非管理员用户,如roles:['editor','developer']，则需要过滤权限路由数据
-          accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
+          accessedRouters = filterAsyncRouter(asyncRouterMaps, roles)
         }
         commit('SET_ROUTERS', accessedRouters)
         resolve()

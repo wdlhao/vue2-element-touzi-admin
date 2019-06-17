@@ -44,6 +44,7 @@ export const constantRouterMap = [
 				meta:{
 					title:'首页', 
 					icon:'fa-index',
+				  routerType:'leftmenu'
 				},
         component: () => import('@/page/index'),
 			}
@@ -74,6 +75,7 @@ export const asyncRouterMap = [
 				meta:{
 					title:'用户管理', 
 					icon:'fa-user',
+				  routerType:'leftmenu'
 				},
 				component: () => import('@/page/userList/userList'),
 			}
