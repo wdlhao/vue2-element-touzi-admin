@@ -1,13 +1,10 @@
 <template>
     <header class="head-nav rflex " id='header_container'>
         <div class='logo-container rflex'>
-            <!-- <img src="../assets/img/logo.png" class='logo' alt=""> -->
             <span class='title'>小爱<i>Admin</i></span>
         </div>
-        <div class="right-nav">
-            <!-- <div class="middle rflex wflex"> -->
-                <top-menu></top-menu>
-            <!-- </div> -->
+        <div class="right-nav" ref="rightNav">
+            <top-menu></top-menu>
             <div class="userinfo-right rflex">
                 <div class="notify-row">
                     <ul class="top-menu">
@@ -103,6 +100,8 @@
           },
           created(){
               this.username = store.getters.name;
+          },
+          mounted(){
           },
           methods:{
               showWechat(){

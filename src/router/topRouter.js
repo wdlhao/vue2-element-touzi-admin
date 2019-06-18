@@ -6,7 +6,6 @@ export const topRouterMap = [
             {
                 path: 'infoShow1',
                 name: 'infoShow1',
-                parentName: 'infoShow',
                 meta: {
                     title: '个人信息子菜单1',
                     icon: 'fa-asterisk',
@@ -17,7 +16,6 @@ export const topRouterMap = [
             {
                 path: 'infoShow2',
                 name: 'infoShow2',
-                parentName: 'infoShow',
                 meta: {
                     title: '个人信息子菜单2',
                     icon: 'fa-asterisk',
@@ -28,7 +26,6 @@ export const topRouterMap = [
             {
                 path: 'infoShow3',
                 name: 'infoShow3',
-                parentName: 'infoShow',
                 meta: {
                     title: '个人信息子菜单3',
                     icon: 'fa-asterisk',
@@ -39,7 +36,6 @@ export const topRouterMap = [
             {
                 path: 'infoShow4',
                 name: 'infoShow4',
-                parentName: 'infoShow',
                 meta: {
                     title: '个人信息子菜单4',
                     icon: 'fa-asterisk',
@@ -50,7 +46,6 @@ export const topRouterMap = [
             {
                 path: 'infoShow5',
                 name: 'infoShow5',
-                parentName: 'infoShow',
                 meta: {
                     title: '个人信息子菜单5',
                     icon: 'fa-asterisk',
@@ -61,7 +56,6 @@ export const topRouterMap = [
             {
                 path: 'infoShow6',
                 name: 'infoShow6',
-                parentName: 'infoShow',
                 meta: {
                     title: '个人信息子菜单6',
                     icon: 'fa-asterisk',
@@ -72,7 +66,6 @@ export const topRouterMap = [
             {
                 path: 'infoShow7',
                 name: 'infoShow7',
-                parentName: 'infoShow',
                 meta: {
                     title: '个人信息子菜单7',
                     icon: 'fa-asterisk',
@@ -83,7 +76,6 @@ export const topRouterMap = [
             {
                 path: 'infoShow8',
                 name: 'infoShow8',
-                parentName: 'infoShow',
                 meta: {
                     title: '个人信息子菜单8',
                     icon: 'fa-asterisk',
@@ -94,7 +86,6 @@ export const topRouterMap = [
             {
                 path: 'infoShow9',
                 name: 'infoShow9',
-                parentName: 'infoShow',
                 meta: {
                     title: '个人信息子菜单9',
                     icon: 'fa-asterisk',
@@ -105,7 +96,6 @@ export const topRouterMap = [
             {
                 path: 'infoShow10',
                 name: 'infoShow10',
-                parentName: 'infoShow',
                 meta: {
                     title: '个人信息子菜单10',
                     icon: 'fa-asterisk',
@@ -121,7 +111,6 @@ export const topRouterMap = [
             {
                 path:'infoModify1',
                 name:'infoModify1',
-                parentName:'infoModify',
                 meta:{
                     title:'修改信息子菜单1',
                     icon:'fa-asterisk',
@@ -132,7 +121,6 @@ export const topRouterMap = [
             {
                 path:'infoModify2',
                 name:'infoModify2',
-                parentName:'infoModify',
                 meta:{
                     title:'修改信息子菜单2',
                     icon:'fa-asterisk',
@@ -143,7 +131,6 @@ export const topRouterMap = [
             {
                 path:'infoModify3',
                 name:'infoModify3',
-                parentName:'infoModify',
                 meta:{
                     title:'修改信息子菜单3',
                     icon:'fa-asterisk',
@@ -224,3 +211,5 @@ export const topRouterMap = [
         ]
     }
 ]
+
+

@@ -140,51 +140,7 @@ export const asyncRouterMap = [
 					 routerType:'leftmenu'
 				},
 				component: () => import('@/page/fundList/chinaTabsList'),
-			 },
-			 {
-					path:'moneyData2',
-					name:'moneyData2',
-					parentName:'chinaTabsList',
-					meta:{
-						title:'理财数据2',
-						icon:'fa-asterisk',
-						routerType:'topmenu'
-					},
-				  component: () => import('@/page/fundList/moneyData')
-		   },
-			 {
-				path:'moneyData',
-				name:'moneyData',
-				parentName:'fundList',
-				meta:{
-					 title:'理财数据',
-					 icon:'fa-asterisk',
-					 routerType:'topmenu'
-				},
-				 component: () => import('@/page/fundList/moneyData')
-		 },
-		 {
-			 path:'loanData',
-			 name:'loanData',
-			 parentName:'fundList',
-			 meta:{
-					title:'贷款数据',
-					icon:'fa-asterisk',
-					routerType:'topmenu'
-			 },
-			 component: () => import('@/page/fundList/moneyData')
-		 },
-		 {
-			 path:'insuranceData',
-			 name:'insuranceData',
-			 parentName:'fundList',
-			 meta:{
-					title:'保险数据',
-					icon:'fa-asterisk',
-					routerType:'topmenu'
-			 },
-			 component: () => import('@/page/fundList/moneyData')
-		 }
+			 }
 		]
 	},
 	{

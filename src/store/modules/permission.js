@@ -34,7 +34,6 @@ function addTopRouter(){
           })
       }
   })
-  console.log(topRouters);
   return topRouters;
 }
 
