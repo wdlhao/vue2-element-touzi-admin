@@ -19,7 +19,6 @@
     "element-ui": "^2.0.7",
     "express": "^4.15.4",
     "js-cookie": "^2.2.0",
-    "mongoose": "^4.13.7",
     "nprogress": "^0.2.0",
     "vue": "^2.5.9",
     "vue-router": "^2.3.1",
