@@ -4,9 +4,6 @@ import store from '../store'
 import { getToken } from '@/utils/auth'
 
 // 创建axios实例
-//可以使用自定义配置新建一个 axios 实例
-// 设置post请求type,因为easy-mock后台需要Form形式的数据才能正常解析;
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
 let service =  axios.create({
   baseURL: process.env.BASE_API, // api的base_url
   timeout: 5000 // 请求超时时间

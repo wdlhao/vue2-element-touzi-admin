@@ -7,7 +7,7 @@ Mock.setup({
     timeout: '300-600'
 })
 
-// 用户相关
+// 资金相关
 Mock.mock(/\/money\/get/, 'get', tableAPI.getMoneyList)
 Mock.mock(/\/money\/remove/, 'get', tableAPI.deleteMoney)
 Mock.mock(/\/money\/batchremove/, 'get', tableAPI.batchremoveMoney)

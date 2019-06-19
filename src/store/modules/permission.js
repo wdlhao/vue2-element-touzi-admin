@@ -1,8 +1,10 @@
 import { asyncRouterMap, constantRouterMap } from '@/router'
 import { topRouterMap } from "@/router/topRouter";
+import * as mutils from 'utils/mUtils'
 
 
 
+// 循环追加顶栏菜单
 function addTopRouter(){
   asyncRouterMap.forEach( (item) => {
     if(item.children && item.children.length >= 1){
@@ -19,23 +21,14 @@ function addTopRouter(){
   return asyncRouterMap;
 }
 
- // 获取到当前路由 3级子菜单
- function filterTopRouters(arr,data){
-  let topRouters = [];
-  arr.forEach((item) => { // 1级
-      if(!item.noDropdown && item.children && item.children.length >= 1){
-          let childrens = item.children;
-          childrens.forEach((item) => {// 2级
-            topRouterMap.forEach((citem) => {
-              if(!item.noDropdown && data.name === citem.parentName){ 
-                  topRouters = citem.topmenulist;
-              }       
-            })
-          })
-      }
-  })
-  console.log(topRouters);
-  return topRouters;
+ // 获取到当前路由对应顶部子菜单
+ function filterTopRouters(data){
+    let topRouters = topRouterMap.find((item)=>{
+       return item.parentName === data.name
+    })
+    if(!mutils.isEmpty(topRouters)){
+       return topRouters.topmenulist;
+    }
 }
 
 /**
@@ -92,7 +85,7 @@ const permission = {
       state.routers = constantRouterMap.concat(routers) // 总路由
     },
     CLICK_INNER_LEFT_MENU:(state,data) => {
-        state.topRouters = filterTopRouters(state.routers,data);
+        state.topRouters = filterTopRouters(data);
     },
     CLICK_TOP_MENU:(state,data) => {
       state.topTitle = data.title
