@@ -102,7 +102,7 @@
 </template>
 
 <script>
-   import * as mutils from 'utils/mUtils'
+   import * as mutils from '@/utils/mUtils'
 
     export default {
         data(){

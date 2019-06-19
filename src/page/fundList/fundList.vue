@@ -112,7 +112,7 @@
 
 <script>
     import { mapGetters } from "vuex";
-    import * as mutils from 'utils/mUtils'
+    import * as mutils from '@/utils/mUtils'
     import SearchItem from "./components/searchItem";
     import AddFundDialog from "./components/addFundDialog";
     import Pagination from "@/components/pagination";

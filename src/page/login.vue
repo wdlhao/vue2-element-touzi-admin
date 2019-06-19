@@ -49,6 +49,7 @@
 			}
 		},
 		mounted(){
+			console.log("into login");
 		},
 		methods: {
 			showMessage(type,message){

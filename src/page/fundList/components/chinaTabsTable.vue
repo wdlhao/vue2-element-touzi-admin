@@ -85,7 +85,7 @@
 </template>
 
 <script>
-    import data from 'static/data/chinaTabs.json';
+    import data from '../data/chinaTabs.json';
 
     export default {
          data(){

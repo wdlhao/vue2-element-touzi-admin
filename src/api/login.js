@@ -1,8 +1,10 @@
 import request from '@/utils/axios'
+let target = process.env.VUE_APP_URL  // development和production环境是不同的
+
 
 export function login(username, password) {
   return request({
-    url: process.env.API_BASE_URL+'/user/login',
+    url: target+'/user/login',
     method: 'post',
     data: {
       username,
@@ -13,7 +15,7 @@ export function login(username, password) {
 
 export function getInfo(token) {
   return request({
-    url: process.env.API_BASE_URL+'/user/info',
+    url: target+'/user/info',
     method: 'get',
     params: { token }
   })
@@ -21,7 +23,7 @@ export function getInfo(token) {
 
 export function logout() {
   return request({
-    url: process.env.API_BASE_URL+'/user/logout',
+    url: target+'/user/logout',
     method: 'post'
   })
 }

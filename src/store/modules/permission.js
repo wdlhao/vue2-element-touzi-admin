@@ -1,6 +1,6 @@
 import { asyncRouterMap, constantRouterMap } from '@/router'
 import { topRouterMap } from "@/router/topRouter";
-import * as mutils from 'utils/mUtils'
+import * as mutils from '@/utils/mUtils'
 
 
 

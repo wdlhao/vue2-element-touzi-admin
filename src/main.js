@@ -11,10 +11,9 @@ import '@/permission' // permission control
 
 import './mockjs'  //引用mock
 
+
 new Vue({
-	el: '#app',
-	router,
-    store,
-	template: '<App/>',
-	components: { App }
-})
+  router,
+  store,
+  render: h => h(App),
+}).$mount('#app')
