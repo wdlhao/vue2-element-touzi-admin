@@ -138,6 +138,6 @@ npm install
 
 ## License
 
-项目讨论qq群：<b>602515030</b>,   <b>684775824</b>，欢迎大家加群，一起来学习和交流。
+项目讨论qq群：<b>684775824</b>，欢迎大家加群，一起来学习和交流。
 
-![image](https://files-cdn.cnblogs.com/files/wdlhao/qun2.bmp)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/master/exampleImgs/qq.png)
