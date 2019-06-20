@@ -173,6 +173,7 @@
     .right-nav{
         display: flex;
         flex: 1;
+        width:calc(100% - 180px);
         padding-right: 15px;
         justify-content: space-between;
         box-shadow:0px 2px 5px 0px rgba(237,233,233,0.5);
@@ -205,6 +206,8 @@
     .userinfo-right{
         justify-content: flex-end;
         min-width: 330px;
+        width:330px;
+        margin-right: 20px;
     }
     .userinfo {
         line-height: 60px;

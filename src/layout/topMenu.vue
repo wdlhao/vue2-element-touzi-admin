@@ -66,7 +66,7 @@
 
 <style lang="less" scoped>
     .menu_top{
-        width:1000px;
+        width:calc(100% - 350px);
         .el-menu-demo{
             overflow-x: scroll;
             overflow-y:hidden;
