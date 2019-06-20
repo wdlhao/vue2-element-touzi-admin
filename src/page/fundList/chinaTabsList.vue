@@ -42,7 +42,7 @@
 
 <script>
     import chinaTabsTable from './components/chinaTabsTable'
-    import data from 'static/data/chinaTabs.json';
+    import data from './data/chinaTabs.json';
     import Pagination from "@/components/pagination";
 
     export default {

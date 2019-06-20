@@ -5,16 +5,16 @@ import store from './store/'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI, { size: 'mini'});
+// import './style/font-awesome.min.css' 
 
 Vue.config.productionTip = false;
 import '@/permission' // permission control
 
 import './mockjs'  //引用mock
 
+
 new Vue({
-	el: '#app',
-	router,
-    store,
-	template: '<App/>',
-	components: { App }
-})
+  router,
+  store,
+  render: h => h(App),
+}).$mount('#app')

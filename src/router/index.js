@@ -46,7 +46,7 @@ export const constantRouterMap = [
 					icon:'fa-index',
 				  routerType:'leftmenu'
 				},
-        component: () => import('@/page/index'),
+        component: () => import('@/page'),
 			}
 		]
 	}
