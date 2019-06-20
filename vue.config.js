@@ -30,10 +30,13 @@ module.exports = {
   },
    // webpack相关配置
   chainWebpack: (config) => {
-    config.entry.app = ['./src/main.js'];
+    config.entry.app = ['./src/main.js']
     config.resolve.alias
       .set('@', resolve('src'))
       .set('cps', resolve('src/components'))
+    // 关闭npm run build之后，This can impact web performance 警告
+    config.performance
+      .set('hints', false)
   },
   configureWebpack:config => {
     // 为生产环境修改配置...
