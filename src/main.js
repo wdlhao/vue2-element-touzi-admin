@@ -12,6 +12,13 @@ import '@/permission' // permission control
 
 import './mockjs'  //引用mock
 
+// 分享功能集合
+import { shareConfig } from './utils/share';
+Vue.prototype.shareConfig = shareConfig;
+
+
+
+
 
 new Vue({
   router,

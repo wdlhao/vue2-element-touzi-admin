@@ -82,6 +82,27 @@ export const asyncRouterMap = [
 		]
 	},
 	{
+		path:'/share',
+		name: 'share',
+		component:Layout,
+		meta: {
+			title:'分享功能',
+			icon: 'fa-share',
+		},
+		noDropdown:true,
+		children:[
+			{
+				path:'share', 
+				meta:{
+					title:'分享功能', 
+					icon:'fa-share',
+				  routerType:'leftmenu'
+				},
+				component: () => import('@/page/share'),
+			}
+		]
+	},
+	{
 	  path:'/infoManage',
 	  name: 'infoManage',
 	  meta: {
