@@ -1,10 +1,10 @@
 import request from '@/utils/axios'
-let target = process.env.VUE_APP_URL  // development和production环境是不同的
+import { appUrl }  from '@/utils/env'
 
 
 export function login(username, password) {
   return request({
-    url: target+'/user/login',
+    url: appUrl+'/user/login',
     method: 'post',
     data: {
       username,
@@ -15,7 +15,7 @@ export function login(username, password) {
 
 export function getInfo(token) {
   return request({
-    url: target+'/user/info',
+    url: appUrl+'/user/info',
     method: 'get',
     params: { token }
   })
@@ -23,7 +23,7 @@ export function getInfo(token) {
 
 export function logout() {
   return request({
-    url: target+'/user/logout',
+    url: appUrl+'/user/logout',
     method: 'post'
   })
 }
