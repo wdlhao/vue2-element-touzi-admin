@@ -23,6 +23,14 @@
 						<p class="tip">密码为：123456</p>
 					</div>
 				</el-form>
+				<!-- <div class="sanFangArea">
+					<p class="title">第三方账号登录</p>
+					<ul>
+						<li>
+							<img
+						</li>
+					</ul>
+				</div> -->
 			
 	  		</section>
 	  	</transition>
