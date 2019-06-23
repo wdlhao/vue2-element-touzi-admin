@@ -22,16 +22,21 @@
 						<p class="tip">用户名为：admin/editor<span class="tips">(可用于切换权限)</span></p>
 						<p class="tip">密码为：123456</p>
 					</div>
+					<div class="sanFangArea" style="display:none;">
+						<p class="title">第三方账号登录</p>
+						<ul class="rflex">
+							<li @click="loginByWechat()">
+								<img :src="sanFangImgs.wechat" alt="">
+							</li>
+							<li>
+								<img :src="sanFangImgs.weibo" alt="">
+							</li>
+							<li>
+								<img :src="sanFangImgs.gitHub" alt="">
+							</li>
+						</ul>
+				    </div>
 				</el-form>
-				<!-- <div class="sanFangArea">
-					<p class="title">第三方账号登录</p>
-					<ul>
-						<li>
-							<img
-						</li>
-					</ul>
-				</div> -->
-			
 	  		</section>
 	  	</transition>
   	</div>
@@ -54,6 +59,11 @@
 						{ required: true, message: '请输入密码', trigger: 'blur' }
 					],
 				},
+				sanFangImgs:{
+					wechat:require('../assets/img/wechat.png'),
+					weibo:require('../assets/img/weibo.png'),
+					gitHub:require('../assets/img/gitHub.png')
+				}
 			}
 		},
 		mounted(){
@@ -76,6 +86,9 @@
 						})
 					}
 				});
+			},
+			loginByWechat(){
+				alert(1);
 			}
 		}
 	}
@@ -156,6 +169,28 @@
 		.el-button--primary{
 			background-color:#FF7C1A;
 			border:1px solid #FF7C1A;
+		}
+	}
+	.sanFangArea{
+		border-top: 1px solid #DCDFE6;
+		margin-top: 5px;
+		padding: 5px;
+		.title{
+			font-size: 14px;
+			color: #8b9196;
+		}
+		ul{
+			li{
+				flex:1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				img{
+					width:40px;
+					height:40px;
+				}
+			}
 		}
 	}
 </style>
