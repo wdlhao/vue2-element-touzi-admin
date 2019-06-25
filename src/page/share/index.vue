@@ -5,7 +5,7 @@
 				<li>
 					<p class="title">分享到微信</p>
 					<div class="item" @mouseover="showqrcode()" @mouseout="hideqrcode()">
-						<i :class="['fa fa-wechat',isactiveweixin?'active':'']"></i>
+						<img :src="sanFangImgs.wechat" alt="">
 					</div>
 					<div class="qrcodeArea" v-show="qrcode.show">
 					   <p class="saoTitle">扫一扫</p>
@@ -14,26 +14,26 @@
 				</li>
 				<li>
 					<p class="title">分享到QQ</p>
-					<div class="item" @click="shareToQQ()" @mouseover="showStyle('qq')" @mouseout="hideStyle('qq')">
-						<i :class="['fa fa-qq',isactiveqq?'active':'']"></i>
+					<div class="item" @click="shareToQQ()">
+						<img :src="sanFangImgs.qqs" alt="">
 					</div>
 				</li>
 				<li>
 					<p class="title">分享到QQ空间</p>
-					<div class="item" @click="shareToQQzone()" @mouseover="showStyle('qqZone')" @mouseout="hideStyle('qqZone')">
-						<i :class="['fa fa-qq',isactiveqqZone?'active':'']"></i>
+					<div class="item" @click="shareToQQzone()">
+						<img :src="sanFangImgs.qqZone" alt="">
 					</div>
 				</li>
 				<li>
 					<p class="title">分享到微博</p>
-					<div class="item" @click="shareToWeibo()" @mouseover="showStyle('weibo')" @mouseout="hideStyle('weibo')">
-						<i :class="['fa fa-weibo',isactiveweibo?'active':'']"></i>
+					<div class="item" @click="shareToWeibo()">
+						<img :src="sanFangImgs.weibo" alt="">
 					</div>
 				</li>
 				<li>
 					<p class="title">分享到豆瓣</p>
-					<div class="item" @click="shareToDouban()" @mouseover="showStyle('douban')" @mouseout="hideStyle('douban')">
-						<i :class="['fa fa-mars-double',isactivedouban?'active':'']"></i>
+					<div class="item" @click="shareToDouban()">
+						<img :src="sanFangImgs.douban" alt="">
 					</div>
 				</li>
 			</ul>
@@ -43,7 +43,7 @@
 
 <script>
 	import QRCode from 'qrcodejs2'
-	import { shareUrl,shareTitle,weibo } from "@/utils/env";
+	import { shareUrl } from "@/utils/env";
 
 	export default {
 	  data(){
@@ -63,8 +63,15 @@
 					colorDark: '#000000',
 					colorLight: '#ffffff',
 					correctLevel: QRCode.CorrectLevel.H
+				},
+				sanFangImgs:{
+					wechat:require('@/assets/img/wechat.png'),
+					qqs:require('@/assets/img/qqs.png'),
+					weibo:require('@/assets/img/weibo.png'),
+					gitHub:require('@/assets/img/gitHub.png'),
+					qqZone:require('@/assets/img/qqZone.png'),
+					douban:require('@/assets/img/douban.png')
 				}
-				
 			}
 		},
 		mounted(){
@@ -74,49 +81,9 @@
 		methods: {
 			showqrcode(){
 				this.qrcode.show  = true;
-				this.showStyle('weixin');
 			},
 			hideqrcode(){
 				this.qrcode.show  = false;
-				this.hideStyle('weixin');
-			},
-			showStyle(type){
-				switch(type){
-					case 'weixin':
-					  this.isactiveweixin = true;
-					break;
-					case 'qq':
-					  this.isactiveqq = true;
-					break;
-					case 'qqZone':
-					  this.isactiveqqZone = true;
-					break;
-					case 'weibo':
-					  this.isactiveweibo = true;
-					break;
-					case 'douban':
-					  this.isactivedouban = true;
-					break;
-				}
-			},
-			hideStyle(type){
-				switch(type){
-					case 'weixin':
-					  this.isactiveweixin = false;
-					break;
-					case 'qq':
-					  this.isactiveqq = false;
-					break;
-					case 'qqZone':
-					  this.isactiveqqZone = false;
-					break;
-					case 'weibo':
-					  this.isactiveweibo = false;
-					break;
-					case 'douban':
-					  this.isactivedouban = false;
-					break;
-				}
 			},
 			creatQrCode() {
 				 const qrcode = new QRCode(this.$refs.qrCodeUrl, this.qrcodeObj)
@@ -161,11 +128,9 @@
 					display: flex;
 					justify-content: center;
 					align-items: center;
-					.fa{
-						font-size: 24px;
-					}
-					.active{
-						color:#FF6C60;
+					img{
+						width:32px;
+						height:32px;
 					}
 				}
 				.qrcodeArea{

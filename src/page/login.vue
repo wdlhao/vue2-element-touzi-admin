@@ -22,10 +22,10 @@
 						<p class="tip">用户名为：admin/editor<span class="tips">(可用于切换权限)</span></p>
 						<p class="tip">密码为：123456</p>
 					</div>
-					<div class="sanFangArea" style="display:none;">
+					<div class="sanFangArea">
 						<p class="title">第三方账号登录</p>
 						<ul class="rflex">
-							<li @click="loginByWechat()">
+							<li>
 								<img :src="sanFangImgs.wechat" alt="">
 							</li>
 							<li>
@@ -67,7 +67,6 @@
 			}
 		},
 		mounted(){
-			console.log("into login");
 		},
 		methods: {
 			showMessage(type,message){
@@ -86,9 +85,6 @@
 						})
 					}
 				});
-			},
-			loginByWechat(){
-				alert(1);
 			}
 		}
 	}
@@ -175,6 +171,7 @@
 		border-top: 1px solid #DCDFE6;
 		margin-top: 5px;
 		padding: 5px;
+		display: none;
 		.title{
 			font-size: 14px;
 			color: #8b9196;
