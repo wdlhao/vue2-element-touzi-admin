@@ -11,7 +11,7 @@ console.log("env:  "+env);
 console.log("target:   "+target);
 
 module.exports = {
-  publicPath: '/',
+  publicPath: './',
   outputDir: './dist',
   lintOnSave: false, // 关闭eslint
   // 打包时不生成.map文件
