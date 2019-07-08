@@ -29,8 +29,15 @@
 					colorDark: '#000000',
 					colorLight: '#ffffff',
 					correctLevel: QRCode.CorrectLevel.H
+				},
+				sanFangImgs:{
+					wechat:require('@/assets/img/wechat.png'),
+					qqs:require('@/assets/img/qqs.png'),
+					weibo:require('@/assets/img/weibo.png'),
+					gitHub:require('@/assets/img/gitHub.png'),
+					qqZone:require('@/assets/img/qqZone.png'),
+					douban:require('@/assets/img/douban.png')
 				}
-				
 			}
 		},
 		components:{
