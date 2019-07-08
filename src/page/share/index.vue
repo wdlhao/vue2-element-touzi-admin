@@ -9,6 +9,7 @@
 		<div class="shareItem rflex">
 			<juejin-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></juejin-share>
 		    <info-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></info-share>
+		    <sina-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></sina-share>
 		</div>
 		<wx-code-modal v-if="wxModal.show" :wxModal="wxModal" @hideWxCodeModal="hideWxCodeModal"></wx-code-modal>
   	</div>
@@ -22,7 +23,8 @@
 		JianshuLeftShare,
 		WxCodeModal,
 		JuejinShare,
-		InfoShare
+		InfoShare,
+		SinaShare
 	} from "./components";
 
 	export default {
@@ -42,7 +44,8 @@
 			JianshuLeftShare,
 			WxCodeModal,
 			JuejinShare,
-			InfoShare
+			InfoShare,
+			SinaShare
 		},
 		mounted(){
 
@@ -74,6 +77,7 @@
 <style lang="less" scoped>
 	.shareItem{
 		margin-bottom: 30px;
+		justify-content: space-between;
 	}
 	
 	

@@ -2,7 +2,7 @@
     <div class="shareArea cflex">
 		<p class="shareTitle">分享组件一：横向排列</p>
 		<div class="bottom rflex">
-			<span>分享到：</span>
+			<span class="toTitle">分享到：</span>
 			<ul class="shareUl rflex wflex">
 				<li>
 					<div class="item" @mouseover="showqrcode()" @mouseout="hideqrcode()">
@@ -110,51 +110,54 @@
 			padding: 20px;
 			width: 100%;
 			height: 100%;
-            box-sizing: border-box;
+			box-sizing: border-box;
+			.toTitle{
+				font-size: 13px;
+			}
 			 .shareUl{
-					justify-content: space-between;
-						li{
-								display: flex;
-								flex-direction: column;
-								align-items: center;
-								position: relative;
-								cursor: pointer;
-								.title{
-									margin-bottom: 10px;
-									font-size: 13px;
-									color:#a9d86e;
-								}
-								.item{
-									background: #EFF2F7;
-									width: 40px;
-									height: 40px;
-									border-radius: 50%;
-									display: flex;
-									justify-content: center;
-									align-items: center;
-									.svg-icon{
-										font-size: 24px;
-									}
-									.active{
-										color:#FF6C60;
-									}
-								}
-								.qrcodeArea{
-									position: absolute;
-									top: 50px;
-									left: -30px;
-									text-align: center;
-									border: 1px solid #a9d86e;
-									border-radius: 4px;
-									padding: 10px;
-									.saoTitle{
-											font-size: 14px;
-										color:#a9d86e;
-										margin-bottom: 5px;
-									}
-								}
+				justify-content: space-between;
+				li{
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					position: relative;
+					cursor: pointer;
+					.title{
+						margin-bottom: 10px;
+						font-size: 13px;
+						color:#a9d86e;
+					}
+					.item{
+						background: #EFF2F7;
+						width: 40px;
+						height: 40px;
+						border-radius: 50%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						.svg-icon{
+							font-size: 24px;
 						}
-	    }
+						.active{
+							color:#FF6C60;
+						}
+					}
+					.qrcodeArea{
+						position: absolute;
+						top: 50px;
+						left: -30px;
+						text-align: center;
+						border: 1px solid #a9d86e;
+						border-radius: 4px;
+						padding: 10px;
+						.saoTitle{
+								font-size: 14px;
+							color:#a9d86e;
+							margin-bottom: 5px;
+						}
+					}
+				}
+			}
 		}
      
 	}
