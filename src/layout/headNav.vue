@@ -130,11 +130,9 @@
              */
             setDialogInfo(cmditem) {
                 if (!cmditem) {
-                    console.log('test');
                     this.$message('菜单选项缺少command属性');
                     return;
                 }
-                console.log(1234);
                 switch (cmditem) {
                     case 'info':
                     case 'pass':
