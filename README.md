@@ -88,10 +88,7 @@ editor只有被赋予权限的页面和按钮才可以看到；
 ## 技术答疑，交流QQ群
 项目说明：小爱ADMIN 是完全开源免费的管理系统集成方案，可以直接应用于相关后台管理系统模板；很多重点地方都做了详细的注释和解释。如果你也一样喜欢前端开发，欢迎加入我们的讨论/学习群，群内可以提问答疑，分享学习资料；
 
-欢迎添加群主微信：
+欢迎添加群主微信和qq群答疑：
 
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/img/wechat.jpg)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/img/qcode.jpg)
 
-欢迎加入答疑qq群：
-
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/img/qq.png)
