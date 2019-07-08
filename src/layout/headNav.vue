@@ -189,9 +189,8 @@
         position: fixed;
         top: 0px;
         left: 0px;
-        z-index: 100;
         box-sizing: border-box;
-        z-index: 5;
+        // z-index: 5;
         .logout {
             vertical-align: middle;
             cursor: pointer;

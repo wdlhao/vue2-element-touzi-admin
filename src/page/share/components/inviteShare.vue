@@ -1,8 +1,8 @@
 <template>
     <div class="shareArea cflex">
-		<p class="shareTitle">分享组件一：横向排列</p>
-		<div class="bottom rflex">
-			<span>分享到：</span>
+		<p class="shareTitle">分享组件二：横向排列</p>
+		<div class="bottom cflex">
+			<p class="title">邀请好友加入 >></p>
 			<ul class="shareUl rflex wflex">
 				<li>
 					<div class="item" @mouseover="showqrcode()" @mouseout="hideqrcode()">
@@ -35,6 +35,7 @@
 					</div>
 				</li>
 			</ul>
+			<p class="shareIntro">朋友注册后，你会获得书币，书币可以用来去市集兑换物品。</p>
 		</div>
     </div>
 </template>
@@ -44,7 +45,7 @@
 	import { shareUrl } from "@/utils/env";
 
 	export default {
-	  name:'hengShare',
+	  name:'inviteShare',
 	  data(){
 			return {
 				qrcode:{
@@ -93,7 +94,7 @@
 
 <style lang="less" scoped>
 	.shareArea{
-		width: 340px;
+		width: 300px;
 		align-items: center;
 		background: #fff;
 		border-radius: 4px;
@@ -107,54 +108,64 @@
         }
 		.bottom{
 			align-items: center;
-			padding: 20px;
 			width: 100%;
-			height: 100%;
-            box-sizing: border-box;
-			 .shareUl{
-					justify-content: space-between;
-						li{
-								display: flex;
-								flex-direction: column;
-								align-items: center;
-								position: relative;
-								cursor: pointer;
-								.title{
-									margin-bottom: 10px;
-									font-size: 13px;
-									color:#a9d86e;
-								}
-								.item{
-									background: #EFF2F7;
-									width: 40px;
-									height: 40px;
-									border-radius: 50%;
-									display: flex;
-									justify-content: center;
-									align-items: center;
-									.svg-icon{
-										font-size: 24px;
-									}
-									.active{
-										color:#FF6C60;
-									}
-								}
-								.qrcodeArea{
-									position: absolute;
-									top: 50px;
-									left: -30px;
-									text-align: center;
-									border: 1px solid #a9d86e;
-									border-radius: 4px;
-									padding: 10px;
-									.saoTitle{
-											font-size: 14px;
-										color:#a9d86e;
-										margin-bottom: 5px;
-									}
-								}
+			box-sizing: border-box;
+			padding: 20px;
+			.title{
+				padding: 10px;
+				box-sizing: border-box;
+				width: 100%;
+				font-size:14px;
+			}
+			.shareUl{
+				justify-content: space-between;
+				width: 100%;
+				padding: 0 10px;
+				box-sizing: border-box;
+				li{
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						position: relative;
+						cursor: pointer;
+						.item{
+							background: #EFF2F7;
+							width: 40px;
+							height: 40px;
+							border-radius: 50%;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							.svg-icon{
+								font-size: 24px;
+							}
+							.active{
+								color:#FF6C60;
+							}
 						}
-	    }
+						.qrcodeArea{
+							position: absolute;
+							top: 50px;
+							left: -30px;
+							text-align: center;
+							border: 1px solid #a9d86e;
+							border-radius: 4px;
+							padding: 10px;
+							background: #fff;
+							.saoTitle{
+								font-size: 14px;
+								color:#a9d86e;
+								margin-bottom: 5px;
+							}
+						}
+				}
+			}
+			.shareIntro{
+			    padding: 10px;
+				box-sizing: border-box;
+				width: 100%;
+				font-size:12px;
+			}
 		}
      
 	}

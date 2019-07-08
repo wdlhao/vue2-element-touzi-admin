@@ -1,8 +1,12 @@
 <template>
     <div class="shareArea cflex">
-		<p class="shareTitle">分享组件一：横向排列</p>
-		<div class="bottom rflex">
-			<span>分享到：</span>
+		<p class="shareTitle">分享组件六：横向排列</p>
+		<div class="bottom cflex">
+			<div class="lineArea rflex">
+				<div class="line"></div>
+				<span>分享到</span>
+				<div class="line"></div>
+			</div>
 			<ul class="shareUl rflex wflex">
 				<li>
 					<div class="item" @mouseover="showqrcode()" @mouseout="hideqrcode()">
@@ -44,7 +48,7 @@
 	import { shareUrl } from "@/utils/env";
 
 	export default {
-	  name:'hengShare',
+	  name:'infoShare',
 	  data(){
 			return {
 				qrcode:{
@@ -93,7 +97,7 @@
 
 <style lang="less" scoped>
 	.shareArea{
-		width: 340px;
+		width: 320px;
 		align-items: center;
 		background: #fff;
 		border-radius: 4px;
@@ -110,9 +114,22 @@
 			padding: 20px;
 			width: 100%;
 			height: 100%;
-            box-sizing: border-box;
+			box-sizing: border-box;
+			.lineArea{
+				padding: 10px;
+				width:100%;
+				text-align: center;
+				align-items: center;
+				justify-content: space-between;
+				.line{
+					border-bottom:1px solid gold;
+					width:110px;
+				}
+			}
 			 .shareUl{
+				    width: 100%;
 					justify-content: space-between;
+    				align-items: center;
 						li{
 								display: flex;
 								flex-direction: column;
