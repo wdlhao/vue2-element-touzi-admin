@@ -108,7 +108,7 @@
 
 <style lang="less" scoped>
 	.shareArea{
-		width: 340px;
+		width: 320px;
 		align-items: center;
 		background: #fff;
 		border-radius: 4px;

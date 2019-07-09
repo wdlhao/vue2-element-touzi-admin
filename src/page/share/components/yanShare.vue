@@ -1,31 +1,54 @@
 <template>
-    <div class="shareArea cflex">
-		<p class="shareTitle">分享组件五：仿掘金网站分享</p>
-		<div class="bottom">
-			<ul class="shareUl cflex wflex">
-				<li>
-					<span class="jueTitle">分享</span>
-				</li>
-				<li>
-					<div class="item" @click="shareToWeibo()">
-						<icon-svg icon-class="iconweibo" />
-					</div>
-				</li>
-				<li>
-					<div class="item" @click="shareToQQ()">
-						<icon-svg icon-class="iconqq" />
-					</div>
-				</li>
+    <div class="shareArea cflex sharelast">
+		<p class="shareTitle">分享组件八：横向排列</p>
+		<div class="bottom rflex">
+			<div class="yanItem" v-popover:yanShare>
+				<icon-svg icon-class="iconshare1" />
+			</div>
+			<el-popover
+				ref="yanShare"
+				popper-class="yanshare"
+				placement="bottom"
+				trigger="hover">
+				<ul class="shareUl rflex wflex">
 					<li>
-					<div class="item" @mouseover="showqrcode()" @mouseout="hideqrcode()">
-						<icon-svg icon-class="iconwechat" />
-					</div>
-					<div class="qrcodeArea" v-show="qrcode.show">
-						<p class="saoTitle">扫一扫</p>
-						<div class="qrcode" ref="qrCodeUrl" ></div>
-					</div>
-				</li>
-			</ul>
+						<div class="item" v-popover:yanSharewx>
+							<icon-svg icon-class="iconwechat" />
+						</div>
+						<el-popover
+							ref="yanSharewx"
+							popper-class="yanSharewx"
+							placement="bottom"
+							trigger="hover">
+							<div class="qrcodeArea">
+								<p class="saoTitle">扫一扫</p>
+								<div class="qrcode" ref="qrCodeUrl" ></div>
+							</div>
+						</el-popover>
+					</li>
+					<li>
+						<div class="item" @click="shareToWeibo()">
+							<icon-svg icon-class="iconweibo" />
+						</div>
+					</li>
+					<li>
+						<div class="item" @click="shareToQQ()">
+							<icon-svg icon-class="iconqq" />
+						</div>
+					</li>
+					<li>
+						<div class="item" @click="shareToQQzone()">
+							<icon-svg icon-class="iconqq_zone" />
+						</div>
+					</li>
+				
+					<li>
+						<div class="item" @click="shareToDouban()">
+							<icon-svg icon-class="icondouban" />
+						</div>
+					</li>
+				</ul>
+			</el-popover>
 		</div>
     </div>
 </template>
@@ -35,7 +58,7 @@
 	import { shareUrl } from "@/utils/env";
 
 	export default {
-	  name:'juejinShare',
+	  name:'hengShare',
 	  data(){
 			return {
 				qrcode:{
@@ -84,7 +107,7 @@
 
 <style lang="less" scoped>
 	.shareArea{
-		width: 300px;
+		width: 340px;
 		align-items: center;
 		background: #fff;
 		border-radius: 4px;
@@ -100,7 +123,18 @@
 			padding: 20px;
 			width: 100%;
 			height: 100%;
-            box-sizing: border-box;
+			box-sizing: border-box;
+			justify-content: center;
+			.yanItem{
+				justify-content: center;
+				align-items: center;
+				.svg-icon{
+					font-size: 34px;
+				}
+			}
+			.toTitle{
+				font-size: 13px;
+			}
 			 .shareUl{
 				justify-content: space-between;
 				li{
@@ -109,11 +143,6 @@
 					align-items: center;
 					position: relative;
 					cursor: pointer;
-					margin-bottom: 10px;
-					.jueTitle{
-						color: #c6c6c6;
-						font-size: 14px;
-					}
 					.title{
 						margin-bottom: 10px;
 						font-size: 13px;
@@ -134,22 +163,9 @@
 							color:#FF6C60;
 						}
 					}
-					.qrcodeArea{
-						position: absolute;
-						top: 50px;
-						text-align: center;
-						border: 1px solid #a9d86e;
-						background: #fff;
-						border-radius: 4px;
-						padding: 10px;
-						.saoTitle{
-								font-size: 14px;
-							color:#a9d86e;
-							margin-bottom: 5px;
-						}
-					}
-			    }
-	        }
+					
+				}
+			}
 		}
      
 	}

@@ -4,7 +4,7 @@
 		<div class="bottom cflex">
 			<div class="lineArea rflex">
 				<div class="line"></div>
-				<span>分享到</span>
+				<span class="lineTitle">分享到</span>
 				<div class="line"></div>
 			</div>
 			<ul class="shareUl rflex wflex">
@@ -120,15 +120,18 @@
 				text-align: center;
 				align-items: center;
 				justify-content: space-between;
+				.lineTitle{
+					font-size: 13px;
+					margin: 0 5px;
+				}
 				.line{
 					border-bottom:1px solid gold;
-					width:110px;
+					width:100px;
 				}
 			}
 			 .shareUl{
 				    width: 100%;
 					justify-content: space-between;
-    				align-items: center;
 						li{
 								display: flex;
 								flex-direction: column;

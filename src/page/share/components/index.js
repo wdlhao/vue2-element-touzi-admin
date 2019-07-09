@@ -6,6 +6,7 @@ import WxCodeModal from "./wxCodeModal";
 import JuejinShare from "./juejinShare";
 import InfoShare from "./infoShare";
 import SinaShare from "./sinaShare";
+import YanShare from "./yanShare";
 
 export {
     HengShare,
@@ -15,5 +16,6 @@ export {
     WxCodeModal,
     JuejinShare,
     InfoShare,
-    SinaShare
+    SinaShare,
+    YanShare
 }

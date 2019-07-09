@@ -60,9 +60,9 @@
 					],
 				},
 				sanFangImgs:{
-					wechat:require('../assets/img/wechat.png'),
-					weibo:require('../assets/img/weibo.png'),
-					gitHub:require('../assets/img/gitHub.png')
+					wechat:'',
+					weibo:'',
+					gitHub:''
 				}
 			}
 		},

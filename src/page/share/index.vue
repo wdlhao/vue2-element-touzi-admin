@@ -1,5 +1,5 @@
 <template>
-  	<div class="fillcontain">
+  	<div class="fillcontain shareContainer" ref="shareContainer">
 		<div class="shareItem rflex">
 			<heng-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></heng-share>
 			<invite-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></invite-share>
@@ -7,9 +7,10 @@
 			<jianshu-left-share @shareToWeixin="shareToWeixin" @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></jianshu-left-share>
 		</div>
 		<div class="shareItem rflex">
-			<juejin-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></juejin-share>
 		    <info-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></info-share>
+			<juejin-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></juejin-share>
 		    <sina-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></sina-share>
+		    <yan-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></yan-share>
 		</div>
 		<wx-code-modal v-if="wxModal.show" :wxModal="wxModal" @hideWxCodeModal="hideWxCodeModal"></wx-code-modal>
   	</div>
@@ -24,7 +25,8 @@
 		WxCodeModal,
 		JuejinShare,
 		InfoShare,
-		SinaShare
+		SinaShare,
+		YanShare
 	} from "./components";
 
 	export default {
@@ -45,12 +47,18 @@
 			WxCodeModal,
 			JuejinShare,
 			InfoShare,
-			SinaShare
+			SinaShare,
+			YanShare
 		},
 		mounted(){
-
+			this.setSectionHeight();
 		},
 		methods: {
+			setSectionHeight(){
+				this.$nextTick(() => {
+				   this.$refs.shareContainer.style.height =  (document.body.clientHeight - 160)+'px';
+				})
+		    },
 			hideWxCodeModal(){
 				this.wxModal.show = false;
 			},
@@ -75,10 +83,9 @@
 </script>
 
 <style lang="less" scoped>
-	.shareItem{
-		margin-bottom: 30px;
-		justify-content: space-between;
+	.shareContainer{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
 	}
-	
-	
 </style>

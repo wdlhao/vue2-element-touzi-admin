@@ -103,7 +103,6 @@
 		align-items: center;
 		background: #fff;
 		border-radius: 4px;
-		margin-right: 30px;
          .shareTitle{
             border-bottom: 1px solid #e8e8e8;
             padding: 10px;

@@ -1,5 +1,5 @@
 <template>
-    <div class="shareArea cflex">
+    <div class="shareArea cflex sharelast">
 		<p class="shareTitle">分享组件三：仿简书侧栏分享</p>
 		<div class="bottom">
 			<el-popover
