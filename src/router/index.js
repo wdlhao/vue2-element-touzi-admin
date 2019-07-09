@@ -44,9 +44,9 @@ export const constantRouterMap = [
 				meta:{
 					title:'首页', 
 					icon:'fa-index',
-				  routerType:'leftmenu'
+				    routerType:'leftmenu'
 				},
-        component: () => import('@/page'),
+                component: () => import('@/page/index/index'),
 			}
 		]
 	}

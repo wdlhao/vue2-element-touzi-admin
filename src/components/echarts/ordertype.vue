@@ -1,9 +1,10 @@
 <template>
-    <div :id="id" style="width:100%;height:280px;"></div>
+    <div :id="id" class="orderArea"></div>
 </template>
 
 <script>
-   	import echarts from 'echarts'
+	import echarts from 'echarts'
+    import echartsTheme from "cps/echarts/theme/westeros.json";
     
     export default {
         data(){
@@ -11,13 +12,19 @@
                  myChart:null,
             }
         },
+		props: ['id','type'],
         mounted(){
-            this.myChart = echarts.init(document.getElementById(this.id));
-            this.myChart.setOption(this.readyBin1Option(this.type));
-        },
-        props: ['id','type'],
+			this.loadChart();
+		},
         methods: {
-         	readyBin1Option(type){
+			 loadChart(){
+                this.$nextTick(() => {
+                    echarts.registerTheme('westeros', echartsTheme)
+                    this.myChart = echarts.init(document.getElementById(this.id),'westeros');
+                    this.myChart.setOption(this.initOption(this.type));
+                })
+            },
+         	initOption(type){
 				let text,legend_data,series_data;
 				if(type == "ordertype"){
 					text = "用户投资类型";
@@ -45,7 +52,6 @@
 				let data = {
 					  title : {
 						text: text,
-						subtext: '纯属虚构',
 						x:'center'
 					},
 					tooltip : {
@@ -79,7 +85,7 @@
         },
         watch: {
             type:(v)=>{
-                this.readyBin1Option(v)
+                this.initOption(v)
             }
         }
     }
