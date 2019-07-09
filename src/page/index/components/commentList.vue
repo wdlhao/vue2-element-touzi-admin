@@ -6,8 +6,8 @@
             </div>
             <div class="right cflex wflex">
                <p class="username">{{item.username}}</p>
-               <p class="content">{{item.commentContent.substring(0,134)}}</p>
-               <p class="dateTime">{{item.date}}</p>
+               <p class="content">{{item.commentContent.substring(0,100)}}</p>
+               <p class="dateTime"><icon-svg icon-class="icontime" />{{item.date}}</p>
             </div>
         </div>
     </div>
@@ -45,11 +45,15 @@
    background: #fff;
    padding: 10px;
    box-sizing: border-box;
-   height: 398px;
+   height: 407px;
+   max-height: 407px;
    overflow: hidden;
+   border-radius: 6px;
+   justify-content: space-between;
    .comment{
+       border-bottom: 1px solid #e8e8e8;
       .left{
-         width:100px;
+         width:80px;
          text-align: center;
          .userImg{
            width:50px;
@@ -71,6 +75,9 @@
              text-align: right;
              font-size: 13px;
              color:#87DE75;
+             .svg-icon{
+               margin-right: 5px;
+             }
           }
 
       }
