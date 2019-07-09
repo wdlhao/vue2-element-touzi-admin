@@ -11,14 +11,18 @@
 				<el-col :span="3"><div class="newadd_investors data_list"><p class="number">36</p><p>新增投资人(人)</p></div></el-col>
 			</el-row>
 			<el-row :gutter="10" class="row_list">
-				<el-col :span="12">
-				    <bar-type-data  id="bar_data"></bar-type-data>
+				<el-col :span="10">
+					<sales-table></sales-table>
+				    <!-- <bar-type-data  id="bar_data"></bar-type-data> -->
 				</el-col>
-				<el-col :span="12">
-				    <line-type-data id="line_data"></line-type-data>
+				<el-col :span="7">
+					<comment-list></comment-list>
+				</el-col>
+				<el-col :span="7">
+					<card-list></card-list>
 				</el-col>
 			</el-row>
-			<el-row :gutter="10">
+			<!-- <el-row :gutter="10">
 				<el-col :span="8">
 				    <ordertype  id="bin1_data" type="ordertype"></ordertype>
 				</el-col>
@@ -28,13 +32,17 @@
 			   	<el-col :span="8">
 				    <ordertype id="bin3_data" type="areatype"></ordertype>
 				</el-col>
-			</el-row>
+			</el-row>  -->
 		</section>
 </template>
 
 <script>
 	import echarts from 'echarts'
-    import '../../node_modules/echarts/theme/macarons.js';
+	// import '../../node_modules/echarts/theme/macarons.js';
+	import salesTable from "./components/salesTable";  // 销售数据表格
+	import commentList from "./components/commentList";  // 用户评论列表
+	import cardList from "./components/cardList";  // card列表
+
 	import ordertype from 'cps/echarts/ordertype'
 	import ordersource from 'cps/echarts/orderSource'
 	import barTypeData from 'cps/echarts/barTypeData'
@@ -50,6 +58,10 @@
     		}
     	},
     	components: {
+		   salesTable,
+		   commentList,
+		   cardList,
+
 		   barTypeData,
 		   lineTypeData,
 		   ordertype,
@@ -81,7 +93,6 @@
 	.data_section{
 		margin: 20px;
 		overflow: auto;
-		background: #ffffff;
 		border-radius: 2px;
 		padding: 20px;
 		.row_list{
