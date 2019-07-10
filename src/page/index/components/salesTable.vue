@@ -12,7 +12,7 @@
       >
         <template slot-scope="scope">
             <img class="userImg" :src="userImg" alt="tuxiang"/>
-            {{scope.row.username}}
+            {{(scope.row.username).substring(0,12)}}
         </template>
       </el-table-column>
       <el-table-column

@@ -4,7 +4,9 @@
     <el-row>
       <el-col>
         <el-card :body-style="{ padding: '0px' }" class="cardBody">
-          <img :src="userImg" class="userImg" alt="">
+          <a :href="github" target="_blank">
+             <img :src="userImg" class="userImg" alt="">
+          </a>
           <div class="progress wflex">
             <div class="rflex">
               <span class="title">vue:</span><el-progress :percentage="100" status="success"></el-progress>
@@ -24,9 +26,6 @@
             <div class="rflex">
               <span class="title">angular:</span><el-progress :percentage="0"></el-progress>
             </div>
-            <!-- <el-progress :percentage="70"></el-progress>
-            <el-progress :percentage="100" status="success"></el-progress>
-            <el-progress :percentage="50" status="exception"></el-progress> -->
           </div>
         </el-card>
       </el-col>
@@ -36,13 +35,14 @@
 
 <script>
   import userImg from "@/assets/img/avatar-3.png";
+  import { github } from "@/utils/env";
 
 export default {
   name:'cardList',
   data() {
     return {
-        userImg:userImg
-
+        userImg:userImg,
+        github:github
     };
   }
 }
@@ -57,6 +57,10 @@ export default {
   max-height: 407px;
   overflow: hidden;
   border-radius: 6px;
+  .userImg{
+    width: 100%;
+    height: 236px;
+  }
   .progress {
    padding: 10px;
     .rflex{

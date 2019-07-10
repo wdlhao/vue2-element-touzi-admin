@@ -1,5 +1,5 @@
 <template>
-    <div :id="id" class="orderArea"></div>
+    <div :id="id" class="orderArea orderbarArea"></div>
 </template>
 
 <script>
@@ -9,22 +9,30 @@
         name:'barChat',
         data(){
             return {
+                 id:'barChart',
                  myChart:null,
             }
         },
-        props: ['id'],
+        props: ['type'],
         mounted(){
             this.loadChart();
+        },
+        beforeDestroy() {
+			if (!this.myChart) {
+				return
+			}
+			this.myChart.dispose();
+			this.myChart = null;
         },
         methods: {
             loadChart(){
                 this.$nextTick(() => {
                     echarts.registerTheme('westeros', echartsTheme)
                     this.myChart = echarts.init(document.getElementById(this.id),'westeros');
-                    this.myChart.setOption(this.initOption());
+                    this.myChart.setOption(this.initOption(this.type));
                 })
             },
-         	initOption(){
+         	initOption(v){
                 let option = {
                     tooltip : {
                         trigger: 'axis'
@@ -72,9 +80,9 @@
 			},
         },
         watch: {
-             type:(v)=>{
-                this.readyBin1Option(v)
-            }
+            //  type:(v)=>{
+            //     this.initOption(v)
+            // }
         }
     }
 </script>

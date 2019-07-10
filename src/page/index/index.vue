@@ -1,24 +1,98 @@
 <template>
 		<section class="data_section" ref="data_section"> 
 			<el-row :gutter="10" class="row_list">
-				<el-col :span="3"><div class="pay data_list"><p class="list_number">+208.65</p><p>盈亏(千万)</p></div></el-col>
-				<el-col :span="3"><div class="income data_list"><p class="list_number">+12.37</p><p>收益率(%)</p></div></el-col>
-				<el-col :span="3"><div class="hidden_investors data_list"><p class="number">686</p><p></p>潜在投资人(人)</div></el-col>
-				<el-col :span="3"><div class="intention_investors data_list"><p class="number">264</p><p>意向投资人(人)</p></div></el-col>
-				<el-col :span="3"><div class="waitpending_investors data_list"><p class="number">137</p><p>待审投资人(人))</p></div></el-col>
-				<el-col :span="3"><div class="pending_investors data_list"><p class="number">100</p><p></p>审核中投资人(人)</div></el-col>
-				<el-col :span="3"><div class="pass_investors data_list"><p class="number">86</p><p>审核通过投资人(人)</p></div></el-col>
-				<el-col :span="3"><div class="newadd_investors data_list"><p class="number">36</p><p>新增投资人(人)</p></div></el-col>
+				<el-col :span="7" class="row_left row_base">
+					<el-col :span="12">
+						<div class="pay saleBgcolor data_list rflex">
+							<div class="leftItem cflex wflex">
+								<p class="investor">年度总盈亏</p>
+								<p class="number">68<span class="perTitle">(千万元)</span></p>
+							</div>
+							<div class="rightItem">
+ 								<icon-svg icon-class="iconfukuan" />
+							</div>
+						</div>
+					</el-col>
+					<el-col :span="12">
+						<div class="pay taxBgcolor data_list rflex">
+							<div class="leftItem cflex wflex">
+								<p class="investor">年度收益率</p>
+								<p class="number">120<span class="perTitle">(%)</span></p>
+							</div>
+							<div class="rightItem">
+ 								<icon-svg icon-class="iconpay3" />
+							</div>
+						</div>
+					</el-col>
+				</el-col>
+				<el-col :span="16"  class="row_right row_base">
+					<el-col :span="6">
+						<div class="extenedBgcolor data_list rflex">
+							<div class="leftItem cflex wflex">
+								<p class="investor">潜在投资人</p>
+								<p class="number">686<span class="perTitle">(人)</span></p>
+								<p class="cardText">Decreased by 10%</p>
+							</div>
+							<div class="rightItem">
+ 								<icon-svg icon-class="iconpay2" />
+							</div>
+						</div>
+					</el-col>
+					<el-col :span="6">
+						<div class="likeBgcolor data_list rflex">
+							<div class="leftItem cflex wflex">
+								<p class="investor">意向投资人</p>
+								<p class="number">1276<span class="perTitle">(人)</span></p>
+								<p class="cardText">Decreased by 50%</p>
+							</div>
+							<div class="rightItem">
+ 								<icon-svg icon-class="iconpay1" />
+							</div>
+						</div>
+					</el-col>
+					<el-col :span="6">
+						<div class="linkBgColor data_list rflex">
+							<div class="leftItem cflex wflex">
+								<p class="investor">待审投资人</p>
+								<p class="number">82367<span class="perTitle">(人)</span></p>
+								<p class="cardText">Decreased by 30%</p>
+							</div>
+							<div class="rightItem">
+ 								<icon-svg icon-class="iconpay" />
+							</div>
+						</div>
+					</el-col>
+					<el-col :span="6">
+						<div class="keleBgColor data_list rflex">
+						    <div class="leftItem cflex wflex">
+								<p class="investor">审核中投资人</p>
+								<p class="number">827373<span class="perTitle">(人)</span></p>
+								<p class="cardText">Decreased by 80%</p>
+							</div>
+							<div class="rightItem">
+ 								<icon-svg icon-class="iconfufei0" />
+							</div>
+						</div>
+					</el-col>
+				</el-col>
 			</el-row>
 			<el-row :gutter="10" class="row_list order_list">
 				<el-col :span="7">
-				    <ordertype id="bin1_data" type="ordertype"></ordertype>
+					<log-list></log-list>
+				</el-col>
+				<el-col :span="17">
+					<bar-chart type="barChart"></bar-chart>
+				</el-col>
+			</el-row>
+			<el-row :gutter="10" class="row_list order_list">
+				<el-col :span="7">
+				    <pie-chart type="ordertype"></pie-chart>
 				</el-col>
 				<el-col :span="10">
-					<bar-chart id="barChart" type="barChart"></bar-chart>
+					<line-chart></line-chart>
 				</el-col>
 			   	<el-col :span="7">
-					<radar-chart id="radarChart"></radar-chart>
+					<radar-chart></radar-chart>
 				</el-col>
 			</el-row> 
 			<el-row :gutter="10" class="row_list">
@@ -38,51 +112,33 @@
 
 <script>
 	import echarts from 'echarts'
-	import '../../../node_modules/echarts/theme/macarons.js';
 	import salesTable from "./components/salesTable";  // 销售数据表格
 	import commentList from "./components/commentList";  // 用户评论列表
 	import cardList from "./components/cardList";  // card列表
-	import ordertype from 'cps/echarts/ordertype' // 用户投资类型 饼状图
+	import logList from "./components/logList";  // 日志列表
 	import barChart from 'cps/echarts/barChart' // 用户投资类型 柱状图
+	import pieChart from 'cps/echarts/pieChart' // 用户投资类型 饼状图
 	import radarChart from 'cps/echarts/radarChart' // 用户投资类型 雷达图
-
-	import ordersource from 'cps/echarts/orderSource'
-	import barTypeData from 'cps/echarts/barTypeData'
-	import lineTypeData from 'cps/echarts/lineTypeData'
+	import lineChart from 'cps/echarts/lineChart' // 用户投资类型 折线图
 
     export default {
     	data(){
     		return {
-			  bar_chart: null,
-			  line_chart:null,
-			  bar_id:'bar_data',
-			  line_id:'line_data',
     		}
     	},
     	components: {
 		   salesTable,
 		   commentList,
 		   cardList,
+		   logList,
 		   barChart,
-		   ordertype,
+		   pieChart,
 		   radarChart,
-
-		   barTypeData,
-		   lineTypeData,
-		   ordersource
+		   lineChart
 		},	
     	mounted(){
 			this.setSectionHeight();
 		},
-		beforeDestroy() {
-			if (!this.bar_chart || !this.line_chart) {
-				return
-			}
-			this.bar_chart.dispose();
-			this.line_chart.dispose();
-			this.bar_chart = null;
-			this.line_chart = null;
-        },
     	methods: {
 		   setSectionHeight(){
 				this.$nextTick(() => {
@@ -100,30 +156,18 @@
 		border-radius: 2px;
 		.row_list{
 			margin-bottom: 20px;
-		}
-		.pay{
-			background-color:#18a689;
-		}
-		.income{
-			background-color:#99CC00;
-		}
-		.hidden_investors{
-			background-color:#33CC99;
-		}
-		.intention_investors{
-			background-color:#3b5999;
-		}
-		.waitpending_investors{
-			background-color:#66CC99;
-		}
-        .pending_investors{
-			background-color:#009999;
-		}
-		.pass_investors{
-			background-color:#FF9900;
-		}
-		.newadd_investors{
-			background-color:#0099CC;
+			.row_base{
+				padding: 10px;
+				box-sizing: border-box;
+				background: #fff;
+				border-radius: 6px;
+			}
+			.row_left{
+				margin-right: 10px;
+			}
+			.row_right{
+				width: 70%;
+			}
 		}
 		.order_list{
 			.orderArea{
@@ -136,23 +180,44 @@
 				padding-top: 40px;
 				overflow: hidden;
 			}
+			.orderbarArea{
+				height: 370px;
+			}
 		}
 		.data_list{
 			text-align: center;
 			font-size: 14px;
             border-radius: 6px;
-			padding: 15px 0;
+			padding: 10px;
 			color:#fff;
-			.list_number{
-				font-size:16px;
-				font-weight:bold;
+			height: 80px;
+			.leftItem{
+				align-items: start;
+				justify-content: space-between;
+			}
+			.rightItem{
+				width:70px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				.svg-icon{
+					font-size: 30px;
+				}
 			}
 		    .number{
-				font-size:16px;
-				font-weight:bold;
+				font-size: 22px;
+				font-weight: bold;
+				.perTitle{
+					font-size: 13px;
+   				    margin-left: 5px;
+				}
 			}
-         
-        }
+		}
+		.pay{
+			.leftItem{
+				justify-content: space-around;
+			}
+		}
      
 	}
   
