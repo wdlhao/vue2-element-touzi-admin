@@ -7,6 +7,15 @@
 					<span class="jueTitle">分享</span>
 				</li>
 				<li>
+					<div class="item" @mouseover="showqrcode()" @mouseout="hideqrcode()">
+						<icon-svg icon-class="iconwechat" />
+					</div>
+					<div class="qrcodeArea" v-show="qrcode.show">
+						<p class="saoTitle">扫一扫</p>
+						<div class="qrcode" ref="qrCodeUrl" ></div>
+					</div>
+				</li>
+				<li>
 					<div class="item" @click="shareToWeibo()">
 						<icon-svg icon-class="iconweibo" />
 					</div>
@@ -16,15 +25,7 @@
 						<icon-svg icon-class="iconqq" />
 					</div>
 				</li>
-					<li>
-					<div class="item" @mouseover="showqrcode()" @mouseout="hideqrcode()">
-						<icon-svg icon-class="iconwechat" />
-					</div>
-					<div class="qrcodeArea" v-show="qrcode.show">
-						<p class="saoTitle">扫一扫</p>
-						<div class="qrcode" ref="qrCodeUrl" ></div>
-					</div>
-				</li>
+			
 			</ul>
 		</div>
     </div>
@@ -136,6 +137,7 @@
 					}
 					.qrcodeArea{
 						position: absolute;
+						z-index: 2;
 						top: 50px;
 						text-align: center;
 						border: 1px solid #a9d86e;

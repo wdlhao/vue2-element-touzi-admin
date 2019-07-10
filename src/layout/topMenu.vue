@@ -7,12 +7,12 @@
             :background-color="menuObj.bgColor"
             :text-color="menuObj.textColor"
             :active-text-color="menuObj.activeTextColor"
-            :default-active="activeIndex" 
+            :default-active="$route.path" 
             >
             <template v-for="(item,index) in topRouters">
-                <router-link :to="item.path" :key="index">
-                    <el-menu-item :index="item.path">
-                        {{item.meta.title}}
+                <router-link :to="$route.matched[1].path+'/'+item.path" :key="index">
+                    <el-menu-item :index="$route.matched[1].path+'/'+item.path">
+                        {{item.title}}
                     </el-menu-item>
                 </router-link>
             </template>
@@ -27,7 +27,6 @@
         name:'top-menu',
         data(){
             return {
-                activeIndex:'1',
                 menuObj:{
                     bgColor:'',
                     textColor:'#303133',
@@ -39,22 +38,29 @@
             ...mapGetters(['topRouters'])
         },
         created(){
-           this.setLeftInnerMenu();
+           this.setLeftInnerMenu();  // 针对刷新页面时，也需要加载顶部菜单
+        },
+        mounted(){
         },
         methods:{
             setLeftInnerMenu(){
-                if(this.$route.meta.routerType == 'leftmenu'){ // 点击的为 左侧的2级菜单
-                    this.$store.dispatch('ClickLeftInnerMenu',
-                        {'name':this.$route.name}
-                    );
-                }else{ // 点击顶部的菜单
-                    this.$store.dispatch('ClickTopMenu',
-                        {'title':this.$route.meta.title}
-                    );
+                console.log(this.$route);
+                // console.log(this.$route.matched[1].meta.titleList);  // arr
+                const titleList = this.$route.matched[1].meta.titleList;
+                const currentTitle = titleList && this.$route.matched[2].meta.title;
+                if( titleList && this.$route.matched[1].meta.routerType === 'leftmenu'){ // 点击的为 左侧的2级菜单
+                    this.$store.dispatch('ClickLeftInnerMenu',{'titleList':titleList});
+                    this.$store.dispatch('ClickTopMenu',{'title':currentTitle});
+                }else{ // 点击左侧1级菜单
+                    this.$store.dispatch('ClickLeftInnerMenu',{'titleList':[]});
+                    this.$store.dispatch('ClickTopMenu',{'title':''});
+                }
+                if(this.$route.meta.routerType === "topmenu"){ // 点击顶部菜单
+                    this.$store.dispatch('ClickTopMenu',{"path":this.$route.path});
                 }
             },
             getPath(){
-                this.setLeftInnerMenu();
+               this.setLeftInnerMenu();
             },
         },
         watch:{
@@ -71,6 +77,12 @@
             overflow-x: scroll;
             overflow-y:hidden;
             flex:1;
+        }
+        .router-link-active{
+            // li{
+            //     color: #ff6428;
+            //     border-bottom-color: #ff6428;
+            // }
         }
     }
 </style>

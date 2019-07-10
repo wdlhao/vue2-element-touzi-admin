@@ -27,8 +27,7 @@
         methods: {
             loadChart(){
                 this.$nextTick(() => {
-                    echarts.registerTheme('westeros', echartsTheme)
-                    this.myChart = echarts.init(document.getElementById(this.id),'westeros');
+                    this.myChart = echarts.init(document.getElementById(this.id));
                     this.myChart.setOption(this.initOption());
                 })
             },
@@ -97,9 +96,6 @@
 			},
         },
         watch: {
-            //  type:(v)=>{
-            //     this.initOption(v)
-            // }
         }
     }
 </script>

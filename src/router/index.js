@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Layout  from "../layout/home"; // 页面整体布局
+import { Layout,Content }  from "../layout"; // 页面整体布局
 
 Vue.use(Router)
 
@@ -75,7 +75,7 @@ export const asyncRouterMap = [
 				meta:{
 					title:'用户管理', 
 					icon:'fa-user',
-				  routerType:'leftmenu'
+				    routerType:'leftmenu'
 				},
 				component: () => import('@/page/userList/userList'),
 			}
@@ -94,8 +94,8 @@ export const asyncRouterMap = [
 			{
 				path:'share', 
 				meta:{
-					title:'分享功能', 
-					icon:'fa-share',
+				  title:'分享功能', 
+				  icon:'fa-share',
 				  routerType:'leftmenu'
 				},
 				component: () => import('@/page/share'),
@@ -116,20 +116,47 @@ export const asyncRouterMap = [
 		   name:'infoShow',
 		   meta: {
 			    title:'个人信息',
-					icon: 'fa-asterisk',
-				  routerType:'leftmenu'
+				icon: 'fa-asterisk',
+				routerType:'leftmenu',
+				titleList:[
+					{"path":"infoShow1","title":"个人信息子菜单1"},
+					{"path":"infoShow2","title":"个人信息子菜单2"}
+				]
 			 },
-			 component: () => import('@/page/infoManage/infoShow')
+	  		 component:Content,
+			 // redirect:'/infoManage/infoShow/infoShow1',
+			 children:[
+				{
+					path: 'infoShow1',
+					name: 'infoShow1',
+					meta: {
+						title: '个人信息子菜单1',
+						icon: 'fa-asterisk',
+						routerType: 'topmenu'
+					},
+					component: () => import('@/page/fundList/moneyData')
+				},
+				{
+					path: 'infoShow2',
+					name: 'infoShow2',
+					meta: {
+						title: '个人信息子菜单2',
+						icon: 'fa-asterisk',
+						routerType: 'topmenu'
+					},
+					component: () => import('@/page/fundList/moneyData')
+				}
+			 ]
 		},
 		{
-				path:'infoModify',
-				name:'infoModify',
-				meta: {
-					title:'修改信息',
-					icon: 'fa-asterisk',
-				  routerType:'leftmenu'
-				},
-				component: () => import('@/page/infoManage/infoModify')
+			path:'infoModify',
+			name:'infoModify',
+			meta: {
+				title:'修改信息',
+				icon: 'fa-asterisk',
+				routerType:'leftmenu'
+			},
+			component: () => import('@/page/infoManage/infoModify')
 		 }
 	  ]
 	},
@@ -143,25 +170,25 @@ export const asyncRouterMap = [
 		component:Layout,
 		children:[
 		  {
-				path:'fundList',
-				name:'fundList',
-				meta: {
-						title:'资金流水',
-						icon: 'fa-asterisk',
-						routerType:'leftmenu'
-				},
-				component: () => import('@/page/fundList/fundList'),
+			path:'fundList',
+			name:'fundList',
+			meta: {
+					title:'资金流水',
+					icon: 'fa-asterisk',
+					routerType:'leftmenu'
+			},
+			component: () => import('@/page/fundList/fundList'),
 		  },
 		  {
-			  path:'chinaTabsList',
-			  name:'chinaTabsList',
-			  meta: {
-				   title:'区域投资',
-					 icon: 'fa-asterisk',
-					 routerType:'leftmenu'
-				},
-				component: () => import('@/page/fundList/chinaTabsList'),
-			 }
+			path:'chinaTabsList',
+			name:'chinaTabsList',
+			meta: {
+				title:'区域投资',
+					icon: 'fa-asterisk',
+					routerType:'leftmenu'
+			},
+			component: () => import('@/page/fundList/chinaTabsList'),
+			}
 		]
 	},
 	{

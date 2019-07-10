@@ -13,7 +13,6 @@
                  myChart:null,
             }
         },
-        props: ['type'],
         mounted(){
             this.loadChart();
         },
@@ -29,10 +28,10 @@
                 this.$nextTick(() => {
                     echarts.registerTheme('westeros', echartsTheme)
                     this.myChart = echarts.init(document.getElementById(this.id),'westeros');
-                    this.myChart.setOption(this.initOption(this.type));
+                    this.myChart.setOption(this.initOption());
                 })
             },
-         	initOption(v){
+         	initOption(){
                 let option = {
                     tooltip : {
                         trigger: 'axis'
@@ -80,9 +79,6 @@
 			},
         },
         watch: {
-            //  type:(v)=>{
-            //     this.initOption(v)
-            // }
         }
     }
 </script>
