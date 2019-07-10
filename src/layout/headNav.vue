@@ -11,7 +11,7 @@
                     <ul class="top-menu">
                         <li class="li-badge">
                             <el-tooltip class="item" effect="dark" content="访问github" placement="top">
-                                <a :href='gitHubUrl' target="_blank">
+                                <a :href='github' target="_blank">
                                     <el-badge class="item one">
                                         <i class="fa fa-github"></i>
                                     </el-badge>
@@ -89,6 +89,8 @@
     import wechatImg from "@/assets/img/wechat.jpg";
     import qqImg from "@/assets/img/qq.png";
     import logoImg from "@/assets/img/logo.png";
+    import { github } from "@/utils/env";
+
 
     export default {
           name: 'head-nav',
@@ -105,7 +107,7 @@
                     qqImg:qqImg,
                     isQq:false,
                 },
-                gitHubUrl:'https://github.com/wdlhao/vue2-element-touzi-admin'
+                github:github
             }
           },
           components:{

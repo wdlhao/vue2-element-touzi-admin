@@ -10,12 +10,19 @@
         name:'radarChart',
         data(){
             return {
+                 id:"radarChart",
                  myChart:null,
             }
         },
-        props: ['id'],
         mounted(){
             this.loadChart();
+        },
+        beforeDestroy() {
+			if (!this.myChart) {
+				return
+			}
+			this.myChart.dispose();
+			this.myChart = null;
         },
         methods: {
             loadChart(){
@@ -90,9 +97,9 @@
 			},
         },
         watch: {
-             type:(v)=>{
-                this.readyBin1Option(v)
-            }
+            //  type:(v)=>{
+            //     this.initOption(v)
+            // }
         }
     }
 </script>

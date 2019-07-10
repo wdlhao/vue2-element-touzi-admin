@@ -9,13 +9,21 @@
     export default {
         data(){
             return {
+				 id:'ordertype',
                  myChart:null,
             }
         },
-		props: ['id','type'],
+		props: ['type'],
         mounted(){
 			this.loadChart();
 		},
+		beforeDestroy() {
+			if (!this.myChart) {
+				return
+			}
+			this.myChart.dispose();
+			this.myChart = null;
+        },
         methods: {
 			 loadChart(){
                 this.$nextTick(() => {

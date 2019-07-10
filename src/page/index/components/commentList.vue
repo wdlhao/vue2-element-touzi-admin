@@ -52,6 +52,7 @@
    justify-content: space-between;
    .comment{
        border-bottom: 1px solid #e8e8e8;
+       padding-bottom: 5px;
       .left{
          width:80px;
          text-align: center;
