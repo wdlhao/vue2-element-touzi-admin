@@ -1,8 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import { Layout,Content }  from "../layout"; // 页面整体布局
+import { topRouterMap } from "./topRouter";
+
+console.log(topRouterMap);
 
 Vue.use(Router)
+
+function filterTopRouterMap(name){
+	let router = topRouterMap.find((item,index) => {
+		return item.parentName === name;
+	});
+	return router.data; // arr
+}
+console.log(filterTopRouterMap('infoShow'))
 
 /**
  * 1、roles:后台返回的权限结构;
@@ -120,33 +131,16 @@ export const asyncRouterMap = [
 				routerType:'leftmenu',
 				titleList:[
 					{"path":"infoShow1","title":"个人信息子菜单1"},
-					{"path":"infoShow2","title":"个人信息子菜单2"}
+					{"path":"infoShow2","title":"个人信息子菜单2"},
+					{"path":"infoShow3","title":"个人信息子菜单3"},
+					{"path":"infoShow4","title":"个人信息子菜单4"},
+					{"path":"infoShow5","title":"个人信息子菜单5"},
+					{"path":"infoShow6","title":"个人信息子菜单6"}
 				]
 			 },
 	  		 component:Content,
 			 // redirect:'/infoManage/infoShow/infoShow1',
-			 children:[
-				{
-					path: 'infoShow1',
-					name: 'infoShow1',
-					meta: {
-						title: '个人信息子菜单1',
-						icon: 'fa-asterisk',
-						routerType: 'topmenu'
-					},
-					component: () => import('@/page/fundList/moneyData')
-				},
-				{
-					path: 'infoShow2',
-					name: 'infoShow2',
-					meta: {
-						title: '个人信息子菜单2',
-						icon: 'fa-asterisk',
-						routerType: 'topmenu'
-					},
-					component: () => import('@/page/fundList/moneyData')
-				}
-			 ]
+			 children:filterTopRouterMap('infoShow')
 		},
 		{
 			path:'infoModify',
@@ -154,9 +148,16 @@ export const asyncRouterMap = [
 			meta: {
 				title:'修改信息',
 				icon: 'fa-asterisk',
-				routerType:'leftmenu'
+				routerType:'leftmenu',
+				titleList:[
+					{"path":"infoModify1","title":"修改信息子菜单1"},
+					{"path":"infoModify2","title":"修改信息子菜单2"},
+					{"path":"infoModify3","title":"修改信息子菜单3"}
+				]
 			},
-			component: () => import('@/page/infoManage/infoModify')
+			//component: () => import('@/page/infoManage/infoModify'),
+			component:Content,
+			children:filterTopRouterMap('infoModify')
 		 }
 	  ]
 	},

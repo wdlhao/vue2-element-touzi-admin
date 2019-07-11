@@ -3,7 +3,7 @@
     <div class="menu_top rflex" ref="menuTop">
         <el-menu 
             mode="horizontal" 
-            class="el-menu-demo rflex el-scrollbar top-scrollbar" 
+            class="el-menu-demo rflex el-scrollbar2 top-scrollbar2" 
             :background-color="menuObj.bgColor"
             :text-color="menuObj.textColor"
             :active-text-color="menuObj.activeTextColor"
@@ -44,8 +44,6 @@
         },
         methods:{
             setLeftInnerMenu(){
-                console.log(this.$route);
-                // console.log(this.$route.matched[1].meta.titleList);  // arr
                 const titleList = this.$route.matched[1].meta.titleList;
                 const currentTitle = titleList && this.$route.matched[2].meta.title;
                 if( titleList && this.$route.matched[1].meta.routerType === 'leftmenu'){ // 点击的为 左侧的2级菜单
@@ -55,9 +53,15 @@
                     this.$store.dispatch('ClickLeftInnerMenu',{'titleList':[]});
                     this.$store.dispatch('ClickTopMenu',{'title':''});
                 }
-                if(this.$route.meta.routerType === "topmenu"){ // 点击顶部菜单
-                    this.$store.dispatch('ClickTopMenu',{"path":this.$route.path});
-                }
+
+                // if(this.$route.meta.routerType === "topmenu"){ // 点击顶部菜单
+                //     // 计算出点击菜单的index;
+                //     let menuIndex = 0;
+                //     titleList.forEach((item,index) => {
+                //         (item.title === currentTitle)? menuIndex = index:0;
+                //     })
+                //     this.$store.dispatch('ClickTopMenu',{"menuIndex":menuIndex});
+                // }
             },
             getPath(){
                this.setLeftInnerMenu();
@@ -74,15 +78,16 @@
     .menu_top{
         width:calc(100% - 350px);
         .el-menu-demo{
-            overflow-x: scroll;
+            // overflow-x: scroll;
             overflow-y:hidden;
             flex:1;
         }
+        .el-menu-item:focus, .el-menu-item:hover {
+            outline: 0;
+            background-color: #ceeda8;
+        }
         .router-link-active{
-            // li{
-            //     color: #ff6428;
-            //     border-bottom-color: #ff6428;
-            // }
+          
         }
     }
 </style>

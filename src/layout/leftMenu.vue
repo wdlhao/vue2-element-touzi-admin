@@ -28,10 +28,10 @@
                             <span v-if="item.meta.title" slot="title">{{item.meta.title}}</span>
                         </template>
                         <!--直接定位到子路由上，子路由也可以实现导航功能-->
-                        <router-link v-for="(citem,cindex) in item.children" :to="getIindex(citem,item)"  :key="cindex">
+                        <router-link v-for="(citem,cindex) in item.children" :to="getIindex(citem,item,cindex)"  :key="cindex">
                             <el-menu-item 
                                 v-if="citem.meta.routerType != 'topmenu' && citem.meta.title"
-                                :index="getIindex(citem,item)">
+                                :index="getIindex(citem,item,cindex)">
                                 <span slot="title">{{citem.meta.title}}</span>
                             </el-menu-item> 
                         </router-link>
@@ -61,11 +61,11 @@ export default {
         'permission_routers',
         'isCollapse',
         'sidebar',
-        'topPath'
+        'menuIndex'
       ]),
   },
   created(){
-    console.log(this.topPath);
+    // console.log(this.menuIndex);
   },
   mounted(){
       this.setMenuHeight();
@@ -76,13 +76,9 @@ export default {
           this.$refs.menu_page.style.height =  (document.body.clientHeight - 60)+'px';
       })
     },
-    getIindex(citem,item){
-      let path = '';
-        path = (citem.meta.titleList)?item.path+'/'+citem.path+'/'+citem.meta.titleList[0].path:item.path+'/'+citem.path;
-      // if(this.topPath && this.$route.path === this.topPath){
-      //     path = this.topPath;
-      // }else{
-      // }
+    getIindex(citem,item,cindex){
+      // console.log(this.menuIndex);
+      let path = (citem.meta.titleList && this.menuIndex)?item.path+'/'+citem.path+'/'+citem.meta.titleList[1].path:item.path+'/'+citem.path;
       return path;
     }
   }

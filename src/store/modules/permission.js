@@ -72,14 +72,14 @@ const permission = {
     addRouters: [],
     topRouters:[],
     topTitle:'',
-    topPath:''
+    menuIndex:0
   },
   getters:{
     permission_routers: state => state.routers, // 所有路由
     addRouters: state => state.addRouters,  // 权限过滤路由
     topRouters: state => state.topRouters,  // 顶部三级路由
     topTitle:state => state.topTitle, // 顶部的title
-    topPath:state => state.topPath, // 顶部的path
+    menuIndex:state => state.menuIndex, // 顶部菜单的index
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {
@@ -92,7 +92,7 @@ const permission = {
     },
     CLICK_TOP_MENU:(state,data) => {
       state.topTitle = data.title
-      state.topPath = data.path
+      state.menuIndex = data.menuIndex
 
     },
   },
