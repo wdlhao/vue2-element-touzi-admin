@@ -77,9 +77,7 @@ export default {
       })
     },
     getIindex(citem,item,cindex){
-      // console.log(this.menuIndex);
-      let path = (citem.meta.titleList && this.menuIndex)?item.path+'/'+citem.path+'/'+citem.meta.titleList[1].path:item.path+'/'+citem.path;
-      return path;
+      return (citem.meta.titleList)?item.path+'/'+citem.path+'/'+citem.meta.titleList[0].path:item.path+'/'+citem.path;
     }
   }
 };

@@ -2,9 +2,10 @@
   	<div class="login_page">
 	  	<transition name="form-fade" mode="in-out">
 	  		<section class="form_contianer">
-		  		<div class="manage_tip">
-		  			<span class="title">小爱xx管理系统</span>
-		  		</div>
+			     <div class='titleArea rflex'>
+					<img class="logo" :src="logo" alt="小爱admin">
+					<span class='title'>小爱<i>Admin</i></span>
+				</div>
 		    	<el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginForm">
 					<el-form-item prop="username" class="login-item">
 					    <span class="fa-tips"><i class="fa fa-user"></i></span>
@@ -15,7 +16,7 @@
 						<el-input @keyup.enter.native ="submitForm('loginForm')" class="area" type="password" placeholder="密码" v-model="loginForm.password"></el-input>
 					</el-form-item>
 					<el-form-item>
-				    	<el-button type="primary"  @click="submitForm('loginForm')" class="submit_btn">登陆</el-button>
+				    	<el-button type="primary"  @click="submitForm('loginForm')" class="submit_btn">SIGN IN</el-button>
 				  	</el-form-item>
 					<div class="tiparea">
 						<p class="wxtip">温馨提示：</p>
@@ -25,14 +26,14 @@
 					<div class="sanFangArea">
 						<p class="title">第三方账号登录</p>
 						<ul class="rflex">
-							<li>
-								<img :src="sanFangImgs.wechat" alt="">
+							<li @click="loginByWechat">
+						       <icon-svg icon-class="iconwechat" />
 							</li>
 							<li>
-								<img :src="sanFangImgs.weibo" alt="">
+							    <icon-svg icon-class="iconweibo" />
 							</li>
 							<li>
-								<img :src="sanFangImgs.gitHub" alt="">
+							    <icon-svg icon-class="iconGithub" />
 							</li>
 						</ul>
 				    </div>
@@ -43,9 +44,12 @@
 </template>
 
 <script>
+    import logoImg from "@/assets/img/logo.png";
+
 	export default {
 	    data(){
 			return {
+				logo:logoImg,
 				loginForm: {
 					username: 'admin',
 					password: '123456'
@@ -58,17 +62,14 @@
 					password: [
 						{ required: true, message: '请输入密码', trigger: 'blur' }
 					],
-				},
-				sanFangImgs:{
-					wechat:'',
-					weibo:'',
-					gitHub:''
 				}
 			}
 		},
 		mounted(){
 		},
 		methods: {
+			loginByWechat(){
+			},
 			showMessage(type,message){
                 this.$message({
                     type: type,
@@ -98,22 +99,52 @@
 		background: url(../assets/img/bg9.jpg) no-repeat center center;
 		background-size: 100% 100%;
 	}
-	.loginForm{
-		 background-color: #fff;
-		 padding:20px;
-		 border-radius:3px;
-		 box-shadow: 5px 5px 10px #01144c;
-		.fa-tips{
-			position: absolute;
-			left: 10px;
-			z-index: 20;
-			color: #FF7C1A;
-			font-size: 18px;
-			top: 50%;
-			transform: translateY(-50%);
+	.form_contianer{
+		position: absolute;
+		top: 50%;
+        left: 50%;
+		transform: translate(-50%,-50%);
+		background: #fff;
+		width:370px;
+		border-radius: 5px;
+		padding: 25px;
+		text-align: center;
+		.titleArea{
+			justify-content: center;
+   			align-items: center;
+			text-transform: uppercase;
+			font-size: 22px;
+			width: 100%;
+			padding-bottom: 20px;
+			.logo{
+				width: 40px;
+    			margin-right: 10px;
+			}
+			.title{
+				i{
+				   color: #FF6C60;
+				}
+			}
 		}
-		
+	
+		.loginForm{
+			.submit_btn{
+				width: 100%;
+				padding:13px 0;
+				font-size: 16px;
+			}
+			.fa-tips{
+				position: absolute;
+				left: 10px;
+				z-index: 20;
+				color: #FF7C1A;
+				font-size: 18px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+	    }
 	}
+
 	.manage_tip{
 		margin-bottom:20px;
 		.title{
@@ -127,25 +158,12 @@
 			height:60px;
 		}
 	}
-	.form_contianer{
-		width:370px;
-		height:210px;
-		position: absolute;
-		top: 20%;
-        left: 34%;
-		padding: 25px;
-		border-radius: 5px;
-		text-align: center;
-		.submit_btn{
-			width: 100%;
-			font-size: 16px;
-			letter-spacing:20px;
-		}
-	}
+	
 	.tiparea{
 		text-align:left;
 		font-size: 12px;
 		color: #4cbb15;
+		padding: 10px 0;
 		.tip{
 			margin-left: 54px;
 		}
@@ -169,12 +187,12 @@
 	}
 	.sanFangArea{
 		border-top: 1px solid #DCDFE6;
-		margin-top: 5px;
-		padding: 5px;
+		padding: 10px 0;
 		display: none;
 		.title{
 			font-size: 14px;
 			color: #8b9196;
+			margin-bottom: 10px;
 		}
 		ul{
 			li{
@@ -183,9 +201,8 @@
 				align-items: center;
 				justify-content: center;
 				cursor: pointer;
-				img{
-					width:40px;
-					height:40px;
+				.svg-icon{
+					font-size: 24px;
 				}
 			}
 		}
