@@ -11,15 +11,13 @@ const user  = {
     avatar:'',
     token: getToken(),
     roles: [],
-    browserHeaderTitle: mUtils.getStore('browserHeaderTitle') || '小爱管理系统'
+    browserHeaderTitle: mUtils.getStore('browserHeaderTitle') || '小爱Admin'
   },
   getters : {
     token: state => state.token,
     roles: state => state.roles,
     avatar: state => state.avatar,
     name: state => state.name,
-    isLock: state => state.isLock,
-    lockPasswd: state => state.lockPasswd,
     browserHeaderTitle: state => state.browserHeaderTitle,
   },
   mutations: {
