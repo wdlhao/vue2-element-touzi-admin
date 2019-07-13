@@ -1,81 +1,87 @@
 <template>
 		<section class="data_section" ref="data_section"> 
-			<el-row :gutter="10" class="row_list">
-				<el-col :span="7" class="row_left row_base">
-					<el-col :span="12">
-						<div class="pay saleBgcolor data_list rflex">
-							<div class="leftItem cflex wflex">
-								<p class="investor">年度总盈亏</p>
-								<p class="number">68<span class="perTitle">(千万元)</span></p>
-							</div>
-							<div class="rightItem">
- 								<icon-svg icon-class="iconfukuan" />
-							</div>
+			<a :href="github" target="_blank">
+				<el-row :gutter="10" class="row_list">
+					<el-col :span="8">
+						<div class="row_left row_base">
+							<el-col :span="12">
+								<div class="pay saleBgcolor data_list rflex">
+									<div class="leftItem cflex wflex">
+										<p class="investor">年度总盈亏</p>
+										<p class="number">68<span class="perTitle">(千万元)</span></p>
+									</div>
+									<div class="rightItem">
+										<icon-svg icon-class="iconfukuan" />
+									</div>
+								</div>
+							</el-col>
+							<el-col :span="12">
+								<div class="pay taxBgcolor data_list rflex">
+									<div class="leftItem cflex wflex">
+										<p class="investor">年度收益率</p>
+										<p class="number">120<span class="perTitle">(%)</span></p>
+									</div>
+									<div class="rightItem">
+										<icon-svg icon-class="iconpay3" />
+									</div>
+								</div>
+							</el-col>
 						</div>
 					</el-col>
-					<el-col :span="12">
-						<div class="pay taxBgcolor data_list rflex">
-							<div class="leftItem cflex wflex">
-								<p class="investor">年度收益率</p>
-								<p class="number">120<span class="perTitle">(%)</span></p>
-							</div>
-							<div class="rightItem">
- 								<icon-svg icon-class="iconpay3" />
-							</div>
+					<el-col :span="16">
+						<div class="row_right row_base">
+							<el-col :span="6">
+								<div class="extenedBgcolor data_list rflex">
+									<div class="leftItem cflex wflex">
+										<p class="investor">潜在投资人</p>
+										<p class="number">686<span class="perTitle">(人)</span></p>
+										<p class="cardText">Decreased by 10%</p>
+									</div>
+									<div class="rightItem">
+										<icon-svg icon-class="iconpay2" />
+									</div>
+								</div>
+							</el-col>
+							<el-col :span="6">
+								<div class="likeBgcolor data_list rflex">
+									<div class="leftItem cflex wflex">
+										<p class="investor">意向投资人</p>
+										<p class="number">1276<span class="perTitle">(人)</span></p>
+										<p class="cardText">Decreased by 50%</p>
+									</div>
+									<div class="rightItem">
+										<icon-svg icon-class="iconpay1" />
+									</div>
+								</div>
+							</el-col>
+							<el-col :span="6">
+								<div class="linkBgColor data_list rflex">
+									<div class="leftItem cflex wflex">
+										<p class="investor">待审投资人</p>
+										<p class="number">82367<span class="perTitle">(人)</span></p>
+										<p class="cardText">Decreased by 30%</p>
+									</div>
+									<div class="rightItem">
+										<icon-svg icon-class="iconpay" />
+									</div>
+								</div>
+							</el-col>
+							<el-col :span="6">
+								<div class="keleBgColor data_list rflex">
+									<div class="leftItem cflex wflex">
+										<p class="investor">审核中投资人</p>
+										<p class="number">827373<span class="perTitle">(人)</span></p>
+										<p class="cardText">Decreased by 80%</p>
+									</div>
+									<div class="rightItem">
+										<icon-svg icon-class="iconfufei0" />
+									</div>
+								</div>
+							</el-col>
 						</div>
 					</el-col>
-				</el-col>
-				<el-col :span="16"  class="row_right row_base">
-					<el-col :span="6">
-						<div class="extenedBgcolor data_list rflex">
-							<div class="leftItem cflex wflex">
-								<p class="investor">潜在投资人</p>
-								<p class="number">686<span class="perTitle">(人)</span></p>
-								<p class="cardText">Decreased by 10%</p>
-							</div>
-							<div class="rightItem">
- 								<icon-svg icon-class="iconpay2" />
-							</div>
-						</div>
-					</el-col>
-					<el-col :span="6">
-						<div class="likeBgcolor data_list rflex">
-							<div class="leftItem cflex wflex">
-								<p class="investor">意向投资人</p>
-								<p class="number">1276<span class="perTitle">(人)</span></p>
-								<p class="cardText">Decreased by 50%</p>
-							</div>
-							<div class="rightItem">
- 								<icon-svg icon-class="iconpay1" />
-							</div>
-						</div>
-					</el-col>
-					<el-col :span="6">
-						<div class="linkBgColor data_list rflex">
-							<div class="leftItem cflex wflex">
-								<p class="investor">待审投资人</p>
-								<p class="number">82367<span class="perTitle">(人)</span></p>
-								<p class="cardText">Decreased by 30%</p>
-							</div>
-							<div class="rightItem">
- 								<icon-svg icon-class="iconpay" />
-							</div>
-						</div>
-					</el-col>
-					<el-col :span="6">
-						<div class="keleBgColor data_list rflex">
-						    <div class="leftItem cflex wflex">
-								<p class="investor">审核中投资人</p>
-								<p class="number">827373<span class="perTitle">(人)</span></p>
-								<p class="cardText">Decreased by 80%</p>
-							</div>
-							<div class="rightItem">
- 								<icon-svg icon-class="iconfufei0" />
-							</div>
-						</div>
-					</el-col>
-				</el-col>
-			</el-row>
+				</el-row>
+			</a>
 			<el-row :gutter="10" class="row_list order_list">
 				<el-col :span="7">
 					<log-list></log-list>
@@ -120,10 +126,12 @@
 	import pieChart from 'cps/echarts/pieChart' // 用户投资类型 饼状图
 	import radarChart from 'cps/echarts/radarChart' // 用户投资类型 雷达图
 	import lineChart from 'cps/echarts/lineChart' // 用户投资类型 折线图
+	import { github } from "@/utils/env";
 
     export default {
     	data(){
     		return {
+			  github:github
     		}
     	},
     	components: {
@@ -161,12 +169,7 @@
 				box-sizing: border-box;
 				background: #fff;
 				border-radius: 6px;
-			}
-			.row_left{
-				margin-right: 10px;
-			}
-			.row_right{
-				width: 70%;
+				height: 120px;
 			}
 		}
 		.order_list{
@@ -194,9 +197,10 @@
 			.leftItem{
 				align-items: start;
 				justify-content: space-between;
+				text-align: left;
 			}
 			.rightItem{
-				width:70px;
+				width:62px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
