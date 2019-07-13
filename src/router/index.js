@@ -1,8 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Layout  from "../layout/home"; // 页面整体布局
+import { Layout,Content }  from "../layout"; // 页面整体布局
+import { topRouterMap } from "./topRouter";
+
+console.log(topRouterMap);
 
 Vue.use(Router)
+
+function filterTopRouterMap(name){
+	let router = topRouterMap.find((item,index) => {
+		return item.parentName === name;
+	});
+	return router.data; // arr
+}
+console.log(filterTopRouterMap('infoShow'))
 
 /**
  * 1、roles:后台返回的权限结构;
@@ -75,7 +86,7 @@ export const asyncRouterMap = [
 				meta:{
 					title:'用户管理', 
 					icon:'fa-user',
-				  routerType:'leftmenu'
+				    routerType:'leftmenu'
 				},
 				component: () => import('@/page/userList/userList'),
 			}
@@ -94,8 +105,8 @@ export const asyncRouterMap = [
 			{
 				path:'share', 
 				meta:{
-					title:'分享功能', 
-					icon:'fa-share',
+				  title:'分享功能', 
+				  icon:'fa-share',
 				  routerType:'leftmenu'
 				},
 				component: () => import('@/page/share'),
@@ -116,20 +127,37 @@ export const asyncRouterMap = [
 		   name:'infoShow',
 		   meta: {
 			    title:'个人信息',
-					icon: 'fa-asterisk',
-				  routerType:'leftmenu'
+				icon: 'fa-asterisk',
+				routerType:'leftmenu',
+				titleList:[
+					{"path":"infoShow1","title":"个人信息子菜单1"},
+					{"path":"infoShow2","title":"个人信息子菜单2"},
+					{"path":"infoShow3","title":"个人信息子菜单3"},
+					{"path":"infoShow4","title":"个人信息子菜单4"},
+					{"path":"infoShow5","title":"个人信息子菜单5"},
+					{"path":"infoShow6","title":"个人信息子菜单6"}
+				]
 			 },
-			 component: () => import('@/page/infoManage/infoShow')
+	  		 component:Content,
+			 // redirect:'/infoManage/infoShow/infoShow1',
+			 children:filterTopRouterMap('infoShow')
 		},
 		{
-				path:'infoModify',
-				name:'infoModify',
-				meta: {
-					title:'修改信息',
-					icon: 'fa-asterisk',
-				  routerType:'leftmenu'
-				},
-				component: () => import('@/page/infoManage/infoModify')
+			path:'infoModify',
+			name:'infoModify',
+			meta: {
+				title:'修改信息',
+				icon: 'fa-asterisk',
+				routerType:'leftmenu',
+				titleList:[
+					{"path":"infoModify1","title":"修改信息子菜单1"},
+					{"path":"infoModify2","title":"修改信息子菜单2"},
+					{"path":"infoModify3","title":"修改信息子菜单3"}
+				]
+			},
+			//component: () => import('@/page/infoManage/infoModify'),
+			component:Content,
+			children:filterTopRouterMap('infoModify')
 		 }
 	  ]
 	},
@@ -143,25 +171,25 @@ export const asyncRouterMap = [
 		component:Layout,
 		children:[
 		  {
-				path:'fundList',
-				name:'fundList',
-				meta: {
-						title:'资金流水',
-						icon: 'fa-asterisk',
-						routerType:'leftmenu'
-				},
-				component: () => import('@/page/fundList/fundList'),
+			path:'fundList',
+			name:'fundList',
+			meta: {
+					title:'资金流水',
+					icon: 'fa-asterisk',
+					routerType:'leftmenu'
+			},
+			component: () => import('@/page/fundList/fundList'),
 		  },
 		  {
-			  path:'chinaTabsList',
-			  name:'chinaTabsList',
-			  meta: {
-				   title:'区域投资',
-					 icon: 'fa-asterisk',
-					 routerType:'leftmenu'
-				},
-				component: () => import('@/page/fundList/chinaTabsList'),
-			 }
+			path:'chinaTabsList',
+			name:'chinaTabsList',
+			meta: {
+				title:'区域投资',
+					icon: 'fa-asterisk',
+					routerType:'leftmenu'
+			},
+			component: () => import('@/page/fundList/chinaTabsList'),
+			}
 		]
 	},
 	{

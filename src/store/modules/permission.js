@@ -71,24 +71,29 @@ const permission = {
     routers: constantRouterMap,
     addRouters: [],
     topRouters:[],
-    topTitle:''
+    topTitle:'',
+    menuIndex:0
   },
   getters:{
     permission_routers: state => state.routers, // 所有路由
     addRouters: state => state.addRouters,  // 权限过滤路由
     topRouters: state => state.topRouters,  // 顶部三级路由
-    topTitle:state => state.topTitle // 顶部的title
+    topTitle:state => state.topTitle, // 顶部的title
+    menuIndex:state => state.menuIndex, // 顶部菜单的index
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {
       state.addRouters = routers // 权限路由
       state.routers = constantRouterMap.concat(routers) // 总路由
     },
-    CLICK_INNER_LEFT_MENU:(state,data) => {
-        state.topRouters = filterTopRouters(data);
+    CLICK_INNER_LEFT_MENU:(state,data) => { // titleList:arr
+        // state.topRouters = filterTopRouters(data);
+        state.topRouters = data.titleList;
     },
     CLICK_TOP_MENU:(state,data) => {
       state.topTitle = data.title
+      state.menuIndex = data.menuIndex
+
     },
   },
   actions: {
@@ -96,16 +101,14 @@ const permission = {
     GenerateRoutes({ commit }, data) {
       return new Promise(resolve => {
         const { roles } = data
-        let asyncRouterMaps = addTopRouter(); // 将头部菜单添加到对应的二级菜单下面;
-        let accessedRouters
+        // let asyncRouterMaps = addTopRouter(); // 将头部菜单添加到对应的二级菜单下面;
+        let accessedRouters = '';
         if (roles.indexOf('admin') >= 0) {
-          console.log('admin>=0')
           // 如果是管理员，直接将权限路由赋值给新路由;
-          accessedRouters = asyncRouterMaps
+          accessedRouters = asyncRouterMap
         } else {
-          console.log('admin<0')
           // 非管理员用户,如roles:['editor','developer']，则需要过滤权限路由数据
-          accessedRouters = filterAsyncRouter(asyncRouterMaps, roles)
+          accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
         }
         commit('SET_ROUTERS', accessedRouters)
         resolve()

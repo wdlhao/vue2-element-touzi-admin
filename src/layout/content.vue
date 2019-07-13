@@ -7,7 +7,7 @@
 </template>
 <script>
     export default {
-        name: 'content',
+        name: '',
         data () {
             return {
                 

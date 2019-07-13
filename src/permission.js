@@ -26,12 +26,7 @@ router.beforeEach((to, from, next) => {
   // 点击登录时，拿到了token并存入了vuex;
   if (getToken()) {
     /* has token*/
-    if (store.getters.isLock && to.path !== '/lock') {
-      next({
-        path: '/lock'
-      })
-      NProgress.done()
-    } else if (to.path === '/login') {
+    if(to.path === '/login') {
       next({ path: '/' })  // 会匹配到path:'',后面的path:'*'还没有生成;
       NProgress.done() 
     } else {
