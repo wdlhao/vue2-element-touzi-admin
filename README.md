@@ -1,4 +1,4 @@
-<b>小爱xx管理系统</b>
+<b>小爱Admin</b>
 
 **A magical vue element touzi admin.**
 

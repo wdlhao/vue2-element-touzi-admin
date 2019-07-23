@@ -175,7 +175,7 @@ export const loadStyle = url => {
    * 设置浏览器头部标题
    */
   export const setTitle = (title) => {
-    title = title ? `${title}` : '小爱管理系统'
+    title = title ? `${title}` : '小爱Admin'
     window.document.title = title
   }
 
