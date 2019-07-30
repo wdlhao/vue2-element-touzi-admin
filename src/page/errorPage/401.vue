@@ -1,89 +1,89 @@
 <template>
-  <div class="errPage-container">
-    <el-button @click="back" icon='arrow-left' class="pan-back-btn">返回</el-button>
-    <el-row>
-      <el-col :span="12">
-        <h1 class="text-jumbo text-ginormous">Oops!</h1>
-        gif来源<a href='https://zh.airbnb.com/' target='_blank'>airbnb</a> 页面
-        <h2>你没有权限去该页面</h2>
-        <h6>如有不满请联系你领导</h6>
-        <ul class="list-unstyled">
-          <li>或者你可以去:</li>
-          <li class="link-type">
-            <router-link to="/index">回首页</router-link>
-          </li>
-          <li class="link-type"><a href="https://www.taobao.com/">随便看看</a></li>
-          <li><a @click.prevent="dialogVisible=true" href="#">点我看图</a></li>
-        </ul>
-      </el-col>
-      <el-col :span="12">
-        <img :src="errGif" width="313" height="428" alt="Girl has dropped her ice cream.">
-      </el-col>
-    </el-row>
-    <el-dialog title="随便看" :visible.sync="dialogVisible">
-      <img class="pan-img" :src="ewizardClap">
-    </el-dialog>
+  <div ref="errPage" class="errPage">
+    <div class="errPage-container">
+      <el-row class="rows">
+        <el-col :span="12">
+          <h1 class="title">401</h1>
+        </el-col>
+        <el-col :span="12">
+          <div class="neirongItem">
+              <p class="tip">SORRY!</p>
+              <p class="neirong">The page requires authentication.</p>
+          </div>
+        </el-col>
+      </el-row>
+      <router-link :to="{path: '/'}">
+          <p class="home">Back to home</p>
+      </router-link>
+    </div>
   </div>
 </template>
-
 <script>
-import errGif from '@/assets/img//401.gif'
 
 export default {
-  name: 'page401',
-  data() {
-    return {
-      errGif: errGif + '?' + +new Date(),
-      ewizardClap: 'https://wpimg.wallstcn.com/007ef517-bafd-4066-aae4-6883632d9646',
-      dialogVisible: false
-    }
-  },
-  methods: {
-    back() {
-      if (this.$route.query.noGoBack) {
-        this.$router.push({ path: '/dashboard' })
-      } else {
-        this.$router.go(-1)
+    name: 'page401',
+    data() {
+      return {
+      }
+    },
+  	mounted(){
+			this.setSectionHeight();
+		},
+    methods: {
+      setSectionHeight(){
+        this.$nextTick(() => {
+            this.$refs.errPage.style.height =  (document.body.clientHeight - 120)+'px';
+        })
       }
     }
-  }
 }
 </script>
 
 <style lang="less" scoped>
-  .errPage-container {
-    width: 800px;
-    margin: 100px auto;
-    .pan-back-btn {
-      background: #008489;
-      color: #fff;
-    }
-    .pan-gif {
-      margin: 0 auto;
-      display: block;
-    }
-    .pan-img {
-      display: block;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .text-jumbo {
-      font-size: 60px;
-      font-weight: 700;
-      color: #484848;
-    }
-    .list-unstyled {
-      font-size: 14px;
-      li {
-        padding-bottom: 5px;
-      }
-      a {
-        color: #008489;
-        text-decoration: none;
-        &:hover {
-          text-decoration: underline;
+.errPage{
+    background: #F6F7FC;
+    display: flex;
+    justify-content: center;
+    margin-top: 130px;
+    .errPage-container {
+      width: 800px;
+      min-width: 800px;
+      height: 205px;
+      .rows{
+        height: 100%;
+        .el-col{
+          text-align: center;
+          height: 100%;
+        }
+        .title{
+          font-size: 170px;
+          line-height: 1.2;
+          color: #a9d86e;
+        }
+        .neirongItem{
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          .tip{
+            font-size: 30px;
+            font-weight: bold;
+            text-align: left;
+          }
+          .neirong{
+            font-size: 20px;
+            text-align: left;
+          }
         }
       }
-    }
+      .home{
+        margin: 10px auto;
+        text-align: center;
+      }
+      .router-link-active:hover{
+        color:#a9d86e;
+        text-decoration: underline;
+      }
   }
+}
 </style>
