@@ -79,10 +79,11 @@ editor只有被赋予权限的页面和按钮才可以看到；
 
 
 ## [查看更多demo](http://www.jiouai.com/permission/#/login)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/index.png)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/quyu.png)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/userlist.png)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/zijin.png)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/1.png)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/2.png)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/3.png)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/4.png)
+![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/5.png)
 
 
 ## 技术答疑，交流QQ群
