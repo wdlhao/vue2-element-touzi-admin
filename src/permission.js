@@ -4,6 +4,7 @@ import NProgress from 'nprogress' // Progress 进度条
 import 'nprogress/nprogress.css'// Progress 进度条样式
 import { Message } from 'element-ui'
 import { getToken } from '@/utils/auth' // 验权(从cookie中获取)
+import { getUserInfo } from "@/api/user";
 import {
   setTitle
 } from '@/utils/mUtils' // 设置浏览器头部标题
@@ -23,22 +24,27 @@ router.beforeEach((to, from, next) => {
    store.commit('SET_BROWSERHEADERTITLE', {
      browserHeaderTitle: browserHeaderTitle
    })
-  // 点击登录时，拿到了token并存入了vuex;
+  // 点击登录时，拿到了token并存入了cookie,保证页面刷新时,始终可以拿到token
   if (getToken()) {
     /* has token*/
     if(to.path === '/login') {
       next({ path: '/' })  // 会匹配到path:'',后面的path:'*'还没有生成;
       NProgress.done() 
     } else {
+      // 用户登录成功之后，每次点击路由都进行了角色的判断;
       if (store.getters.roles.length === 0) {
-        store.dispatch('GetInfo').then(res => { // 拉取用户信息
-          const roles = res.roles
-          store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
+        let token = getToken();
+        getUserInfo({"token":token}).then().then(res => { // 根据token拉取用户信息
+          let userList = res.data.userList;
+          store.commit("SET_ROLES",userList.roles);
+          store.commit("SET_NAME",userList.name);
+          store.commit("SET_AVATAR",userList.avatar);
+          store.dispatch('GenerateRoutes', { "roles":userList.roles }).then(() => { // 根据roles权限生成可访问的路由表
             router.addRoutes(store.getters.addRouters) // 动态添加可访问权限路由表
             next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
           })
         }).catch((err) => {
-          store.dispatch('FedLogOut').then(() => {
+          store.dispatch('LogOut').then(() => {
             Message.error(err || 'Verification failed, please login again')
             next({ path: '/' })
           })
@@ -92,8 +98,8 @@ router.afterEach(() => {
             获取到roles信息后,将roles,name,avatar保存到vuex;
             同时,通过store.dispatch('GenerateRoutes', { roles })去重新过滤和生成路由，并将重新生成之后的权限路由'routes'保存到vuex;
             最后,通过router.addRoutes()合并路由表;   
-            如果在获取用户信息接口时，出现错误，则调取store.dispatch('FedLogOut')接口，返回到login页面;
-            用户FedLogOut之后，需要情况vuex和localStorage中的token信息;
+            如果在获取用户信息接口时，出现错误，则调取store.dispatch('LogOut')接口，返回到login页面;
+            用户LogOut之后，需要情况vuex和localStorage中的token信息;
              
        (2)、用户已经拥有roles信息；
             点击页面路由，通过roles权限判断 hasPermission();

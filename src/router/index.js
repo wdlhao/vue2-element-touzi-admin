@@ -3,17 +3,14 @@ import Router from 'vue-router'
 import { Layout,Content }  from "../layout"; // 页面整体布局
 import { topRouterMap } from "./topRouter";
 
-console.log(topRouterMap);
-
 Vue.use(Router)
 
 function filterTopRouterMap(name){
-	let router = topRouterMap.find((item,index) => {
+	let router = topRouterMap.find((item) => {
 		return item.parentName === name;
 	});
 	return router.data; // arr
 }
-console.log(filterTopRouterMap('infoShow'))
 
 /**
  * 1、roles:后台返回的权限结构;
@@ -57,7 +54,7 @@ export const constantRouterMap = [
 					icon:'fa-index',
 				    routerType:'leftmenu'
 				},
-                component: () => import('@/page/index/index'),
+        component: () => import('@/page/index/index'),
 			}
 		]
 	}
@@ -86,7 +83,7 @@ export const asyncRouterMap = [
 				meta:{
 					title:'用户管理', 
 					icon:'fa-user',
-				    routerType:'leftmenu'
+				  routerType:'leftmenu'
 				},
 				component: () => import('@/page/userList/userList'),
 			}
@@ -126,20 +123,19 @@ export const asyncRouterMap = [
 		   path:'infoShow',
 		   name:'infoShow',
 		   meta: {
-			    title:'个人信息',
-				icon: 'fa-asterisk',
-				routerType:'leftmenu',
-				titleList:[
-					{"path":"infoShow1","title":"个人信息子菜单1"},
-					{"path":"infoShow2","title":"个人信息子菜单2"},
-					{"path":"infoShow3","title":"个人信息子菜单3"},
-					{"path":"infoShow4","title":"个人信息子菜单4"},
-					{"path":"infoShow5","title":"个人信息子菜单5"},
-					{"path":"infoShow6","title":"个人信息子菜单6"}
-				]
+					title:'个人信息',
+					icon: 'fa-asterisk',
+					routerType:'leftmenu',
+					titleList:[
+						{"path":"infoShow1","title":"个人信息子菜单1"},
+						{"path":"infoShow2","title":"个人信息子菜单2"},
+						{"path":"infoShow3","title":"个人信息子菜单3"},
+						{"path":"infoShow4","title":"个人信息子菜单4"},
+						{"path":"infoShow5","title":"个人信息子菜单5"},
+						{"path":"infoShow6","title":"个人信息子菜单6"}
+					]	
 			 },
-	  		 component:Content,
-			 // redirect:'/infoManage/infoShow/infoShow1',
+	  	 component:Content,
 			 children:filterTopRouterMap('infoShow')
 		},
 		{
@@ -155,7 +151,6 @@ export const asyncRouterMap = [
 					{"path":"infoModify3","title":"修改信息子菜单3"}
 				]
 			},
-			//component: () => import('@/page/infoManage/infoModify'),
 			component:Content,
 			children:filterTopRouterMap('infoModify')
 		 }
@@ -241,7 +236,6 @@ export const asyncRouterMap = [
     },
     component: Layout,
     redirect: '/permission/page',
-    alwaysShow: true, // will always show the root menu
     children: [{
 			path: 'page',
 			name: 'pagePermission',

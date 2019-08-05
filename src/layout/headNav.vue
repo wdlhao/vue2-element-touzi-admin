@@ -12,18 +12,14 @@
                         <li class="li-badge">
                             <el-tooltip class="item" effect="dark" content="访问github" placement="top">
                                 <a :href='github' target="_blank">
-                                    <el-badge class="item one">
-                                        <i class="fa fa-github"></i>
-                                    </el-badge>
+                                      <icon-svg icon-class="iconGithub" />
                                 </a>
                             </el-tooltip>
                         </li>
                         <li class="li-badge">
-                            <a href='#' v-popover:qcode>
-                                <el-badge :value="6" class="item one">
-                                    <i class="fa fa-wechat"></i>
-                                </el-badge>
-                            </a>
+                            <div :href='github' target="_blank" v-popover:qcode>
+                                <icon-svg icon-class="iconwechat" />
+                            </div>
                             <el-popover
                                 ref="qcode"
                                 popper-class="qcodepopper"
@@ -36,10 +32,8 @@
                             </el-popover>
                         </li>
                         <li class="li-badge">
-                            <a :href='indexRouter' v-popover:qqcode>
-                                <el-badge :value="12" class="item two">
-                                    <i class="fa fa-qq"></i>
-                                </el-badge>
+                            <a :href='github' target="_blank" v-popover:qqcode>
+						          <icon-svg icon-class="iconqq" />
                             </a>
                              <el-popover
                                 ref="qqcode"
@@ -55,10 +49,10 @@
                     </ul>
                 </div>
                 <div class="userinfo">
-                    <img src="../assets/img/avatar.png" class='avatar' alt="">
+                    <img :src="avatar" class='avatar' alt="">
                     <div class='welcome'>
                         <p class='name comename'>欢迎</p>
-                        <p class='name avatarname'>{{username}}</p>
+                        <p class='name avatarname'>{{name}}</p>
                     </div>
                     <span class='username'>
                         <el-dropdown
@@ -96,8 +90,6 @@
           name: 'head-nav',
           data(){
             return{
-                username:'',
-                indexRouter:'#/index/index',
                 logo:logoImg,
                 wechat:{
                     wechatImg:wechatImg,
@@ -114,9 +106,12 @@
             topMenu
           },
           computed:{
+            ...mapGetters(['name','avatar'])
+              
           },
           created(){
-              this.username = store.getters.name;
+              console.log(this.name);
+              console.log(this.avatar);
           },
           mounted(){
           },
@@ -207,7 +202,6 @@
         top: 0px;
         left: 0px;
         box-sizing: border-box;
-        // z-index: 5;
         .logout {
             vertical-align: middle;
             cursor: pointer;
@@ -218,10 +212,8 @@
        border:1px solid;
     }
     .userinfo-right{
-        justify-content: flex-end;
-        min-width: 330px;
-        width:330px;
-        margin-right: 20px;
+        width:300px;
+        justify-content: space-between;
     }
     .userinfo {
         line-height: 60px;
@@ -236,7 +228,7 @@
     }
     .welcome{
         display: inline-block;
-        width:auto;
+        width:70px;
         vertical-align: middle;
         padding: 0 5px;
         .name{
@@ -262,12 +254,14 @@
     }
     .notify-row{
         line-height:60px;
-        margin-right: 20px;
-        margin-top: 5px;
+        flex:1;
+        ul{
+           display: flex;
+           justify-content: space-around;
+        }
     }
+   
     ul.top-menu > li {
-        float: left;
-        margin-right: 20px;
         position: relative;
     }
     ul.top-menu > li > a {

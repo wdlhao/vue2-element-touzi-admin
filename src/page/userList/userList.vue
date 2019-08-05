@@ -87,6 +87,7 @@
 </template>
 
 <script>
+    import { getUserList } from "@/api/user";
     export default {
         data(){
             return {
@@ -116,9 +117,14 @@
                 })
              },
             getUserList(){
-                this.$store.dispatch('GetUserList', this.paginations).then(res => {
-                    this.paginations.total = res.count;
-                    this.tableData = res.data;
+                let para = {
+                    limit:this.paginations.pageSize,
+                    page:this.paginations.pageIndex
+                }
+                getUserList(para).then(res => {
+                    console.log(res);
+                    this.paginations.total = res.data.total;
+                    this.tableData = res.data.userList;
                 })
             },
             // 每页多少条切换

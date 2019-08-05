@@ -87,7 +87,6 @@ const permission = {
       state.routers = constantRouterMap.concat(routers) // 总路由
     },
     CLICK_INNER_LEFT_MENU:(state,data) => { // titleList:arr
-        // state.topRouters = filterTopRouters(data);
         state.topRouters = data.titleList;
     },
     CLICK_TOP_MENU:(state,data) => {
@@ -100,8 +99,7 @@ const permission = {
     // 根据角色，重新设置权限路由;并保存到vuex中,SET_ROUTERS;
     GenerateRoutes({ commit }, data) {
       return new Promise(resolve => {
-        const { roles } = data
-        // let asyncRouterMaps = addTopRouter(); // 将头部菜单添加到对应的二级菜单下面;
+        let roles = data.roles;
         let accessedRouters = '';
         if (roles.indexOf('admin') >= 0) {
           // 如果是管理员，直接将权限路由赋值给新路由;

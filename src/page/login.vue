@@ -44,7 +44,9 @@
 </template>
 
 <script>
-    import logoImg from "@/assets/img/logo.png";
+	import logoImg from "@/assets/img/logo.png";
+	import { login } from "@/api/user";
+    import { setToken } from '@/utils/auth'
 
 	export default {
 	    data(){
@@ -80,7 +82,9 @@
 				this.$refs[loginForm].validate((valid) => {
 					if (valid) {
 						let userinfo = this.loginForm;
-						this.$store.dispatch('Login', userinfo).then(res => {
+						login(userinfo).then(res => {
+							let userList = res.data.userList;
+							setToken(userList.token)
 							this.$router.push({ path: '/' })
 							this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
 						})

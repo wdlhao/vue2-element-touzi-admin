@@ -53,15 +53,6 @@
                     this.$store.dispatch('ClickLeftInnerMenu',{'titleList':[]});
                     this.$store.dispatch('ClickTopMenu',{'title':''});
                 }
-
-                // if(this.$route.meta.routerType === "topmenu"){ // 点击顶部菜单
-                //     // 计算出点击菜单的index;
-                //     let menuIndex = 0;
-                //     titleList.forEach((item,index) => {
-                //         (item.title === currentTitle)? menuIndex = index:0;
-                //     })
-                //     this.$store.dispatch('ClickTopMenu',{"menuIndex":menuIndex});
-                // }
             },
             getPath(){
                this.setLeftInnerMenu();

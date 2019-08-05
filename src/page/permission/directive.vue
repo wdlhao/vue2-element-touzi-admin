@@ -60,18 +60,6 @@ export default {
 
 <style lang="less" scoped>
 .fillcontain {
-  // /deep/ .permission-alert {
-  //   width: 100%;
-  //   margin-top: 30px;
-  //   background-color: #f0f9eb;
-  //   color: #67c23a;
-  //   padding: 8px 16px;
-  //   border-radius: 4px;
-  //   display: block;
-  // }
-  // /deep/ .permission-tag {
-  //   background-color: #ecf5ff;
-  // }
   .cflex{
     .permission-alert{
        margin-bottom: 20px;
