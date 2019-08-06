@@ -32,7 +32,7 @@ export default {
     methods: {
       setSectionHeight(){
         this.$nextTick(() => {
-            this.$refs.errPage.style.height =  (document.body.clientHeight - 120)+'px';
+            this.$refs.errPage.style.height =  (document.body.clientHeight)+'px';
         })
       }
     }
@@ -40,15 +40,21 @@ export default {
 </script>
 
 <style lang="less" scoped>
+html{
+  background:#F6F7FC;
+}
 .errPage{
     background: #F6F7FC;
     display: flex;
     justify-content: center;
-    margin-top: 130px;
+    padding-top: 200px;
     .errPage-container {
       width: 800px;
       min-width: 800px;
       height: 205px;
+      a{
+        text-decoration: underline;
+      }
       .rows{
         height: 100%;
         .el-col{
