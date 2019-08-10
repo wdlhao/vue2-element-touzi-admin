@@ -141,20 +141,14 @@
         },
         mounted() {
             this.$nextTick(function() {
-                this.$refs.fillcontainer.style.height = (document.body.clientHeight - 160)+'px'
+                // this.$refs.fillcontainer.style.height = (document.body.clientHeight - 160)+'px'
                 this.drawpie('typePosition');
                 this.drawbar('typePosition2');
-                // var that = this;
-                // var resizeTimer = null;
                 // 保证页面在放大或缩小时，也能够动态的显示数据
                 window.onresize = () => {
-                    console.log(9999);
-                    // if (resizeTimer) clearTimeout(resizeTimer);
-                    // resizeTimer = setTimeout(function() {
-                    this.$refs.fillcontainer.style.height = (document.body.clientHeight - 160)+'px'
+                    // this.$refs.fillcontainer.style.height = (document.body.clientHeight - 160)+'px'
                     this.drawpie('typePosition');
                     this.drawbar('typePosition2');
-                    // }, 100);
                 }
 
             })

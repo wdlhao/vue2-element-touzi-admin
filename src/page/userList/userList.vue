@@ -1,12 +1,13 @@
 <template>
     <div class="fillcontain">
-        <div class="table_container">
+        <div class="contain">
+          <div class="table_container">
             <el-table
+                 v-loading="loading"
                  :data="tableData"
                  border
                  stripe
                  highlight-current-row
-                 :height="tableHeight"
                  header-cell-class-name="table-header-class"
                  style="width:100%">
                 <el-table-column
@@ -20,25 +21,25 @@
                  <el-table-column
                    property="username"
                    label="用户姓名"
-                   width="120"
+                   width="80"
                    align='center'>
                 </el-table-column>
                 <el-table-column
                    property="email"
                    label="邮箱地址"
-                   width=""
+                    width="180"
                    align='center'>
                 </el-table-column>
                 <el-table-column
                    property="address"
                    label="注册地址"
-                   width="160"
+                   width="180"
                    align='center'>
                 </el-table-column>
                  <el-table-column
                    property="region"
                    label="地区"
-                   width="120"
+                   width="80"
                    align='center'>
                 </el-table-column> 
                   <el-table-column
@@ -82,6 +83,7 @@
                     </div>
                 </el-col>
             </el-row>
+          </div>
         </div>
     </div>
 </template>
@@ -92,7 +94,7 @@
         data(){
             return {
                 tableData: [],
-                tableHeight:0,
+                loading:true,
               //需要给分页组件传的信息
                 paginations: {
                     total: 0,        // 总数
@@ -105,24 +107,15 @@
         },
         mounted(){
             this.getUserList();
-            this.setTableHeight();
-            window.onresize = () => {
-                this.setTableHeight();
-            }
         },
         methods: {
-             setTableHeight(){
-                this.$nextTick(() => {
-                   this.tableHeight =  document.body.clientHeight - 200
-                })
-             },
             getUserList(){
                 let para = {
                     limit:this.paginations.pageSize,
                     page:this.paginations.pageIndex
                 }
                 getUserList(para).then(res => {
-                    console.log(res);
+                    this.loading = false;
                     this.paginations.total = res.data.total;
                     this.tableData = res.data.userList;
                 })
@@ -142,6 +135,13 @@
 </script>
 
 <style lang="less" scoped>
+    .fillcontain{
+        padding-bottom: 0;
+    }
+    .contain{
+        background: #fff;
+        padding: 10px;
+    }
    .pagination{
        padding: 10px 20px;
        text-align: right;

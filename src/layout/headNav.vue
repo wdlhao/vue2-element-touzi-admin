@@ -1,9 +1,9 @@
 <template>
     <header class="head-nav rflex " id='header_container'>
-        <div class='logo-container rflex'>
+        <!-- <div class='logo-container rflex'>
             <img class="logo" :src="logo" alt="小爱admin">
             <span class='title'>小爱<i>Admin</i></span>
-        </div>
+        </div> -->
         <div class="right-nav" ref="rightNav">
             <top-menu></top-menu>
             <div class="userinfo-right rflex">
@@ -160,26 +160,26 @@
 </script>
 
 <style scoped lang='less'>
-    .logo-container {
-         min-width: 180px;
-         align-items: center;
-         justify-content: space-around;
-         text-transform: uppercase;
-         box-sizing: border-box;
-         box-shadow:0px 2px 5px 0px rgba(230,224,224,0.5);
-        .logo {
-            height: 36px;
-            width: 36px;
-            vertical-align: middle;
-            display: inline-block;
-        }
-        .title{
-            font-size: 22px;
-            i{
-                color:#FF6C60;
-            }
-        }
-    }
+    // .logo-container {
+    //      min-width: 180px;
+    //      align-items: center;
+    //      justify-content: space-around;
+    //      text-transform: uppercase;
+    //      box-sizing: border-box;
+    //      box-shadow:0px 2px 5px 0px rgba(230,224,224,0.5);
+    //     .logo {
+    //         height: 36px;
+    //         width: 36px;
+    //         vertical-align: middle;
+    //         display: inline-block;
+    //     }
+    //     .title{
+    //         font-size: 22px;
+    //         i{
+    //             color:#FF6C60;
+    //         }
+    //     }
+    // }
     .right-nav{
         display: flex;
         flex: 1;
@@ -197,10 +197,6 @@
         justify-content: space-between;
         width: 100%;
         height: 60px;
-        min-width: 600px;
-        position: fixed;
-        top: 0px;
-        left: 0px;
         box-sizing: border-box;
         .logout {
             vertical-align: middle;

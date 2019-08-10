@@ -1,6 +1,8 @@
 <template>
   <div class="fillcontain">
-    <switch-roles @change="handleRolesChange" />
+    <div  class="contain">
+       <switch-roles @change="handleRolesChange" />
+    </div>
   </div>
 </template>
 
@@ -18,3 +20,12 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+ .contain{
+    background: #fff;
+    padding: 20px;
+    padding-bottom: 1px;
+  }
+
+</style>

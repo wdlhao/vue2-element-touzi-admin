@@ -126,7 +126,7 @@
 				}
 				.line{
 					border-bottom:1px solid gold;
-					width:100px;
+					flex:0.5;
 				}
 			}
 			 .shareUl{

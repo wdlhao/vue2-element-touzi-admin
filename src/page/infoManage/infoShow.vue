@@ -101,13 +101,11 @@
         <!--广告信息栏-->
         <el-row class="ban_row row" :gutter="10">
             <el-col :span="24">
-                <div class="area">
-                    <ul class="banarea">
-                        <li v-for="(item,index) in bandata" :key="index">
-                            <a :href="item.url" target="_blank" :style="{backgroundPosition:0 +' -'+ item.data+'px'}"></a>
-                        </li>
-                   </ul>
-                </div>
+                <ul class="banarea">
+                    <li v-for="(item,index) in bandata" :key="index">
+                        <a :href="item.url" target="_blank" :style="{backgroundPosition:0 +' -'+ item.data+'px'}"></a>
+                    </li>
+                </ul>
             </el-col>
         </el-row>
         </div>
@@ -313,13 +311,11 @@
        }
    }
    .ban_row{
-       .area{
-           padding-left:4%;
-          .banarea{
+        .banarea{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
             li{
-                float: left;
-                width: 200px;
-                margin-right: 10px;
                 a{
                     background: url(../../assets/img/pro_map.gif?v=1.0) no-repeat;
                     width: 200px;
@@ -327,9 +323,7 @@
                     display: block;
                 }
             }
-          }
-       }
-      
+        }
    }
 </style>
 

@@ -2,7 +2,6 @@
     <div class="chinaTabsTable">
        <el-table 
           :data="tableData" 
-          :height="tableHeight" 
           style="width: 100%" align='center'>
             <el-table-column
                 prop="ID"
