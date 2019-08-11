@@ -13,7 +13,8 @@
 **dev-permission分支**：<b color="#87DE75">增加了权限管理(包括页面权限和按钮权限)的功能和顶栏三级菜单显示，完全剥离nodejs后台，使用mockjs模拟数据，让用户只需关注前端，更容易上手学习。目前此分支为正常维护分支。如有需要，请大家clone本分支代码运行。</b>
 
 ## 提示
- 如果你觉得该项目对你有帮忙，记得给我点赞吧!<img src="https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-base/src/assets/img/zan.png" width="100px" />
+<p style="display:flex;align-items:center;">
+ 如果你觉得该项目对你有帮忙，记得给我点赞吧!<img src="https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-base/src/assets/img/zan.png" width="80px" /></p>
 
 ## About
 
