@@ -1,5 +1,5 @@
 <template>
-		<section class="data_section" ref="data_section"> 
+		<section class="data_section" ref="data_section"  v-loading.fullscreen.lock="loading"> 
 			<a :href="github" target="_blank">
 				<el-row :gutter="10" class="row_list">
 					<el-col :span="8">
@@ -131,7 +131,8 @@
     export default {
     	data(){
     		return {
-			  github:github
+			  github:github,
+			  loading:true
     		}
     	},
     	components: {
@@ -144,15 +145,18 @@
 		   radarChart,
 		   lineChart
 		},	
+		created(){
+		},
     	mounted(){
-			this.setSectionHeight();
+			this.loading = false;
+			// this.setSectionHeight();
 		},
     	methods: {
-		   setSectionHeight(){
-				this.$nextTick(() => {
-				   this.$refs.data_section.style.height =  (document.body.clientHeight - 120)+'px';
-				})
-		   }
+		//    setSectionHeight(){
+		// 		this.$nextTick(() => {
+		// 		   this.$refs.data_section.style.height =  (document.body.clientHeight - 120)+'px';
+		// 		})
+		//    }
     	}
     }
 </script>
@@ -160,7 +164,6 @@
 <style lang="less" scoped>
 	.data_section{
 		margin: 20px;
-		overflow: auto;
 		border-radius: 2px;
 		.row_list{
 			margin-bottom: 20px;

@@ -1,17 +1,14 @@
 <template>
-    <div class="home">
-        <head-nav></head-nav>
-        <div class="left-fixed-right-auto">
-            <left-menu></left-menu>
-            <div class="content_page" 
-                :style="{'left':sidebar.width}">
-                <div class="content">
-                    <bread></bread>
-                    <router-view></router-view><!--页面渲染入口-->
-                </div>
+    <div class="home rflex">
+        <left-menu></left-menu>
+        <div class="menu_right cflex wflex" :style="{left:sidebar.width}">
+            <head-nav></head-nav>
+            <div class="menu_content">
+                <bread></bread>
+                <router-view></router-view><!--页面渲染入口-->
+                <footerNav></footerNav>
             </div>
         </div>
-        <footerNav></footerNav>
     </div>
 </template>
 <script>
@@ -46,15 +43,18 @@
     }
 </script>
 <style scoped lang='less'>
-    .content_page{
-        position: fixed;
-        top:60px;
-        right:0;
-        z-index: 3;
-        background:#F6F7FC;
-    }
-     .content{
-       width:100%;
-       height:100%;
+    .home{
+        .menu_right{
+            overflow: auto;
+            position: absolute;
+            right:0;
+            top:0;
+            bottom:0;
+            .menu_content{
+                width:100%;
+                background:#F6F7FC;
+            }
+
+        }
     }
 </style>

@@ -1,17 +1,37 @@
 <template>
-  	<div class="fillcontain shareContainer" ref="shareContainer">
-		<div class="shareItem rflex">
-			<heng-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></heng-share>
-			<invite-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></invite-share>
-			<jianshu-share @shareToWeixin="shareToWeixin" @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></jianshu-share>
-			<jianshu-left-share @shareToWeixin="shareToWeixin" @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></jianshu-left-share>
-		</div>
-		<div class="shareItem rflex">
-		    <info-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></info-share>
-			<juejin-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></juejin-share>
-		    <sina-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></sina-share>
-		    <yan-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></yan-share>
-		</div>
+  	<div class="shareContainer" ref="shareContainer">
+		<el-row :gutter="20">
+			<el-col :span="6">
+			  <heng-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></heng-share>
+			</el-col>
+			<el-col :span="6">
+			   <invite-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></invite-share>
+			</el-col>
+			<el-col :span="6">
+			  <jianshu-share @shareToWeixin="shareToWeixin" @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></jianshu-share>
+			</el-col>
+			<el-col :span="6">
+			  <jianshu-left-share @shareToWeixin="shareToWeixin" @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></jianshu-left-share>
+			</el-col>
+		</el-row>
+		<el-row :gutter="20">
+			<el-col :span="6">
+		       <info-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></info-share>
+			</el-col>
+			<el-col :span="6">
+			  <juejin-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></juejin-share>
+			</el-col>
+			<el-col :span="6">
+		      <sina-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></sina-share>
+			</el-col>
+			<el-col :span="6">
+		      <yan-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></yan-share>
+			</el-col>
+		</el-row>
+		<!-- <div class="shareItem rflex">
+		</div> -->
+		<!-- <div class="shareItem rflex">
+		</div> -->
 		<wx-code-modal v-if="wxModal.show" :wxModal="wxModal" @hideWxCodeModal="hideWxCodeModal"></wx-code-modal>
   	</div>
 </template>
@@ -51,7 +71,7 @@
 			YanShare
 		},
 		mounted(){
-			this.setSectionHeight();
+			// this.setSectionHeight();
 		},
 		methods: {
 			setSectionHeight(){
@@ -87,5 +107,20 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
+		padding: 20px;
+		.el-row:first-child{
+			margin-bottom: 20px;
+		}
+		.el-row{
+			height:210px;
+			.el-col{
+				overflow: hidden;
+				height:100%;
+				.shareArea{
+					height: 100%;
+					width:100%;
+				}
+			}
+		}
 	}
 </style>

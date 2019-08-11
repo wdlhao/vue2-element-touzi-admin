@@ -57,10 +57,10 @@
              Pagination
         },
         mounted(){
-             this.setTabHeight();
-             window.onresize = () => {
-                this.setTabHeight();
-             }
+            //  this.setTabHeight();
+            //  window.onresize = () => {
+            //     this.setTabHeight();
+            //  }
             this.toggleTabs('eastChina');
         },
         methods: {
@@ -77,9 +77,6 @@
 </script>
 
 <style lang="less" scoped>
-    .tabContainer{
-        overflow: hidden;
-    }
     .fa{
         margin-right:5px;
     }

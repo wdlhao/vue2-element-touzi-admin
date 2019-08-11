@@ -1,57 +1,58 @@
 <template>
-  <div ref="errPage" class="errPage">
-    <div class="errPage-container">
-      <el-row class="rows">
-        <el-col :span="12">
-          <h1 class="title">401</h1>
-        </el-col>
-        <el-col :span="12">
-          <div class="neirongItem">
-              <p class="tip">SORRY!</p>
-              <p class="neirong">The page requires authentication.</p>
-          </div>
-        </el-col>
-      </el-row>
-      <router-link :to="{path: '/'}">
-          <p class="home">Back to home</p>
-      </router-link>
-    </div>
+  <div class="fillcontain">
+      <div class="contain">
+        <div class="errPage-container cflex wflex">
+            <img class="errorImg" :src="errorImg" />
+            <p class="errorTitle">401</p>
+            <p class="errorTro">抱歉,您没有权限访问该页面。</p>
+            <router-link :to="{path: '/'}">
+              <el-button size="mini" type="primary">返回首页</el-button>
+            </router-link>
+        </div>
+      </div>
   </div>
 </template>
+
 <script>
+import errorImg from "@/assets/img/401.png"
 
 export default {
     name: 'page401',
     data() {
       return {
+        errorImg:errorImg
       }
     },
   	mounted(){
-			this.setSectionHeight();
 		},
     methods: {
-      setSectionHeight(){
-        this.$nextTick(() => {
-            this.$refs.errPage.style.height =  (document.body.clientHeight)+'px';
-        })
-      }
     }
 }
 </script>
 
 <style lang="less" scoped>
-html{
-  background:#F6F7FC;
-}
-.errPage{
-    background: #F6F7FC;
-    display: flex;
-    justify-content: center;
-    padding-top: 200px;
-    .errPage-container {
-      width: 800px;
-      min-width: 800px;
-      height: 205px;
+    .contain{
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+       .errPage-container {
+          align-items: center;
+          p{
+            line-height: 30px;
+          }
+          .errorImg{
+            width:286px;
+            height: 325px;
+            margin-bottom: 10px;
+          }
+          .errorTitle{
+            color: rgba(0,0,0,.85);
+            font-size: 24px;
+          }
+          .errorTro{
+            color: rgba(0,0,0,.45);
+           font-size: 14px;
+          }
       a{
         text-decoration: underline;
       }
@@ -83,13 +84,13 @@ html{
         }
       }
       .home{
-        margin: 10px auto;
         text-align: center;
       }
       .router-link-active:hover{
         color:#a9d86e;
         text-decoration: underline;
       }
-  }
-}
+    }
+    }
+   
 </style>

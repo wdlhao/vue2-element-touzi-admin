@@ -106,7 +106,7 @@
         }
 		.bottom{
 			align-items: center;
-			padding: 20px;
+			padding: 20px 8px;
 			width: 100%;
 			height: 100%;
 			box-sizing: border-box;

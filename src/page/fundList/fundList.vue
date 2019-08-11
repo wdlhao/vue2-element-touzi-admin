@@ -3,10 +3,10 @@
         <search-item @showDialog="showAddFundDialog" @searchList="getMoneyList" @onBatchDelMoney="onBatchDelMoney"></search-item>
         <div class="table_container">
             <el-table
+                v-loading="loading"
                 :data="tableData"
                 style="width: 100%"
                 align='center'
-                :height="tableHeight"
                 @select="selectTable"
                 @select-all="selectAll"
                 >
@@ -15,7 +15,7 @@
                 prop="id"
                 label="id"
                 align='center'
-                width="220">
+                width="180">
             </el-table-column>
             <el-table-column
                 type="selection"
@@ -26,19 +26,20 @@
                 prop="username"
                 label="用户姓名"
                 align='center'
-                width="160">
+                width="80">
             </el-table-column>
             <el-table-column
                 prop="address"
                 label="籍贯"
                 align='center'
-                width="160">
+                >
             </el-table-column>
             <el-table-column
                 prop="createTime"
                 label="投资时间"
                 align='center'
-                sortable>
+                sortable
+                width="170">
                 <template slot-scope="scope">
                     <el-icon name="time"></el-icon>
                     <span style="margin-left: 10px">{{ scope.row.createTime }}</span>
@@ -123,6 +124,7 @@
             return {
                 tableData: [],
                 tableHeight:0,
+                loading:true,
                 idFlag:false,
                 isShow:false, // 是否显示资金modal,默认为false
                 editid:'',
@@ -198,10 +200,10 @@
         },
       	mounted() {
             this.getMoneyList();
-            this.setTableHeight();
-            window.onresize = () => {
-                this.setTableHeight();
-            }
+            // this.setTableHeight();
+            // window.onresize = () => {
+            //     this.setTableHeight();
+            // }
 	   },
         methods: {
              setTableHeight(){
@@ -213,6 +215,7 @@
             getMoneyList(){
                 const para = Object.assign({},this.incomePayData,this.search);
                 getMoneyIncomePay(para).then(res => {
+                     this.loading = false;
                      this.pageTotal = res.data.total
                      this.tableData = res.data.moneyList
                 })

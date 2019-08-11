@@ -1,16 +1,25 @@
 <template>
 	 <div class='footer'>
-        鄂ICP备18001612号
+        <p class="intro rflex">
+            <span>小爱Admin</span>
+            <a :href='github' target="_blank">
+               <icon-svg icon-class="iconGithub" />
+            </a>
+            <span>wdlhao2013(微信号)</span>
+        </p>
+        <p class="beian">鄂ICP备18001612号</p>
     </div>
 </template>
 
 
 <script>
+    import { github } from "@/utils/env";
+
 export default {
     name: "footerNav",
 	data(){
 		return {
-			
+            github:github
 		}
 	},
 	methods:{
@@ -21,17 +30,19 @@ export default {
 
 <style lang="less">
 	.footer{
-       width:100%;
-       position: fixed;
-       bottom: 0;
-       right: 0;
-       height: 30px;
-       line-height: 30px;
-       color:#fff;
-        background: #324057;
+        padding: 10px 0;
         font-size:12px;
         text-align: center;
-        z-index: 9;
+        background: #F6F7FC;
+        p{
+            line-height: 30px;
+        }
+        .intro{
+            width: 240px;
+            margin: 0 auto;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
 </style>
 
