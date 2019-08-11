@@ -45,7 +45,6 @@
 <style scoped lang='less'>
     .home{
         .menu_right{
-            border:1px solid red;
             overflow: auto;
             position: absolute;
             right:0;

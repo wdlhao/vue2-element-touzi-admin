@@ -90,7 +90,6 @@ export default {
   @left-bgColor:rgb(50, 64, 87);  // 左侧菜单背景颜色;
   @icon-link:#FF6C60;
     .menu_left{
-        border:1px solid greenyellow;
         position: absolute;
         top:0;
         left:0;
