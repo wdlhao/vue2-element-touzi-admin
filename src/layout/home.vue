@@ -50,8 +50,10 @@
             right:0;
             top:0;
             bottom:0;
+            background:#F6F7FC;
             .menu_content{
                 width:100%;
+                height:100%;
                 background:#F6F7FC;
             }
 

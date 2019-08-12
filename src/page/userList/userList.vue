@@ -27,13 +27,12 @@
                 <el-table-column
                    property="email"
                    label="邮箱地址"
-                    width="180"
+                   width="180"
                    align='center'>
                 </el-table-column>
                 <el-table-column
                    property="address"
                    label="注册地址"
-                   width="180"
                    align='center'>
                 </el-table-column>
                  <el-table-column

@@ -198,6 +198,7 @@
         width: 100%;
         height: 60px;
         box-sizing: border-box;
+        background: #fff;
         .logout {
             vertical-align: middle;
             cursor: pointer;
