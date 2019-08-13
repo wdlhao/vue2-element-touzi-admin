@@ -52,6 +52,7 @@
             right:0;
             top:0;
             bottom:0;
+            background:#F6F7FC;
             .menu_content{
                 position: relative;
                 margin-top:60px;

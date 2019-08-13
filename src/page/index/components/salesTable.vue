@@ -31,7 +31,6 @@
       <el-table-column
         prop="date"
         label="DATE"
-        width="160"
       >
         <template slot-scope="scope">
            <icon-svg icon-class="icontime" />

@@ -60,9 +60,9 @@ router.beforeEach((to, from, next) => {
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
+      // 点击退出时,会定位到这里
       next()
     } else {
-      // 点击退出时,会定位到这里
       next('/login')
       NProgress.done()
     }
