@@ -62,7 +62,7 @@ export default {
 
 <style lang="less">
 	.bread_container{
-		background-color: #EFF2F7;
+		background-color: #eaebec;
 		width: 100%;
 		.bars{
 			float: left;

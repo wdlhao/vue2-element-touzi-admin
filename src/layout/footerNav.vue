@@ -30,10 +30,11 @@ export default {
 
 <style lang="less">
 	.footer{
+        width: 100%;
         padding: 10px 0;
         font-size:12px;
         text-align: center;
-        background: #F6F7FC;
+        background: #fff;
         p{
             line-height: 30px;
         }

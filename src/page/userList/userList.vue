@@ -141,6 +141,7 @@
     .contain{
         background: #fff;
         padding: 10px;
+        margin-bottom: 20px;
     }
    .pagination{
        padding: 10px 20px;

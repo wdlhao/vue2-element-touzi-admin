@@ -321,6 +321,11 @@
 </script>
 
 <style lang="less" scoped>
+    .table_container{
+        padding: 10px;
+        background: #fff;
+        border-radius: 2px;
+    }
     .el-dialog--small{
        width: 600px !important;
     }

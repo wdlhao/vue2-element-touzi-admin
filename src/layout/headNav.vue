@@ -1,9 +1,5 @@
 <template>
     <header class="head-nav rflex " id='header_container'>
-        <!-- <div class='logo-container rflex'>
-            <img class="logo" :src="logo" alt="小爱admin">
-            <span class='title'>小爱<i>Admin</i></span>
-        </div> -->
         <div class="right-nav" ref="rightNav">
             <top-menu></top-menu>
             <div class="userinfo-right rflex">
@@ -110,8 +106,7 @@
               
           },
           created(){
-              console.log(this.name);
-              console.log(this.avatar);
+            
           },
           mounted(){
           },
@@ -194,10 +189,17 @@
         margin-right: 4px;
     }
     .head-nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 29;
+        width: calc(100% - 180px);
+        transition: width .2s;
         justify-content: space-between;
-        width: 100%;
         height: 60px;
         box-sizing: border-box;
+        box-shadow:0px 0px 5px 2px rgba(230, 224, 224, 0.5);
+        background: #fff;
         .logout {
             vertical-align: middle;
             cursor: pointer;

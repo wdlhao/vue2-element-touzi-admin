@@ -188,7 +188,15 @@ export const loadStyle = url => {
   }
 
   //是否为正整数
-  export const isInteger = (s) => {
+export const isInteger = (s) => {
     var re = /^[0-9]+$/ ;
     return re.test(s)
 }   
+
+export const setContentHeight = (that,ele,height) => {
+    console.log(ele);
+    console.log(height);
+    that.$nextTick(() => {
+        ele.style.height =   (document.body.clientHeight - height)+'px'
+    })
+  }

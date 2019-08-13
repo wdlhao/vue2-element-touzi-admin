@@ -48,6 +48,7 @@
 		SinaShare,
 		YanShare
 	} from "./components";
+    import * as mutils from '@/utils/mUtils'
 
 	export default {
 	  data(){
@@ -71,14 +72,9 @@
 			YanShare
 		},
 		mounted(){
-			// this.setSectionHeight();
+            mutils.setContentHeight(this,this.$refs.shareContainer,160);
 		},
 		methods: {
-			setSectionHeight(){
-				this.$nextTick(() => {
-				   this.$refs.shareContainer.style.height =  (document.body.clientHeight - 160)+'px';
-				})
-		    },
 			hideWxCodeModal(){
 				this.wxModal.show = false;
 			},

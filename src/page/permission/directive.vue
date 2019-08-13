@@ -1,6 +1,6 @@
 <template>
   <div class="fillcontain">
-    <div class="contain">
+    <div class="contain" ref="contain">
       <switch-roles @change="handleRolesChange" />
       <div :key="key" class="cflex">
         <span v-permission="['admin']" class="permission-alert">
@@ -31,6 +31,7 @@
 <script>
 import permission from '@/directive/permission/index.js' // 权限判断指令
 import SwitchRoles from './components/SwitchRoles'
+import * as mutils from '@/utils/mUtils'
 
 export default {
   name: 'directivePermission',
@@ -40,6 +41,9 @@ export default {
     return {
       key: 1 // 为了能每次切换权限的时候重新初始化指令
     }
+  },
+  mounted(){
+    mutils.setContentHeight(this,this.$refs.contain,210);
   },
   methods: {
     handleRolesChange() {
@@ -64,7 +68,8 @@ export default {
 .fillcontain {
   .contain{
     background: #fff;
-    padding: 20px 20px 0;
+    padding: 20px;
+    box-sizing: border-box;
   }
   .cflex{
     .permission-alert{

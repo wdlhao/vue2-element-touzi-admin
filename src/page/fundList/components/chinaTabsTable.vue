@@ -99,7 +99,6 @@
          mounted(){
              this.setTableHeight();
              window.onresize = () => {
-                 console.log(567);
                 this.setTableHeight();
              }
            

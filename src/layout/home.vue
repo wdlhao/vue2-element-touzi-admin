@@ -3,11 +3,11 @@
         <left-menu></left-menu>
         <div class="menu_right cflex wflex" :style="{left:sidebar.width}">
             <head-nav></head-nav>
-            <div class="menu_content">
+            <div class="menu_content" ref="menu_content">
                 <bread></bread>
                 <router-view></router-view><!--页面渲染入口-->
-                <footerNav></footerNav>
             </div>
+            <footerNav></footerNav>
         </div>
     </div>
 </template>
@@ -34,12 +34,14 @@
             Bread,
             FooterNav
         },
-        methods: {
-        },
         created() {
+
         },
         mounted (){
-        }
+        },
+         methods: {
+          
+        },
     }
 </script>
 <style scoped lang='less'>
@@ -51,8 +53,10 @@
             top:0;
             bottom:0;
             .menu_content{
+                position: relative;
+                margin-top:60px;
                 width:100%;
-                background:#F6F7FC;
+                background:#f0f2f5;
             }
 
         }

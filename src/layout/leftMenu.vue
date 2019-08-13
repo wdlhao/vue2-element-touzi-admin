@@ -58,8 +58,9 @@ export default {
   data() {
     return {
        menuObj:{
-         bgColor:'#324057',
-         textColor:'#fff',
+        //  bgColor:'#324057',
+         bgColor:'#fff',
+         textColor:'#666',
          activeTextColor:'#ff6428',
        },
        logo:logoImg
@@ -87,7 +88,7 @@ export default {
 
 
 <style lang="less" scoped>
-  @left-bgColor:rgb(50, 64, 87);  // 左侧菜单背景颜色;
+  @left-bgColor:#fff;  // 左侧菜单背景颜色;
   @icon-link:#FF6C60;
     .menu_left{
         position: absolute;
@@ -122,9 +123,9 @@ export default {
     }
   .menu_page_bottom {
       width:100%;
-      background-color: @left-bgColor;
       overflow-y: scroll;
       flex:1;
+      margin-top:3px;
   }
   .fa-margin {
     margin-right: 5px;
@@ -132,7 +133,7 @@ export default {
   .router-link-active {
     li {
         .el-submenu__title{
-            color: @icon-link !important;
+            // color: @icon-link !important;
         }
     }
   }
