@@ -3,12 +3,13 @@
     <el-table
       :data="tableData"
       stripe
+      height="424"
       style="width: 100%">
       <el-table-column
         class-name="salesUsername"
         prop="username"
         label="USERNAME"
-        width="170"
+        width="150"
       >
         <template slot-scope="scope">
             <img class="userImg" :src="userImg" alt="tuxiang"/>
@@ -31,6 +32,7 @@
       <el-table-column
         prop="date"
         label="DATE"
+        width="160"
       >
         <template slot-scope="scope">
            <icon-svg icon-class="icontime" />
@@ -41,7 +43,6 @@
         class-name="salesStatus"
         prop="status"
         label="STATUS"
-        width="180"
         >
         <template slot-scope="scope">
           <span v-if="scope.row.status === 1" class="saleBgcolor">SALE</span>

@@ -1,13 +1,14 @@
 <template>
     <div class="home rflex">
         <left-menu></left-menu>
-        <div class="menu_right cflex wflex" :style="{left:sidebar.width}">
+        <div class="menu_right wflex" ref="menu_right" :style="{left:sidebar.width}">
             <head-nav></head-nav>
             <div class="menu_content" ref="menu_content">
                 <bread></bread>
                 <router-view></router-view><!--页面渲染入口-->
             </div>
             <footerNav></footerNav>
+            <backTop :ele="this.$refs.menu_right"></backTop>
         </div>
     </div>
 </template>
@@ -18,6 +19,7 @@
 	import LeftMenu from './leftMenu.vue';
 	import Bread from './bread.vue';
 	import FooterNav from './footerNav.vue';
+	import backTop from 'cps/backTop';
 
     export default {
         name: 'home',
@@ -32,16 +34,15 @@
             HeadNav,
             LeftMenu,
             Bread,
-            FooterNav
+            FooterNav,
+            backTop
         },
         created() {
 
         },
         mounted (){
-        },
-         methods: {
-          
-        },
+
+        }
     }
 </script>
 <style scoped lang='less'>

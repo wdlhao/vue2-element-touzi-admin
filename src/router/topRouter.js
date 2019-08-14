@@ -52,16 +52,6 @@ export const topRouterMap = [
                     routerType: 'topmenu'
                 },
                 component: () => import('@/page/fundList/moneyData')
-            },
-            {
-                path: 'infoShow6',
-                name: 'infoShow6',
-                meta: {
-                    title: '个人信息子菜单6',
-                    icon: 'fa-asterisk',
-                    routerType: 'topmenu'
-                },
-                component: () => import('@/page/fundList/moneyData')
             }
         ]
     },

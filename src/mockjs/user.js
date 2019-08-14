@@ -30,7 +30,7 @@ export default {
     if(data.username === 'admin'){
         userList = {
             token:'admin',
-            name:'超级管理员',
+            name:'管理员',
         }
     }else if(data.username === 'editor'){
         userList = {
@@ -69,7 +69,7 @@ export default {
     if(data.token === 'admin'){
         userList = {
             roles: ['admin'],
-            name:'超级管理员',
+            name:'管理员',
             avatar:'https://wx.qlogo.cn/mmopen/vi_32/un2HbJJc6eiaviaibvMgiasFNlVDlNOb9E6WCpCrsO4wMMhHIbsvTkAbIehLwROVFlu8dLMcg00t3ZtOcgCCdcxlZA/132'
         }
     }else if(data.token === 'editor'){

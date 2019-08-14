@@ -131,8 +131,7 @@ export const asyncRouterMap = [
 						{"path":"infoShow2","title":"个人信息子菜单2"},
 						{"path":"infoShow3","title":"个人信息子菜单3"},
 						{"path":"infoShow4","title":"个人信息子菜单4"},
-						{"path":"infoShow5","title":"个人信息子菜单5"},
-						{"path":"infoShow6","title":"个人信息子菜单6"}
+						{"path":"infoShow5","title":"个人信息子菜单5"}
 					]	
 			 },
 	  	 component:Content,
