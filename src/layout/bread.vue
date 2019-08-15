@@ -5,10 +5,10 @@
 		</span>
         <el-breadcrumb class="breadcrumb" separator="/">
             <el-breadcrumb-item 
-                v-for='(title,index) in matchedArr'
+                v-for='(name,index) in matchedArr'
 				:key='index'
 				>
-				{{title}}
+				{{ $t(`commons.${name}`)}}
 			</el-breadcrumb-item>
         </el-breadcrumb>
     </div>
@@ -29,9 +29,13 @@ export default {
 		matchedArr(){
 			let temp = [],temps = [];
 			this.$route.matched.filter((item,index,self) => {
-				if(item.meta.title){
-					const title = item.meta.title;
-				    temp.push(title);
+				// if(item.meta.title){
+				// 	const title = item.meta.title;
+				//     temp.push(title);
+				// }
+				if(item.name){
+					const name = item.name;
+				    temp.push(name);
 				}
 			});
 			temp.filter((item,index,self) => {

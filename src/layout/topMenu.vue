@@ -12,7 +12,7 @@
             <template v-for="(item,index) in topRouters">
                 <router-link :to="$route.matched[1].path+'/'+item.path" :key="index">
                     <el-menu-item :index="$route.matched[1].path+'/'+item.path">
-                        {{item.title}}
+                      {{ $t(`commons.${item.path}`) }}
                     </el-menu-item>
                 </router-link>
             </template>

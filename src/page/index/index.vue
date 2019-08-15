@@ -7,8 +7,8 @@
 							<el-col :span="12">
 								<div class="pay saleBgcolor data_list rflex">
 									<div class="leftItem cflex wflex">
-										<p class="investor">年度总盈亏</p>
-										<p class="number">68<span class="perTitle">(千万元)</span></p>
+										<p class="investor">{{ $t('index.yearLoss') }}</p>
+										<p class="number">68<span class="perTitle">({{ $t('index.tenMillion') }})</span></p>
 									</div>
 									<div class="rightItem">
 										<icon-svg icon-class="iconfukuan" />
@@ -18,7 +18,7 @@
 							<el-col :span="12">
 								<div class="pay taxBgcolor data_list rflex">
 									<div class="leftItem cflex wflex">
-										<p class="investor">年度收益率</p>
+										<p class="investor">{{ $t('index.yearProfit') }}</p>
 										<p class="number">120<span class="perTitle">(%)</span></p>
 									</div>
 									<div class="rightItem">
@@ -33,8 +33,8 @@
 							<el-col :span="6">
 								<div class="extenedBgcolor data_list rflex">
 									<div class="leftItem cflex wflex">
-										<p class="investor">潜在投资人</p>
-										<p class="number">686<span class="perTitle">(人)</span></p>
+										<p class="investor">{{ $t('index.potentialInvestor') }}</p>
+										<p class="number">686<span class="perTitle">({{ $t('index.person') }})</span></p>
 										<p class="cardText">Decreased by 10%</p>
 									</div>
 									<div class="rightItem">
@@ -45,8 +45,8 @@
 							<el-col :span="6">
 								<div class="likeBgcolor data_list rflex">
 									<div class="leftItem cflex wflex">
-										<p class="investor">意向投资人</p>
-										<p class="number">1276<span class="perTitle">(人)</span></p>
+										<p class="investor">{{ $t('index.intentionInvestor') }}</p>
+										<p class="number">1276<span class="perTitle">({{ $t('index.person') }})</span></p>
 										<p class="cardText">Decreased by 50%</p>
 									</div>
 									<div class="rightItem">
@@ -57,8 +57,8 @@
 							<el-col :span="6">
 								<div class="linkBgColor data_list rflex">
 									<div class="leftItem cflex wflex">
-										<p class="investor">待审投资人</p>
-										<p class="number">82367<span class="perTitle">(人)</span></p>
+										<p class="investor">{{ $t('index.waitExamineInvestor') }}</p>
+										<p class="number">82367<span class="perTitle">({{ $t('index.person') }})</span></p>
 										<p class="cardText">Decreased by 30%</p>
 									</div>
 									<div class="rightItem">
@@ -69,8 +69,8 @@
 							<el-col :span="6">
 								<div class="keleBgColor data_list rflex">
 									<div class="leftItem cflex wflex">
-										<p class="investor">审核中投资人</p>
-										<p class="number">827373<span class="perTitle">(人)</span></p>
+										<p class="investor">{{ $t('index.examiningInvestor') }}</p>
+										<p class="number">827373<span class="perTitle">({{ $t('index.person') }})</span></p>
 										<p class="cardText">Decreased by 80%</p>
 									</div>
 									<div class="rightItem">

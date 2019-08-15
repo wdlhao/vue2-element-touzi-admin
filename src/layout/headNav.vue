@@ -52,14 +52,14 @@
                         <el-submenu index="1">
                             <template slot="title">
                                 <div class='welcome'>
-                                    <span class="name">Hi,</span>
-                                    <span class='name avatarname'>{{name}}</span>
+                                    <span class="name">{{$t('commons.hi')}},</span>
+                                    <span class='name avatarname'> {{ $t(`commons.${name}`)}}</span>
                                 </div>
                                 <img :src="avatar" class='avatar' alt="">
                             </template>
-                            <el-menu-item index="1-1" @click="setDialogInfo('info')">个人信息</el-menu-item>
-                            <el-menu-item index="1-2" @click="setDialogInfo('pass')">修改密码</el-menu-item>
-                            <el-menu-item index="1-3" @click="setDialogInfo('logout')">退出</el-menu-item>
+                            <el-menu-item index="1-1" @click="setDialogInfo('info')">{{$t('commons.personInfo')}}</el-menu-item>
+                            <el-menu-item index="1-2" @click="setDialogInfo('pass')">{{$t('commons.editPwd')}}</el-menu-item>
+                            <el-menu-item index="1-3" @click="setDialogInfo('logout')">{{$t('commons.quit')}}</el-menu-item>
                         </el-submenu>
                     </el-menu>
                 </div>

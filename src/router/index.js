@@ -70,7 +70,7 @@ export default new Router({
 export const asyncRouterMap = [
 	{
 		path:'/userManager',
-		name: 'userList',
+		name: 'userManage',
 		component:Layout,
 		meta: {
 			title:'用户管理',
@@ -237,7 +237,7 @@ export const asyncRouterMap = [
     redirect: '/permission/page',
     children: [{
 			path: 'page',
-			name: 'pagePermission',
+			name: 'pagePer',
       meta: {
         title: '页面权限',
         roles: ['admin'] // or you can only set roles in sub nav
@@ -245,7 +245,7 @@ export const asyncRouterMap = [
       component: () => import('@/page/permission/page'),
     }, {
 			path: 'directive',
-			name: 'directivePermission',
+			name: 'directivePer',
       meta: {
 				title: '按钮权限',
 				roles:['editor']
@@ -256,7 +256,7 @@ export const asyncRouterMap = [
   {
     path: '/error',
     component: Layout,
-    name: 'errorPages',
+    name: 'errorPage',
     meta: {
       title: '错误页面', 
       icon: 'fa-exclamation-triangle'
