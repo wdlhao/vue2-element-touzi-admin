@@ -8,7 +8,7 @@
                 <router-view></router-view><!--页面渲染入口-->
             </div>
             <footerNav></footerNav>
-            <backTop :ele="this.$refs.menu_right"></backTop>
+            <backTop :ele="$refs.menu_right"></backTop>
         </div>
     </div>
 </template>
@@ -28,7 +28,7 @@
             }
         },
         computed:{
-            ...mapGetters(['sidebar'])
+            ...mapGetters(['sidebar']),
         },
         components:{
             HeadNav,
@@ -38,10 +38,11 @@
             backTop
         },
         created() {
-
         },
         mounted (){
-
+        },
+        watch:{
+          
         }
     }
 </script>

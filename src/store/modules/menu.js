@@ -1,11 +1,10 @@
 
 
 const types = {
-    // ADD_MENU : 'ADD_MENU', //添加菜单
-    // LOAD_ROUTES : 'LOAD_ROUTES',  //确定是否第一次加载route
     HANDLE_LEFT_MENU:'HANDLE_LEFT_MENU',  // 收缩左侧菜单
     INIT_LEFT_MENU:'INIT_LEFT_MENU',     // 初始化左侧菜单
     SET_LEFT_COLLAPSE:"SET_LEFT_COLLAPSE", // 改变左边菜单的收缩宽度
+    SET_FOOTER_SHOW:"SET_FOOTER_SHOW", // 显示隐藏底部layout
 }
 const menu = { 
     state :{
@@ -15,11 +14,13 @@ const menu = {
             opened: true,  
             width: '180px'
         },
-        isCollapse:false
+        isCollapse:false,
+        isFooter:false
     },
     getters : {
         sidebar:state => state.sidebar,
         isCollapse:state => state.isCollapse,
+        isFooter:state => state.isFooter
     },
     mutations:{
         [types.HANDLE_LEFT_MENU] (state) {  
@@ -36,6 +37,9 @@ const menu = {
         [types.SET_LEFT_COLLAPSE] (state) {  
             state.isCollapse = !state.isCollapse 
         },
+        [types.SET_FOOTER_SHOW] (state) {  
+            state.isFooter = true
+        }
        
     },
     actions:{
