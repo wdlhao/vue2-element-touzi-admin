@@ -13,9 +13,9 @@
                             </el-tooltip>
                         </li>
                         <li class="li-badge">
-                            <div :href='github' target="_blank" v-popover:qcode>
+                            <a :href='github' target="_blank" v-popover:qcode>
                                 <icon-svg icon-class="iconwechat" />
-                            </div>
+                            </a>
                             <el-popover
                                 ref="qcode"
                                 popper-class="qcodepopper"
@@ -29,7 +29,7 @@
                         </li>
                         <li class="li-badge">
                             <a :href='github' target="_blank" v-popover:qqcode>
-						          <icon-svg icon-class="iconqq" />
+						        <icon-svg icon-class="iconqq" />
                             </a>
                              <el-popover
                                 ref="qqcode"
@@ -45,26 +45,23 @@
                     </ul>
                 </div>
                 <div class="userinfo">
-                    <img :src="avatar" class='avatar' alt="">
-                    <div class='welcome'>
-                        <p class='name comename'>欢迎</p>
-                        <p class='name avatarname'>{{name}}</p>
-                    </div>
-                    <span class='username'>
-                        <el-dropdown
-                                trigger="click"
-                                @command='setDialogInfo'>
-                            <span class="el-dropdown-link">
-                                <i class="el-icon-caret-bottom el-icon--right"></i>
-                            </span>
-                            <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item command='info'>修改信息</el-dropdown-item>
-                                <el-dropdown-item command='pass'>修改密码</el-dropdown-item>
-                                <el-dropdown-item  command='logout'>退出</el-dropdown-item>
-                            </el-dropdown-menu>
-                        </el-dropdown>
-                    </span>
-                    <i class="fa fa-sign-out logout" @click='logout'></i>
+                    <el-menu 
+                       class="el-menu-demo" 
+                       mode="horizontal" 
+                       >
+                        <el-submenu index="1">
+                            <template slot="title">
+                                <div class='welcome'>
+                                    <span class="name">Hi,</span>
+                                    <span class='name avatarname'>{{name}}</span>
+                                </div>
+                                <img :src="avatar" class='avatar' alt="">
+                            </template>
+                            <el-menu-item index="1-1" @click="setDialogInfo('info')">个人信息</el-menu-item>
+                            <el-menu-item index="1-2" @click="setDialogInfo('pass')">修改密码</el-menu-item>
+                            <el-menu-item index="1-3" @click="setDialogInfo('logout')">退出</el-menu-item>
+                        </el-submenu>
+                    </el-menu>
                 </div>
             </div>
         </div>
@@ -95,7 +92,10 @@
                     qqImg:qqImg,
                     isQq:false,
                 },
-                github:github
+                github:github,
+                menu:{
+                    userBgcolor:'#f0f2f5'
+                }
             }
           },
           components:{
@@ -128,22 +128,17 @@
                       location.reload();
                   })
               },
-              showInfoList(){
-                  this.$router.push('/infoModify');
-              },
              /**
              * 弹出框-修改密码或者系统设置   
              * @param {string} cmditem 弹框类型
              */
             setDialogInfo(cmditem) {
-                if (!cmditem) {
-                    this.$message('菜单选项缺少command属性');
-                    return;
-                }
                 switch (cmditem) {
                     case 'info':
+                        this.$router.push('/infoManage/infoShow/infoShow1');
+                        break;
                     case 'pass':
-                        this.showInfoList();
+                        this.$router.push('/infoManage/infoModify/infoModify1');
                         break;
                     case 'logout':
                         this.logout();
@@ -210,7 +205,7 @@
        border:1px solid;
     }
     .userinfo-right{
-        width:300px;
+        width:270px;
         justify-content: space-between;
     }
     .userinfo {
@@ -218,28 +213,25 @@
         text-align:right;
     }
     .avatar{
-        width: 40px;
-        height: 40px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
         vertical-align: middle;
         display: inline-block;
     }
     .welcome{
         display: inline-block;
-        width:70px;
         vertical-align: middle;
         padding: 0 5px;
         .name{
             line-height: 20px;
             text-align: center;
-            font-size: 14px;
-        }
-        .comename{
             font-size: 12px;
         }
         .avatarname{
             color:#a9d86e;
             font-weight:bolder;
+            font-size: 13px;
         }
     }
 
@@ -261,13 +253,5 @@
    
     ul.top-menu > li {
         position: relative;
-    }
-    ul.top-menu > li > a {
-        color:#3bc5ff;
-        font-size: 16px;
-        border-radius: 4px;
-        -webkit-border-radius: 4px;
-        border: 1px solid #f0f0f8 !important;
-        padding: 2px 6px 4px 6px;
     }
 </style>
