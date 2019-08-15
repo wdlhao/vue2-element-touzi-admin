@@ -198,7 +198,7 @@
         justify-content: space-between;
         height: 60px;
         box-sizing: border-box;
-        box-shadow:0px 0px 5px 2px rgba(230, 224, 224, 0.5);
+        // box-shadow:0px 0px 5px 2px rgba(230, 224, 224, 0.5);
         background: #fff;
         .logout {
             vertical-align: middle;
