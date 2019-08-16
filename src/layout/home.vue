@@ -1,7 +1,7 @@
 <template>
     <div class="home rflex">
         <left-menu></left-menu>
-        <div class="menu_right wflex" ref="menu_right" :style="{left:sidebar.width}">
+        <div class="menu_right wflex" ref="menu_right" :style="{left:sidebar.width+'px'}">
             <head-nav></head-nav>
             <div class="menu_content" ref="menu_content">
                 <bread></bread>

@@ -1,5 +1,5 @@
 <template>
-    <header class="head-nav rflex " :style="{'width':calc(100% - sidebar.width+'px')}" id='header_container'>
+    <header class="head-nav rflex " :style="{'width':headNavWidth+'px'}" id='header_container'>
         <div class="right-nav" ref="rightNav">
             <top-menu></top-menu>
             <div class="userinfo-right rflex">
@@ -51,15 +51,29 @@
                        >
                         <el-submenu index="1">
                             <template slot="title">
+                                <img :src="chinaImg" class='langAvatar' alt="">
+                            </template>
+                            <el-menu-item index="1-1" @click="changeLocale('zh')">
+                                <img :src="chinaImg" class='langAvatar' alt="">
+                                <span class="intro">中文</span>
+                            </el-menu-item>
+                            <el-menu-item index="1-2" @click="changeLocale('en')">
+                                <img :src="americaImg" class='langAvatar' alt="">
+                                <span class="intro">EngList</span>
+                            </el-menu-item>
+                        </el-submenu>
+
+                        <el-submenu index="2">
+                            <template slot="title">
                                 <div class='welcome'>
                                     <span class="name">Hi,</span>
                                     <span class='name avatarname'>{{name}}</span>
                                 </div>
                                 <img :src="avatar" class='avatar' alt="">
                             </template>
-                            <el-menu-item index="1-1" @click="setDialogInfo('info')">个人信息</el-menu-item>
-                            <el-menu-item index="1-2" @click="setDialogInfo('pass')">修改密码</el-menu-item>
-                            <el-menu-item index="1-3" @click="setDialogInfo('logout')">退出</el-menu-item>
+                            <el-menu-item index="2-1" @click="setDialogInfo('info')">个人信息</el-menu-item>
+                            <el-menu-item index="2-2" @click="setDialogInfo('pass')">修改密码</el-menu-item>
+                            <el-menu-item index="2-3" @click="setDialogInfo('logout')">退出</el-menu-item>
                         </el-submenu>
                     </el-menu>
                 </div>
@@ -76,6 +90,8 @@
     import wechatImg from "@/assets/img/wechat.jpg";
     import qqImg from "@/assets/img/qq.png";
     import logoImg from "@/assets/img/logo.png";
+    import chinaImg from "@/assets/img/china.svg";
+    import americaImg from "@/assets/img/america.svg";
     import { github } from "@/utils/env";
 
 
@@ -84,6 +100,8 @@
           data(){
             return{
                 logo:logoImg,
+                chinaImg:chinaImg,
+                americaImg:americaImg,
                 wechat:{
                     wechatImg:wechatImg,
                     isWechat:false
@@ -102,7 +120,10 @@
             topMenu
           },
           computed:{
-            ...mapGetters(['name','avatar','sidebar'])
+            ...mapGetters(['name','avatar','sidebar']),
+             headNavWidth(){
+                return document.body.clientWidth - this.sidebar.width
+            }
               
           },
           created(){
@@ -145,6 +166,17 @@
                         break;
                 }
             },
+            // 切换语言
+            changeLocale(type){
+                switch (type) {
+                    case 'zh':
+                       this.$i18n.locale = 'zh'
+                        break;
+                    case 'en':
+                       this.$i18n.locale = 'en'
+                        break;
+                }
+            }
           }
     }
 </script>
@@ -193,6 +225,13 @@
     .avatar{
         width: 32px;
         height: 32px;
+        border-radius: 50%;
+        vertical-align: middle;
+        display: inline-block;
+    }
+    .langAvatar{
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
         vertical-align: middle;
         display: inline-block;

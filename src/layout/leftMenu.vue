@@ -1,5 +1,5 @@
 <template>
-   <div class="menu_left cflex" :style="{width:sidebar.width}">
+   <div class="menu_left cflex" :style="{width:sidebar.width+'px'}">
         <div class="menu_page_top rflex">
             <img :class='["logo",{"closeLogo":!sidebar.opened}]' :src="logo" alt="小爱admin" >
             <span class='title' v-show="sidebar.opened">小爱<i>Admin</i></span>
@@ -14,7 +14,7 @@
                 :background-color="menuObj.bgColor"
                 :text-color="menuObj.textColor"
                 :active-text-color="menuObj.activeTextColor"
-                :style="{'width':sidebar.width}">
+                :style="{'width':sidebar.width+'px'}">
                     <template v-for="(item,index) in permission_routers">
                         <!--表示 有一级菜单-->
                         <router-link v-if="!item.hidden && item.noDropdown" :to="item.path+'/'+item.children[0].path" :key="index">
