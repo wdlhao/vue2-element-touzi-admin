@@ -2,7 +2,7 @@
    <div class="menu_left cflex" :style="{width:sidebar.width+'px'}">
         <div class="menu_page_top rflex">
             <img :class='["logo",{"closeLogo":!sidebar.opened}]' :src="logo" alt="小爱admin" >
-            <span class='title' v-show="sidebar.opened">小爱<i>Admin</i></span>
+            <span class='title' v-show="sidebar.opened">{{$t('commons.xiaoai')}}<i>Admin</i></span>
         </div>
         <div class="menu_page_bottom el-scrollbar">
             <el-menu 
@@ -22,7 +22,7 @@
                                 :index="item.path+'/'+item.children[0].path"
                                 >
                                 <i v-if="item.meta.icon" :class="'fa fa-margin '+item.meta.icon"></i>
-                                <span v-if="item.meta.title" slot="title">{{item.meta.title}}</span> 
+                                <span v-if="item.meta.title" slot="title">{{ $t(`commons.${item.name}`)}}</span> 
                             </el-menu-item>
                         </router-link>
 
@@ -30,14 +30,14 @@
                         <el-submenu v-if="item.children  && item.children.length >= 1 && !item.hidden && !item.noDropdown"  :index="item.path" :key="index">
                             <template slot="title">
                                 <i v-if="item.meta.icon" :class="'fa fa-margin '+item.meta.icon"></i>
-                                <span v-if="item.meta.title" slot="title">{{item.meta.title}}</span>
+                                <span v-if="item.meta.title" slot="title">{{ $t(`commons.${item.name}`)}}</span>
                             </template>
                             <!--直接定位到子路由上，子路由也可以实现导航功能-->
                             <router-link v-for="(citem,cindex) in item.children" :to="getIindex(citem,item,cindex)"  :key="cindex">
                                 <el-menu-item 
                                     v-if="citem.meta.routerType != 'topmenu' && citem.meta.title"
                                     :index="getIindex(citem,item,cindex)">
-                                    <span slot="title">{{citem.meta.title}}</span>
+                                    <span slot="title"> {{ $t(`commons.${citem.name}`)}}</span>
                                 </el-menu-item> 
                             </router-link>
                         </el-submenu>

@@ -66,8 +66,8 @@
                         <el-submenu index="2">
                             <template slot="title">
                                 <div class='welcome'>
-                                    <span class="name">Hi,</span>
-                                    <span class='name avatarname'>{{name}}</span>
+                                    <span class="name">{{$t('commons.hi')}},</span>
+                                    <span class='name avatarname'> {{ $t(`commons.${name}`)}}</span>
                                 </div>
                                 <img :src="avatar" class='avatar' alt="">
                             </template>

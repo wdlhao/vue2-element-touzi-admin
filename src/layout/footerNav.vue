@@ -1,11 +1,11 @@
 <template>
 	 <div class='footer'>
         <p class="intro rflex">
-            <span>小爱Admin</span>
+            <span>{{ $t('commons.xiaoai') }}Admin</span>
             <a :href='github' target="_blank">
                <icon-svg icon-class="iconGithub" />
             </a>
-            <span>wdlhao2013(微信号)</span>
+            <span>wdlhao2013({{ $t('commons.wechatNumber') }})</span>
         </p>
         <p class="beian">鄂ICP备18001612号</p>
     </div>
