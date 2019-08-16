@@ -1,5 +1,5 @@
 <template>
-    <header class="head-nav rflex " id='header_container'>
+    <header class="head-nav rflex " :style="{'width':calc(100% - sidebar.width+'px')}" id='header_container'>
         <div class="right-nav" ref="rightNav">
             <top-menu></top-menu>
             <div class="userinfo-right rflex">
@@ -102,7 +102,7 @@
             topMenu
           },
           computed:{
-            ...mapGetters(['name','avatar'])
+            ...mapGetters(['name','avatar','sidebar'])
               
           },
           created(){
@@ -150,26 +150,6 @@
 </script>
 
 <style scoped lang='less'>
-    // .logo-container {
-    //      min-width: 180px;
-    //      align-items: center;
-    //      justify-content: space-around;
-    //      text-transform: uppercase;
-    //      box-sizing: border-box;
-    //      box-shadow:0px 2px 5px 0px rgba(230,224,224,0.5);
-    //     .logo {
-    //         height: 36px;
-    //         width: 36px;
-    //         vertical-align: middle;
-    //         display: inline-block;
-    //     }
-    //     .title{
-    //         font-size: 22px;
-    //         i{
-    //             color:#FF6C60;
-    //         }
-    //     }
-    // }
     .right-nav{
         display: flex;
         flex: 1;
@@ -188,12 +168,10 @@
         top: 0;
         right: 0;
         z-index: 29;
-        width: calc(100% - 180px);
         transition: width .2s;
         justify-content: space-between;
         height: 60px;
         box-sizing: border-box;
-        // box-shadow:0px 0px 5px 2px rgba(230, 224, 224, 0.5);
         background: #fff;
         .logout {
             vertical-align: middle;
