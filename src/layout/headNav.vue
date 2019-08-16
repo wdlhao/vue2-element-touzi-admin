@@ -51,7 +51,7 @@
                        >
                         <el-submenu index="1">
                             <template slot="title">
-                                <img :src="chinaImg" class='langAvatar' alt="">
+                                <img :src="langLogo" class='langAvatar' alt="">
                             </template>
                             <el-menu-item index="1-1" @click="changeLocale('zh')">
                                 <img :src="chinaImg" class='langAvatar' alt="">
@@ -85,6 +85,7 @@
 <script>
     import { mapGetters } from "vuex";
     import * as mUtils from '@/utils/mUtils'
+    import { setToken,getToken } from '@/utils/auth'
     import store from "@/store";
     import topMenu from "./topMenu";
     import wechatImg from "@/assets/img/wechat.jpg";
@@ -100,6 +101,7 @@
           data(){
             return{
                 logo:logoImg,
+                langLogo:getToken('langLogo') || chinaImg,
                 chinaImg:chinaImg,
                 americaImg:americaImg,
                 wechat:{
@@ -168,14 +170,14 @@
             },
             // 切换语言
             changeLocale(type){
-                switch (type) {
-                    case 'zh':
-                       this.$i18n.locale = 'zh'
-                        break;
-                    case 'en':
-                       this.$i18n.locale = 'en'
-                        break;
+                setToken('lang',type);
+                this.$i18n.locale = type;
+                if(type === 'en'){
+                    this.langLogo = this.americaImg;
+                }else{
+                    this.langLogo = this.chinaImg;
                 }
+                setToken('langLogo',this.langLogo);
             }
           }
     }
@@ -215,7 +217,8 @@
        border:1px solid;
     }
     .userinfo-right{
-        width:270px;
+        width:320px;
+        padding: 0 10px;
         justify-content: space-between;
     }
     .userinfo {

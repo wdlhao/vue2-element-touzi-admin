@@ -25,7 +25,7 @@ router.beforeEach((to, from, next) => {
      browserHeaderTitle: browserHeaderTitle
    })
   // 点击登录时，拿到了token并存入了cookie,保证页面刷新时,始终可以拿到token
-  if (getToken()) {
+  if (getToken('Token')) {
     /* has token*/
     if(to.path === '/login') {
       next({ path: '/' })  // 会匹配到path:'',后面的path:'*'还没有生成;
@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
     } else {
       // 用户登录成功之后，每次点击路由都进行了角色的判断;
       if (store.getters.roles.length === 0) {
-        let token = getToken();
+        let token = getToken('Token');
         getUserInfo({"token":token}).then().then(res => { // 根据token拉取用户信息
           let userList = res.data.userList;
           store.commit("SET_ROLES",userList.roles);
