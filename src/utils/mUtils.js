@@ -194,8 +194,6 @@ export const isInteger = (s) => {
 }   
 
 export const setContentHeight = (that,ele,height) => {
-    console.log(ele);
-    console.log(height);
     that.$nextTick(() => {
         ele.style.height =   (document.body.clientHeight - height)+'px'
     })

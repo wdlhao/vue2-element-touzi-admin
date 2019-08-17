@@ -12,7 +12,7 @@ let service =  axios.create({
 service.interceptors.request.use(config => {
   if (store.getters.token) {
     config.headers = {
-      'Authorization' : "Token " + getToken(), //携带权限参数
+      'Authorization' : "Token " + getToken('Token'), //携带权限参数
      };
   }
   return config

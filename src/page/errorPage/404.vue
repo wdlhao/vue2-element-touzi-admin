@@ -1,6 +1,6 @@
 <template>
   <div class="fillcontain">
-      <div class="contain">
+      <div class="contain" ref="contain">
         <div class="errPage-container cflex wflex">
             <img class="errorImg" :src="errorImg" />
             <p class="errorTitle">404</p>
@@ -15,6 +15,8 @@
 
 <script>
 import errorImg from "@/assets/img/404.png"
+import * as mutils from '@/utils/mUtils'
+
 
 export default {
     name: 'page401',
@@ -24,6 +26,7 @@ export default {
       }
     },
   	mounted(){
+       mutils.setContentHeight(this,this.$refs.contain,250);
 		},
     methods: {
     }

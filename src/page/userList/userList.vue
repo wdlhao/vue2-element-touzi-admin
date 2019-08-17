@@ -104,6 +104,8 @@
                 },
             }
         },
+        created(){
+        },
         mounted(){
             this.getUserList();
         },

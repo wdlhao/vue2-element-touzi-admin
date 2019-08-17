@@ -28,10 +28,6 @@
 		      <yan-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></yan-share>
 			</el-col>
 		</el-row>
-		<!-- <div class="shareItem rflex">
-		</div> -->
-		<!-- <div class="shareItem rflex">
-		</div> -->
 		<wx-code-modal v-if="wxModal.show" :wxModal="wxModal" @hideWxCodeModal="hideWxCodeModal"></wx-code-modal>
   	</div>
 </template>

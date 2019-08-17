@@ -1,5 +1,5 @@
 <template>
-    <header class="head-nav rflex " id='header_container'>
+    <header class="head-nav rflex " :style="{'width':headNavWidth+'px'}" id='header_container'>
         <div class="right-nav" ref="rightNav">
             <top-menu></top-menu>
             <div class="userinfo-right rflex">
@@ -51,6 +51,20 @@
                        >
                         <el-submenu index="1">
                             <template slot="title">
+                                <img :src="langLogo" class='langAvatar' alt="">
+                            </template>
+                            <el-menu-item index="1-1" @click="changeLocale('zh')">
+                                <img :src="chinaImg" class='langAvatar' alt="">
+                                <span class="intro">中文</span>
+                            </el-menu-item>
+                            <el-menu-item index="1-2" @click="changeLocale('en')">
+                                <img :src="americaImg" class='langAvatar' alt="">
+                                <span class="intro">EngList</span>
+                            </el-menu-item>
+                        </el-submenu>
+
+                        <el-submenu index="2">
+                            <template slot="title">
                                 <div class='welcome'>
                                     <span class="name">{{$t('commons.hi')}},</span>
                                     <span class='name avatarname'> {{ $t(`commons.${name}`)}}</span>
@@ -71,11 +85,14 @@
 <script>
     import { mapGetters } from "vuex";
     import * as mUtils from '@/utils/mUtils'
+    import { setToken,getToken } from '@/utils/auth'
     import store from "@/store";
     import topMenu from "./topMenu";
     import wechatImg from "@/assets/img/wechat.jpg";
     import qqImg from "@/assets/img/qq.png";
     import logoImg from "@/assets/img/logo.png";
+    import chinaImg from "@/assets/img/china.svg";
+    import americaImg from "@/assets/img/america.svg";
     import { github } from "@/utils/env";
 
 
@@ -84,6 +101,9 @@
           data(){
             return{
                 logo:logoImg,
+                langLogo:getToken('langLogo') || chinaImg,
+                chinaImg:chinaImg,
+                americaImg:americaImg,
                 wechat:{
                     wechatImg:wechatImg,
                     isWechat:false
@@ -102,7 +122,10 @@
             topMenu
           },
           computed:{
-            ...mapGetters(['name','avatar'])
+            ...mapGetters(['name','avatar','sidebar']),
+             headNavWidth(){
+                return document.body.clientWidth - this.sidebar.width
+            }
               
           },
           created(){
@@ -145,31 +168,22 @@
                         break;
                 }
             },
+            // 切换语言
+            changeLocale(type){
+                setToken('lang',type);
+                this.$i18n.locale = type;
+                if(type === 'en'){
+                    this.langLogo = this.americaImg;
+                }else{
+                    this.langLogo = this.chinaImg;
+                }
+                setToken('langLogo',this.langLogo);
+            }
           }
     }
 </script>
 
 <style scoped lang='less'>
-    // .logo-container {
-    //      min-width: 180px;
-    //      align-items: center;
-    //      justify-content: space-around;
-    //      text-transform: uppercase;
-    //      box-sizing: border-box;
-    //      box-shadow:0px 2px 5px 0px rgba(230,224,224,0.5);
-    //     .logo {
-    //         height: 36px;
-    //         width: 36px;
-    //         vertical-align: middle;
-    //         display: inline-block;
-    //     }
-    //     .title{
-    //         font-size: 22px;
-    //         i{
-    //             color:#FF6C60;
-    //         }
-    //     }
-    // }
     .right-nav{
         display: flex;
         flex: 1;
@@ -188,12 +202,10 @@
         top: 0;
         right: 0;
         z-index: 29;
-        width: calc(100% - 180px);
         transition: width .2s;
         justify-content: space-between;
         height: 60px;
         box-sizing: border-box;
-        box-shadow:0px 0px 5px 2px rgba(230, 224, 224, 0.5);
         background: #fff;
         .logout {
             vertical-align: middle;
@@ -205,7 +217,8 @@
        border:1px solid;
     }
     .userinfo-right{
-        width:270px;
+        width:320px;
+        padding: 0 10px;
         justify-content: space-between;
     }
     .userinfo {
@@ -215,6 +228,13 @@
     .avatar{
         width: 32px;
         height: 32px;
+        border-radius: 50%;
+        vertical-align: middle;
+        display: inline-block;
+    }
+    .langAvatar{
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
         vertical-align: middle;
         display: inline-block;

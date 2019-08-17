@@ -1,6 +1,6 @@
 
 <template>
-    <div class="menu_top rflex" ref="menuTop">
+    <div class="menu_top wflex rflex" ref="menuTop">
         <el-menu 
             mode="horizontal" 
             class="el-menu-demo rflex el-scrollbar2 top-scrollbar2" 
@@ -67,9 +67,8 @@
 
 <style lang="less" scoped>
     .menu_top{
-        width:calc(100% - 350px);
+        // width:calc(100% - 350px);
         .el-menu-demo{
-            // overflow-x: scroll;
             overflow-y:hidden;
             flex:1;
         }

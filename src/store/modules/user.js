@@ -8,7 +8,7 @@ const user  = {
   state : {
     name:'',
     avatar:'',
-    token: getToken(),
+    token: getToken('Token'),
     roles: [],
     browserHeaderTitle: mUtils.getStore('browserHeaderTitle') || '小爱Admin'
   },
@@ -39,7 +39,7 @@ const user  = {
         return new Promise((resolve, reject) => {
           logout(reqData).then(response => {
             commit('SET_ROLES', [])
-            removeToken()
+            removeToken('Token')
             resolve()
           })
         })
@@ -48,7 +48,7 @@ const user  = {
       ChangeRoles({ commit }, role) {
         return new Promise(resolve => {
           const token = role;
-          setToken(token)
+          setToken("Token",token)
           getUserInfo({"token":token}).then(res => {
             let data = res.data.userList;
             commit('SET_ROLES', data.roles)

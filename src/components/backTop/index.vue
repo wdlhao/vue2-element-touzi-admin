@@ -18,7 +18,8 @@
       data(){
           return {
             opacity:'.3',
-            gotop:false
+            gotop:false,
+            scrollHeight:100
           }
       },
       props:['ele'],
@@ -38,7 +39,7 @@
         },
         handleScroll(e) {
             let scrolltop = e.target.scrollTop;
-            scrolltop > 100 ? (this.gotop = true) : (this.gotop = false);
+            scrolltop > this.scrollHeight ? (this.gotop = true) : (this.gotop = false);
         },
         handleScrollTop() {
             this.$nextTick(()=>{    
