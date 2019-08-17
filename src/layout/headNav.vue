@@ -57,9 +57,9 @@
                                 </div>
                                 <img :src="avatar" class='avatar' alt="">
                             </template>
-                            <el-menu-item index="1-1" @click="setDialogInfo('info')">{{$t('commons.personInfo')}}</el-menu-item>
-                            <el-menu-item index="1-2" @click="setDialogInfo('pass')">{{$t('commons.editPwd')}}</el-menu-item>
-                            <el-menu-item index="1-3" @click="setDialogInfo('logout')">{{$t('commons.quit')}}</el-menu-item>
+                            <el-menu-item index="1-1" @click="setDialogInfo('info')">{{ $t('commons.infoShow') }}</el-menu-item>
+                            <el-menu-item index="1-2" @click="setDialogInfo('pass')">{{ $t('commons.infoModify') }}</el-menu-item>
+                            <el-menu-item index="1-3" @click="setDialogInfo('logout')">{{ $t('commons.quit') }}</el-menu-item>
                         </el-submenu>
                     </el-menu>
                 </div>

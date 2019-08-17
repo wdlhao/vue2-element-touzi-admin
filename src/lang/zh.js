@@ -4,8 +4,6 @@ const zh = {
       xiaoai: '小爱',
       admin: '管理员',
       editor: '赵晓编',
-      personInfo: '个人信息',
-      editPwd: '修改密码',
       quit: '退出',
       hi: '您好',
       index: '首页',

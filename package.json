@@ -33,13 +33,14 @@
     "@vue/cli-plugin-eslint": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
     "babel-eslint": "^10.0.1",
+    "compression-webpack-plugin": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.6.10",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "vue-hot-reload-api": "^2.3.3",
-    "vue-loader": "^14.2.2"
+    "vue-loader": "^14.2.2",
+    "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,
