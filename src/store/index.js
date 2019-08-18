@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-Vue.use(Vuex)
 
+process.env.NODE_ENV === "development" ? Vue.use(Vuex) : null;
 
 import user from './modules/user'
 import permission from './modules/permission'

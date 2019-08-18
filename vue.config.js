@@ -24,10 +24,10 @@ const cdn = {
       ],
       js: [
         'https://cdn.bootcss.com/vue/2.6.10/vue.min.js',
+        // 'https://cdn.bootcss.com/vue-router/2.3.1/vue-router.min.js',
         'https://cdn.bootcss.com/vuex/2.3.1/vuex.min.js',
-        'https://cdn.bootcss.com/vue-router/2.3.1/vue-router.min.js',
-        'https://cdn.bootcss.com/vue-i18n/8.13.0/vue-i18n.min.js',
         'https://cdn.bootcss.com/axios/0.19.0/axios.min.js',
+        'https://cdn.bootcss.com/vue-i18n/8.13.0/vue-i18n.min.js',
         'https://unpkg.com/element-ui/lib/index.js',
         'https://cdn.bootcss.com/echarts/3.8.5/echarts.min.js',
         'https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js',
@@ -38,8 +38,10 @@ const cdn = {
 
 
 module.exports = {
-  publicPath: './',
+  publicPath: process.env.NODE_ENV === "production" ? "/permission/" : "/",
   outputDir: './dist',
+  assetsDir:'static',
+  filenameHashing:true, // false 来关闭文件名哈希
   lintOnSave: false, // 关闭eslint
   // 打包时不生成.map文件
   productionSourceMap: false,
@@ -98,11 +100,11 @@ module.exports = {
       // 忽略生产环境打包的文件
       config.externals = {
         "vue": "Vue",
+        // "vue-router": "VueRouter",
         "vuex": "Vuex",
-        "vue-router": "VueRouter",
         "vue-i18n": "VueI18n",
         "axios": "axios",
-        'element-ui': 'ElementUI',
+        'element-ui': 'ELEMENT',
         'echarts':'echarts',
         'mock':'Mock'
       }
@@ -126,7 +128,7 @@ module.exports = {
         threshold: 10240, // 对超过10k的数据进行压缩
         minRatio: 0.8,
         cache: true, // 是否需要缓存
-        deleteOriginalAssets:true  // 是否删除原文件
+        // deleteOriginalAssets:true  // 是否删除原文件
       }))
 
     } else {
