@@ -4,23 +4,27 @@ import router from './router'
 import store from './store/'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(ElementUI, { size: 'mini'});
 
 import './components/iconSvg' // iconSvg
 
-Vue.config.productionTip = false;
 import '@/permission' // permission control
 
-import './mockjs'  //引用mock
+import '@/mockjs'; // mock数据
 
 // i18n国际化
 import i18n from "@/lang";
+// 'development',use package;'production':use cdn;
+if(process.env.NODE_ENV === "development" ){
+  Vue.use(ElementUI, { size: 'mini'});
+}
+
 
 // 分享功能集合
 import { shareConfig } from './utils/share';
 Vue.prototype.shareConfig = shareConfig;
 
 
+Vue.config.productionTip = false;
 
 
 

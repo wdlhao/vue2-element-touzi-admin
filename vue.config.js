@@ -1,5 +1,6 @@
 
 const TerserPlugin = require('terser-webpack-plugin')  // 用于在生成环境剔除debuger和console
+const CompressionPlugin = require("compression-webpack-plugin"); // gzip压缩,优化http请求,提高加载速度
 const path = require('path');
 const resolve = dir => {
   return path.join(__dirname, dir);
@@ -7,12 +8,40 @@ const resolve = dir => {
 
 const env = process.env.NODE_ENV
 let target = process.env.VUE_APP_URL  // development和production环境是不同的
-console.log("env:  "+env);
-console.log("target:   "+target);
+
+const cdn = {
+  // 开发环境
+  dev: {
+      css: [],
+      js: [
+        '//at.alicdn.com/t/font_1258069_cgoaco60hzw.js'
+      ]
+  },
+  // 生产环境
+  build: {
+      css: [
+          'https://unpkg.com/element-ui/lib/theme-chalk/index.css'
+      ],
+      js: [
+        'https://cdn.bootcss.com/vue/2.6.10/vue.min.js',
+        // 'https://cdn.bootcss.com/vue-router/2.3.1/vue-router.min.js',
+        'https://cdn.bootcss.com/vuex/2.3.1/vuex.min.js',
+        'https://cdn.bootcss.com/axios/0.19.0/axios.min.js',
+        'https://cdn.bootcss.com/vue-i18n/8.13.0/vue-i18n.min.js',
+        'https://unpkg.com/element-ui/lib/index.js',
+        'https://cdn.bootcss.com/echarts/3.8.5/echarts.min.js',
+        'https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js',
+        '//at.alicdn.com/t/font_1258069_cgoaco60hzw.js'
+      ]
+  }
+}
+
 
 module.exports = {
-  publicPath: './',
+  publicPath: process.env.NODE_ENV === "production" ? "/permission/" : "/",
   outputDir: './dist',
+  assetsDir:'static',
+  filenameHashing:true, // false 来关闭文件名哈希
   lintOnSave: false, // 关闭eslint
   // 打包时不生成.map文件
   productionSourceMap: false,
@@ -37,21 +66,71 @@ module.exports = {
     // 关闭npm run build之后，This can impact web performance 警告
     config.performance
       .set('hints', false)
+    // 移除 prefetch 插件
+    config.plugins.delete("prefetch");
+    // 移除 preload 插件
+    config.plugins.delete('preload');
+    // 压缩代码
+    config.optimization.minimize(true);
+    // 分割代码
+    config.optimization.splitChunks({
+        chunks: 'all'
+    })    
+    // 项目文件大小分析
+    config
+    .plugin('webpack-bundle-analyzer')
+    .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+    // 对vue-cli内部的 webpack 配置进行更细粒度的修改。
+    // 添加CDN参数到htmlWebpackPlugin配置中， 详见public/index.html 修改
+    config
+    .plugin('html')
+    .tap(args => {
+      if (process.env.NODE_ENV === 'production') {
+          args[0].cdn = cdn.build
+      }
+      if (process.env.NODE_ENV === 'development') {
+          args[0].cdn = cdn.dev
+      }
+      return args
+    })
   },
   configureWebpack:config => {
     // 为生产环境修改配置...
     if (process.env.NODE_ENV === 'production') {
+      // 忽略生产环境打包的文件
+      config.externals = {
+        "vue": "Vue",
+        // "vue-router": "VueRouter",
+        "vuex": "Vuex",
+        "vue-i18n": "VueI18n",
+        "axios": "axios",
+        'element-ui': 'ELEMENT',
+        'echarts':'echarts',
+        'mock':'Mock'
+      }
+      // 去除console来减少文件大小，效果同'UglifyJsPlugin'
       new TerserPlugin({
         cache: true,
         parallel: true,
         sourceMap: true, // Must be set to true if using source-maps in production
         terserOptions: {
           compress: {
+            warnings: false,
             drop_console: true,
             drop_debugger: true
           }
         }
       })
+      // 开启gzip压缩
+      config.plugins.push(new CompressionPlugin({
+        algorithm: 'gzip',
+        test: new RegExp("\\.(" + ["js", "css"].join("|") + ")$"), // 匹配文件扩展名
+        threshold: 10240, // 对超过10k的数据进行压缩
+        minRatio: 0.8,
+        cache: true, // 是否需要缓存
+        // deleteOriginalAssets:true  // 是否删除原文件
+      }))
+
     } else {
       // 为开发环境修改配置...
 
@@ -62,3 +141,4 @@ module.exports = {
 
   }
 }
+

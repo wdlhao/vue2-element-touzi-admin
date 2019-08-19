@@ -71,9 +71,9 @@
                                 </div>
                                 <img :src="avatar" class='avatar' alt="">
                             </template>
-                            <el-menu-item index="2-1" @click="setDialogInfo('info')">个人信息</el-menu-item>
-                            <el-menu-item index="2-2" @click="setDialogInfo('pass')">修改密码</el-menu-item>
-                            <el-menu-item index="2-3" @click="setDialogInfo('logout')">退出</el-menu-item>
+                            <el-menu-item index="1-1" @click="setDialogInfo('info')">{{ $t('commons.infoShow') }}</el-menu-item>
+                            <el-menu-item index="1-2" @click="setDialogInfo('pass')">{{ $t('commons.infoModify') }}</el-menu-item>
+                            <el-menu-item index="1-3" @click="setDialogInfo('logout')">{{ $t('commons.quit') }}</el-menu-item>
                         </el-submenu>
                     </el-menu>
                 </div>

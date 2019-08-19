@@ -4,8 +4,6 @@ const zh = {
       xiaoai: 'Ai.',
       admin: 'Admin',
       editor: 'Editor',
-      personInfo: 'User Info',
-      editPwd: 'Edit Password',
       quit: 'Sign Out',
       hi: 'Hi',
       index: 'Dashboard',

@@ -1,4 +1,6 @@
+// import Vue from 'vue'
 import Mock from 'mockjs'
+// process.env.NODE_ENV === "development" ? Vue.use(Mock) : null;
 
 import tableAPI from './money'
 import salesAPI from './sales'
@@ -22,3 +24,5 @@ Mock.mock(/\/user\/login/, 'get', userAPI.login)
 Mock.mock(/\/user\/logout/, 'get', userAPI.logout)
 Mock.mock(/\/user\/info\/get/, 'get', userAPI.getUserInfo)
 Mock.mock(/\/user\/list\/get/, 'get', userAPI.getUserList)
+
+export default Mock;
