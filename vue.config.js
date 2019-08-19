@@ -20,17 +20,20 @@ const cdn = {
   // 生产环境
   build: {
       css: [
-          'https://unpkg.com/element-ui/lib/theme-chalk/index.css'
+          'https://unpkg.com/element-ui/lib/theme-chalk/index.css',
+          'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css'
       ],
       js: [
         'https://cdn.bootcss.com/vue/2.6.10/vue.min.js',
-        // 'https://cdn.bootcss.com/vue-router/2.3.1/vue-router.min.js',
+        'https://cdn.bootcss.com/vue-router/2.3.1/vue-router.min.js',
         'https://cdn.bootcss.com/vuex/2.3.1/vuex.min.js',
         'https://cdn.bootcss.com/axios/0.19.0/axios.min.js',
         'https://cdn.bootcss.com/vue-i18n/8.13.0/vue-i18n.min.js',
         'https://unpkg.com/element-ui/lib/index.js',
         'https://cdn.bootcss.com/echarts/3.8.5/echarts.min.js',
         'https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js',
+        'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js',
+        'https://cdn.bootcss.com/js-cookie/2.2.0/js.cookie.min.js',
         '//at.alicdn.com/t/font_1258069_cgoaco60hzw.js'
       ]
   }
@@ -100,13 +103,15 @@ module.exports = {
       // 忽略生产环境打包的文件
       config.externals = {
         "vue": "Vue",
-        // "vue-router": "VueRouter",
+        "vue-router": "VueRouter",
         "vuex": "Vuex",
         "vue-i18n": "VueI18n",
         "axios": "axios",
         'element-ui': 'ELEMENT',
         'echarts':'echarts',
-        'mock':'Mock'
+        'mockjs':'mockjs',
+        'nprogress':'nprogress',
+        'js-cookie':'JsCookie'
       }
       // 去除console来减少文件大小，效果同'UglifyJsPlugin'
       new TerserPlugin({
