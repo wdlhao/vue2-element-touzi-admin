@@ -101,7 +101,7 @@
           data(){
             return{
                 logo:logoImg,
-                langLogo:getToken('langLogo') || chinaImg,
+                langLogo:getToken('langLogo') || americaImg,
                 chinaImg:chinaImg,
                 americaImg:americaImg,
                 wechat:{
