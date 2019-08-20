@@ -1,9 +1,9 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 import Router from 'vue-router'
 import { Layout,Content }  from "../layout"; // 页面整体布局
 import { topRouterMap } from "./topRouter";
 
-Vue.use(Router) 
+// Vue.use(Router) 
 // process.env.NODE_ENV === "development" ? Vue.use(Router) : null;
 
 function filterTopRouterMap(name){
@@ -63,7 +63,8 @@ export const constantRouterMap = [
 
 	//注册路由
 export default new Router({
-	mode: 'hash', //后端支持可开
+	mode:'history', // 默认为'hash'模式
+	base: '/permission/', // 添加跟目录,对应服务器部署子目录
 	routes: constantRouterMap
 })
 

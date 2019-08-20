@@ -254,25 +254,6 @@
 						let userinfo = this.infoForm;
                         let phoneinfo = this.phoneForm;
 						let userData = Object.assign(userinfo, phoneinfo);
-                        console.log(userData);
-                        // axios({
-                        //     type:'get',
-                        //     path:'/api/user/infoModify',
-                        //     data:userData,
-                        //     fn:data=>{
-						// 		console.log(data);
-						// 		if(data.status == 1){
-						// 			this.showMessage('success','修改密码成功~');
-                        //             this.$router.push('/infoList');
-						// 		}else{
-						// 			 this.$message.error('修改失败请重试')
-						// 		}
-						// 	},
-						// 	errFn:(res)=>{
-                        //         this.showMessage('error',res.message);
-                        //     }
-						// })
-
                     } else {
                         console.log('error submit!!');
                         return false;

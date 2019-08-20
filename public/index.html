@@ -5,17 +5,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="renderer" content="webkit">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+        <!-- <meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
         <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
-        <meta HTTP-EQUIV="expires" CONTENT="0">
+        <meta HTTP-EQUIV="expires" CONTENT="0"> -->
         <link rel="shortcut icon" href="favicon.ico"  type="image/x-icon"> 
         <title>小爱Admin</title>
           <!-- 使用CDN加速的CSS文件，配置在vue.config.js下 -->
-        <!-- <link rel="stylesheet"  href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">  -->
-          
         <% for (var i in
         htmlWebpackPlugin.options.cdn &&  htmlWebpackPlugin.options.cdn.css) { %>
-        <link href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" rel="preload" as="style" />
         <link href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" rel="stylesheet" />
         <% } %>
     </head>

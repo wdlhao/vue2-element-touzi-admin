@@ -20,16 +20,16 @@ const cdn = {
   // 生产环境
   build: {
       css: [
-          'https://unpkg.com/element-ui/lib/theme-chalk/index.css',
-          'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css'
+        'https://cdn.bootcss.com/element-ui/2.0.7/theme-chalk/index.css',
+        'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css'
       ],
       js: [
         'https://cdn.bootcss.com/vue/2.6.10/vue.min.js',
-        'https://cdn.bootcss.com/vue-router/2.3.1/vue-router.min.js',
+        'https://cdn.bootcss.com/vue-router/3.1.2/vue-router.min.js',
         'https://cdn.bootcss.com/vuex/2.3.1/vuex.min.js',
         'https://cdn.bootcss.com/axios/0.19.0/axios.min.js',
         'https://cdn.bootcss.com/vue-i18n/8.13.0/vue-i18n.min.js',
-        'https://unpkg.com/element-ui/lib/index.js',
+        'https://cdn.bootcss.com/element-ui/2.0.7/index.js',
         'https://cdn.bootcss.com/echarts/3.8.5/echarts.min.js',
         'https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js',
         'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js',
@@ -88,18 +88,19 @@ module.exports = {
     config
     .plugin('html')
     .tap(args => {
-      if (process.env.NODE_ENV === 'production') {
-          args[0].cdn = cdn.build
-      }
-      if (process.env.NODE_ENV === 'development') {
-          args[0].cdn = cdn.dev
-      }
+      args[0].cdn = cdn.build
+      // if (process.env.NODE_ENV === 'production') {
+      //     args[0].cdn = cdn.build
+      // }
+      // if (process.env.NODE_ENV === 'development') {
+      //     args[0].cdn = cdn.dev
+      // }
       return args
     })
   },
   configureWebpack:config => {
     // 为生产环境修改配置...
-    if (process.env.NODE_ENV === 'production') {
+    // if (process.env.NODE_ENV === 'production') {
       // 忽略生产环境打包的文件
       config.externals = {
         "vue": "Vue",
@@ -109,9 +110,9 @@ module.exports = {
         "axios": "axios",
         'element-ui': 'ELEMENT',
         'echarts':'echarts',
-        'mockjs':'mockjs',
-        'nprogress':'nprogress',
-        'js-cookie':'JsCookie'
+        'mockjs':'Mock',
+        'nprogress':'NProgress',
+        'js-cookie':'Cookies'
       }
       // 去除console来减少文件大小，效果同'UglifyJsPlugin'
       new TerserPlugin({
@@ -136,10 +137,10 @@ module.exports = {
         // deleteOriginalAssets:true  // 是否删除原文件
       }))
 
-    } else {
-      // 为开发环境修改配置...
+    // } else {
+    //   // 为开发环境修改配置...
 
-    }
+    // }
   },
    // 第三方插件配置
   pluginOptions: {
