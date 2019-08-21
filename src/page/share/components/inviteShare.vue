@@ -10,7 +10,7 @@
 					</div>
 					<div class="qrcodeArea" v-show="qrcode.show">
 						<p class="saoTitle">扫一扫</p>
-						<div class="qrcode" ref="qrCodeUrl" ></div>
+						<div class="qrcode" ref="qrCodeUrl2"></div>
 					</div>
 				</li>
 				<li>
@@ -73,7 +73,7 @@
 				this.qrcode.show  = false;
 			},
 			creatQrCode() {
-				 const qrcode = new QRCode(this.$refs.qrCodeUrl, this.qrcodeObj)
+				 const qrcode = new QRCode(this.$refs.qrCodeUrl2, this.qrcodeObj)
 			},
 			shareToQQ(){
                 this.$emit('shareToQQ');
@@ -151,6 +151,7 @@
 							border-radius: 4px;
 							padding: 10px;
 							background: #fff;
+							z-index: 99;
 							.saoTitle{
 								font-size: 14px;
 								color:#a9d86e;

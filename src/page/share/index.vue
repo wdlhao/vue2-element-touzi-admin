@@ -68,7 +68,7 @@
 			YanShare
 		},
 		mounted(){
-            mutils.setContentHeight(this,this.$refs.shareContainer,160);
+			mutils.setContentHeight(this,this.$refs.shareContainer,210);
 		},
 		methods: {
 			hideWxCodeModal(){
@@ -106,7 +106,6 @@
 		.el-row{
 			height:210px;
 			.el-col{
-				overflow: hidden;
 				height:100%;
 				.shareArea{
 					height: 100%;

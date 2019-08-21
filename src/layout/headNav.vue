@@ -15,32 +15,32 @@
                         <li class="li-badge">
                             <a :href='github' target="_blank" v-popover:qcode>
                                 <icon-svg icon-class="iconwechat" />
+                                <el-popover
+                                    ref="qcode"
+                                    popper-class="qcodepopper"
+                                    placement="bottom"
+                                    trigger="hover">
+                                        <div class="wechat-area cflex">
+                                            <p class="titles">加我微信</p>
+                                            <img :src="wechat.wechatImg" alt="加我微信"  />
+                                        </div>
+                               </el-popover>
                             </a>
-                            <el-popover
-                                ref="qcode"
-                                popper-class="qcodepopper"
-                                placement="bottom"
-                                trigger="hover">
-                                    <div class="wechat-area cflex">
-                                        <p class="titles">加我微信</p>
-                                        <img :src="wechat.wechatImg" alt="加我微信"  />
-                                    </div>
-                            </el-popover>
                         </li>
                         <li class="li-badge">
                             <a :href='github' target="_blank" v-popover:qqcode>
 						        <icon-svg icon-class="iconqq" />
+                                 <el-popover
+                                    ref="qqcode"
+                                    popper-class="qcodepopper"
+                                    placement="bottom"
+                                    trigger="hover">
+                                        <div class="wechat-area cflex">
+                                            <p class="titles">加入qq群</p>
+                                            <img :src="qq.qqImg" alt="加入qq群"  />
+                                        </div>
+                                </el-popover>
                             </a>
-                             <el-popover
-                                ref="qqcode"
-                                popper-class="qcodepopper"
-                                placement="bottom"
-                                trigger="hover">
-                                    <div class="wechat-area cflex">
-                                        <p class="titles">加入qq群</p>
-                                        <img :src="qq.qqImg" alt="加入qq群"  />
-                                    </div>
-                            </el-popover>
                         </li>
                     </ul>
                 </div>
@@ -49,7 +49,7 @@
                        class="el-menu-demo" 
                        mode="horizontal" 
                        >
-                        <el-submenu index="1">
+                        <el-submenu index="1" class="langItem">
                             <template slot="title">
                                 <img :src="langLogo" class='langAvatar' alt="">
                             </template>
@@ -63,7 +63,7 @@
                             </el-menu-item>
                         </el-submenu>
 
-                        <el-submenu index="2">
+                        <el-submenu index="2" class="infoItem">
                             <template slot="title">
                                 <div class='welcome'>
                                     <span class="name">{{$t('commons.hi')}},</span>

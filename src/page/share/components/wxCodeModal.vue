@@ -8,7 +8,7 @@
     >
         <div class="wxContent">
             <p class="qrtitle">打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
-            <div class="qrcode" ref="qrCodeUrl" ></div>
+            <div class="qrcode" ref="qrCodeUrl5"></div>
         </div>
     </el-dialog>
 </template>
@@ -40,9 +40,7 @@
 		},
 		methods: {
             creatQrCode() {
-                this.$nextTick(() => {
-                    const qrcode = new QRCode(this.$refs.qrCodeUrl, this.qrcodeObj)
-                });
+                const qrcode = new QRCode(this.$refs.qrCodeUrl5, this.qrcodeObj)
 			},
             handleClose(){
                 this.$emit('hideWxCodeModal')

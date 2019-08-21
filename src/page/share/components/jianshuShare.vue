@@ -19,47 +19,49 @@
 					</div>
 				</li>
 				<li>
-					<el-popover
-						ref="moreShareList"
-						popper-class="moreShareList"
-						placement="top"
-						trigger="click">
-							<div>
-								<ul class="cflex">
-									<a href="#" @click="shareToQQzone()">
-										<li>
-											<icon-svg icon-class="iconqq_zone" />
-											<span>分享到QQ空间</span>
-										</li>
-									</a>
-									<a href="#" @click="shareToDouban()">
-										<li>
-											<icon-svg icon-class="icondouban" />
-											<span>分享到豆瓣</span>
-										</li>
-									</a>
-									<a href="#">
-										<li>
-											<icon-svg icon-class="icontwitter" />
-											<span>分享到Witter</span>
-										</li>
-									</a>
-									<a href="#">
-										<li>
-											<icon-svg icon-class="iconfacebook" />
-											<span>分享到Facebook</span>
-										</li>
-									</a>
-									<a href="#">
-										<li>
-											<icon-svg icon-class="icongoogle" />
-											<span>分享到Google</span>
-										</li>
-									</a>
-								</ul>
-							</div>
-					</el-popover>
-					<el-button class="moreBtn" v-popover:moreShareList>更多分享</el-button>
+					<el-button class="moreBtn" v-popover:moreShareList>
+						更多分享
+						<el-popover
+							ref="moreShareList"
+							popper-class="moreShareList"
+							placement="top"
+							trigger="click">
+								<div>
+									<ul class="cflex">
+										<a href="#" @click="shareToQQzone()">
+											<li>
+												<icon-svg icon-class="iconqq_zone" />
+												<span>分享到QQ空间</span>
+											</li>
+										</a>
+										<a href="#" @click="shareToDouban()">
+											<li>
+												<icon-svg icon-class="icondouban" />
+												<span>分享到豆瓣</span>
+											</li>
+										</a>
+										<a href="#">
+											<li>
+												<icon-svg icon-class="icontwitter" />
+												<span>分享到Witter</span>
+											</li>
+										</a>
+										<a href="#">
+											<li>
+												<icon-svg icon-class="iconfacebook" />
+												<span>分享到Facebook</span>
+											</li>
+										</a>
+										<a href="#">
+											<li>
+												<icon-svg icon-class="icongoogle" />
+												<span>分享到Google</span>
+											</li>
+										</a>
+									</ul>
+								</div>
+					   </el-popover>
+					</el-button>
 				</li>
 			</ul>
 		</div>

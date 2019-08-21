@@ -2,69 +2,69 @@
     <div class="shareArea cflex sharelast">
 		<p class="shareTitle">分享组件三：仿简书侧栏分享</p>
 		<div class="bottom">
-			<el-popover
-				ref="leftShareList"
-				popper-class="moreShareList leftShareList"
-				placement="left"
-				trigger="click">
-				<div>
-					<ul class="cflex">
-						<a href="#" @click="shareToWeixin()">
-							<li>
-								<div class="item">
-									<icon-svg icon-class="iconwechat" />
-								    <span>分享到微信</span>
-								</div>
-							</li>
-						</a>
-						<a href="#" @click="shareToWeibo()">
-							<li>
-								<icon-svg icon-class="iconweibo" />
-								<span>分享到微博</span>
-							</li>
-						</a>
-						<a  href="#" @click="shareToQQ()">
-							<li>
-								<icon-svg icon-class="iconqq" />
-								<span>分享到QQ</span>
-							</li>
-						</a>
-						<a href="#" @click="shareToQQzone()">
-							<li>
-								<icon-svg icon-class="iconqq_zone" />
-								<span>分享到QQ空间</span>
-							</li>
-						</a>
-						<a href="#" @click="shareToDouban()">
-							<li>
-								<icon-svg icon-class="icondouban" />
-								<span>分享到豆瓣</span>
-							</li>
-						</a>
-						<a href="#">
-							<li>
-								<icon-svg icon-class="icontwitter" />
-								<span>分享到Witter</span>
-							</li>
-						</a>
-						<a href="#">
-							<li>
-								<icon-svg icon-class="iconfacebook" />
-								<span>分享到Facebook</span>
-							</li>
-						</a>
-						<a href="#">
-							<li>
-								<icon-svg icon-class="icongoogle" />
-								<span>分享到Google</span>
-							</li>
-						</a>
-					</ul>
-				</div>
-			</el-popover>
 			<el-tooltip class="item" effect="dark" content="分享文章" placement="left">
 				<el-button class="shareItem" v-popover:leftShareList>
 				  <icon-svg icon-class="iconshare" />
+				  <el-popover
+					ref="leftShareList"
+					popper-class="moreShareList leftShareList"
+					placement="left"
+					trigger="click">
+					<div>
+						<ul class="cflex">
+							<a href="#" @click="shareToWeixin()">
+								<li>
+									<div class="item">
+										<icon-svg icon-class="iconwechat" />
+										<span>分享到微信</span>
+									</div>
+								</li>
+							</a>
+							<a href="#" @click="shareToWeibo()">
+								<li>
+									<icon-svg icon-class="iconweibo" />
+									<span>分享到微博</span>
+								</li>
+							</a>
+							<a  href="#" @click="shareToQQ()">
+								<li>
+									<icon-svg icon-class="iconqq" />
+									<span>分享到QQ</span>
+								</li>
+							</a>
+							<a href="#" @click="shareToQQzone()">
+								<li>
+									<icon-svg icon-class="iconqq_zone" />
+									<span>分享到QQ空间</span>
+								</li>
+							</a>
+							<a href="#" @click="shareToDouban()">
+								<li>
+									<icon-svg icon-class="icondouban" />
+									<span>分享到豆瓣</span>
+								</li>
+							</a>
+							<a href="#">
+								<li>
+									<icon-svg icon-class="icontwitter" />
+									<span>分享到Witter</span>
+								</li>
+							</a>
+							<a href="#">
+								<li>
+									<icon-svg icon-class="iconfacebook" />
+									<span>分享到Facebook</span>
+								</li>
+							</a>
+							<a href="#">
+								<li>
+									<icon-svg icon-class="icongoogle" />
+									<span>分享到Google</span>
+								</li>
+							</a>
+						</ul>
+					</div>
+				</el-popover>
 				</el-button>
 			</el-tooltip>
 		</div>

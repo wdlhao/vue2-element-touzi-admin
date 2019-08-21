@@ -9,7 +9,7 @@
 					</div>
 					<div class="qrcodeArea" v-show="qrcode.show">
 						<p class="saoTitle">扫一扫</p>
-						<div class="qrcode" ref="qrCodeUrl" ></div>
+						<div class="qrcode" ref="qrCodeUrl4"></div>
 					</div>
 				</li>
 				<li>
@@ -20,8 +20,7 @@
 				<li>
 					<div class="item shareTu" v-popover:moreShareList>
 						<icon-svg icon-class="iconshare" />
-					</div>
-					<el-popover
+						<el-popover
 						ref="moreShareList"
 						popper-class="moreShareList"
 						placement="bottom"
@@ -47,8 +46,8 @@
 							</ul>
 					    </div>
 					</el-popover>
+					</div>
 				</li>
-			
 			</ul>
 		</div>
     </div>
@@ -87,7 +86,7 @@
 				this.qrcode.show  = false;
 			},
 			creatQrCode() {
-				 const qrcode = new QRCode(this.$refs.qrCodeUrl, this.qrcodeObj)
+				const qrcode = new QRCode(this.$refs.qrCodeUrl4, this.qrcodeObj)
 			},
 			shareToQQ(){
                 this.$emit('shareToQQ');
@@ -160,6 +159,8 @@
 						border: 1px solid #a9d86e;
 						border-radius: 4px;
 						padding: 10px;
+						z-index: 99;
+						background: #fff;
 						.saoTitle{
 							font-size: 14px;
 							color:#a9d86e;

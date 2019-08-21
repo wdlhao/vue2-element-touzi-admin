@@ -2,6 +2,7 @@
    "success":true,
    "data":
       [
+        { "createTime":"2019-08-20","data":["从以下方面对前端性能展开优化：","使用插件TerserPlugin,去除所有的console信息","使用CompressionPlugin,开启gzip压缩","忽略生产环境打包文件,使用外链cdn","图片压缩","路由按需加载","使用optimization.minimize(true):压缩代码和optimization.splitChunks():分割代码"]},
         { "createTime":"2019-08-14","data":["新增中英文切换功能","公共组件footerNav布局优化","顶部用户信息优化","新增回到顶部功能"]},
         { "createTime":"2019-08-10","data":["项目布局更改为左右布局，右侧内容超出窗口可视范围，出现滚动条","项目401页面和404页面重新改版"]},
         { "createTime":"2019-08-05","data":["项目401页面和404页面样式更新","剔除项目easy-mock模拟数据功能","项目登录之后的业务逻辑修改"]},

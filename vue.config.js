@@ -123,7 +123,8 @@ module.exports = {
           compress: {
             warnings: false,
             drop_console: true,
-            drop_debugger: true
+            drop_debugger: true,
+            pure_funcs: ['console.log']
           }
         }
       })
@@ -134,7 +135,7 @@ module.exports = {
         threshold: 10240, // 对超过10k的数据进行压缩
         minRatio: 0.8,
         cache: true, // 是否需要缓存
-        // deleteOriginalAssets:true  // 是否删除原文件
+        deleteOriginalAssets:false  // true删除源文件;false不删除源文件
       }))
 
     // } else {

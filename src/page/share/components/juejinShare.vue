@@ -12,7 +12,7 @@
 					</div>
 					<div class="qrcodeArea" v-show="qrcode.show">
 						<p class="saoTitle">扫一扫</p>
-						<div class="qrcode" ref="qrCodeUrl" ></div>
+						<div class="qrcode" ref="qrCodeUrl3" ></div>
 					</div>
 				</li>
 				<li>
@@ -64,7 +64,7 @@
 				this.qrcode.show  = false;
 			},
 			creatQrCode() {
-				 const qrcode = new QRCode(this.$refs.qrCodeUrl, this.qrcodeObj)
+				const qrcode = new QRCode(this.$refs.qrCodeUrl3, this.qrcodeObj)
 			},
 			shareToQQ(){
                 this.$emit('shareToQQ');

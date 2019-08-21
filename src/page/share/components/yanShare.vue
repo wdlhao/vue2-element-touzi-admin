@@ -4,8 +4,7 @@
 		<div class="bottom rflex">
 			<div class="yanItem" v-popover:yanShare>
 				<icon-svg icon-class="iconshare1" />
-			</div>
-			<el-popover
+				<el-popover
 				ref="yanShare"
 				popper-class="yanshare"
 				placement="bottom"
@@ -14,17 +13,17 @@
 					<li>
 						<div class="item" v-popover:yanSharewx>
 							<icon-svg icon-class="iconwechat" />
+							<el-popover
+								ref="yanSharewx"
+								popper-class="yanSharewx"
+								placement="bottom"
+								trigger="hover">
+								<div class="qrcodeArea">
+									<p class="saoTitle">扫一扫</p>
+									<div class="qrcode" ref="qrCodeUrl6"></div>
+								</div>
+							</el-popover>
 						</div>
-						<el-popover
-							ref="yanSharewx"
-							popper-class="yanSharewx"
-							placement="bottom"
-							trigger="hover">
-							<div class="qrcodeArea">
-								<p class="saoTitle">扫一扫</p>
-								<div class="qrcode" ref="qrCodeUrl" ></div>
-							</div>
-						</el-popover>
 					</li>
 					<li>
 						<div class="item" @click="shareToWeibo()">
@@ -49,6 +48,7 @@
 					</li>
 				</ul>
 			</el-popover>
+			</div>
 		</div>
     </div>
 </template>
@@ -86,7 +86,7 @@
 				this.qrcode.show  = false;
 			},
 			creatQrCode() {
-				 const qrcode = new QRCode(this.$refs.qrCodeUrl, this.qrcodeObj)
+				 const qrcode = new QRCode(this.$refs.qrCodeUrl6, this.qrcodeObj)
 			},
 			shareToQQ(){
                 this.$emit('shareToQQ');
