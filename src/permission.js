@@ -1,7 +1,8 @@
 import router from './router'
 import store from './store'
 // import NProgress from 'nprogress' // Progress 进度条
-import 'nprogress/nprogress.css'// Progress 进度条样式
+// Progress 进度条样式
+// process.env.NODE_ENV === "development" && import('nprogress/nprogress.css')
 import { Message } from 'element-ui'
 import { getToken } from '@/utils/auth' // 验权(从cookie中获取)
 import { getUserInfo } from "@/api/user";
