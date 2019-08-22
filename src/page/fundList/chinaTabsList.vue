@@ -3,35 +3,35 @@
         <div class="tabContainer" ref="tabContainer">
             <el-tabs type="border-card">
                 <el-tab-pane>
-                    <span slot="label" @click="toggleTabs('eastChina')"><i class="fa fa-camera-retro"></i>华东区域</span>
+                    <span slot="label" @click="toggleTabs('eastChina')"><icon-svg icon-class="icondashboard" />华东区域</span>
                     <china-tabs-table :toggleData="toggleData"></china-tabs-table>
                 </el-tab-pane>
                 <el-tab-pane>
-                    <span slot="label" @click="toggleTabs('southChina')"><i class="fa fa-bank"></i>华南区域</span>
+                    <span slot="label" @click="toggleTabs('southChina')"><icon-svg icon-class="iconecharts" />华南区域</span>
                     <china-tabs-table :toggleData="toggleData"></china-tabs-table>
                 </el-tab-pane>
                 <el-tab-pane>
-                    <span slot="label" @click="toggleTabs('centralChina')"><i class="fa fa-cubes"></i>华中区域</span>
+                    <span slot="label" @click="toggleTabs('centralChina')"><icon-svg icon-class="iconinfo" />华中区域</span>
                     <china-tabs-table :toggleData="toggleData"></china-tabs-table>
                 </el-tab-pane>
                 <el-tab-pane>
-                    <span slot="label" @click="toggleTabs('northChina')"><i class="fa fa-fax"></i>华北区域</span>
+                    <span slot="label" @click="toggleTabs('northChina')"><icon-svg icon-class="iconpermission" />华北区域</span>
                     <china-tabs-table :toggleData="toggleData"></china-tabs-table>
                 </el-tab-pane>
                 <el-tab-pane>
-                    <span slot="label" @click="toggleTabs('northwestChina')"><i class="fa fa-institution"></i>西北区域</span>
+                    <span slot="label" @click="toggleTabs('northwestChina')"><icon-svg icon-class="iconuser" />西北区域</span>
                     <china-tabs-table :toggleData="toggleData"></china-tabs-table>
                 </el-tab-pane>
                 <el-tab-pane>
-                    <span slot="label" @click="toggleTabs('southwestChina')"><i class="fa fa-life-ring"></i>西南地区</span>
+                    <span slot="label" @click="toggleTabs('southwestChina')"><icon-svg icon-class="iconError" />西南地区</span>
                     <china-tabs-table :toggleData="toggleData"></china-tabs-table>
                 </el-tab-pane>
                 <el-tab-pane>
-                     <span slot="label" @click="toggleTabs('northeastChina')"><i class="fa fa-paper-plane"></i>东北地区</span>
+                     <span slot="label" @click="toggleTabs('northeastChina')"><icon-svg icon-class="iconfufei0" />东北地区</span>
                      <china-tabs-table :toggleData="toggleData"></china-tabs-table>
                 </el-tab-pane>
                 <el-tab-pane>
-                     <span slot="label" @click="toggleTabs('specialareaChina')"><i class="fa fa-calendar"></i>台港澳地区</span>
+                     <span slot="label" @click="toggleTabs('specialareaChina')"><icon-svg icon-class="iconpay1" />台港澳地区</span>
                      <china-tabs-table :toggleData="toggleData"></china-tabs-table>
                 </el-tab-pane>
             </el-tabs>
@@ -77,10 +77,7 @@
 </script>
 
 <style lang="less" scoped>
-    .fa{
-        margin-right:5px;
-    }
-  
+ 
 </style>
 
 

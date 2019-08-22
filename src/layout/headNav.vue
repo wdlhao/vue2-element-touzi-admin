@@ -192,11 +192,6 @@
         justify-content: space-between;
         box-shadow:0px 2px 5px 0px rgba(237,233,233,0.5);
     }
-    .fa-user {
-        position: relative;
-        top: -2px;
-        margin-right: 4px;
-    }
     .head-nav {
         position: fixed;
         top: 0;

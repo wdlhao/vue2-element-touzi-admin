@@ -14,7 +14,6 @@ const cdn = {
   dev: {
       css: [],
       js: [
-        '//at.alicdn.com/t/font_1258069_cgoaco60hzw.js'
       ]
   },
   // 生产环境
@@ -33,8 +32,7 @@ const cdn = {
         'https://cdn.bootcss.com/echarts/3.8.5/echarts.min.js',
         'https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js',
         'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js',
-        'https://cdn.bootcss.com/js-cookie/2.2.0/js.cookie.min.js',
-        '//at.alicdn.com/t/font_1258069_cgoaco60hzw.js'
+        'https://cdn.bootcss.com/js-cookie/2.2.0/js.cookie.min.js'
       ]
   }
 }
@@ -132,10 +130,11 @@ module.exports = {
       config.plugins.push(new CompressionPlugin({
         algorithm: 'gzip',
         test: new RegExp("\\.(" + ["js", "css"].join("|") + ")$"), // 匹配文件扩展名
-        threshold: 10240, // 对超过10k的数据进行压缩
+        // threshold: 10240, // 对超过10k的数据进行压缩
+        threshold: 5120, // 对超过5k的数据进行压缩
         minRatio: 0.8,
         cache: true, // 是否需要缓存
-        deleteOriginalAssets:false  // true删除源文件;false不删除源文件
+        deleteOriginalAssets:false  // true删除源文件(不建议);false不删除源文件
       }))
 
     // } else {

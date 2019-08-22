@@ -8,11 +8,11 @@
 				</div>
 		    	<el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginForm">
 					<el-form-item prop="username" class="login-item">
-					    <span class="fa-tips"><i class="fa fa-user"></i></span>
+					    <span class="loginTips"><icon-svg icon-class="iconuser" /></span>
 						<el-input @keyup.enter.native ="submitForm('loginForm')"  class="area" type="text" placeholder="用户名" v-model="loginForm.username" ></el-input>
 					</el-form-item>
-					<el-form-item prop="password" class="login-item">
-					    <span class="fa-tips"><i class="fa fa-lock"></i></span>
+					<el-form-item prop="password" class="login-item"> 
+					    <span class="loginTips"><icon-svg icon-class="iconLock" /></span>
 						<el-input @keyup.enter.native ="submitForm('loginForm')" class="area" type="password" placeholder="密码" v-model="loginForm.password"></el-input>
 					</el-form-item>
 					<el-form-item>
@@ -20,7 +20,7 @@
 				  	</el-form-item>
 					<div class="tiparea">
 						<p class="wxtip">温馨提示：</p>
-						<p class="tip">用户名为：admin/editor<span class="tips">(可用于切换权限)</span></p>
+						<p class="tip">用户名为：admin/editor<span>(可用于切换权限)</span></p>
 						<p class="tip">密码为：123456</p>
 					</div>
 					<div class="sanFangArea">
@@ -137,11 +137,11 @@
 				padding:13px 0;
 				font-size: 16px;
 			}
-			.fa-tips{
+			.loginTips{
 				position: absolute;
 				left: 10px;
 				z-index: 20;
-				color: #FF7C1A;
+				// color: #FF7C1A;
 				font-size: 18px;
 				top: 50%;
 				transform: translateY(-50%);
@@ -170,9 +170,6 @@
 		padding: 10px 0;
 		.tip{
 			margin-left: 54px;
-		}
-		.tips{
-			color:red;
 		}
 	}
 	

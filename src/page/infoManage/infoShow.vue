@@ -71,28 +71,28 @@
         <el-row class="data_row row" :gutter="10">
                 <el-col :span="6">
                 <div class="area">
-                    <p class="title"><i class="fa fa-cog"></i>待收资产</p>
+                    <p class="title"><icon-svg icon-class="iconpay3" />待收资产</p> 
                     <p class="num"><span class="symbol">￥</span>78.00</p>
                     <a class="detail dbgcolor">查看详情&nbsp;&nbsp;<i class="el-icon-d-arrow-right"></i></a>
                 </div>
                 </el-col>
                 <el-col :span="6">
                     <div class="area">
-                    <p class="title"><i class="fa fa-cog"></i>账户总资产</p>
+                    <p class="title"><icon-svg icon-class="iconpay3" />账户总资产</p>
                     <p class="num"><span class="symbol">￥</span>2078.00</p>
                     <a class="detail zbgcolor">查看详情&nbsp;&nbsp;<i class="el-icon-d-arrow-right"></i></a>
                 </div>
                 </el-col>
                 <el-col :span="6">
                     <div class="area">
-                    <p class="title"><i class="fa fa-cog"></i>已得回报</p>
+                    <p class="title"><icon-svg icon-class="iconpay3" />已得回报</p>
                     <p class="num"><span class="symbol">￥</span>1000.00</p>
                     <a class="detail dbgcolor">查看详情&nbsp;&nbsp;<i class="el-icon-d-arrow-right"></i></a>
                 </div>
                 </el-col>
                 <el-col :span="6">
                 <div class="area">
-                    <p class="title"><i class="fa fa-cog"></i>期待回报</p>
+                    <p class="title"><icon-svg icon-class="iconpay3" />期待回报</p>
                     <p class="num"><span class="symbol">￥</span>3000.00</p>
                     <a class="detail zbgcolor">查看详情&nbsp;&nbsp;<i class="el-icon-d-arrow-right"></i></a>
                 </div>
@@ -265,9 +265,6 @@
            padding:10px;
            text-align:center;
            font-weight:bolder;
-            .fa{
-                margin-right:10px;
-            }
             .symbol{
                 font-size: 16px;
                 font-style: italic;

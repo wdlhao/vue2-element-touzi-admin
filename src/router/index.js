@@ -44,7 +44,7 @@ export const constantRouterMap = [
 		component:Layout,
 		meta:{
 			title:'首页',
-		  icon: 'fa-dashboard',
+		  icon: 'icondashboard',
 		},
 		noDropdown:true,
 		children:[ 
@@ -52,8 +52,8 @@ export const constantRouterMap = [
 				path:'index', 
 				meta:{
 					title:'首页', 
-					icon:'fa-index',
-				    routerType:'leftmenu'
+					icon:'icondashboard',
+				  routerType:'leftmenu'
 				},
         component: () => import('@/page/index/index'),
 			}
@@ -76,7 +76,7 @@ export const asyncRouterMap = [
 		component:Layout,
 		meta: {
 			title:'用户管理',
-			icon: 'fa-user',
+			icon: 'iconuser',
 		},
 		noDropdown:true,
 		children:[
@@ -84,7 +84,7 @@ export const asyncRouterMap = [
 				path:'userList', 
 				meta:{
 					title:'用户管理', 
-					icon:'fa-user',
+					icon:'iconuser',
 				  routerType:'leftmenu'
 				},
 				component: () => import('@/page/userList/userList'),
@@ -97,7 +97,7 @@ export const asyncRouterMap = [
 		component:Layout,
 		meta: {
 			title:'分享功能',
-			icon: 'fa-share',
+			icon: 'iconshare',
 		},
 		noDropdown:true,
 		children:[
@@ -105,7 +105,7 @@ export const asyncRouterMap = [
 				path:'share', 
 				meta:{
 				  title:'分享功能', 
-				  icon:'fa-share',
+				  icon:'iconshare',
 				  routerType:'leftmenu'
 				},
 				component: () => import('@/page/share'),
@@ -117,7 +117,7 @@ export const asyncRouterMap = [
 	  name: 'infoManage',
 	  meta: {
 			title:'信息管理',
-			icon: 'fa-asterisk',
+			icon: 'iconinfo',
 	  },
 	  component:Layout,
 	  children:[
@@ -126,7 +126,7 @@ export const asyncRouterMap = [
 		   name:'infoShow',
 		   meta: {
 					title:'个人信息',
-					icon: 'fa-asterisk',
+					icon: 'iconinfo',
 					routerType:'leftmenu',
 					titleList:[
 						{"path":"infoShow1","title":"个人信息子菜单1"},
@@ -144,7 +144,7 @@ export const asyncRouterMap = [
 			name:'infoModify',
 			meta: {
 				title:'修改信息',
-				icon: 'fa-asterisk',
+				icon: 'iconinfo',
 				routerType:'leftmenu',
 				titleList:[
 					{"path":"infoModify1","title":"修改信息子菜单1"},
@@ -162,7 +162,7 @@ export const asyncRouterMap = [
 		name: 'fundManage',
 		meta: {
 		  title:'资金管理',
-		  icon: 'fa-money',
+		  icon: 'iconpay3',
 		},
 		component:Layout,
 		children:[
@@ -171,7 +171,6 @@ export const asyncRouterMap = [
 			name:'fundList',
 			meta: {
 					title:'资金流水',
-					icon: 'fa-asterisk',
 					routerType:'leftmenu'
 			},
 			component: () => import('@/page/fundList/fundList'),
@@ -181,8 +180,7 @@ export const asyncRouterMap = [
 			name:'chinaTabsList',
 			meta: {
 				title:'区域投资',
-					icon: 'fa-asterisk',
-					routerType:'leftmenu'
+				routerType:'leftmenu'
 			},
 			component: () => import('@/page/fundList/chinaTabsList'),
 			}
@@ -193,7 +191,7 @@ export const asyncRouterMap = [
 		name: 'fundData',
 		meta: {
 		  title:'资金数据',
-		  icon: 'fa-bar-chart-o',
+		  icon: 'iconecharts',
 		},
 		component:Layout,
 		redirect: '/fundData/fundPosition',
@@ -202,8 +200,7 @@ export const asyncRouterMap = [
 			 path:'fundPosition',
 			 name:'fundPosition',
 			 meta: {
-				  title:'投资分布',
-				  icon: '',
+				  title:'投资分布'
 			 },
 			 component: () => import('@/page/fundData/fundPosition')
 		  },
@@ -211,8 +208,7 @@ export const asyncRouterMap = [
 			  path:'typePosition',
 			  name:'typePosition',
 			  meta: {
-				   title:'项目分布',
-					 icon: '',
+				   title:'项目分布'
 				},
 				component: () => import('@/page/fundData/typePosition')
 		   },
@@ -220,8 +216,7 @@ export const asyncRouterMap = [
 				path:'incomePayPosition',
 				name:'incomePayPosition',
 				meta: {
-					title:'收支统计',
-					icon: '',
+					title:'收支统计'
 				},
 				component: () => import('@/page/fundData/incomePayPosition')
 		    }
@@ -232,7 +227,7 @@ export const asyncRouterMap = [
 		name: 'permission',
 		meta: {
       title: '权限设置',
-      icon: 'fa-cogs',
+      icon: 'iconpermission',
       roles: ['admin', 'editor'] // you can set roles in root nav
     },
     component: Layout,
@@ -261,7 +256,7 @@ export const asyncRouterMap = [
     name: 'errorPage',
     meta: {
       title: '错误页面', 
-      icon: 'fa-exclamation-triangle'
+      icon: 'iconError'
     },
     children: [
 			{  
