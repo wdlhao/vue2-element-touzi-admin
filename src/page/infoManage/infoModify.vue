@@ -215,7 +215,7 @@
            
         },
       	mounted() {
-            mutils.setContentHeight(this,this.$refs.fillcontain,170);
+            // mutils.setContentHeight(this,this.$refs.fillcontain,170);
 	    },
         methods: {
             showMessage(type,message){
