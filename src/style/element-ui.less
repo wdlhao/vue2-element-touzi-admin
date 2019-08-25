@@ -21,20 +21,20 @@
     border: none;
     height: 100%;
     .dropItem{
-      padding-left: 10px !important;
-      .el-menu-item{
-        padding-left: 10px !important;
-      }
+      padding: 0 6px !important;
       .svg-icon{
         margin-right: 5px;
       }
     }
-    .el-tooltip{
-       padding: 0 10px !important;
-    }
+    .el-tooltip,
     .el-submenu__title{
-       padding: 0 10px !important;
+       padding: 0 6px !important;
     }
+}
+.el-submenu{
+  .svg-icon{
+    margin-right: 5px;
+  }
 }
 // 设置左侧菜单栏 end
 
@@ -333,8 +333,11 @@
     min-width:100%;
   }  
 }
-.userinfo .el-submenu__title .el-icon-arrow-down{
-   display: none;
+
+.userinfo{
+  .el-icon-arrow-down{
+    display: none;
+ }
 }
 .table_container{
   .el-table__body-wrapper{

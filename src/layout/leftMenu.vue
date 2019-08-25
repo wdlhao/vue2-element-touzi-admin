@@ -4,7 +4,7 @@
             <img :class='["logo",{"closeLogo":!sidebar.opened}]' :src="logo" alt="小爱admin" >
             <span class='title' v-show="sidebar.opened">{{$t('commons.xiaoai')}}<i>Admin</i></span>
         </div>
-        <div class="menu_page_bottom el-scrollbar">
+        <div class="menu_page_bottom is-scroll-left">
             <el-menu 
                 mode="vertical"
                 theme="dark" 
@@ -14,7 +14,8 @@
                 :background-color="menuObj.bgColor"
                 :text-color="menuObj.textColor"
                 :active-text-color="menuObj.activeTextColor"
-                :style="{'width':sidebar.width+'px'}">
+                :style="{width:sidebar.width+'px'}"
+                >
                     <template v-for="(item,index) in permission_routers">
                         <!--表示 有一级菜单-->
                         <router-link v-if="!item.hidden && item.noDropdown" :to="item.path+'/'+item.children[0].path" :key="index">
@@ -58,7 +59,6 @@ export default {
   data() {
     return {
        menuObj:{
-        //  bgColor:'#324057',
          bgColor:'#fff',
          textColor:'#666',
          activeTextColor:'#ff6428',
@@ -124,7 +124,10 @@ export default {
   .menu_page_bottom {
       width:100%;
       overflow-y: scroll;
+      overflow-x: hidden;
       flex:1;
       margin-top:3px;
+      z-index: 10;
+      box-shadow: 0 0 10px 0 rgba(230, 224, 224, 0.5)
   }
 </style>

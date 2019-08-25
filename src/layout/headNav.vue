@@ -49,7 +49,7 @@
                        class="el-menu-demo" 
                        mode="horizontal" 
                        >
-                        <el-submenu index="1" class="langItem">
+                        <el-submenu index="1" popper-class="langItem">
                             <template slot="title">
                                 <img :src="langLogo" class='langAvatar' alt="">
                             </template>
@@ -63,7 +63,7 @@
                             </el-menu-item>
                         </el-submenu>
 
-                        <el-submenu index="2" class="infoItem">
+                        <el-submenu index="2"  popper-class="infoItem">
                             <template slot="title">
                                 <div class='welcome'>
                                     <span class="name">{{$t('commons.hi')}},</span>
@@ -71,9 +71,9 @@
                                 </div>
                                 <img :src="avatar" class='avatar' alt="">
                             </template>
-                            <el-menu-item index="1-1" @click="setDialogInfo('info')">{{ $t('commons.infoShow') }}</el-menu-item>
-                            <el-menu-item index="1-2" @click="setDialogInfo('pass')">{{ $t('commons.infoModify') }}</el-menu-item>
-                            <el-menu-item index="1-3" @click="setDialogInfo('logout')">{{ $t('commons.quit') }}</el-menu-item>
+                            <el-menu-item index="2-1" @click="setDialogInfo('info')">{{ $t('commons.infoShow') }}</el-menu-item>
+                            <el-menu-item index="2-2" @click="setDialogInfo('pass')">{{ $t('commons.infoModify') }}</el-menu-item>
+                            <el-menu-item index="2-3" @click="setDialogInfo('logout')">{{ $t('commons.quit') }}</el-menu-item>
                         </el-submenu>
                     </el-menu>
                 </div>

@@ -1,6 +1,7 @@
 
 const TerserPlugin = require('terser-webpack-plugin')  // 用于在生成环境剔除debuger和console
 const CompressionPlugin = require("compression-webpack-plugin"); // gzip压缩,优化http请求,提高加载速度
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin // 代码分析工具 
 const path = require('path');
 const resolve = dir => {
   return path.join(__dirname, dir);
@@ -19,7 +20,7 @@ const cdn = {
   // 生产环境
   build: {
       css: [
-        'https://cdn.bootcss.com/element-ui/2.0.7/theme-chalk/index.css',
+        'https://cdn.bootcss.com/element-ui/2.11.1/theme-chalk/index.css',
         'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css'
       ],
       js: [
@@ -28,7 +29,7 @@ const cdn = {
         'https://cdn.bootcss.com/vuex/2.3.1/vuex.min.js',
         'https://cdn.bootcss.com/axios/0.19.0/axios.min.js',
         'https://cdn.bootcss.com/vue-i18n/8.13.0/vue-i18n.min.js',
-        'https://cdn.bootcss.com/element-ui/2.0.7/index.js',
+        'https://cdn.bootcss.com/element-ui/2.11.1/index.js',
         'https://cdn.bootcss.com/echarts/3.8.5/echarts.min.js',
         'https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js',
         'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js',
@@ -78,27 +79,32 @@ module.exports = {
         chunks: 'all'
     })    
     // 项目文件大小分析
-    config
-    .plugin('webpack-bundle-analyzer')
-    .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+    // config
+    // .plugin('webpack-bundle-analyzer')
+    // .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+    config.plugin('webpack-bundle-analyzer')
+    .use(new BundleAnalyzerPlugin({
+      openAnalyzer: false   // 是否打开默认浏览器
+    }))
+
     // 对vue-cli内部的 webpack 配置进行更细粒度的修改。
     // 添加CDN参数到htmlWebpackPlugin配置中， 详见public/index.html 修改
     config
     .plugin('html')
     .tap(args => {
-      args[0].cdn = cdn.build
-      // if (process.env.NODE_ENV === 'production') {
-      //     args[0].cdn = cdn.build
-      // }
-      // if (process.env.NODE_ENV === 'development') {
-      //     args[0].cdn = cdn.dev
-      // }
+      // args[0].cdn = cdn.build
+      if (process.env.NODE_ENV === 'production') {
+          args[0].cdn = cdn.build
+      }
+      if (process.env.NODE_ENV === 'development') {
+          args[0].cdn = cdn.dev
+      }
       return args
     })
   },
   configureWebpack:config => {
     // 为生产环境修改配置...
-    // if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production') {
       // 忽略生产环境打包的文件
       config.externals = {
         "vue": "Vue",
@@ -137,10 +143,10 @@ module.exports = {
         deleteOriginalAssets:false  // true删除源文件(不建议);false不删除源文件
       }))
 
-    // } else {
-    //   // 为开发环境修改配置...
+    } else {
+      // 为开发环境修改配置...
 
-    // }
+    }
   },
    // 第三方插件配置
   pluginOptions: {

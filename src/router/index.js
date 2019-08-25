@@ -1,10 +1,9 @@
-// import Vue from 'vue'
+import Vue from 'vue'
 import Router from 'vue-router'
 import { Layout,Content }  from "../layout"; // 页面整体布局
 import { topRouterMap } from "./topRouter";
 
-// Vue.use(Router) 
-// process.env.NODE_ENV === "development" ? Vue.use(Router) : null;
+process.env.NODE_ENV === "development" ? Vue.use(Router) : null;
 
 function filterTopRouterMap(name){
 	let router = topRouterMap.find((item) => {

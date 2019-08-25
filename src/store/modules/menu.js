@@ -14,7 +14,7 @@ const menu = {
             opened: true,  
             width: 180
         },
-        isCollapse:false,
+        isCollapse:false, // 菜单默认展开
         isFooter:false
     },
     getters : {

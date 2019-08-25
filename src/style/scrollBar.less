@@ -1,12 +1,8 @@
 // 竖向滚动条
-.el-scrollbar {
-    // overflow: hidden;
-    // position: relative
-}
 .is-scroll-right::-webkit-scrollbar,
 .is-scroll-left::-webkit-scrollbar,
 .el-scrollbar::-webkit-scrollbar {
-    width: 8px;
+    width: 4px;
     height: 8px !important;
 }
 /*滚动条的背景区域的内阴影*/
@@ -40,63 +36,63 @@
 
 
 
-.el-scrollbar:active>.el-scrollbar__bar,.el-scrollbar:focus>.el-scrollbar__bar,.el-scrollbar:hover>.el-scrollbar__bar {
-    opacity: 1;
-    -webkit-transition: opacity 340ms ease-out;
-    transition: opacity 340ms ease-out
-}
+// .el-scrollbar:active>.el-scrollbar__bar,.el-scrollbar:focus>.el-scrollbar__bar,.el-scrollbar:hover>.el-scrollbar__bar {
+//     opacity: 1;
+//     -webkit-transition: opacity 340ms ease-out;
+//     transition: opacity 340ms ease-out
+// }
 
-.el-scrollbar__wrap {
-    overflow: scroll;
-    height: 100%;
-}
+// .el-scrollbar__wrap {
+//     overflow: scroll;
+//     height: 100%;
+// }
 
-.el-scrollbar__wrap--hidden-default::-webkit-scrollbar {
-    width: 0;
-    height: 0
-}
+// .el-scrollbar__wrap--hidden-default::-webkit-scrollbar {
+//     width: 0;
+//     height: 0
+// }
 
-.el-scrollbar__thumb {
-    position: relative;
-    display: block;
-    width: 0;
-    height: 0;
-    cursor: pointer;
-    border-radius: inherit;
-    background-color: rgba(144,147,153,.3);
-    -webkit-transition: .3s background-color;
-    transition: .3s background-color
-}
+// .el-scrollbar__thumb {
+//     position: relative;
+//     display: block;
+//     width: 0;
+//     height: 0;
+//     cursor: pointer;
+//     border-radius: inherit;
+//     background-color: rgba(144,147,153,.3);
+//     -webkit-transition: .3s background-color;
+//     transition: .3s background-color
+// }
 
-.el-scrollbar__thumb:hover {
-    background-color: rgba(144,147,153,.5)
-}
+// .el-scrollbar__thumb:hover {
+//     background-color: rgba(144,147,153,.5)
+// }
 
-.el-scrollbar__bar {
-    position: absolute;
-    right: 2px;
-    bottom: 2px;
-    z-index: 1;
-    border-radius: 4px;
-    opacity: 0;
-    -webkit-transition: opacity 120ms ease-out;
-    transition: opacity 120ms ease-out
-}
+// .el-scrollbar__bar {
+//     position: absolute;
+//     right: 2px;
+//     bottom: 2px;
+//     z-index: 1;
+//     border-radius: 4px;
+//     opacity: 0;
+//     -webkit-transition: opacity 120ms ease-out;
+//     transition: opacity 120ms ease-out
+// }
 
-.el-scrollbar__bar.is-vertical {
-    width: 6px;
-    top: 2px
-}
+// .el-scrollbar__bar.is-vertical {
+//     width: 6px;
+//     top: 2px
+// }
 
-.el-scrollbar__bar.is-vertical>div {
-    width: 100%
-}
+// .el-scrollbar__bar.is-vertical>div {
+//     width: 100%
+// }
 
-.el-scrollbar__bar.is-horizontal {
-    height: 6px;
-    left: 2px
-}
+// .el-scrollbar__bar.is-horizontal {
+//     height: 6px;
+//     left: 2px
+// }
 
-.el-scrollbar__bar.is-horizontal>div {
-    height: 100%
-}
+// .el-scrollbar__bar.is-horizontal>div {
+//     height: 100%
+// }
