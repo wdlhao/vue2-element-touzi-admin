@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
-    "core-js": "^3.2.1",
+    "core-js": "^2.6.9",
     "echarts": "^4.2.1",
     "element-ui": "^2.11.1",
     "express": "^4.17.1",
