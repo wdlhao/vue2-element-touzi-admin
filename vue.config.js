@@ -78,6 +78,17 @@ module.exports = {
     config.optimization.splitChunks({
         chunks: 'all'
     })    
+    // 对图片进行压缩处理
+    config.module
+    .rule('images')
+    .use('image-webpack-loader')
+    .loader('image-webpack-loader')
+    .options({
+        disable: true, // webpack@2.x and newer
+        quality: '65-80',
+        speed: 4
+    })
+    .end()
     // 项目文件大小分析
     config.plugin('webpack-bundle-analyzer')
     .use(new BundleAnalyzerPlugin({
@@ -90,7 +101,6 @@ module.exports = {
     config
     .plugin('html')
     .tap(args => {
-      // args[0].cdn = cdn.build
       if (process.env.NODE_ENV === 'production') {
           args[0].cdn = cdn.build
       }
