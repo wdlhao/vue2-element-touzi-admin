@@ -20,7 +20,7 @@
             <el-table-column
                 type="selection"
                 align='center'
-                width="40">
+                width="60">
             </el-table-column>
               <el-table-column
                 prop="username"
@@ -71,7 +71,7 @@
                 width="130"
                 sortable>
                 <template slot-scope="scope">  
-                    <span style="color:#f56767">{{ getPay(scope.row.pay) }}</span>
+                    <span style="color:#f56767">{{ scope.row.pay }}</span>
                 </template>
             </el-table-column>
             <el-table-column
@@ -200,10 +200,6 @@
         },
       	mounted() {
             this.getMoneyList();
-            // this.setTableHeight();
-            // window.onresize = () => {
-            //     this.setTableHeight();
-            // }
 	   },
         methods: {
              setTableHeight(){
@@ -245,7 +241,6 @@
                    return val;
                }
             },
-
             /**
             * 格式化状态
             */
@@ -259,7 +254,7 @@
             },
             // 编辑操作方法
             onEditMoney(row){
-                this.addFundDialog.dialogRow = row;
+                this.addFundDialog.dialogRow = {...row};
                 this.showAddFundDialog();
             },
             // 删除数据

@@ -27,17 +27,28 @@
                 <el-form-item prop='username' label="用户名:">
                     <el-input type="text" v-model="form.username"></el-input>
                 </el-form-item>
+                
+                 <el-form-item prop='address' label="籍贯:">
+                    <el-cascader
+                        placeholder="请选择地区"
+                        v-model="form.address"
+                        :props="{ expandTrigger: 'hover'}"
+                        :options="areaData"
+                        @change="handleChange"
+                        ref="cascaderAddr">
+                    </el-cascader>
+                </el-form-item>
 
                 <el-form-item prop='income'  label="收入:">
-                    <el-input type="number" v-model.number="form.income"></el-input>
+                    <el-input v-model.number="form.income"></el-input>
                 </el-form-item>
 
                 <el-form-item prop='pay' label="支出:">
-                    <el-input type="number" v-model.number="form.pay"></el-input>
+                    <el-input v-model.number="form.pay"></el-input>
                 </el-form-item>
 
                 <el-form-item prop='accoutCash' label="账户现金:">
-                    <el-input type="number" v-model.number="form.accoutCash"></el-input>
+                    <el-input v-model.number="form.accoutCash"></el-input>
                 </el-form-item>
 
                     <el-form-item label="备注:">
@@ -57,6 +68,7 @@
 <script>
    import { mapState, mapGetters } from 'vuex'
    import { addMoney,updateMoney } from "@/api/money";
+   import AreaJson from "@/assets/datas/area.json"
 
   export default {
       name:'addFundDialogs',
@@ -68,23 +80,25 @@
                         text='收入';
                     }else if(rule.field == "pay"){
                         text='支出';
-                    }else{
+                    }else if(rule.field == 'accoutCash'){
                         text='账户现金';
                     }
                     callback(new Error(text+'不能为空~'));
                 }else{
                    let numReg = /^[0-9]+.?[0-9]*$/;
                    if(!numReg.test(value)){
-                      callback(new Error('请输入数字值'));
+                      callback(new Error('请输入正数值'));
                    }else{
                       callback();
                    }
                 }
             };
           return {
+            areaData:[],
             isVisible: this.isShow,
             form:{
                 incomePayType:'',
+                address:'',
                 username: '',
                 income: '',
                 pay:'',
@@ -107,14 +121,17 @@
                     {required: true, message : '用户名不能为空！',trigger : 'blur'}
                 ],
                 income   : [
-                    { required: true, validator:validateData,trigger: 'blur'},
+                    { required: true, validator:validateData,trigger: 'blur'}
                 ],
                 pay   : [
-                    { required: true, validator:validateData,trigger: 'blur'},
+                    { required: true, validator:validateData,trigger: 'blur'}
                 ],
                 accoutCash   : [
-                    { required: true, validator:validateData,trigger: 'blur'},
+                    { required: true, validator:validateData,trigger: 'blur'}
                 ],
+                incomePayType:[
+                    { required: true, message: '请选择收支类型', trigger: 'change' }
+                ]
             },
             //详情弹框信息
             dialog: {
@@ -129,27 +146,36 @@
       },
       computed:{
         ...mapGetters(['addFundDialog']),
-
       },
       created(){
-            if(this.addFundDialog.type === 'edit'){
-                this.form = this.dialogRow;
-                this.form.incomePayType = (this.dialogRow.incomePayType).toString();
-                this.form.pay = -this.dialogRow.pay;
-            }else{
-                this.$refs['form'].resetFields()
-            }
-
+            this.areaData = AreaJson
       },
       mounted(){
-
+        if(this.addFundDialog.type === 'edit'){
+            this.form = this.dialogRow;
+            this.form.incomePayType = (this.dialogRow.incomePayType).toString();
+        }else{
+            this.$nextTick(() => {
+                this.$refs['form'].resetFields()
+            })
+        }
       },
       methods:{
-          onScreeoutMoney(){
-
-          },
-          onAddMoney(){
-
+          getCascaderObj(val, opt){
+            return val.map(function (value, index, array) {
+                for (var item of opt) {
+                    if (item.value == value) { 
+                        opt = item.children; 
+                        return item.label; 
+                    }
+                }
+                return null;
+            });
+         },
+          handleChange(value) {
+            let vals = this.getCascaderObj(value, this.areaData);
+            console.log(vals.join(',').replace(/,/g,'')); // str 
+            this.form.address = vals.join(',').replace(/,/g,'');
           },
           closeDialog(){
               this.$emit('closeDialog');
@@ -160,6 +186,7 @@
                 if (valid) {//表单数据验证完成之后，提交数据;
                     let formData = this[form];
                     const para = Object.assign({}, formData)
+                    console.log(para);
                     // edit
                     if(this.addFundDialog.type === 'edit'){
                         updateMoney(para).then(res => {
@@ -185,7 +212,7 @@
                     }
                 }
             })
-          },
+          }
       }
   }
 </script>

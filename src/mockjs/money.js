@@ -13,9 +13,9 @@ for (let i = 0; i < count; i++) {
     username: Mock.Random.cname(),
     address: Mock.mock('@county(true)'),
     createTime: Mock.Random.datetime(),
-    income: Mock.Random.float(0, 9999, 2,2),
-    pay: Mock.Random.float(-5999, 0, 2,2),
-    accoutCash: Mock.Random.float(0, 9999, 2,2),
+    income: Mock.Random.integer(0, 9999),
+    pay: Mock.Random.integer(0, 9999), 
+    accoutCash: Mock.Random.integer(0, 9999),
     'incomePayType|1': typelist
   }))
 }
@@ -49,7 +49,7 @@ export default {
    */
   createMoney: config => {
     const { username, address, income, pay , accoutCash, incomePayType } = mUtils.param2Obj(config.url)
-    List.push({
+    List.unshift({
       id: Mock.Random.guid(),
       username: username,
       address: address,
