@@ -28,11 +28,21 @@
                 align='center'
                 width="80">
             </el-table-column>
+              <el-table-column
+                v-if="idFlag"
+                prop="address"
+                label="籍贯"
+                align='center'
+                >
+            </el-table-column>
             <el-table-column
                 prop="address"
                 label="籍贯"
                 align='center'
                 >
+                 <template slot-scope="scope">  
+                    <span style="color:#00d053">+ {{ scope.row.tableAddress || scope.row.address }}</span>
+                </template>
             </el-table-column>
             <el-table-column
                 prop="createTime"
@@ -202,11 +212,14 @@
             this.getMoneyList();
 	   },
         methods: {
-             setTableHeight(){
+            setAddress(value){
+
+            },
+            setTableHeight(){
                 this.$nextTick(() => {
                    this.tableHeight =  document.body.clientHeight - 300
                 })
-             },
+            },
             // 获取资金列表数据
             getMoneyList(){
                 const para = Object.assign({},this.incomePayData,this.search);

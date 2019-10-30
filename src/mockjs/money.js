@@ -48,11 +48,12 @@ export default {
    * @return {{code: number, data: {message: string}}}
    */
   createMoney: config => {
-    const { username, address, income, pay , accoutCash, incomePayType } = mUtils.param2Obj(config.url)
+    const { username, address, income, pay , accoutCash, incomePayType,tableAddress } = mUtils.param2Obj(config.url)
     List.unshift({
       id: Mock.Random.guid(),
       username: username,
       address: address,
+      tableAddress:tableAddress,
       createTime: Mock.Random.now(),
       income: income,
       pay: pay,

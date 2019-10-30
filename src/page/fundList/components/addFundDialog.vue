@@ -13,7 +13,7 @@
                 :rules="form_rules"
                 :label-width="dialog.formLabelWidth" 
                 style="margin:10px;width:auto;">
-                <el-form-item label="收支类型:" >
+                <el-form-item prop='incomePayType' label="收支类型:" >
                     <el-select v-model="form.incomePayType" placeholder="收支类型">
                         <el-option
                             v-for="item in payType"
@@ -28,10 +28,10 @@
                     <el-input type="text" v-model="form.username"></el-input>
                 </el-form-item>
                 
-                 <el-form-item prop='address' label="籍贯:">
+                 <el-form-item prop="address" label="籍贯:">
                     <el-cascader
-                        placeholder="请选择地区"
                         v-model="form.address"
+                        placeholder="请选择地区"
                         :props="{ expandTrigger: 'hover'}"
                         :options="areaData"
                         @change="handleChange"
@@ -51,7 +51,7 @@
                     <el-input v-model.number="form.accoutCash"></el-input>
                 </el-form-item>
 
-                    <el-form-item label="备注:">
+                <el-form-item label="备注:">
                     <el-input type="textarea" v-model="form.remarks"></el-input>
                 </el-form-item>
 
@@ -98,7 +98,8 @@
             isVisible: this.isShow,
             form:{
                 incomePayType:'',
-                address:'',
+                address:[],
+                tableAddress:'',
                 username: '',
                 income: '',
                 pay:'',
@@ -131,6 +132,9 @@
                 ],
                 incomePayType:[
                     { required: true, message: '请选择收支类型', trigger: 'change' }
+                ],
+                address:[
+                    { required: true, message: '请选择籍贯', trigger: 'change' }
                 ]
             },
             //详情弹框信息
@@ -153,7 +157,10 @@
       mounted(){
         if(this.addFundDialog.type === 'edit'){
             this.form = this.dialogRow;
+            console.log(this.form);
             this.form.incomePayType = (this.dialogRow.incomePayType).toString();
+            // this.form.address = ["120000", "120200", "120223"]
+
         }else{
             this.$nextTick(() => {
                 this.$refs['form'].resetFields()
@@ -173,9 +180,10 @@
             });
          },
           handleChange(value) {
-            let vals = this.getCascaderObj(value, this.areaData);
-            console.log(vals.join(',').replace(/,/g,'')); // str 
-            this.form.address = vals.join(',').replace(/,/g,'');
+            console.log([...value]); // ["120000", "120200", "120223"]
+            this.form.address = [...value];
+            let vals = this.getCascaderObj([...value], this.areaData); // arr
+            this.form.tableAddress = vals.join(',').replace(/,/g,'');
           },
           closeDialog(){
               this.$emit('closeDialog');
