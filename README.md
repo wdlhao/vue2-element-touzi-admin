@@ -2,8 +2,6 @@
 
 **A magical vue element touzi admin.**
 
-- [效果演示地址](http://www.jiouai.com/permission/#/login)
-
 **分支说明：**
 
 **master分支**：前后端统一开发的版本；可以用于学习nodejs+mongodb+express相关知识；
@@ -91,8 +89,8 @@ admin：拥有最高权限，可以查看所有的页面和按钮；
 editor：只有被赋予权限的页面和按钮才可以看到；
 
 
-## [查看更多demo](http://www.jiouai.com/permission/#/login)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/1.png)
+## [查看更多demo]
+![image](https://images.cnblogs.com/cnblogs_com/wdlhao/2191537/o_220720015204_AI01.png)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/2.png)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/3.png)
 ![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/4.png)
