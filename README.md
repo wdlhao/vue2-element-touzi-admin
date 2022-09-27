@@ -2,8 +2,6 @@
 
 **A magical vue element touzi admin.**
 
-- [效果演示地址](http://www.jiouai.com/permission/#/login)
-
 **分支说明：**
 
 **master分支**：前后端统一开发的版本；可以用于学习nodejs+mongodb+express相关知识；
@@ -14,7 +12,7 @@
 
 ## 提示
 <p style="display:flex;align-items:center;">
- 如果你觉得该项目对你有帮忙，记得给我点赞吧!<img src="https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-base/src/assets/img/zan.png" width="80px" /></p>
+ 如果你觉得该项目对你有帮忙，记得给我点赞吧!<img src="https://images.cnblogs.com/cnblogs_com/wdlhao/2191537/o_220720020300_zan.png" width="80px" /></p>
 
 ## About
 
@@ -72,7 +70,7 @@
 
 **本地运行：**
 
-**npm run serve** 运行之后，会默认打开本地访问路径：http://localhost:8012
+**npm run serve** 运行之后，会默认打开本地访问路径：http://localhost:8808
 
 **发布：**
 
@@ -91,12 +89,14 @@ admin：拥有最高权限，可以查看所有的页面和按钮；
 editor：只有被赋予权限的页面和按钮才可以看到；
 
 
-## [查看更多demo](http://www.jiouai.com/permission/#/login)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/1.png)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/2.png)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/3.png)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/4.png)
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/github/5.png)
+## [查看更多demo]
+![image](https://images.cnblogs.com/cnblogs_com/wdlhao/2191537/o_220720015204_AI01.png)
+![image](https://images.cnblogs.com/cnblogs_com/wdlhao/2191537/o_220720015751_AI02.png)
+![image](https://images.cnblogs.com/cnblogs_com/wdlhao/2191537/o_220720015818_AI03.png)
+![image](https://images.cnblogs.com/cnblogs_com/wdlhao/2191537/o_220720015827_AI04.png)
+![image](https://images.cnblogs.com/cnblogs_com/wdlhao/2191537/o_220720015835_AI05.png)
+![image](https://images.cnblogs.com/cnblogs_com/wdlhao/2191537/o_220720015843_AI06.png)
+![image](https://images.cnblogs.com/cnblogs_com/wdlhao/2191537/o_220720015851_AI07.png)
 
 
 ## 技术答疑，交流QQ群
@@ -104,5 +104,5 @@ editor：只有被赋予权限的页面和按钮才可以看到；
 
 欢迎添加群主微信和qq群答疑：
 
-![image](https://github.com/wdlhao/vue2-element-touzi-admin/blob/dev-permission/src/assets/img/qcode.jpg)
+![image](https://images.cnblogs.com/cnblogs_com/wdlhao/2191537/o_220720020139_qcode.jpg)
 
