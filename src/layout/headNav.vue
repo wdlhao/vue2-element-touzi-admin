@@ -8,7 +8,7 @@
                         <li class="li-badge">
                             <el-tooltip class="item" effect="dark" content="访问github" placement="top">
                                 <a :href='github' target="_blank">
-                                      <icon-svg icon-class="iconGithub" />
+                                    <icon-svg icon-class="iconGithub" />
                                 </a>
                             </el-tooltip>
                         </li>
@@ -30,6 +30,7 @@
                         <li class="li-badge">
                             <a :href='github' target="_blank" v-popover:qqcode>
 						        <icon-svg icon-class="iconqq" />
+                                 <!-- <i class="iconfont iconqq"></i> -->
                                  <el-popover
                                     ref="qqcode"
                                     popper-class="qcodepopper"
