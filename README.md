@@ -8,7 +8,9 @@
 
 **dev分支**：进行了前后端分离的版本；用户只关注于前端部分，可忽略服务端；下载下来，即可运行；
 
-**dev-permission分支**：<b color="#87DE75">增加了权限管理(包括页面权限和按钮权限)的功能和顶栏三级菜单显示，完全剥离nodejs后台，使用mockjs模拟数据，让用户只需关注前端，更容易上手学习。目前此分支为正常维护分支。如有需要，请大家clone本分支代码运行。</b>
+<font color="#00dd00">
+dev-permission分支：
+增加了权限管理(包括页面权限和按钮权限)的功能和顶栏三级菜单显示，完全剥离nodejs后台，使用mockjs模拟数据，让用户只需关注前端，更容易上手学习。目前此分支为正常维护分支。如有需要，请大家clone本分支代码运行。</font>
 
 ## 提示
 <p style="display:flex;align-items:center;">
@@ -88,6 +90,8 @@ admin：拥有最高权限，可以查看所有的页面和按钮；
 
 editor：只有被赋予权限的页面和按钮才可以看到；
 
+**温馨提示**：本项目图标线上地址为：//at.alicdn.com/t/font\_1258069\_e40c6mwl0x8.js， 在public/index.html中引入;
+大家如需更换图标，可直接替换为自己iconfont线上的图标库地址即可;
 
 ## [查看更多demo]
 ![image](https://images.cnblogs.com/cnblogs_com/wdlhao/2191537/o_220720015204_AI01.png)
