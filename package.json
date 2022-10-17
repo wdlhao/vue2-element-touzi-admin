@@ -31,7 +31,7 @@
     "@babel/preset-env": "^7.5.5",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
-    "@vue/cli-service": "^3.11.0",
+    "@vue/cli-service": "^5.0.8",
     "babel-eslint": "^10.0.2",
     "compression-webpack-plugin": "^3.0.0",
     "eslint": "^6.2.2",
