@@ -13,7 +13,7 @@
   "dependencies": {
     "axios": "^0.21.2",
     "core-js": "^2.6.9",
-    "echarts": "^4.2.1",
+    "echarts": "^5.4.0",
     "element-ui": "^2.11.1",
     "express": "^4.17.1",
     "js-cookie": "^2.2.1",
