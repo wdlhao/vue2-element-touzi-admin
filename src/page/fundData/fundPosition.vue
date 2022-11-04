@@ -8,8 +8,8 @@
 
 <script>
     import echarts from 'echarts'
-    import '../../../node_modules/echarts/map/js/china.js';
-    import '../../../node_modules/echarts/theme/roma.js';
+    import '@/assets/echarts/china.js';
+    import '@/assets/echarts/roma.min.js';
 
     export default {
         data(){
